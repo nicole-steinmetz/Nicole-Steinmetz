@@ -1,0 +1,15 @@
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Figma exports land here before optimisation — commit the optimised
+# output, not the originals.
+assets/img/_source/
+
+# Legacy: this project was built in Google Drive until 2026-08-24.
+# It now lives locally. Keeping these in case a stray sync artefact appears.
+*.gdoc
+*.gsheet
+icloud/

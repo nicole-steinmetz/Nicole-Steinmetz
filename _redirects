@@ -1,0 +1,20 @@
+# Cloudflare Pages redirects
+# Format: <from> <to> <status>
+
+# Force the apex onto www (or delete this and do the reverse — pick one and
+# be consistent, split hostnames cost you SEO).
+https://nicolesteinmetz.com/*  https://www.nicolesteinmetz.com/:splat  301!
+
+# ---------------------------------------------------------------------------
+# UNBUILT ROUTES — holding pattern, 2026-08-26.
+# Home is the only signed-off page (Figma node 1:2). Pricing, FAQs and
+# Contact frames exist in the file but are still being finalised. There is
+# no platform-decider, get-a-quote or start-a-project frame.
+# 302, not 301: these URLs come back when the Figma pages are signed off.
+# python3 -m http.server does not honour this file — local preview still 404s.
+# ---------------------------------------------------------------------------
+/pricing/*            /  302
+/faqs/*               /  302
+/platform-decider/    /  302
+/get-a-quote/         /  302
+/start-a-project/     /  302

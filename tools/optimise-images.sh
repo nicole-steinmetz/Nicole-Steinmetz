@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# ---------------------------------------------------------------------------
+# Generate the responsive image variants index.html expects.
+#
+# Run this AFTER exporting from Figma per ASSETS.md.
+#   bash tools/optimise-images.sh
+#
+# Needs ImageMagick. macOS: brew install imagemagick
+# Idempotent — safe to re-run.
+# ---------------------------------------------------------------------------
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+IMG="assets/img"
+SRC="assets/img/_source"   # Figma exports live here; gitignored
+
+# Resolve a source file by basename, whatever extension it carries.
+# Looks in _source/ first, then img/ itself.
+src_of() {
+  local base="$1" f
+  for f in "$SRC/$base".png "$SRC/$base".jpg "$SRC/$base".jpeg \
+           "$IMG/$base".png "$IMG/$base".jpg "$IMG/$base".jpeg; do
+    [ -f "$f" ] && { printf '%s' "$f"; return 0; }
+  done
+  return 1
+}
+
+if command -v magick >/dev/null 2>&1; then IM="magick"
+elif command -v convert >/dev/null 2>&1; then IM="convert"
+else
+  echo "ImageMagick not found. Install it:  brew install imagemagick" >&2
+  exit 1
+fi
+
+mkdir -p "$SRC"
+
+# hero: 4 widths, WebP + JPEG fallback
+echo "hero"
+if HERO=$(src_of hero); then
+  for w in 720 1080 1440 2880; do
+    $IM "$HERO" -resize "${w}x>" -strip -quality 82 "$IMG/hero-${w}.webp"
+    $IM "$HERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/hero-${w}.jpg"
+    echo "  ${w}w"
+  done
+else
+  echo "  missing: hero.(png|jpg) — export from Figma first, see ASSETS.md" >&2
+fi
+
+# footer: 2 widths — it's a background, it can afford less
+echo "footer"
+if FOOT=$(src_of footer-bg); then
+  for w in 1440 2880; do
+    $IM "$FOOT" -resize "${w}x>" -strip -quality 80 "$IMG/footer-bg-${w}.webp"
+    $IM "$FOOT" -resize "${w}x>" -strip -quality 80 -interlace Plane "$IMG/footer-bg-${w}.jpg"
+    echo "  ${w}w"
+  done
+else
+  echo "  missing: footer-bg.(png|jpg)" >&2
+fi
+
+# UI panels: keep PNG (flat colour + fine text — JPEG will smear it),
+# just strip metadata and re-compress losslessly.
+echo "panels"
+for f in panel-the-tools panel-get-a-quote panel-start-a-project arrow-02 squarespace-badges; do
+  if P=$(src_of "$f"); then
+    $IM "$P" -strip -define png:compression-level=9 "$IMG/$f.png"
+    echo "  $f"
+  else
+    echo "  missing: $f.png" >&2
+  fi
+done
+
+echo
+echo "Done. Sizes:"
+du -h "$IMG"/*.{webp,jpg,png} 2>/dev/null | sort -h | tail -20
+
+cat <<'EOF'
+
+Sanity check before you commit:
+  · No single file over ~300 KB. If hero-2880.webp is bigger, drop quality to 75.
+  · Open hero-720.webp and confirm it isn't an upscale of something smaller.
+  · The panel PNGs carry small text — view at 100% and check it's still legible.
+EOF

@@ -1,0 +1,85 @@
+/* ============================================================
+   NICOLE STEINMETZ — DESIGN TOKENS v2
+   Source of truth: Figma "Nicole Steinmetz" → Home (node 1:2)
+   ------------------------------------------------------------
+   v2 supersedes tokens.css v1 (cobalt/bone). Every value below
+   was read off the Figma node, not invented. Where v1 had a
+   token the design no longer uses, it has been dropped rather
+   than left to rot.
+   Australian English throughout.
+   ============================================================ */
+
+:root {
+  /* ---- BRAND ---------------------------------------------- */
+  --rust:        #894332;   /* primary CTA, CONTACT US pill     */
+  --rust-press:  #6E3527;   /* :active — derived, not in Figma  */
+  --amber:       #F4A600;   /* PRICING pill                     */
+  --amber-press: #D18F00;   /* derived                          */
+  --blue:        #6A96C7;   /* FAQS pill                        */
+  --blue-press:  #5A81AE;   /* derived                          */
+
+  /* ---- INK ------------------------------------------------- */
+  --ink:         #505050;   /* headings + pillar body           */
+  --ink-soft:    #575757;   /* hero sub, eyebrow                */
+  --on-dark:     #FFFFFF;   /* text on rust / on footer image   */
+
+  /* ---- SURFACES -------------------------------------------- */
+  --paper:       #FFFFFF;   /* page background                  */
+  --card:        #F7F6F5;   /* How We Build card                */
+  --card-line:   #DAD6D2;   /* 0.5px hairline on that card      */
+
+  /* ---- TYPOGRAPHY ------------------------------------------
+     Figma uses Inter, IBM Plex Mono and Helvetica Neue Bold.
+     Helvetica Neue is NOT web-licensable without a paid licence
+     and is only used on button labels + the CONTACT footer
+     heading — where it is visually near-identical to Inter Bold
+     at 16-20px. It maps to Inter here on purpose.
+     See ASSETS.md → "Fonts" before changing this.             */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Fluid scale. Upper bound = the Figma value at 1440. */
+  --fs-eyebrow:  0.875rem;                        /* 14px       */
+  --fs-h1:       clamp(1.75rem, 2.78vw, 2.5rem);  /* 28 → 40px  */
+  --fs-lede:     clamp(1.125rem, 1.53vw, 1.375rem); /* 18 → 22px */
+  --fs-h2:       clamp(1.5rem, 2.08vw, 1.875rem); /* 24 → 30px  */
+  --fs-h3:       clamp(1.25rem, 1.53vw, 1.375rem);/* 20 → 22px  */
+  --fs-body:     1rem;                            /* 16px       */
+  --fs-ui:       1rem;                            /* 16px       */
+  --fs-footer-h: 1.25rem;                         /* 20px       */
+
+  --lh-tight:    1.15;   /* h1                                  */
+  --lh-lede:     1.495;  /* 32.9 / 22                           */
+  --lh-body:     1.875;  /* 30 / 16 — How We Build prose        */
+  --lh-compact:  1.5625; /* 25 / 16 — pillar body               */
+  --ls-eyebrow:  0.1em;  /* 1.4px / 14px                        */
+
+  /* ---- LAYOUT ---------------------------------------------- */
+  --page-max:    1280px; /* 1440 frame − 80px gutters           */
+  --gutter:      80px;
+  --gutter-md:   40px;
+  --gutter-sm:   20px;
+
+  /* ---- SPACING (8px rhythm) -------------------------------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+  --s-9: 96px; --s-10: 128px;
+
+  /* ---- RADIUS ---------------------------------------------- */
+  --r-card: 15px;
+  --r-pill: 40px;
+
+  /* ---- MOTION ---------------------------------------------- */
+  --ease:      cubic-bezier(.2, .6, .2, 1);
+  --dur-fast:  140ms;
+  --dur-base:  240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

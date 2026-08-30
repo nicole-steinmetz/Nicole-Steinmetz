@@ -18,6 +18,7 @@ This is a deliberate choice, not an oversight. It's a static marketing page. Add
 index.html          the whole page
 css/tokens.css      design tokens — the only place colours, type and spacing are defined
 css/styles.css      everything else
+js/                 vanilla JS — Tools card, Quote card, hero title
 assets/img/         raster (hero, footer, UI panels)
 assets/svg/         logo, icons, arrows
 assets/logos/       Trusted By client marks

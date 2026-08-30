@@ -73,6 +73,87 @@
   --ease:      cubic-bezier(.2, .6, .2, 1);
   --dur-fast:  140ms;
   --dur-base:  240ms;
+  --hero-caret-w:     2px;
+  --hero-caret-blink: 530ms;
+  --hero-title-lines: 2;
+  --hero-title-lines-sm: 3;
+
+  /* ---- TOOLS CARD ------------------------------------------
+     From Nicole___Tool_Stack_Card_v5.html — not Figma.
+     That file is the source for this component. Brand mark
+     fills (Shopify green, Figma purple, etc.) stay on the
+     SVGs; they are not UI tokens.                             */
+  --tools-card:       #F4F2F0;
+  --tools-card-line:  #D9D9D9;
+  --tools-chip:       #FBFAF8;
+  --tools-chip-line:  #E4E1DB;
+  --ink-faint:        rgba(80, 80, 80, .42);
+  --r-tools:          20px;
+  --r-chip:           10px;
+  --ease-out:         cubic-bezier(.16, 1, .3, 1);
+  --fs-chip:          0.8rem;
+  --fs-chip-label:    0.625rem;
+  --tools-chip-w:     150px;
+  --tools-chip-h:     40px;
+  --tools-icon:       18px;
+  --tools-ratio:      370 / 324;
+  --tools-ratio-sm:   343 / 329;
+  --tools-pad:        18px;
+  --tools-pad-y:      26px; /* extra air so the card matches How We Build */
+  --tools-field-y:    20px;
+  --tools-field-x:    16px;
+  --tools-enter:      40ms;
+  --tools-stagger:    60ms;
+  --tools-float:      7s;
+  --tools-breathe:    3.6s;
+  --dur-enter:        520ms;
+  --tools-chip-gap:   7px;
+  --tools-enter-y:    14px;
+  --tools-arrow:      36px;
+  --tools-mask:       radial-gradient(70% 62% at 50% 46%, #000 55%, rgb(0 0 0 / .55) 75%, transparent 100%);
+
+  /* ---- QUOTE CARD ------------------------------------------
+     From Nicole___Quote_Card_v2.html — not Figma.
+     Shares the tools-card surface. Display-only: the loop
+     ticks line items and counts the total; rows are not
+     clickable. Orange in that file is #FFAD00; maps to
+     --amber here, same as the Tools card hover.               */
+  --quote-box:          #F1EFEC;
+  --ink-muted:          rgb(80 80 80 / .68);
+  --quote-ratio:        742 / 522;
+  --quote-ratio-sm:     343 / 400;
+  --quote-min-h:        340px;
+  --r-quote:            24px;
+  --r-quote-panel:      16px;
+  --r-quote-box:        6px;
+  --r-quote-arrow:      20px;
+  --quote-arrow-w:      84px;
+  --quote-arrow-h:      66px;
+  --quote-check:        22px;
+  --quote-check-icon:   13px;
+  --fs-quote:           0.9375rem;
+  --fs-quote-kicker:    0.75rem;
+  --fs-quote-total:     1.125rem;
+  --quote-float:        9s;
+  --quote-count:        420ms;
+  --dur-quote:          260ms;
+  --quote-enter:        560ms;
+  --quote-mask:         radial-gradient(78% 72% at 50% 50%, #000 52%, rgb(0 0 0 / .5) 78%, transparent 100%);
+  --quote-dot:          radial-gradient(circle, rgb(80 80 80 / .22) 1.3px, transparent 1.4px);
+  --quote-dot-size:     9px;
+  --quote-dot-mask:     radial-gradient(closest-side, #000 38%, rgb(0 0 0 / .45) 70%, transparent 100%);
+  --r-quote-sm:         18px;
+  --quote-arrow-w-sm:   64px;
+  --quote-arrow-h-sm:   52px;
+  --r-quote-arrow-sm:   16px;
+  --quote-arrow-icon:   22px;
+  --quote-eyebrow-pad:  11px 22px;
+  --quote-eyebrow-pad-sm: 9px 18px;
+  --quote-panel-pad:    24px 30px 22px;
+  --quote-panel-pad-sm: 20px 20px 18px;
+  --quote-row-pad:      9px 8px;
+  --quote-rule-gap:     16px 0 14px;
+  --quote-blob-in:      900ms;
 }
 
 @media (prefers-reduced-motion: reduce) {

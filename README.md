@@ -11,7 +11,7 @@ python3 -m http.server 8000
 
 Any static server works. There's no build step.
 
-**It will look broken until you export the assets.** See `ASSETS.md` — that's the first job.
+Assets are exported (see `ASSETS.md`). After a re-export from Figma:
 
 ```bash
 # after the exports are in place
@@ -42,15 +42,19 @@ Cloudflare Pages → Create project → Connect to Git, or drag this folder into
 
 That's **10 unique hrefs, 12 `<a>` tags** (the old "eight dead links" count dropped the two panels). They 302 to `/` via `_redirects` until those Figma frames are signed off. Do not build stub pages. `python3 -m http.server` ignores `_redirects`, so local preview still 404s — Cloudflare Pages will not.
 
-**2. Two panels are pictures of a UI, not a UI.** `get a quote` and `Start a Project` are flat @3x PNG exports in Figma. They look interactive, they aren't. On mobile the text inside them will be unreadable, and none of it is selectable, searchable or accessible to a screen reader.
+**2. Start a Project is still a picture of a UI.** It is a flat @3x PNG. It looks interactive, it isn't. On mobile the text inside it will be unreadable, and none of it is selectable, searchable or accessible to a screen reader.
 
-You said you wanted these as real working tools. That's a genuine build, not a styling pass — the quote calculator needs its pricing logic defined before a line of it is written, and `Knee Coal - Website Pricing 2026.md` and `Cloudflare_Build_Rate_Card_2026.pdf` in the parent folder are the obvious source. They're currently marked `data-static-panel` so they're easy to find. Treat as phase two.
+You said you wanted these as real working tools. That's a genuine build, not a styling pass — the quote calculator needs its pricing logic defined before a line of it is written, and `Knee Coal - Website Pricing 2026.md` and `Cloudflare_Build_Rate_Card_2026.pdf` in the parent folder are the obvious source. Start a Project is still marked `data-static-panel`. Treat the real tools as phase two.
+
+**The Tools card is live.** Rebuilt from `Nicole___Tool_Stack_Card_v5.html`. Search `id="tools-card"`.
+
+**The Get a Quote card is live.** Rebuilt from `Nicole___Quote_Card_v2.html` — display-only: the loop ticks line items and counts the total, rows are not clickable. Search `id="quote-card"`.
 
 **3. The Figma footer is mid-redesign.** Group `381:726` has the three link columns but is missing the column-1 heading, the logo, the divider, the Squarespace badges and the copyright line — all of which exist in the Coming Soon frame (`364:1278`). I carried them across. Confirm that's what you intended.
 
 **4. Fonts.** Helvetica Neue Bold isn't web-licensable and is mapped to Inter. Inter and IBM Plex Mono load from Google's CDN and should be self-hosted. Detail in `ASSETS.md` → Fonts.
 
-**5. Check the client logo `alt` text.** I read seven brand names off a 900px screenshot. Slots 2 and 6 are guesses.
+**5. Slot 6 logo `alt` still needs Nic.** Slot 1 is **Hoodburger Family Restaurants** (read off the mark). Slot 2 is **Rose & Crown**. Slot 6 is a "7" mark with no brand lettering — `TODO(alt)` in `index.html`.
 
 ## Worth doing, not blocking
 

@@ -1,8 +1,6 @@
 # Asset export manifest
 
-The HTML references these files by exact path. Nothing renders until they exist.
-
-I could not download them myself — the sandbox has no network route to Figma's asset CDN, so every export below has to come out of Figma by hand. Once they're in place, run `tools/optimise-images.sh` to generate the WebP variants the HTML expects.
+Exported from Figma into `assets/`. Raster sources live in gitignored `assets/img/_source/`; the optimiser writes the variants `index.html` references. Re-run `bash tools/optimise-images.sh` after any re-export.
 
 Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`)
 
@@ -14,19 +12,25 @@ Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`)
 |---|---|---|---|
 | `nicole-steinmetz-01 1` | `54:4` | `hero.png` | PNG @2x (2880×1406) |
 | `nicole-steinmetz-web-design-perth-australia 1` | `370:1556` | `footer-bg.png` | PNG @2x |
-| `The Tools@3x 1` | `380:47` | `panel-the-tools.png` | PNG @2x (772×754) |
-| `get a quote@3x 1` | `380:45` | `panel-get-a-quote.png` | PNG @2x (1266×912) |
+| `The Tools@3x 1` | `380:47` | `panel-the-tools.png` | PNG @2x (772×754) — exported; the live card does not reference it |
+| `get a quote@3x 1` | `380:45` | `panel-get-a-quote.png` | PNG @2x (1266×912) — exported; the live card does not reference it |
 | `Start a Project@3x 1` | `380:46` | `panel-start-a-project.png` | PNG @2x (1270×914) |
 | `arrow-02@3x 1` | `381:227` | `arrow-02.png` | PNG @3x |
-| Squarespace badge strip | from `364:1422` (Coming Soon frame) | `squarespace-badges.png` | PNG @3x |
+| Squarespace badge strip | `331:924` (Home footer; Coming Soon `364:1422` is gone) | `squarespace-badges.png` | PNG @3x |
 
-`footer-bg` source may already exist — `Temp I Nicole Steinmetz/nicole-steinmetz-web-design-perth-australia.jpeg` (1.7 MB). Check it matches what's placed in Figma before re-exporting.
+`footer-bg` source is already in the repo — `assets/img/_source/footer-bg.jpg` is the same 1.7 MB file as `Temp I Nicole Steinmetz/nicole-steinmetz-web-design-perth-australia.jpeg` in Drive (3146×1312). Figma's placed crop (`370:1556`, 1553×647) is that image; the optimiser uses the Drive original.
+
+**The Tools card is live HTML** (`id="tools-card"`). `panel-the-tools.png` was still exported from `380:47` as requested, but the page does not reference it.
+
+**The Get a Quote card is live HTML** (`id="quote-card"`). `panel-get-a-quote.png` was still exported from `380:45`, but the page does not reference it.
+
+Coming Soon node `364:1422` is gone from the file. The Squarespace badge strip on Home is `331:924` (`squarespace+kneecoal+white+logo 1` in the footer group). That is what was exported.
 
 ## Vector → `assets/svg/`
 
 | Figma layer | Node | Save as | Notes |
 |---|---|---|---|
-| Logo lettering | `1:10`–`1:30` + `1:21` | `logo-white.svg` | **Select all 22 vectors, group, export as one SVG.** They are loose paths in Figma — exporting individually gives you 22 files that will not assemble correctly. |
+| Logo lettering | `1:10`–`1:30` (21 paths; `1:21` is already in that range) | `logo-white.svg` | **Select all of them together, group, export as one SVG.** They are loose paths in Figma — exporting individually gives you files that will not assemble correctly. |
 | `Group 12` (arrow in circle) | `28:288` | `arrow-circle-white.svg` | Used on both CTA pills |
 | `Layer_1` | `16:180` | `icon-design-build.svg` | 45×45 |
 | `Layer_1` | `21:206` | `icon-platform.svg` | 43×47 — note the odd ratio, don't square it |
@@ -46,7 +50,9 @@ Left to right as they appear in the Trusted By row. **Each keeps its own dimensi
 | 6 | `153:91` | `logo-6.png` | 59×62 |
 | 7 | `153:90` | `logo-7.png` | 173×59 |
 
-Export the PNGs @3x. **Check the `alt` text in `index.html` against the real brands** — I read those names off a 900px screenshot and I am not confident about slot 2 ("Rose & Vernon") or slot 6 ("Seven").
+Export the PNGs @3x. Slot 1 alt is **Hoodburger Family Restaurants** (read off the mark). Slot 2 is **Rose & Crown** (verified in Figma). Slot 6 is a "7" mark with no brand lettering — `TODO(alt)` in `index.html` until Nic confirms the client name.
+
+`hero-2880.webp` is ~571 KB at quality 75 — over the optimiser’s ~300 KB sanity check. A 2880 landscape illustration will not compress under that without looking crushed; leave it unless you want a smaller `srcset` top end.
 
 ## Still needed, not in Figma
 

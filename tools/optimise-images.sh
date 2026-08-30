@@ -28,8 +28,12 @@ src_of() {
 if command -v magick >/dev/null 2>&1; then IM="magick"
 elif command -v convert >/dev/null 2>&1; then IM="convert"
 else
-  echo "ImageMagick not found. Install it:  brew install imagemagick" >&2
-  exit 1
+  IM=""
+  echo "ImageMagick not found; using Python/Pillow fallback." >&2
+  python3 -c "from PIL import Image" >/dev/null 2>&1 || {
+    echo "Pillow not found either. Install ImageMagick (brew install imagemagick) or Pillow." >&2
+    exit 1
+  }
 fi
 
 mkdir -p "$SRC"
@@ -37,11 +41,29 @@ mkdir -p "$SRC"
 # hero: 4 widths, WebP + JPEG fallback
 echo "hero"
 if HERO=$(src_of hero); then
-  for w in 720 1080 1440 2880; do
-    $IM "$HERO" -resize "${w}x>" -strip -quality 82 "$IMG/hero-${w}.webp"
-    $IM "$HERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/hero-${w}.jpg"
-    echo "  ${w}w"
-  done
+  if [ -n "$IM" ]; then
+    for w in 720 1080 1440 2880; do
+      $IM "$HERO" -resize "${w}x>" -strip -quality 82 "$IMG/hero-${w}.webp"
+      $IM "$HERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/hero-${w}.jpg"
+      echo "  ${w}w"
+    done
+  else
+    python3 - "$HERO" "$IMG" <<'PY'
+import sys
+from PIL import Image
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src)
+for w in (720, 1080, 1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/hero-{w}.webp", "WEBP", quality=82, method=6)
+    rgb.save(f"{out}/hero-{w}.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    print(f"  {w}w")
+PY
+  fi
 else
   echo "  missing: hero.(png|jpg) — export from Figma first, see ASSETS.md" >&2
 fi
@@ -49,11 +71,29 @@ fi
 # footer: 2 widths — it's a background, it can afford less
 echo "footer"
 if FOOT=$(src_of footer-bg); then
-  for w in 1440 2880; do
-    $IM "$FOOT" -resize "${w}x>" -strip -quality 80 "$IMG/footer-bg-${w}.webp"
-    $IM "$FOOT" -resize "${w}x>" -strip -quality 80 -interlace Plane "$IMG/footer-bg-${w}.jpg"
-    echo "  ${w}w"
-  done
+  if [ -n "$IM" ]; then
+    for w in 1440 2880; do
+      $IM "$FOOT" -resize "${w}x>" -strip -quality 80 "$IMG/footer-bg-${w}.webp"
+      $IM "$FOOT" -resize "${w}x>" -strip -quality 80 -interlace Plane "$IMG/footer-bg-${w}.jpg"
+      echo "  ${w}w"
+    done
+  else
+    python3 - "$FOOT" "$IMG" <<'PY'
+import sys
+from PIL import Image
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src)
+for w in (1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/footer-bg-{w}.webp", "WEBP", quality=80, method=6)
+    rgb.save(f"{out}/footer-bg-{w}.jpg", "JPEG", quality=80, optimize=True, progressive=True)
+    print(f"  {w}w")
+PY
+  fi
 else
   echo "  missing: footer-bg.(png|jpg)" >&2
 fi
@@ -63,7 +103,16 @@ fi
 echo "panels"
 for f in panel-the-tools panel-get-a-quote panel-start-a-project arrow-02 squarespace-badges; do
   if P=$(src_of "$f"); then
-    $IM "$P" -strip -define png:compression-level=9 "$IMG/$f.png"
+    if [ -n "$IM" ]; then
+      $IM "$P" -strip -define png:compression-level=9 "$IMG/$f.png"
+    else
+      python3 - "$P" "$IMG/$f.png" <<'PY'
+import sys
+from PIL import Image
+im = Image.open(sys.argv[1])
+im.save(sys.argv[2], "PNG", optimize=True, compress_level=9)
+PY
+    fi
     echo "  $f"
   else
     echo "  missing: $f.png" >&2

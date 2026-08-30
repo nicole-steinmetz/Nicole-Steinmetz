@@ -751,29 +751,78 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    TRUSTED BY — title y=2426, logo row y≈2503–2581
    Each mark keeps its designed box. Do NOT normalise heights.
+   Default is the static Figma row. JS duplicates the set and
+   adds .is-marquee so CSS can loop translateX(-50%).
    ============================================================ */
-.trusted { margin-top: 87px; text-align: center; }
+.trusted { margin-top: 87px; text-align: center; overflow: hidden; }
 .trusted__title {
   font-size: var(--fs-h2);
   font-weight: 700;
   line-height: 1.2;
   color: var(--ink);
 }
+.trusted__viewport { margin-top: 60px; }
+.trusted__track { display: flex; }
 .trusted__row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--s-7) var(--s-6);
-  margin-top: 60px;
 }
+.trusted__row li { flex: none; }
 .trusted__row img {
   height: auto;
   filter: grayscale(1);
   opacity: .85;
   transition: filter var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease);
 }
-.trusted__row li:hover img { filter: grayscale(0); opacity: 1; }
+.trusted__row li:hover img,
+.trusted__row li:focus-within img { filter: grayscale(0); opacity: 1; }
+
+/* Infinite scroll — two identical sets; -50% is exactly one set. */
+.trusted__viewport.is-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--s-8),
+    #000 calc(100% - var(--s-8)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--s-8),
+    #000 calc(100% - var(--s-8)),
+    transparent 100%
+  );
+}
+.trusted__viewport.is-marquee .trusted__track {
+  width: max-content;
+  will-change: transform;
+}
+.trusted__viewport.is-marquee .trusted__row {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: var(--s-8);
+  width: max-content;
+  padding-inline-end: var(--s-8);
+}
+.trusted__viewport.is-marquee .trusted__row img { max-width: none; }
+.trusted__viewport.is-marquee:hover .trusted__track,
+.trusted__viewport.is-marquee:focus-within .trusted__track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .trusted__viewport.is-marquee .trusted__track {
+    animation: trusted-scroll var(--trusted-marquee) linear infinite;
+  }
+}
+@keyframes trusted-scroll {
+  to { transform: translateX(-50%); }
+}
 
 /* ============================================================
    FOOTER — Figma y=2704, height 539, full-bleed masked image
@@ -852,6 +901,10 @@ a { color: inherit; text-decoration: none; }
 
   .trusted { margin-top: 72px; }
   .trusted__row { justify-content: center; gap: var(--s-6) var(--s-7); }
+  .trusted__viewport.is-marquee .trusted__row {
+    justify-content: flex-start;
+    gap: var(--s-8);
+  }
 
   .site-footer { margin-top: 88px; padding-block: 72px 0; }
   .site-footer__inner { grid-template-columns: 1fr 1fr; gap: var(--s-7) var(--s-6); }
@@ -897,8 +950,29 @@ a { color: inherit; text-decoration: none; }
   .quote-label, .quote-price { font-size: var(--fs-eyebrow); }
 
   .trusted { margin-top: 56px; }
-  .trusted__row { gap: var(--s-6); margin-top: var(--s-7); }
+  .trusted__viewport { margin-top: var(--s-7); }
+  .trusted__row { gap: var(--s-6); }
   .trusted__row img { max-height: 44px; width: auto; }
+  .trusted__viewport.is-marquee {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--s-5),
+      #000 calc(100% - var(--s-5)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--s-5),
+      #000 calc(100% - var(--s-5)),
+      transparent 100%
+    );
+  }
+  .trusted__viewport.is-marquee .trusted__row {
+    gap: var(--s-7);
+    padding-inline-end: var(--s-7);
+  }
 
   .site-footer { margin-top: 64px; padding-block: 56px 0; }
   .site-footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }

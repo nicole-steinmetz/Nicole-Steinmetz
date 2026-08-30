@@ -154,6 +154,11 @@
   --quote-row-pad:      9px 8px;
   --quote-rule-gap:     16px 0 14px;
   --quote-blob-in:      900ms;
+
+  /* ---- TRUSTED BY MARQUEE ----------------------------------
+     Not in Figma — the row is static there. Duration is one
+     full set-width loop; higher = slower.                     */
+  --trusted-marquee:    36s;
 }
 
 @media (prefers-reduced-motion: reduce) {

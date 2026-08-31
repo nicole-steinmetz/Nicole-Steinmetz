@@ -126,9 +126,6 @@
   --r-quote:            24px;
   --r-quote-panel:      16px;
   --r-quote-box:        6px;
-  --r-quote-arrow:      20px;
-  --quote-arrow-w:      84px;
-  --quote-arrow-h:      66px;
   --quote-check:        22px;
   --quote-check-icon:   13px;
   --fs-quote:           0.9375rem;
@@ -143,10 +140,6 @@
   --quote-dot-size:     9px;
   --quote-dot-mask:     radial-gradient(closest-side, #000 38%, rgb(0 0 0 / .45) 70%, transparent 100%);
   --r-quote-sm:         18px;
-  --quote-arrow-w-sm:   64px;
-  --quote-arrow-h-sm:   52px;
-  --r-quote-arrow-sm:   16px;
-  --quote-arrow-icon:   22px;
   --quote-eyebrow-pad:  11px 22px;
   --quote-eyebrow-pad-sm: 9px 18px;
   --quote-panel-pad:    24px 30px 22px;
@@ -154,6 +147,32 @@
   --quote-row-pad:      9px 8px;
   --quote-rule-gap:     16px 0 14px;
   --quote-blob-in:      900ms;
+
+  /* ---- PROJECT CARD ----------------------------------------
+     From Nicole___Start_Project_Card_v2.html — not Figma.
+     Same surface as the Quote card. Display-only: the loop
+     types a client name and ticks the brief.                  */
+  --proj-field:         #F7F6F4;
+  --proj-input-h:       40px;
+  --proj-caret-w:       1.5px;
+  --proj-caret-h:       17px;
+  --proj-type:          68ms;
+  --proj-group-gap:     22px;
+  --proj-eyebrow-pad:   13px 24px;
+  --proj-panel-pad:     26px 30px 34px;
+  --proj-panel-pad-sm:  20px 20px 24px;
+  --proj-pill-pad:      9px 20px;
+  --proj-pill-pad-sm:   8px 15px;
+  --fs-proj-pill-sm:    0.8125rem;
+  --proj-grid-col:      18px;
+  --proj-grid-row:      11px;
+  --proj-grid-gap-sm:   10px;
+  --proj-legend-ls:     0.09em;
+  --proj-legend-mb:     10px;
+  --proj-input-pad-x:   14px;
+  --proj-pills-gap:     10px;
+  --proj-ring:          3px;
+  --proj-caret-ml:      2px;
 
   /* ---- TRUSTED BY MARQUEE ----------------------------------
      Not in Figma — the row is static there. Duration is one

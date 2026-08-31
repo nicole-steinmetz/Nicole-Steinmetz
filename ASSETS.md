@@ -14,7 +14,7 @@ Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`)
 | `nicole-steinmetz-web-design-perth-australia 1` | `370:1556` | `footer-bg.png` | PNG @2x |
 | `The Tools@3x 1` | `380:47` | `panel-the-tools.png` | PNG @2x (772×754) — exported; the live card does not reference it |
 | `get a quote@3x 1` | `380:45` | `panel-get-a-quote.png` | PNG @2x (1266×912) — exported; the live card does not reference it |
-| `Start a Project@3x 1` | `380:46` | `panel-start-a-project.png` | PNG @2x (1270×914) |
+| `Start a Project@3x 1` | `380:46` | `panel-start-a-project.png` | PNG @2x (1270×914) — exported; the live card does not reference it |
 | `arrow-02@3x 1` | `381:227` | `arrow-02.png` | PNG @3x |
 | Squarespace badge strip | `331:924` (Home footer; Coming Soon `364:1422` is gone) | `squarespace-badges.png` | PNG @3x |
 
@@ -23,6 +23,8 @@ Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`)
 **The Tools card is live HTML** (`id="tools-card"`). `panel-the-tools.png` was still exported from `380:47` as requested, but the page does not reference it.
 
 **The Get a Quote card is live HTML** (`id="quote-card"`). `panel-get-a-quote.png` was still exported from `380:45`, but the page does not reference it.
+
+**The Start a Project card is live HTML** (`id="proj-card"`). `panel-start-a-project.png` was still exported from `380:46`, but the page does not reference it.
 
 Coming Soon node `364:1422` is gone from the file. The Squarespace badge strip on Home is `331:924` (`squarespace+kneecoal+white+logo 1` in the footer group). That is what was exported.
 

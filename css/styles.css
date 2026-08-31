@@ -79,6 +79,7 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   white-space: nowrap;
   transition: background-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
               transform var(--dur-fast) var(--ease);
 }
 .pill:hover { transform: translateY(-1px); }
@@ -93,6 +94,12 @@ a { color: inherit; text-decoration: none; }
 
 .pill--has-icon { padding-right: var(--s-2); }
 .pill__icon { flex: none; width: 21px; height: 21px; }
+.pill--rust .pill__icon path {
+  fill: var(--rust);
+  transition: fill var(--dur-fast) var(--ease);
+}
+.pill--rust:hover .pill__icon path,
+.pill--rust:active .pill__icon path { fill: var(--blue); }
 
 /* ============================================================
    HEADER — Figma y=28, logo x=80, pills right-aligned to x=1360
@@ -463,7 +470,7 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    PANELS — Figma 633×456 and 635×457 at y=1882, gap 24px
    Quote card is live HTML (Nicole___Quote_Card_v2.html).
-   Start a Project is still a flat @3x PNG.
+   Start a Project is live HTML (Nicole___Start_Project_Card_v2.html).
    ============================================================ */
 .panels {
   display: grid;
@@ -543,18 +550,18 @@ a { color: inherit; text-decoration: none; }
 
 .quote-arrow {
   position: absolute;
-  top: 11%;
-  right: 4%;
+  top: var(--tools-pad);
+  right: var(--tools-pad);
   z-index: 3;
   display: grid;
   place-items: center;
-  width: var(--quote-arrow-w);
-  height: var(--quote-arrow-h);
-  border-radius: var(--r-quote-arrow);
+  width: var(--tools-arrow);
+  height: var(--tools-arrow);
+  border-radius: var(--r-chip);
   background: var(--paper);
   border: 1px solid var(--tools-card-line);
   color: var(--ink);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 10%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 8%, transparent);
   transition:
     transform var(--dur-quote) var(--ease-out),
     box-shadow var(--dur-quote) var(--ease-out),
@@ -566,8 +573,8 @@ a { color: inherit; text-decoration: none; }
   .quote-arrow { animation: quote-breathe var(--tools-breathe) ease-in-out infinite; }
 }
 @keyframes quote-breathe {
-  0%, 100% { box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 10%, transparent); }
-  50% { box-shadow: 0 6px 22px color-mix(in srgb, var(--amber) 22%, transparent); }
+  0%, 100% { box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 8%, transparent); }
+  50% { box-shadow: 0 4px 16px color-mix(in srgb, var(--amber) 18%, transparent); }
 }
 .quote-arrow:hover,
 .quote-arrow:focus-visible {
@@ -579,8 +586,8 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 12px 26px color-mix(in srgb, var(--amber) 30%, transparent);
 }
 .quote-arrow svg {
-  width: var(--quote-arrow-icon);
-  height: var(--quote-arrow-icon);
+  width: var(--s-4);
+  height: var(--s-4);
   transition: transform var(--dur-base) var(--ease-out);
 }
 .quote-arrow:hover svg,
@@ -727,6 +734,282 @@ a { color: inherit; text-decoration: none; }
     transform: none !important;
   }
 }
+
+/* Live project card — source: Nicole___Start_Project_Card_v2.html.
+   Arrow matches the Tools / Quote 36px control. */
+.proj-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  width: 100%;
+  min-height: var(--quote-min-h);
+  aspect-ratio: var(--quote-ratio);
+  background: var(--tools-card);
+  border: 1px solid var(--tools-card-line);
+  border-radius: var(--r-quote);
+}
+.proj-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  -webkit-mask-image: var(--quote-mask);
+  mask-image: var(--quote-mask);
+}
+.proj-blob {
+  position: absolute;
+  border-radius: var(--r-quote);
+  background-image: var(--quote-dot);
+  background-size: var(--quote-dot-size) var(--quote-dot-size);
+  -webkit-mask-image: var(--quote-dot-mask);
+  mask-image: var(--quote-dot-mask);
+  opacity: 0;
+  transition: opacity var(--quote-blob-in) var(--ease-out);
+}
+.proj-blob--a { top: 5%; right: 3%; width: 36%; height: 36%; }
+.proj-blob--b { top: 32%; left: 1%; width: 26%; height: 36%; }
+.proj-blob--c { bottom: 2%; left: 9%; width: 46%; height: 38%; }
+.proj-card.in-view .proj-blob { opacity: 1; }
+.proj-card.in-view .proj-blob--b { transition-delay: 120ms; }
+.proj-card.in-view .proj-blob--c { transition-delay: 240ms; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .proj-card.in-view .proj-blob { animation: quote-float var(--quote-float) ease-in-out infinite; }
+  .proj-card.in-view .proj-blob--b { animation-delay: -3.2s; }
+  .proj-card.in-view .proj-blob--c { animation-delay: -6.1s; }
+}
+
+.proj-content { position: relative; z-index: 2; height: 100%; }
+
+.proj-eyebrow {
+  position: absolute;
+  top: 6.2%;
+  left: 3.2%;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--proj-eyebrow-pad);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  border: 1px solid var(--tools-card-line);
+  font-size: var(--fs-ui);
+  font-weight: 700;
+  color: var(--ink);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 7%, transparent);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur-enter) var(--ease-out), transform var(--dur-enter) var(--ease-out);
+}
+.proj-card.in-view .proj-eyebrow { opacity: 1; transform: translateY(0); }
+
+.proj-arrow {
+  position: absolute;
+  top: var(--tools-pad);
+  right: var(--tools-pad);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: var(--tools-arrow);
+  height: var(--tools-arrow);
+  border-radius: var(--r-chip);
+  background: var(--paper);
+  border: 1px solid var(--tools-card-line);
+  color: var(--ink);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 8%, transparent);
+  transition:
+    transform var(--dur-quote) var(--ease-out),
+    box-shadow var(--dur-quote) var(--ease-out),
+    background var(--dur-quote) var(--ease-out),
+    border-color var(--dur-quote) var(--ease-out),
+    color var(--dur-quote) var(--ease-out);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .proj-arrow { animation: quote-breathe var(--tools-breathe) ease-in-out infinite; }
+}
+.proj-arrow:hover,
+.proj-arrow:focus-visible {
+  animation: none;
+  transform: translateY(-2px) scale(1.04);
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--on-dark);
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--amber) 30%, transparent);
+}
+.proj-arrow svg {
+  width: var(--s-4);
+  height: var(--s-4);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.proj-arrow:hover svg,
+.proj-arrow:focus-visible svg { transform: translate(1px, -1px) rotate(8deg); }
+
+.proj-panel {
+  position: absolute;
+  left: 18%;
+  right: 16%;
+  top: 18%;
+  padding: var(--proj-panel-pad);
+  background: var(--paper);
+  border-radius: var(--r-quote-panel) var(--r-quote-panel) 0 0;
+  box-shadow:
+    0 20px 44px color-mix(in srgb, var(--ink) 10%, transparent),
+    0 2px 6px color-mix(in srgb, var(--ink) 5%, transparent);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--quote-enter) var(--ease-out), transform var(--quote-enter) var(--ease-out);
+}
+.proj-card.in-view .proj-panel { opacity: 1; transform: translateY(0); transition-delay: 80ms; }
+
+.proj-group {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur-quote) var(--ease-out), transform var(--dur-quote) var(--ease-out);
+}
+.proj-group + .proj-group { margin-top: var(--proj-group-gap); }
+.proj-card.in-view .proj-group { opacity: 1; transform: translateY(0); }
+.proj-card.in-view .proj-group:nth-of-type(1) { transition-delay: 200ms; }
+.proj-card.in-view .proj-group:nth-of-type(2) { transition-delay: 270ms; }
+.proj-card.in-view .proj-group:nth-of-type(3) { transition-delay: 340ms; }
+.proj-card.in-view .proj-group:nth-of-type(4) { transition-delay: 410ms; }
+
+.proj-legend {
+  display: block;
+  margin-bottom: var(--proj-legend-mb);
+  font-size: var(--fs-quote-kicker);
+  font-weight: 600;
+  letter-spacing: var(--proj-legend-ls);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.proj-input {
+  display: flex;
+  align-items: center;
+  height: var(--proj-input-h);
+  padding: 0 var(--proj-input-pad-x);
+  border-radius: var(--r-chip);
+  background: var(--proj-field);
+  border: 1px solid var(--tools-chip-line);
+  font-size: var(--fs-quote);
+  font-weight: 500;
+  color: var(--ink);
+  transition:
+    border-color var(--dur-quote) var(--ease-out),
+    background var(--dur-quote) var(--ease-out),
+    box-shadow var(--dur-quote) var(--ease-out);
+}
+.proj-input.is-active {
+  background: var(--paper);
+  border-color: color-mix(in srgb, var(--amber) 55%, transparent);
+  box-shadow: 0 0 0 var(--proj-ring) color-mix(in srgb, var(--amber) 12%, transparent);
+}
+.proj-caret {
+  display: inline-block;
+  width: var(--proj-caret-w);
+  height: var(--proj-caret-h);
+  margin-left: var(--proj-caret-ml);
+  background: var(--ink);
+  opacity: 0;
+}
+.proj-input.is-active .proj-caret { animation: proj-blink 1s steps(1, end) infinite; }
+@keyframes proj-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.proj-pills { display: flex; flex-wrap: wrap; gap: var(--proj-pills-gap); }
+.proj-pill {
+  padding: var(--proj-pill-pad);
+  border-radius: var(--r-pill);
+  background: var(--tools-chip);
+  border: 1px solid var(--tools-chip-line);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  color: var(--ink-muted);
+  transition:
+    background var(--dur-quote) var(--ease-out),
+    border-color var(--dur-quote) var(--ease-out),
+    color var(--dur-quote) var(--ease-out),
+    transform var(--dur-quote) var(--ease-out),
+    box-shadow var(--dur-quote) var(--ease-out);
+}
+.proj-pill.is-on {
+  background: var(--paper);
+  border-color: var(--amber);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--amber) 18%, transparent);
+}
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--proj-grid-col);
+  row-gap: var(--proj-grid-row);
+}
+.proj-check { display: flex; align-items: center; gap: var(--s-3); }
+.proj-box {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--quote-check);
+  height: var(--quote-check);
+  border-radius: var(--r-quote-box);
+  background: var(--quote-box);
+  border: 1px solid var(--tools-chip-line);
+  color: var(--on-dark);
+  transition:
+    background var(--dur-quote) var(--ease-out),
+    border-color var(--dur-quote) var(--ease-out),
+    transform var(--dur-quote) var(--ease-out);
+}
+.proj-box svg {
+  width: var(--quote-check-icon);
+  height: var(--quote-check-icon);
+  opacity: 0;
+  transform: scale(.5);
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+.proj-check-label {
+  font-size: var(--fs-quote);
+  font-weight: 600;
+  letter-spacing: -.005em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  transition: color var(--dur-quote) var(--ease-out);
+}
+.proj-check.is-on .proj-box {
+  background: var(--amber);
+  border-color: var(--amber);
+  transform: scale(1.06);
+}
+.proj-check.is-on .proj-box svg { opacity: 1; transform: scale(1); }
+.proj-check.is-on .proj-check-label { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-blob,
+  .proj-eyebrow,
+  .proj-panel,
+  .proj-group,
+  .proj-input,
+  .proj-caret,
+  .proj-pill,
+  .proj-box,
+  .proj-box svg,
+  .proj-check-label,
+  .proj-arrow,
+  .proj-arrow svg {
+    transition: none !important;
+    animation: none !important;
+  }
+  .proj-card .proj-blob,
+  .proj-card .proj-eyebrow,
+  .proj-card .proj-panel,
+  .proj-card .proj-group {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .proj-caret { display: none; }
+}
+
 .panel {
   position: relative;
   display: block;
@@ -738,14 +1021,21 @@ a { color: inherit; text-decoration: none; }
 .panel__shot { width: 100%; height: auto; }
 .panel__arrow {
   position: absolute;
-  top: 31px;                 /* 1913 − 1882 */
-  /* Figma insets the arrow 31px from the right edge of panel 1
-     and 25px from panel 2. Averaged — the panels are near-equal
-     widths and the difference is not deliberate.                */
-  right: 4.4%;
-  width: 54px; height: 44px;
+  top: var(--tools-pad);
+  right: var(--tools-pad);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: var(--tools-arrow);
+  height: var(--tools-arrow);
+  border-radius: var(--r-chip);
+  background: var(--paper);
+  border: 1px solid var(--tools-card-line);
+  color: var(--ink);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 8%, transparent);
   transition: transform var(--dur-base) var(--ease);
 }
+.panel__arrow svg { width: var(--s-4); height: var(--s-4); }
 .panel:hover .panel__arrow { transform: translateX(4px); }
 
 /* ============================================================
@@ -945,9 +1235,15 @@ a { color: inherit; text-decoration: none; }
 
   .quote-card { aspect-ratio: var(--quote-ratio-sm); border-radius: var(--r-quote-sm); } /* unsigned */
   .quote-panel { left: 8%; right: 8%; top: 26%; padding: var(--quote-panel-pad-sm); }
-  .quote-arrow { width: var(--quote-arrow-w-sm); height: var(--quote-arrow-h-sm); border-radius: var(--r-quote-arrow-sm); }
   .quote-eyebrow { font-size: var(--fs-eyebrow); padding: var(--quote-eyebrow-pad-sm); }
   .quote-label, .quote-price { font-size: var(--fs-eyebrow); }
+
+  .proj-card { aspect-ratio: var(--quote-ratio-sm); border-radius: var(--r-quote-sm); } /* unsigned */
+  .proj-panel { left: 8%; right: 8%; top: 20%; padding: var(--proj-panel-pad-sm); }
+  .proj-eyebrow { font-size: var(--fs-eyebrow); padding: var(--quote-eyebrow-pad-sm); }
+  .proj-check-label, .proj-input { font-size: var(--fs-eyebrow); }
+  .proj-pill { padding: var(--proj-pill-pad-sm); font-size: var(--fs-proj-pill-sm); }
+  .proj-grid { column-gap: var(--proj-grid-gap-sm); }
 
   .trusted { margin-top: 56px; }
   .trusted__viewport { margin-top: var(--s-7); }

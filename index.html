@@ -27,8 +27,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;700&display=swap">
 
-<link rel="stylesheet" href="/css/tokens.css">
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/tokens.css?v=proj">
+<link rel="stylesheet" href="/css/styles.css?v=proj">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -68,7 +68,10 @@
         <li>
           <a class="pill pill--rust pill--has-icon" href="mailto:nicole@kneecoal.com">
             Contact us
-            <img class="pill__icon" src="/assets/svg/arrow-circle-white.svg" alt="" width="21" height="21" aria-hidden="true">
+            <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
+              <circle cx="10.5" cy="10.5" r="10.5" fill="white"/>
+              <path d="M9.70506 13.2053L9.32397 13.2122C9.10548 13.2159 8.89669 13.2053 8.68282 13.2048L7.61808 13.2022L4.74074 13.2006C4.6308 13.2006 4.54488 13.2132 4.43494 13.2048C4.26264 13.1916 4.08342 13.2538 3.90927 13.1869C3.8058 13.1995 3.71572 13.2053 3.60163 13.1858L3.60024 8.37682L11.5181 8.37418L6.81571 2.99605C6.85174 2.96862 6.88177 2.97021 6.93258 2.95755L12.0198 2.96019C12.0928 3.05619 12.1376 3.11157 12.2309 3.18753L18.9048 10.8148L12.0752 18.6198L6.86237 18.6151L7.75989 17.5512L9.906 15.1111L11.556 13.2238L11.0511 13.2169C10.9236 13.2148 10.7892 13.1753 10.6622 13.2064C10.5439 13.2349 10.0095 13.1995 9.70506 13.2053Z" fill="currentColor"/>
+            </svg>
           </a>
         </li>
       </ul>
@@ -107,7 +110,10 @@
       <p class="hero__lede">I pair 15 years of high-end design pedigree with genuine AI fluency &mdash; premium on the surface, smart systems behind it.</p>
       <a class="pill pill--rust pill--has-icon hero__cta" href="mailto:nicole@kneecoal.com">
         Got some questions?
-        <img class="pill__icon" src="/assets/svg/arrow-circle-white.svg" alt="" width="21" height="22" aria-hidden="true">
+        <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
+          <circle cx="10.5" cy="10.5" r="10.5" fill="white"/>
+          <path d="M9.70506 13.2053L9.32397 13.2122C9.10548 13.2159 8.89669 13.2053 8.68282 13.2048L7.61808 13.2022L4.74074 13.2006C4.6308 13.2006 4.54488 13.2132 4.43494 13.2048C4.26264 13.1916 4.08342 13.2538 3.90927 13.1869C3.8058 13.1995 3.71572 13.2053 3.60163 13.1858L3.60024 8.37682L11.5181 8.37418L6.81571 2.99605C6.85174 2.96862 6.88177 2.97021 6.93258 2.95755L12.0198 2.96019C12.0928 3.05619 12.1376 3.11157 12.2309 3.18753L18.9048 10.8148L12.0752 18.6198L6.86237 18.6151L7.75989 17.5512L9.906 15.1111L11.556 13.2238L11.0511 13.2169C10.9236 13.2148 10.7892 13.1753 10.6622 13.2064C10.5439 13.2349 10.0095 13.1995 9.70506 13.2053Z" fill="currentColor"/>
+        </svg>
       </a>
     </div>
   </section>
@@ -208,7 +214,7 @@
         <span class="how__tools-eyebrow">The Tools</span>
         <!-- TODO(link): /platform-decider/ — parked on home via _redirects. -->
         <a class="how__tools-arrow" href="/platform-decider/" aria-label="See the full tool stack">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
             <path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
@@ -226,7 +232,7 @@
   <!-- ==========================================================
        PANELS — quote builder + project starter
        Quote card is live HTML from Nicole___Quote_Card_v2.html.
-       Start a Project is still a flat @3x PNG. See README.
+       Start a Project is live HTML from Nicole___Start_Project_Card_v2.html.
        ========================================================== -->
   <section class="panels container" aria-label="Start here">
     <div class="quote-card" id="quote-card" aria-label="Get a quote — estimate builder">
@@ -242,7 +248,7 @@
         <span class="quote-eyebrow">Get a Quote</span>
         <!-- TODO(link): /get-a-quote/ — no Figma page. Parked on home via _redirects. -->
         <a class="quote-arrow" href="/get-a-quote/" aria-label="Start your quote">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
             <path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
@@ -295,14 +301,91 @@
       </div>
     </div>
 
-    <!-- TODO(link): /start-a-project/ — no Figma page; panel is a PNG. Parked on home via _redirects. -->
-    <a class="panel" href="/start-a-project/" data-static-panel="start-a-project">
-      <img class="panel__shot" src="/assets/img/panel-start-a-project.png"
-           alt="Start a Project — project brief form covering project type and platform"
-           width="635" height="457" loading="lazy" decoding="async">
-      <img class="panel__arrow" src="/assets/img/arrow-02.png" alt="" width="54" height="44" loading="lazy" aria-hidden="true">
-      <span class="visually-hidden">Start a project</span>
-    </a>
+    <div class="proj-card" id="proj-card" data-client="Studio Marlowe" aria-label="Start a project — project brief preview">
+      <p class="visually-hidden">Project brief preview: a new Squarespace site for Studio Marlowe, with a gallery, booking form and FAQs.</p>
+
+      <div class="proj-field" aria-hidden="true">
+        <span class="proj-blob proj-blob--a"></span>
+        <span class="proj-blob proj-blob--b"></span>
+        <span class="proj-blob proj-blob--c"></span>
+      </div>
+
+      <div class="proj-content">
+        <span class="proj-eyebrow">Start a Project</span>
+        <!-- TODO(link): /start-a-project/ — no Figma page. Parked on home via _redirects. -->
+        <a class="proj-arrow" href="/start-a-project/" aria-label="Start a project">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <div class="proj-panel" aria-hidden="true">
+          <div class="proj-group">
+            <span class="proj-legend">Client</span>
+            <div class="proj-input" id="proj-input">
+              <span id="proj-typed"></span><span class="proj-caret"></span>
+            </div>
+          </div>
+
+          <div class="proj-group">
+            <span class="proj-legend">Project type</span>
+            <div class="proj-pills" id="proj-pills">
+              <span class="proj-pill">New site</span>
+              <span class="proj-pill">Redesign</span>
+              <span class="proj-pill">E-commerce</span>
+            </div>
+          </div>
+
+          <div class="proj-group">
+            <span class="proj-legend">Platform</span>
+            <div class="proj-grid" id="proj-platform">
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Squarespace</span>
+              </span>
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Vercel</span>
+              </span>
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Shopify</span>
+              </span>
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Netlify</span>
+              </span>
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Cloudflare</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="proj-group">
+            <span class="proj-legend">Features</span>
+            <div class="proj-grid" id="proj-features">
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Gallery</span>
+              </span>
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Booking Form</span>
+              </span>
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">FAQs</span>
+              </span>
+              <span class="proj-check">
+                <span class="proj-box"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="proj-check-label">Custom Forms</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ==========================================================
@@ -393,6 +476,7 @@
 
 <script src="/js/tools-card.js" defer></script>
 <script src="/js/quote-card.js" defer></script>
+<script src="/js/project-card.js" defer></script>
 <script src="/js/hero-title.js" defer></script>
 <script src="/js/trusted-marquee.js" defer></script>
 </body>

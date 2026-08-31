@@ -18,7 +18,7 @@ This is a deliberate choice, not an oversight. It's a static marketing page. Add
 index.html          the whole page
 css/tokens.css      design tokens — the only place colours, type and spacing are defined
 css/styles.css      everything else
-js/                 vanilla JS — Tools card, Quote card, hero title
+js/                 vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee
 assets/img/         raster (hero, footer, UI panels)
 assets/svg/         logo, icons, arrows
 assets/logos/       Trusted By client marks
@@ -43,7 +43,7 @@ _redirects          Cloudflare redirects
 
 ## Things marked TODO
 
-Search for `TODO(link)` — those are hrefs pointing at routes that don't exist yet. Search for `data-static-panel` — those are flat PNG exports of UI that was meant to be interactive. Both are tracked in `README.md`.
+Search for `TODO(link)` — those are hrefs pointing at routes that don't exist yet. The three cards (Tools, Quote, Start a Project) are live HTML; they are display-only loops, not working tools. Tracked in `README.md`.
 
 ## Before you commit
 

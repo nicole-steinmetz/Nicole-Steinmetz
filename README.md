@@ -42,13 +42,13 @@ Cloudflare Pages → Create project → Connect to Git, or drag this folder into
 
 That's **10 unique hrefs, 12 `<a>` tags** (the old "eight dead links" count dropped the two panels). They 302 to `/` via `_redirects` until those Figma frames are signed off. Do not build stub pages. `python3 -m http.server` ignores `_redirects`, so local preview still 404s — Cloudflare Pages will not.
 
-**2. Start a Project is still a picture of a UI.** It is a flat @3x PNG. It looks interactive, it isn't. On mobile the text inside it will be unreadable, and none of it is selectable, searchable or accessible to a screen reader.
-
-You said you wanted these as real working tools. That's a genuine build, not a styling pass — the quote calculator needs its pricing logic defined before a line of it is written, and `Knee Coal - Website Pricing 2026.md` and `Cloudflare_Build_Rate_Card_2026.pdf` in the parent folder are the obvious source. Start a Project is still marked `data-static-panel`. Treat the real tools as phase two.
+**2. The three cards are live, but they are still display-only.** They look like tools; they are not working tools yet. You said you wanted these as real working tools. That's a genuine build, not a styling pass — the quote calculator needs its pricing logic defined before a line of it is written, and `Knee Coal - Website Pricing 2026.md` and `Cloudflare_Build_Rate_Card_2026.pdf` in the parent folder are the obvious source. Treat the real tools as phase two.
 
 **The Tools card is live.** Rebuilt from `Nicole___Tool_Stack_Card_v5.html`. Search `id="tools-card"`.
 
 **The Get a Quote card is live.** Rebuilt from `Nicole___Quote_Card_v2.html` — display-only: the loop ticks line items and counts the total, rows are not clickable. Search `id="quote-card"`.
+
+**The Start a Project card is live.** Rebuilt from `Nicole___Start_Project_Card_v2.html` — display-only: the loop types a client name and ticks the brief; fields are not clickable. Search `id="proj-card"`.
 
 **3. The Figma footer is mid-redesign.** Group `381:726` has the three link columns but is missing the column-1 heading, the logo, the divider, the Squarespace badges and the copyright line — all of which exist in the Coming Soon frame (`364:1278`). I carried them across. Confirm that's what you intended.
 

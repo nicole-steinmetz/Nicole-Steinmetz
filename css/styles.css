@@ -86,9 +86,9 @@ a { color: inherit; text-decoration: none; }
 .pill:active { transform: translateY(0); }
 
 .pill--amber { background: var(--amber); }
-.pill--amber:hover, .pill--amber:active { background: var(--amber-press); }
+.pill--amber:hover { background: var(--rust); }
 .pill--blue  { background: var(--blue); }
-.pill--blue:hover, .pill--blue:active { background: var(--blue-press); }
+.pill--blue:hover { background: var(--amber); }
 .pill--rust  { background: var(--rust); }
 .pill--rust:hover, .pill--rust:active { background: var(--blue); }
 

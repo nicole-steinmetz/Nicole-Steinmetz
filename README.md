@@ -1,6 +1,6 @@
 # nicolesteinmetz.com
 
-Home page, built from Figma `zbpByfLeFxuP1uHNkh0ykX` → node `1:2`.
+Built from Figma `zbpByfLeFxuP1uHNkh0ykX`. Home is node `1:2`. Inner pages: Contact `318:476`, FAQs `381:178`, pricing frames listed in `ASSETS.md`.
 
 ## Getting it running
 
@@ -31,16 +31,16 @@ Cloudflare Pages → Create project → Connect to Git, or drag this folder into
 
 ## Blocking before launch
 
-**1. Ten routes don't exist yet — parked on home.** Home is the only signed-off page (Figma `1:2`). Pricing, FAQs and Contact frames are still being finalised; there is no platform-decider, get-a-quote or start-a-project frame. Search `TODO(link)`.
+**1. Three routes still have no Figma frame — parked on home.** Contact, FAQs and the six pricing pages are live. Search `TODO(link)` for what is still 302ing.
 
 | Route | Linked from |
 |---|---|
-| `/pricing/` + five sub-routes | Nav, footer column 1 |
-| `/faqs/` | Nav, footer column 2 |
 | `/platform-decider/` | Learn more, Compare platforms |
-| `/get-a-quote/`, `/start-a-project/` | The two panels |
+| `/get-a-quote/`, `/start-a-project/` | The two Home panels |
 
-That's **10 unique hrefs, 12 `<a>` tags** (the old "eight dead links" count dropped the two panels). They 302 to `/` via `_redirects` until those Figma frames are signed off. Do not build stub pages. `python3 -m http.server` ignores `_redirects`, so local preview still 404s — Cloudflare Pages will not.
+They 302 to `/` via `_redirects` until those frames exist. Do not invent them. `python3 -m http.server` ignores `_redirects`, so local preview still 404s — Cloudflare Pages will not.
+
+Pricing pages ship the Figma empty estimate band. FAQs ship the search UI and three empty tiles — no questions until Figma has them.
 
 **2. The three cards are live, but they are still display-only.** They look like tools; they are not working tools yet. You said you wanted these as real working tools. That's a genuine build, not a styling pass — the quote calculator needs its pricing logic defined before a line of it is written, and `Knee Coal - Website Pricing 2026.md` and `Cloudflare_Build_Rate_Card_2026.pdf` in the parent folder are the obvious source. Treat the real tools as phase two.
 
@@ -59,7 +59,6 @@ That's **10 unique hrefs, 12 `<a>` tags** (the old "eight dead links" count drop
 ## Worth doing, not blocking
 
 - `favicon.svg`, `apple-touch-icon.png`, `og-image.jpg` are referenced but absent
-- Add `sitemap.xml` and `robots.txt` once there's more than one page
 - Mobile layout below 1040px is an interpretation — no mobile frame exists in Figma
 - Two typos were fixed against the Figma source: **NETIFY** → Netlify, and the footer heading order. The "All rights and so many wrongs reserved" line is intentional and was left alone.
 

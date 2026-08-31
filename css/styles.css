@@ -120,8 +120,8 @@ a { color: inherit; text-decoration: none; }
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
-/* Figma logo block: x 80→273, y 33→128 */
-.site-header__logo img { width: 193px; height: auto; }
+/* Figma logo block: x 80→273, y 33→128 — display size is --logo-header */
+.site-header__logo img { width: var(--logo-header); height: auto; }
 
 .nav__list { display: flex; align-items: center; gap: var(--s-5); flex-wrap: wrap; }
 
@@ -130,11 +130,24 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .hero { position: relative; }
 
-.hero__media img {
+.hero__media { position: relative; overflow: hidden; }
+.hero__media img,
+.hero__video {
   width: 100%;
   height: auto;
   aspect-ratio: 1440 / 703;
   object-fit: cover;
+}
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__video { display: none; }
 }
 
 /* Figma overlaps the eyebrow 24px into the image. The image
@@ -1134,7 +1147,8 @@ a { color: inherit; text-decoration: none; }
   gap: var(--s-7);
   align-items: start;
 }
-.site-footer__brand img { width: 210px; height: auto; }
+.site-footer__brand { display: block; width: fit-content; }
+.site-footer__brand img { width: var(--logo-footer); height: auto; }
 
 .footer-col__title {
   font-size: var(--fs-footer-h);
@@ -1168,6 +1182,170 @@ a { color: inherit; text-decoration: none; }
 .site-footer__badges { width: 303px; height: auto; }
 
 /* ============================================================
+   INNER PAGES — Contact 318:476, FAQs 381:178, pricing frames.
+   Header overlays the unique hero. Copy starts ~y=696 (FAQs /
+   pricing) or y=812 (Contact). Flow layout, not absolute.
+   ============================================================ */
+.inner-hero { position: relative; }
+.inner-hero__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--inner-hero-ratio);
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Figma: image ~756, eyebrow y=696 on FAQs/pricing. */
+.inner-copy {
+  position: relative;
+  margin-top: -60px;
+  text-align: center;
+}
+.inner-title {
+  max-width: 791px;
+  margin: 27px auto 0;
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+  color: var(--ink);
+}
+.inner-lede {
+  max-width: 791px;
+  margin: 40px auto 0;
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.inner-cta { margin-top: 33px; }
+
+.inner-page .site-footer { margin-top: var(--inner-footer-gap); }
+.inner-page--contact .inner-copy { margin-top: 53px; } /* Figma: image ~752, eyebrow y=812 */
+.inner-page--contact .site-footer { margin-top: var(--contact-footer-gap); }
+.inner-page--pricing .site-footer { margin-top: 0; }
+
+/* Contact cards — 408×336, x=80 / 516 / 952, y=1239 */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--contact-gap);
+  margin-top: 133px;
+}
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--contact-card-min);
+  padding: 33px var(--s-6) var(--s-6);
+  background: var(--card);
+  border: 0.5px solid var(--card-line);
+  border-radius: var(--r-card);
+  color: inherit;
+  transition: transform var(--dur-base) var(--ease);
+}
+.contact-card:hover { transform: translateY(-3px); }
+.contact-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--s-4);
+}
+.contact-card__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.contact-card__arrow {
+  flex: none;
+  width: var(--contact-arrow-w);
+  height: var(--contact-arrow-h);
+}
+.contact-card__body {
+  margin-top: auto;
+  padding-top: var(--s-7);
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  color: var(--ink);
+}
+
+/* FAQs search — 1280×325 at y=1181; field 1147×63; tiles y=1536 */
+.faq-ask {
+  margin-top: 91px;
+  padding: var(--faq-ask-pad);
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  text-align: center;
+}
+.faq-ask__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.faq-ask__field {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  height: var(--faq-field-h);
+  margin-top: var(--s-6);
+  padding: var(--s-2) var(--s-2) var(--s-2) var(--s-5);
+  background: var(--paper);
+  border-radius: var(--r-card);
+  box-shadow: var(--faq-field-shadow);
+}
+.faq-ask__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--ink);
+  outline: none;
+}
+.faq-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: 40px;
+}
+.faq-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  height: var(--faq-tag-h);
+  padding: 0 var(--s-4) 0 var(--s-3);
+  border: 1px solid var(--ink);
+  border-radius: var(--faq-tag-radius);
+  font-size: var(--fs-body);
+  line-height: 1;
+  color: var(--ink);
+}
+.faq-tag img {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+.faq-tiles {
+  display: grid;
+  grid-template-columns: 385fr 450fr 385fr;
+  gap: var(--faq-tile-gap);
+  margin-top: var(--faq-tile-gap);
+}
+.faq-tile {
+  min-height: var(--faq-tile-min);
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+}
+
+.pricing-estimate { min-height: var(--pricing-estimate-min); }
+
+/* ============================================================
    TABLET — ≤1040px
    No Figma frame exists below 1440. Everything here is an
    interpretation: review before launch.
@@ -1176,7 +1354,7 @@ a { color: inherit; text-decoration: none; }
   :root { --gutter: var(--gutter-md); }
 
   .site-header { padding-block: var(--s-5); }
-  .site-header__logo img { width: 150px; }
+  .site-header__logo img { width: var(--logo-header-md); }
 
   .hero__copy { padding-bottom: 96px; }
 
@@ -1199,6 +1377,11 @@ a { color: inherit; text-decoration: none; }
   .site-footer { margin-top: 88px; padding-block: 72px 0; }
   .site-footer__inner { grid-template-columns: 1fr 1fr; gap: var(--s-7) var(--s-6); }
   .site-footer__brand { grid-column: 1 / -1; }
+
+  .contact-grid { grid-template-columns: 1fr; margin-top: var(--s-8); }
+  .faq-ask { padding: var(--s-7) var(--s-5); }
+  .faq-tiles { grid-template-columns: 1fr; }
+  .pricing-estimate { min-height: var(--s-10); } /* unsigned: no mobile frame */
 }
 
 /* ============================================================
@@ -1208,13 +1391,14 @@ a { color: inherit; text-decoration: none; }
   :root { --gutter: var(--gutter-sm); }
 
   .site-header__inner { flex-direction: column; align-items: flex-start; gap: var(--s-4); }
-  .site-header__logo img { width: 128px; }
+  .site-header__logo img { width: var(--logo-header-sm); }
   .nav__list { gap: var(--s-3); }
   .pill { font-size: .875rem; padding-inline: var(--s-3); }
 
   /* Header is taller when stacked — give the hero image room so
      the logo and pills never sit on the mountain silhouette.   */
-  .hero__media img { aspect-ratio: 4 / 5; object-position: 62% center; }
+  .hero__media img,
+  .hero__video { aspect-ratio: 4 / 5; object-position: 62% center; }
   .hero__copy { margin-top: -16px; padding-bottom: 64px; }
   .hero__title {
     margin-top: var(--s-5);
@@ -1273,4 +1457,8 @@ a { color: inherit; text-decoration: none; }
   .site-footer { margin-top: 64px; padding-block: 56px 0; }
   .site-footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }
   .site-footer__base { margin-top: 56px; }
+
+  .inner-copy { margin-top: -16px; }
+  .inner-hero__media img { aspect-ratio: 4 / 5; }
+  .faq-ask__field { flex-wrap: wrap; height: auto; padding: var(--s-3); }
 }

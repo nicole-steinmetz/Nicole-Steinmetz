@@ -98,6 +98,39 @@ else
   echo "  missing: footer-bg.(png|jpg)" >&2
 fi
 
+# Inner-page heroes: same four widths as home
+echo "inner heroes"
+for name in hero-contact hero-faqs hero-pricing \
+            hero-pricing-squarespace hero-pricing-shopify \
+            hero-pricing-vercel hero-pricing-netlify hero-pricing-cloudflare; do
+  echo "  $name"
+  if SRCIMG=$(src_of "$name"); then
+    if [ -n "$IM" ]; then
+      for w in 720 1080 1440 2880; do
+        $IM "$SRCIMG" -resize "${w}x>" -strip -quality 82 "$IMG/${name}-${w}.webp"
+        $IM "$SRCIMG" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/${name}-${w}.jpg"
+      done
+    else
+      python3 - "$SRCIMG" "$IMG" "$name" <<'PY'
+import sys
+from PIL import Image
+src, out, name = sys.argv[1], sys.argv[2], sys.argv[3]
+im = Image.open(src)
+for w in (720, 1080, 1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/{name}-{w}.webp", "WEBP", quality=82, method=6)
+    rgb.save(f"{out}/{name}-{w}.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+PY
+    fi
+  else
+    echo "    missing: $name.(png|jpg)" >&2
+  fi
+done
+
 # UI panels: keep PNG (flat colour + fine text — JPEG will smear it),
 # just strip metadata and re-compress losslessly.
 echo "panels"

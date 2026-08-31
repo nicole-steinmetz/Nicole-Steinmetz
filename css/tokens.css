@@ -60,6 +60,12 @@
   --gutter-md:   40px;
   --gutter-sm:   20px;
 
+  /* Logo display sizes. Figma is 193 / 210; bumped slightly. */
+  --logo-header:    220px; /* Figma 193 */
+  --logo-footer:    240px; /* Figma 210 */
+  --logo-header-md: 170px;
+  --logo-header-sm: 148px;
+
   /* ---- SPACING (8px rhythm) -------------------------------- */
   --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
   --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
@@ -178,6 +184,25 @@
      Not in Figma — the row is static there. Duration is one
      full set-width loop; higher = slower.                     */
   --trusted-marquee:    36s;
+
+  /* ---- INNER PAGES -----------------------------------------
+     Contact 318:476, FAQs 381:178, pricing frames ~1440×2470.
+     Heroes are ~1440×756 (Home is 1440×703).                  */
+  --inner-hero-ratio:        1440 / 756;
+  --contact-gap:             28px;   /* 80 + 3×408 + 2×28 + 80 = 1440 */
+  --contact-card-min:        336px;
+  --contact-arrow-w:         58px;
+  --contact-arrow-h:         47px;
+  --faq-ask-pad:             54px 66px 40px;
+  --faq-field-h:             63px;
+  --faq-field-shadow:        0 4px 4px rgb(0 0 0 / .25);
+  --faq-tag-h:               35px;
+  --faq-tag-radius:          15px;
+  --faq-tile-min:            273px;
+  --faq-tile-gap:            30px;
+  --pricing-estimate-min:    840px;  /* CTA ~1090 → footer 1931 */
+  --inner-footer-gap:        123px;
+  --contact-footer-gap:      197px;  /* cards 1575 → footer 1772 */
 }
 
 @media (prefers-reduced-motion: reduce) {

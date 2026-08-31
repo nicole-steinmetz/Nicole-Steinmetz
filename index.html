@@ -27,8 +27,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;700&display=swap">
 
-<link rel="stylesheet" href="/css/tokens.css?v=proj">
-<link rel="stylesheet" href="/css/styles.css?v=pill-hover">
+<link rel="stylesheet" href="/css/tokens.css?v=hero-vid">
+<link rel="stylesheet" href="/css/styles.css?v=hero-vid">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -56,17 +56,15 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="site-header__logo" href="/" aria-label="Nicole Steinmetz — home">
-      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="193" height="95">
+      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="220" height="108">
     </a>
 
     <nav class="nav" aria-label="Primary">
       <ul class="nav__list">
-        <!-- TODO(link): /pricing/ — parked on home via _redirects until Figma is signed off. -->
         <li><a class="pill pill--amber" href="/pricing/">Pricing</a></li>
-        <!-- TODO(link): /faqs/ — parked on home via _redirects until Figma is signed off. -->
         <li><a class="pill pill--blue" href="/faqs/">FAQs</a></li>
         <li>
-          <a class="pill pill--rust pill--has-icon" href="mailto:nicole@kneecoal.com">
+          <a class="pill pill--rust pill--has-icon" href="/contact/">
             Contact us
             <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
               <circle cx="10.5" cy="10.5" r="10.5" fill="white"/>
@@ -85,24 +83,35 @@
        HERO
        ========================================================== -->
   <section class="hero">
-    <picture class="hero__media">
-      <source
-        type="image/webp"
-        srcset="/assets/img/hero-720.webp 720w,
-                /assets/img/hero-1080.webp 1080w,
-                /assets/img/hero-1440.webp 1440w,
-                /assets/img/hero-2880.webp 2880w"
-        sizes="100vw">
-      <img src="/assets/img/hero-1440.jpg"
-           srcset="/assets/img/hero-720.jpg 720w,
-                   /assets/img/hero-1080.jpg 1080w,
-                   /assets/img/hero-1440.jpg 1440w,
-                   /assets/img/hero-2880.jpg 2880w"
-           sizes="100vw"
-           width="1440" height="703"
-           alt="Illustrated landscape blending a Japanese mountain and cherry-lined lake with an Australian city skyline"
-           fetchpriority="high" decoding="async">
-    </picture>
+    <div class="hero__media">
+      <picture class="hero__still">
+        <source
+          type="image/webp"
+          srcset="/assets/img/hero-720.webp 720w,
+                  /assets/img/hero-1080.webp 1080w,
+                  /assets/img/hero-1440.webp 1440w,
+                  /assets/img/hero-2880.webp 2880w"
+          sizes="100vw">
+        <img src="/assets/img/hero-1440.jpg"
+             srcset="/assets/img/hero-720.jpg 720w,
+                     /assets/img/hero-1080.jpg 1080w,
+                     /assets/img/hero-1440.jpg 1440w,
+                     /assets/img/hero-2880.jpg 2880w"
+             sizes="100vw"
+             width="1440" height="703"
+             alt="Illustrated landscape blending a Japanese mountain and cherry-lined lake with an Australian city skyline"
+             fetchpriority="high" decoding="async">
+      </picture>
+      <video class="hero__video"
+             autoplay muted loop playsinline
+             preload="metadata"
+             poster="/assets/img/hero-1440.jpg"
+             width="1280" height="720"
+             disablepictureinpicture
+             aria-hidden="true">
+        <source src="/assets/video/hero.mp4" type="video/mp4">
+      </video>
+    </div>
 
     <div class="hero__copy container">
       <p class="eyebrow">From Japan to Australia</p>
@@ -430,14 +439,13 @@
   </div>
 
   <div class="site-footer__inner container">
-    <div class="site-footer__brand">
-      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="210" height="101" loading="lazy">
-    </div>
+    <a class="site-footer__brand" href="/" aria-label="Nicole Steinmetz — home">
+      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="240" height="115" loading="lazy">
+    </a>
 
     <nav class="footer-col" aria-labelledby="f-pricing">
       <h2 class="footer-col__title" id="f-pricing">Pricing</h2>
       <ul>
-        <!-- TODO(link): pricing sub-routes — parked on home via _redirects until Figma is signed off. -->
         <li><a href="/pricing/squarespace/">Squarespace</a></li>
         <li><a href="/pricing/shopify/">Shopify</a></li>
         <li><a href="/pricing/vercel/">Vercel</a></li>
@@ -449,8 +457,8 @@
     <nav class="footer-col" aria-labelledby="f-clarifications">
       <h2 class="footer-col__title" id="f-clarifications">Clarifications</h2>
       <ul>
-        <!-- TODO(link): /faqs/ and /platform-decider/ — parked on home via _redirects. -->
         <li><a href="/faqs/">All FAQs</a></li>
+        <!-- TODO(link): /platform-decider/ — no Figma frame. Parked on home via _redirects. -->
         <li><a href="/platform-decider/">Compare platforms</a></li>
         <li><a href="https://calendar.app.google/LKjv1zT4b7R2NhJ69" target="_blank" rel="noopener">Book video call</a></li>
       </ul>
@@ -478,6 +486,7 @@
 <script src="/js/quote-card.js" defer></script>
 <script src="/js/project-card.js" defer></script>
 <script src="/js/hero-title.js" defer></script>
+<script src="/js/hero-video.js" defer></script>
 <script src="/js/trusted-marquee.js" defer></script>
 </body>
 </html>

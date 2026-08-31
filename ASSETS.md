@@ -2,7 +2,7 @@
 
 Exported from Figma into `assets/`. Raster sources live in gitignored `assets/img/_source/`; the optimiser writes the variants `index.html` references. Re-run `bash tools/optimise-images.sh` after any re-export.
 
-Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`)
+Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`). Inner-page heroes below.
 
 ---
 
@@ -10,7 +10,15 @@ Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`)
 
 | Figma layer | Node | Save as | Export |
 |---|---|---|---|
-| `nicole-steinmetz-01 1` | `54:4` | `hero.png` | PNG @2x (2880×1406) |
+| `nicole-steinmetz-01 1` | `54:4` | `hero.png` | PNG @2x (2880×1406) — still used as the poster / reduced-motion fallback. The live hero is `assets/video/hero.mp4` (10s loop from `Animate_this_handcrafted_text.mp4`). |
+| Contact hero `381:244` | `381:244` | `hero-contact.png` | PNG of the placed crop (~1440×752) |
+| FAQs hero `381:246` | `381:246` | `hero-faqs.png` | ~1440×758 |
+| Pricing ALL `370:1670` | `370:1670` | `hero-pricing.png` | ~1440×756 |
+| Squarespace `331:874` | `331:874` | `hero-pricing-squarespace.png` | ~1440×757 |
+| Shopify `331:873` | `331:873` | `hero-pricing-shopify.png` | ~1440×755 |
+| Vercel `331:870` | `331:870` | `hero-pricing-vercel.png` | ~1440×746 |
+| Netlify `331:872` | `331:872` | `hero-pricing-netlify.png` | ~1440×757 |
+| Cloudflare `331:871` | `331:871` | `hero-pricing-cloudflare.png` | ~1440×754 |
 | `nicole-steinmetz-web-design-perth-australia 1` | `370:1556` | `footer-bg.png` | PNG @2x |
 | `The Tools@3x 1` | `380:47` | `panel-the-tools.png` | PNG @2x (772×754) — exported; the live card does not reference it |
 | `get a quote@3x 1` | `380:45` | `panel-get-a-quote.png` | PNG @2x (1266×912) — exported; the live card does not reference it |
@@ -34,6 +42,9 @@ Coming Soon node `364:1422` is gone from the file. The Squarespace badge strip o
 |---|---|---|---|
 | Logo lettering | `1:10`–`1:30` (21 paths; `1:21` is already in that range) | `logo-white.svg` | **Select all of them together, group, export as one SVG.** They are loose paths in Figma — exporting individually gives you files that will not assemble correctly. |
 | `Group 12` (arrow in circle) | `28:288` | `arrow-circle-white.svg` | Used on both CTA pills |
+| FAQs “Getting Started” | `410:30` | `icon-faq-started.svg` | 20×20 |
+| FAQs “Choosing the Platform” | `414:35` | `icon-faq-platform.svg` | 20×21 |
+| FAQs “Payment Terms” | `414:64` | `icon-faq-payment.png` | 23×23 — two vector groups, exported as one PNG |
 | `Layer_1` | `16:180` | `icon-design-build.svg` | 45×45 |
 | `Layer_1` | `21:206` | `icon-platform.svg` | 43×47 — note the odd ratio, don't square it |
 | `Layer_1` | `21:211` | `icon-no-templates.svg` | 45×45 |

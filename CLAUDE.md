@@ -4,7 +4,7 @@ Read this before changing anything. It exists so Cursor doesn't reinvent decisio
 
 ## What this is
 
-The marketing site for Nicole Steinmetz, a web design studio (formally Knee Coal). Currently one page: the home page, built from Figma file `zbpByfLeFxuP1uHNkh0ykX`, node `1:2`.
+The marketing site for Nicole Steinmetz, a web design studio (formally Knee Coal). Home is Figma file `zbpByfLeFxuP1uHNkh0ykX`, node `1:2`. Inner pages (Contact, FAQs, six pricing routes) are the other 1440-wide frames on Page 1.
 
 ## Stack
 
@@ -15,16 +15,19 @@ This is a deliberate choice, not an oversight. It's a static marketing page. Add
 ## Files
 
 ```
-index.html          the whole page
-css/tokens.css      design tokens — the only place colours, type and spacing are defined
-css/styles.css      everything else
-js/                 vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee
-assets/img/         raster (hero, footer, UI panels)
-assets/svg/         logo, icons, arrows
-assets/logos/       Trusted By client marks
-tools/              image optimisation script
-_headers            Cloudflare security + cache headers
-_redirects          Cloudflare redirects
+index.html               home
+contact/ faqs/ pricing/  inner pages — duplicated header/footer, shared CSS
+css/tokens.css           design tokens — the only place colours, type and spacing are defined
+css/styles.css           everything else
+js/                      vanilla JS — Tools, Quote and Project cards, hero title, hero video, Trusted By marquee
+assets/img/              raster (heroes, footer, UI panels)
+assets/video/            hero loop (home)
+assets/svg/              logo, icons, arrows
+assets/logos/            Trusted By client marks
+tools/                   image optimisation script
+sitemap.xml              Home + inner pages
+_headers                 Cloudflare security + cache headers
+_redirects               Cloudflare redirects
 ```
 
 ## Rules
@@ -43,7 +46,7 @@ _redirects          Cloudflare redirects
 
 ## Things marked TODO
 
-Search for `TODO(link)` — those are hrefs pointing at routes that don't exist yet. The three cards (Tools, Quote, Start a Project) are live HTML; they are display-only loops, not working tools. Tracked in `README.md`.
+Search for `TODO(link)` — remaining hrefs for `/platform-decider/`, `/get-a-quote/` and `/start-a-project/`, which have no Figma frame yet. The three Home cards are live HTML; they are display-only loops, not working tools. Tracked in `README.md`.
 
 ## Before you commit
 

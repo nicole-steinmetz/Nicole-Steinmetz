@@ -1,0 +1,408 @@
+/* ============================================================
+   PRICING — ALL
+   Figma: "Nicole Steinmetz" → PRICING — Navigation (370:1574)
+   1440 × 2842. Tabbed profiles from nicole-platform-profiles_1.html
+   (Figma 493:137 is a screenshot of that prototype).
+   ------------------------------------------------------------
+   Platform subpages share the hero + intro block.
+   Squarespace: node 1:68, 1440 × 2470, /pricing/squarespace/
+   ------------------------------------------------------------
+   Flow layout. Figma y-coordinates in comments.
+   Breakpoints match home: 1040px / 640px — no mobile frame.
+   ============================================================ */
+
+.page-pricing .site-footer {
+  margin-top: var(--s-9); /* profiles bottom 2205 → footer 2301 */
+}
+
+/* ---- HERO — image 1440×756 at y=0 -------------------------- */
+.pricing-hero { position: relative; }
+
+.pricing-hero__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1440 / 756;
+  object-fit: cover;
+}
+
+/* Eyebrow overlaps the last ~60px of the illustration
+   (Figma y=696 inside a 756 image). Title sits on the seam.   */
+.pricing-intro {
+  position: relative;
+  margin-top: -60px;
+  padding-bottom: var(--s-8); /* cta 1119 → card 1225 */
+  text-align: center;
+}
+
+.pricing-intro .eyebrow { margin: 0 auto; }
+
+.pricing-intro__title {
+  max-width: 791px;
+  margin: 27px auto 0; /* eyebrow 696+30 → title 753 */
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.pricing-intro__lede {
+  max-width: 791px;
+  margin: 40px auto 0; /* title 753+92 → body 885 */
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  color: var(--ink-soft);
+}
+
+.pricing-intro__cta {
+  margin-top: 70px; /* body 885+131 → cta 1086 */
+}
+
+/* ---- SQUARESPACE SUBPAGE — Figma 1:68 ----------------------
+   Hero 1440×757. Intro geometry matches the overview (eyebrow
+   696, title 753, body 885) except the body is 92px not 131,
+   so the CTA sits 80px below it. The Figma frame then leaves
+   ~841px of empty canvas (cta bottom 1090 → footer 1931) for
+   an estimate UI that is not in the file yet — "Tick what you
+   need below for an instant estimate." Don't reproduce the
+   blank. Footer spacing is the overview's, not that gap.      */
+.page-pricing-ss .pricing-hero__media img {
+  aspect-ratio: 1440 / 757;
+}
+
+.page-pricing-ss .pricing-intro__cta {
+  margin-top: 80px; /* body 885+92 → cta 1057 */
+}
+
+/* ---- SHORT VERSION — card y=1225, 1275×452 ----------------- */
+.pricing-short {
+  padding-bottom: 40px; /* card 1677 → profiles 1717 */
+}
+
+.pricing-short__card {
+  display: grid;
+  grid-template-columns: var(--scroller-w) 1fr;
+  gap: var(--s-8);
+  align-items: center;
+  padding: 45px 64px; /* logos y 1270 inside card 1225 */
+  background: var(--card);
+  border: 0.5px solid var(--card-line);
+  border-radius: var(--r-card);
+}
+
+/* Vertical logo scroller — vertical-logo-scroller.html.
+   Replaces the flattened Figma stack (217×351). Two sets
+   on the track so translateY(-50%) loops without a jump. */
+.logo-scroller {
+  position: relative;
+  width: var(--scroller-w);
+  height: var(--scroller-h);
+  justify-self: center;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.logo-scroller__track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.logo-scroller__set {
+  display: flex;
+  flex-direction: column;
+  gap: var(--scroller-gap);
+  padding-bottom: var(--scroller-gap);
+}
+
+.logo-scroller:hover .logo-scroller__track,
+.logo-scroller:focus-within .logo-scroller__track {
+  animation-play-state: paused;
+}
+
+.logo-scroller__item {
+  display: flex;
+  align-items: center;
+  gap: var(--scroller-item-gap);
+  flex-shrink: 0;
+}
+
+.logo-scroller__item img {
+  width: var(--scroller-mark);
+  height: var(--scroller-mark);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logo-scroller__item span {
+  font-weight: 700;
+  font-size: var(--fs-scroller);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo-scroller__track {
+    animation: logo-scroll-up var(--scroller-dur) linear infinite;
+  }
+}
+
+@keyframes logo-scroll-up {
+  to { transform: translateY(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-scroller__set[aria-hidden="true"] { display: none; }
+  .logo-scroller__set { padding-bottom: 0; }
+  .logo-scroller__track {
+    justify-content: center;
+    min-height: 100%;
+    padding-block: 12%;
+  }
+}
+
+.pricing-short__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  color: var(--ink);
+}
+
+.pricing-short__body {
+  margin-top: var(--s-4);
+  max-width: 761px;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+}
+
+.pricing-short__body p + p { margin-top: var(--s-5); }
+
+.pricing-short__jump {
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+}
+.pricing-short__jump:hover { color: var(--rust); }
+
+/* ---- PLATFORM PROFILES — animated tabs ---------------------
+   HTML prototype is the source for interaction + copy.
+   Figma 493:137 is a screenshot of that prototype.            */
+.profiles {
+  padding-bottom: var(--s-4);
+}
+
+.profiles__panel-shell {
+  background: var(--card);
+  border: 0.5px solid var(--card-line);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.profiles__tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 0.5px solid var(--card-line);
+}
+
+.profiles__tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--profiles-tab-y) var(--s-4);
+  background: transparent;
+  border: 0;
+  border-right: 0.5px solid var(--card-line);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  transition: background-color var(--dur-base) var(--ease);
+}
+.profiles__tab:last-child { border-right: 0; }
+
+.profiles__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--logo-tab-h);
+  opacity: .45;
+  filter: grayscale(1);
+  transition:
+    opacity var(--dur-base) var(--ease),
+    transform var(--dur-base) var(--ease),
+    filter var(--dur-base) var(--ease);
+}
+.profiles__logo img {
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+
+.profiles__tab:hover { background: var(--tools-card); }
+.profiles__tab:hover .profiles__logo {
+  opacity: .75;
+  transform: translateY(-1px);
+}
+
+.profiles__tab.is-active { background: var(--rust-tint); }
+.profiles__tab.is-active .profiles__logo {
+  opacity: 1;
+  filter: none;
+}
+.profiles__tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.5px;
+  height: 2px;
+  background: var(--rust);
+}
+
+/* Stack panels so height stays stable while they crossfade. */
+.profiles__stage { display: grid; }
+
+.profiles__panel {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity var(--profiles-fade) var(--ease),
+    transform var(--profiles-fade) var(--ease),
+    visibility var(--profiles-fade) var(--ease);
+}
+.profiles__panel.is-active {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.profiles__copy {
+  padding: var(--profiles-pad);
+  border-right: 0.5px solid var(--card-line);
+}
+.profiles__copy .eyebrow { margin-bottom: var(--s-3); }
+
+.profiles__copy-title {
+  max-width: 20ch;
+  margin-bottom: var(--s-4);
+  font-size: var(--fs-profile-title);
+  font-weight: 700;
+  line-height: var(--lh-profile-title);
+  color: var(--ink);
+}
+
+.profiles__copy-body {
+  max-width: 44ch;
+  margin-bottom: 28px;
+  color: var(--ink-soft);
+  line-height: var(--lh-compact);
+}
+
+.profiles__copy .pill { white-space: normal; }
+
+.profiles__points { display: flex; flex-direction: column; }
+
+.profiles__point {
+  padding: 28px var(--profiles-pad);
+  border-bottom: 0.5px solid var(--card-line);
+}
+.profiles__point:last-child { border-bottom: 0; }
+
+.profiles__point-title {
+  margin-bottom: var(--s-2);
+  font-size: var(--fs-profile-point);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.profiles__point-body {
+  max-width: 38ch;
+  font-size: var(--fs-profile-body);
+  line-height: var(--lh-compact);
+  color: var(--ink-soft);
+}
+
+html:not(.js) .profiles__tabs { display: none; }
+html:not(.js) .profiles__stage {
+  display: flex;
+  flex-direction: column;
+}
+html:not(.js) .profiles__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  grid-area: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profiles__panel { transform: none; }
+}
+
+/* ---- INNER BREAKPOINTS — invented; no mobile Figma frame --- */
+@media (max-width: 1040px) {
+  .pricing-short__card {
+    grid-template-columns: var(--scroller-w) 1fr;
+    gap: var(--s-6);
+    padding: var(--s-6) var(--s-6);
+  }
+  .profiles__copy,
+  .profiles__point { padding: var(--s-6); }
+}
+
+@media (max-width: 640px) {
+  .pricing-intro { margin-top: -32px; padding-bottom: var(--s-7); }
+  .pricing-intro__lede { margin-top: var(--s-5); }
+  .pricing-intro__cta { margin-top: var(--s-6); }
+
+  /* Invented — no mobile frame. Keep enough olive behind the
+     stacked header; centre crop because the diorama is centred. */
+  .page-pricing-ss .pricing-hero__media img {
+    aspect-ratio: 4 / 5;
+    object-position: center center;
+  }
+
+  .pricing-short__card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: var(--s-6) var(--s-5);
+  }
+  .pricing-short__body { margin-inline: auto; }
+
+  .profiles__tabs { grid-template-columns: repeat(2, 1fr); }
+  .profiles__tab:nth-child(2) { border-right: 0; }
+  .profiles__tab:nth-child(1),
+  .profiles__tab:nth-child(2) {
+    border-bottom: 0.5px solid var(--card-line);
+  }
+
+  .profiles__panel { grid-template-columns: 1fr; }
+  .profiles__copy {
+    border-right: 0;
+    border-bottom: 0.5px solid var(--card-line);
+  }
+  .profiles__copy,
+  .profiles__point { padding: var(--s-6) var(--s-5); }
+}

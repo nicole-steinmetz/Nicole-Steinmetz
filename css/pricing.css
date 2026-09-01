@@ -6,6 +6,9 @@
    ------------------------------------------------------------
    Platform subpages share the hero + intro block.
    Squarespace: node 1:68, 1440 × 2470, /pricing/squarespace/
+   Shopify: node 1:117, 1440 × 2470, /pricing/shopify/
+   Cloudflare: node 288:4, 1440 × 2472, /pricing/cloudflare/
+   Netlify: node 153:203, 1440 × 2472, /pricing/netlify/
    ------------------------------------------------------------
    Flow layout. Figma y-coordinates in comments.
    Breakpoints match home: 1040px / 640px — no mobile frame.
@@ -61,17 +64,416 @@
 /* ---- SQUARESPACE SUBPAGE — Figma 1:68 ----------------------
    Hero 1440×757. Intro geometry matches the overview (eyebrow
    696, title 753, body 885) except the body is 92px not 131,
-   so the CTA sits 80px below it. The Figma frame then leaves
-   ~841px of empty canvas (cta bottom 1090 → footer 1931) for
-   an estimate UI that is not in the file yet — "Tick what you
-   need below for an instant estimate." Don't reproduce the
-   blank. Footer spacing is the overview's, not that gap.      */
+   so the CTA sits 80px below it. The quote builder that fills
+   the Figma gap is from Nicole — Pricing Page (Squarespace)
+   v1_1.html, not the frame.                                   */
 .page-pricing-ss .pricing-hero__media img {
   aspect-ratio: 1440 / 757;
 }
 
 .page-pricing-ss .pricing-intro__cta {
   margin-top: 80px; /* body 885+92 → cta 1057 */
+}
+
+.page-pricing-ss .site-footer { margin-top: 0; }
+
+/* ---- SHOPIFY SUBPAGE — Figma 1:117 -------------------------
+   Hero 1440×755 (node 331:873). Intro geometry matches
+   Squarespace: eyebrow 679, title 746, body 885, CTA 1057.
+   Quote builder from Nicole — Pricing Page (Shopify) v1.html. */
+.page-pricing-shopify .pricing-hero__media img {
+  aspect-ratio: 1440 / 755;
+}
+.page-pricing-shopify .pricing-intro__cta {
+  margin-top: 80px; /* body 885+92 → cta 1057 */
+}
+.page-pricing-shopify .site-footer { margin-top: 0; }
+
+/* ---- CLOUDFLARE SUBPAGE — Figma 288:4 ----------------------
+   Hero 1440×757 (node 331:871; export is 1440×754). Intro
+   eyebrow 679, title 746, body 885×199, CTA 1139. Quote
+   builder from Nicole — Pricing Page (Cloudflare) v1.html. */
+.page-pricing-cf .pricing-hero__media img {
+  aspect-ratio: 1440 / 754;
+}
+.page-pricing-cf .pricing-intro__cta {
+  margin-top: 55px; /* body 885+199 → cta 1139 */
+}
+.page-pricing-cf .site-footer { margin-top: 0; }
+
+/* ---- NETLIFY SUBPAGE — Figma 153:203 ----------------------
+   Hero 1440×757 (node 331:872; export 2880×1514). Intro
+   eyebrow 679, title 746, body 885, CTA 1057. Quote builder
+   from Nicole — Pricing Page (Netlify) v1.html.               */
+.page-pricing-netlify .pricing-hero__media img {
+  aspect-ratio: 1440 / 757;
+}
+.page-pricing-netlify .pricing-intro__cta {
+  margin-top: 80px; /* body 885+92 → cta 1057 */
+}
+.page-pricing-netlify .site-footer { margin-top: 0; }
+
+.baseline-option--static { cursor: default; }
+.baseline-option--static:hover { border-color: var(--amber); }
+
+/* ---- QUOTE BUILDER — Squarespace / Shopify / Cloudflare / Netlify HTML */
+.quoter {
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-9);
+}
+
+.quoter-grid {
+  display: grid;
+  grid-template-columns: 1fr var(--quoter-sidebar);
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.qb-card {
+  background: var(--paper);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.summary {
+  position: sticky;
+  top: var(--s-5);
+  background: var(--rust);
+  color: var(--on-dark);
+  border-radius: var(--r-card);
+  padding: var(--quoter-summary-pad);
+}
+
+.js .qb-card,
+.js .summary {
+  opacity: 0;
+  transform: translateY(var(--quoter-enter-y));
+  transition:
+    opacity var(--quoter-enter) var(--ease),
+    transform var(--quoter-enter) var(--ease);
+}
+.js .summary { transition-delay: 100ms; }
+.qb-card.is-visible,
+.summary.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.qb-section {
+  padding: var(--quoter-section-pad);
+  border-bottom: 1px solid var(--card-line);
+}
+.qb-section:last-child { border-bottom: 0; }
+
+.qb-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--s-1);
+}
+.qb-section-head h2 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-kicker);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.qb-section-head span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--quoter-quiet);
+}
+
+.qb-section-note {
+  margin: var(--s-2) 0 14px;
+  font-size: var(--fs-quoter-note);
+  line-height: 1.5;
+  color: var(--quoter-quiet);
+}
+.qb-section-note.is-warning {
+  padding: var(--quoter-warn-pad);
+  color: var(--rust);
+  background: var(--rust-tint);
+  border: 1px solid var(--rust);
+  border-radius: var(--r-chip);
+}
+
+.qb-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-4);
+  padding: 14px 0;
+  border-top: 1px solid var(--tools-card-line);
+}
+.qb-section > .qb-row:first-of-type { border-top: 0; }
+
+.qb-row-main { flex: 1; min-width: 0; }
+
+.qb-row-title {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-quoter-row);
+  font-weight: 700;
+  color: var(--quoter-title);
+}
+
+.qb-badge {
+  padding: 2px var(--s-2);
+  border-radius: var(--r-pill);
+  background: var(--tools-card);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-badge);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.qb-row-desc {
+  margin-top: var(--s-1);
+  font-size: var(--fs-quoter-desc);
+  line-height: 1.5;
+  color: var(--quoter-quiet);
+}
+
+.qb-row-control {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 14px;
+}
+
+.qb-row-price {
+  min-width: 78px;
+  font-size: var(--fs-quoter-price);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--ink);
+}
+.qb-row-price.is-muted {
+  font-size: var(--fs-quoter-note);
+  font-weight: 600;
+  color: var(--quoter-quiet);
+}
+
+.baseline-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: var(--quoter-option-pad);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-quoter) var(--ease),
+    background-color var(--dur-quoter) var(--ease);
+}
+.baseline-option + .baseline-option { margin-top: var(--s-3); }
+.baseline-option:hover { border-color: var(--amber); }
+.baseline-option.is-selected {
+  border-color: var(--amber);
+  background: var(--amber-tint);
+}
+.baseline-option input {
+  flex: none;
+  width: var(--s-4);
+  height: var(--s-4);
+  margin-top: var(--s-1);
+  accent-color: var(--amber);
+}
+.baseline-option .b-title {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: var(--fs-quoter-option);
+  font-weight: 700;
+  color: var(--quoter-title);
+}
+.baseline-option .b-desc {
+  margin-top: var(--s-1);
+  font-size: var(--fs-quoter-desc);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.baseline-price { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.baseline-price.is-muted {
+  font-size: var(--fs-quoter-note);
+  font-weight: 600;
+  color: var(--quoter-quiet);
+}
+
+.qb-check {
+  flex: none;
+  width: var(--quoter-check);
+  height: var(--quoter-check);
+  border: 1px solid var(--tools-card-line);
+  border-radius: var(--r-quoter-check);
+  accent-color: var(--amber);
+  cursor: pointer;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--tools-card-line);
+  border-radius: var(--r-pill);
+}
+.stepper button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--quoter-step);
+  height: var(--quoter-step);
+  border: 0;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-ui);
+  cursor: pointer;
+  transition: background-color var(--dur-quoter) var(--ease), color var(--dur-quoter) var(--ease);
+}
+.stepper button:hover {
+  background: var(--amber-tint);
+  color: var(--rust);
+}
+.stepper button:disabled { cursor: not-allowed; }
+.stepper output {
+  width: var(--s-6);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.hour-input { display: flex; align-items: center; gap: var(--s-2); }
+.hour-input input {
+  width: var(--quoter-hour-w);
+  padding: 6px var(--s-2);
+  border: 1px solid var(--tools-card-line);
+  border-radius: var(--r-quoter-input);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: inherit;
+}
+.hour-input span { font-size: var(--fs-quoter-note); color: var(--quoter-quiet); }
+
+.qb-row.is-disabled { opacity: .4; pointer-events: none; }
+
+.summary-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.summary-head h2 {
+  font-size: var(--fs-ui);
+  font-weight: 700;
+}
+.summary-head .tag {
+  padding: var(--s-1) 10px;
+  border-radius: var(--r-pill);
+  background: var(--quoter-tag);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-badge);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.summary-lines {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--quoter-line-on-dark);
+}
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--s-1) 0;
+  font-size: var(--fs-quoter-desc);
+  font-variant-numeric: tabular-nums;
+}
+.summary-line span:first-child { color: var(--quoter-soft-on-dark); }
+
+.summary-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.summary-total .label { font-size: var(--fs-body); font-weight: 600; }
+.summary-total .amount {
+  font-size: var(--fs-quoter-total);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-foot {
+  margin-top: var(--s-2);
+  font-size: var(--fs-quoter-meta);
+  line-height: 1.5;
+  color: var(--quoter-muted-on-dark);
+}
+
+.summary-tbc {
+  margin-top: var(--s-4);
+  padding-top: 14px;
+  border-top: 1px solid var(--quoter-line-on-dark);
+}
+.summary-tbc[hidden] { display: none; }
+.summary-tbc h3 {
+  margin-bottom: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--quoter-kicker-on-dark);
+}
+.summary-tbc ul {
+  padding-left: var(--s-4);
+  list-style: disc;
+  font-size: var(--fs-quoter-note);
+  line-height: 1.7;
+  color: var(--quoter-soft-on-dark);
+}
+
+.shared-cta { margin-bottom: var(--s-9); }
+.cta-card {
+  padding: var(--quoter-cta-pad);
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  text-align: center;
+}
+.cta-card h2 {
+  margin-bottom: var(--s-2);
+  font-size: var(--fs-h3);
+  color: var(--quoter-title);
+}
+.cta-card p {
+  margin-bottom: 22px;
+  font-size: var(--fs-quoter-price);
+  color: var(--ink-soft);
+}
+
+@media (max-width: 980px) { /* stacks at --quoter-stack */
+  .quoter-grid { grid-template-columns: 1fr; }
+  .summary { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .qb-card,
+  .js .summary {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ---- SHORT VERSION — card y=1225, 1275×452 ----------------- */
@@ -378,10 +780,22 @@ html:not(.js) .profiles__panel {
 
   /* Invented — no mobile frame. Keep enough olive behind the
      stacked header; centre crop because the diorama is centred. */
-  .page-pricing-ss .pricing-hero__media img {
+  .page-pricing-ss .pricing-hero__media img,
+  .page-pricing-shopify .pricing-hero__media img,
+  .page-pricing-cf .pricing-hero__media img,
+  .page-pricing-netlify .pricing-hero__media img {
     aspect-ratio: 4 / 5;
     object-position: center center;
   }
+
+  .qb-section { padding: var(--s-5); }
+  .qb-row {
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+  .qb-row-control { margin-left: auto; }
+  .cta-card { padding: var(--s-6) var(--s-5); }
+  .baseline-option .b-title { flex-wrap: wrap; }
 
   .pricing-short__card {
     grid-template-columns: 1fr;

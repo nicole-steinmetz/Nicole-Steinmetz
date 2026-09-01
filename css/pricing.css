@@ -1,7 +1,7 @@
 /* ============================================================
    PRICING — ALL
    Figma: "Nicole Steinmetz" → PRICING — Navigation (370:1574)
-   1440 × 2842. Tabbed profiles from nicole-platform-profiles_1.html
+   1440 × 2842. Tabbed profiles from nicole-platform-profiles_2.html
    (Figma 493:137 is a screenshot of that prototype).
    ------------------------------------------------------------
    Platform subpages share the hero + intro block.
@@ -722,6 +722,32 @@
 }
 
 .profiles__copy .pill { white-space: normal; }
+
+/* Worth knowing — nicole-platform-profiles_2.html .caveat */
+.profiles__note {
+  margin-top: var(--s-5);
+  padding: var(--profiles-note-pad);
+  background: var(--tools-card);
+  border-left: var(--profiles-note-bar) solid var(--tools-card-line);
+  border-radius: var(--r-profiles-note);
+}
+.profiles__note-label {
+  display: block;
+  margin: 0 0 var(--profiles-note-label-mb);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-kicker);
+  font-weight: 400;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--quoter-quiet);
+}
+.profiles__note-body {
+  margin: 0;
+  max-width: 42ch;
+  font-size: var(--fs-profile-note);
+  line-height: var(--lh-compact);
+  color: var(--ink-soft);
+}
 
 .profiles__points { display: flex; flex-direction: column; }
 

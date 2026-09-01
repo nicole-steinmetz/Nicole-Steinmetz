@@ -1,5 +1,5 @@
 /* Platform profiles — tabbed panel on /pricing/.
-   Source: nicole-platform-profiles_1.html. Crossfade instead of
+   Source: nicole-platform-profiles_2.html. Crossfade instead of
    display:none so the switch reads as motion, not a snap. */
 (function () {
   var root = document.getElementById("platform-profiles");

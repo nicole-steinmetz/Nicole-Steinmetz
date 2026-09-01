@@ -184,16 +184,21 @@
 
   /* ---- PRICING PROFILES ------------------------------------
      Tabbed platform panel. Interaction from
-     nicole-platform-profiles_1.html; layout from Figma
+     nicole-platform-profiles_2.html; layout from Figma
      370:1574 (the screenshot placeholder at 493:137).         */
   --profiles-pad:       56px;   /* Figma copy/point padding     */
   --profiles-tab-y:     32px;
   --fs-profile-title:   1.625rem; /* 26px                       */
   --fs-profile-point:   1.0625rem; /* 17px                      */
   --fs-profile-body:    0.9375rem; /* 15px point body           */
+  --fs-profile-note:    0.875rem;  /* 14px Worth Knowing body   */
   --lh-profile-title:   1.25;
   --logo-tab-h:         26px;
   --profiles-fade:      280ms;
+  --profiles-note-pad:  16px 20px; /* v2 .caveat                */
+  --profiles-note-bar:  3px;
+  --r-profiles-note:    8px;
+  --profiles-note-label-mb: 6px;
 
   /* ---- PRICING LOGO SCROLLER -------------------------------
      vertical-logo-scroller.html. Slot matches the flattened

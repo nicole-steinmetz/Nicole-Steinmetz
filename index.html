@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;700&display=swap">
 
 <link rel="stylesheet" href="/css/tokens.css?v=proj">
-<link rel="stylesheet" href="/css/styles.css?v=pill-hover">
+<link rel="stylesheet" href="/css/styles.css?v=hero-video">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -51,7 +51,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============================================================
-     HEADER — overlays the hero image
+     HEADER — overlays the hero
      ============================================================ -->
 <header class="site-header">
   <div class="site-header__inner">
@@ -85,24 +85,34 @@
        HERO
        ========================================================== -->
   <section class="hero">
-    <picture class="hero__media">
-      <source
-        type="image/webp"
-        srcset="/assets/img/hero-720.webp 720w,
-                /assets/img/hero-1080.webp 1080w,
-                /assets/img/hero-1440.webp 1440w,
-                /assets/img/hero-2880.webp 2880w"
-        sizes="100vw">
-      <img src="/assets/img/hero-1440.jpg"
-           srcset="/assets/img/hero-720.jpg 720w,
-                   /assets/img/hero-1080.jpg 1080w,
-                   /assets/img/hero-1440.jpg 1440w,
-                   /assets/img/hero-2880.jpg 2880w"
-           sizes="100vw"
-           width="1440" height="703"
-           alt="Illustrated landscape blending a Japanese mountain and cherry-lined lake with an Australian city skyline"
-           fetchpriority="high" decoding="async">
-    </picture>
+    <div class="hero__media">
+      <picture>
+        <source
+          type="image/webp"
+          srcset="/assets/img/hero-720.webp 720w,
+                  /assets/img/hero-1080.webp 1080w,
+                  /assets/img/hero-1440.webp 1440w,
+                  /assets/img/hero-2880.webp 2880w"
+          sizes="100vw">
+        <img src="/assets/img/hero-1440.jpg"
+             srcset="/assets/img/hero-720.jpg 720w,
+                     /assets/img/hero-1080.jpg 1080w,
+                     /assets/img/hero-1440.jpg 1440w,
+                     /assets/img/hero-2880.jpg 2880w"
+             sizes="100vw"
+             width="1440" height="703"
+             alt="Illustrated landscape blending a Japanese mountain and cherry-lined lake with an Australian city skyline"
+             fetchpriority="high" decoding="async">
+      </picture>
+      <video class="hero__video"
+             autoplay muted loop playsinline
+             preload="none"
+             disablepictureinpicture
+             width="1280" height="720"
+             aria-hidden="true">
+        <source src="/assets/video/hero.mp4" type="video/mp4">
+      </video>
+    </div>
 
     <div class="hero__copy container">
       <p class="eyebrow">From Japan to Australia</p>
@@ -477,7 +487,7 @@
 <script src="/js/tools-card.js" defer></script>
 <script src="/js/quote-card.js" defer></script>
 <script src="/js/project-card.js" defer></script>
-<script src="/js/hero-title.js" defer></script>
+<script src="/js/hero-title.js?v=hero-video" defer></script>
 <script src="/js/trusted-marquee.js" defer></script>
 </body>
 </html>

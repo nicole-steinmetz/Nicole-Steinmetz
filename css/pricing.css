@@ -9,6 +9,7 @@
    Shopify: node 1:117, 1440 × 2470, /pricing/shopify/
    Cloudflare: node 288:4, 1440 × 2472, /pricing/cloudflare/
    Netlify: node 153:203, 1440 × 2472, /pricing/netlify/
+   Vercel: node 153:154, 1440 × 2472, /pricing/vercel/
    ------------------------------------------------------------
    Flow layout. Figma y-coordinates in comments.
    Breakpoints match home: 1040px / 640px — no mobile frame.
@@ -105,18 +106,44 @@
    Hero 1440×757 (node 331:872; export 2880×1514). Intro
    eyebrow 679, title 746, body 885, CTA 1057. Quote builder
    from Nicole — Pricing Page (Netlify) v1.html.               */
+.page-pricing-netlify .pricing-hero__media { position: relative; }
 .page-pricing-netlify .pricing-hero__media img {
   aspect-ratio: 1440 / 757;
+}
+.pricing-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.pricing-hero__video.is-ready { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .pricing-hero__video { display: none; }
 }
 .page-pricing-netlify .pricing-intro__cta {
   margin-top: 80px; /* body 885+92 → cta 1057 */
 }
 .page-pricing-netlify .site-footer { margin-top: 0; }
 
+/* ---- VERCEL SUBPAGE — Figma 153:154 -----------------------
+   Hero 1440×746 (node 331:870; export 2880×1492). Intro
+   eyebrow 679, title 746, body 885, CTA 1057. Quote builder
+   from Nicole — Pricing Page (Vercel) v1_1.html.              */
+.page-pricing-vercel .pricing-hero__media img {
+  aspect-ratio: 1440 / 746;
+}
+.page-pricing-vercel .pricing-intro__cta {
+  margin-top: 41px;
+}
+
 .baseline-option--static { cursor: default; }
 .baseline-option--static:hover { border-color: var(--amber); }
 
-/* ---- QUOTE BUILDER — Squarespace / Shopify / Cloudflare / Netlify HTML */
+/* ---- QUOTE BUILDER — Squarespace / Shopify / Cloudflare / Netlify / Vercel HTML */
 .quoter {
   padding-top: var(--s-6);
   padding-bottom: var(--s-9);
@@ -809,7 +836,8 @@ html:not(.js) .profiles__panel {
   .page-pricing-ss .pricing-hero__media img,
   .page-pricing-shopify .pricing-hero__media img,
   .page-pricing-cf .pricing-hero__media img,
-  .page-pricing-netlify .pricing-hero__media img {
+  .page-pricing-netlify .pricing-hero__media img,
+  .page-pricing-vercel .pricing-hero__media img {
     aspect-ratio: 4 / 5;
     object-position: center center;
   }

@@ -22,6 +22,8 @@
 /* ---- HERO — image 1440×756 at y=0 -------------------------- */
 .pricing-hero { position: relative; }
 
+.pricing-hero__media { position: relative; }
+
 .pricing-hero__media img {
   width: 100%;
   height: auto;
@@ -67,7 +69,9 @@
    696, title 753, body 885) except the body is 92px not 131,
    so the CTA sits 80px below it. The quote builder that fills
    the Figma gap is from Nicole — Pricing Page (Squarespace)
-   v1_1.html, not the frame.                                   */
+   v1_1.html, not the frame. Video overlays the still once
+   playable — same pattern as Netlify.                         */
+.page-pricing-ss .pricing-hero__media { position: relative; }
 .page-pricing-ss .pricing-hero__media img {
   aspect-ratio: 1440 / 757;
 }
@@ -106,7 +110,6 @@
    Hero 1440×757 (node 331:872; export 2880×1514). Intro
    eyebrow 679, title 746, body 885, CTA 1057. Quote builder
    from Nicole — Pricing Page (Netlify) v1.html.               */
-.page-pricing-netlify .pricing-hero__media { position: relative; }
 .page-pricing-netlify .pricing-hero__media img {
   aspect-ratio: 1440 / 757;
 }

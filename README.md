@@ -31,18 +31,23 @@ Cloudflare Pages → Create project → Connect to Git, or drag this folder into
 
 ## Blocking before launch
 
-**1. Ten routes don't exist yet — parked on home.** Home is the only signed-off page (Figma `1:2`). Pricing, FAQs and Contact frames are still being finalised; there is no platform-decider, get-a-quote or start-a-project frame. Search `TODO(link)`.
+**1. Most inner routes don't exist yet — parked on home.** Home (`1:2`), Pricing (`370:1574`, `/pricing/`), Squarespace pricing (`1:68`, `/pricing/squarespace/`), Shopify pricing (`1:117`, `/pricing/shopify/`), Cloudflare pricing (`288:4`, `/pricing/cloudflare/`) and Netlify pricing (`153:203`, `/pricing/netlify/`) are built. FAQs and Contact frames are still being finalised; there is no platform-decider, get-a-quote or start-a-project frame. Search `TODO(link)`.
 
-| Route | Linked from |
+| Route | Status |
 |---|---|
-| `/pricing/` + five sub-routes | Nav, footer column 1 |
-| `/faqs/` | Nav, footer column 2 |
-| `/platform-decider/` | Learn more, Compare platforms |
-| `/get-a-quote/`, `/start-a-project/` | The two panels |
+| `/pricing/` | Live — overview + animated platform profiles |
+| `/pricing/squarespace/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Squarespace) v1_1.html`) |
+| `/pricing/shopify/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Shopify) v1.html`) |
+| `/pricing/cloudflare/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Cloudflare) v1.html`) |
+| `/pricing/netlify/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Netlify) v1.html`) |
+| `/pricing/vercel/` | Parked — 302 to `/` |
+| `/faqs/` | Parked |
+| `/platform-decider/` | Parked |
+| `/get-a-quote/`, `/start-a-project/` | Parked |
 
-That's **10 unique hrefs, 12 `<a>` tags** (the old "eight dead links" count dropped the two panels). They 302 to `/` via `_redirects` until those Figma frames are signed off. Do not build stub pages. `python3 -m http.server` ignores `_redirects`, so local preview still 404s — Cloudflare Pages will not.
+`python3 -m http.server` ignores `_redirects`, so parked routes 404 locally — Cloudflare Pages will not.
 
-**2. The three cards are live, but they are still display-only.** They look like tools; they are not working tools yet. You said you wanted these as real working tools. That's a genuine build, not a styling pass — the quote calculator needs its pricing logic defined before a line of it is written, and `Knee Coal - Website Pricing 2026.md` and `Cloudflare_Build_Rate_Card_2026.pdf` in the parent folder are the obvious source. Treat the real tools as phase two.
+**2. The three home cards are live, but they are still display-only.** They look like tools; they are not working tools yet. The Squarespace, Shopify, Cloudflare and Netlify quote builders are the exception — they are real running calculators, transcribed from the `Nicole — Pricing Page` prototypes and Knee Coal Website Pricing 2026. Squarespace: One-Page Website, Markup.io and Adobe Creative Suite are still “quoted separately”. Shopify: Custom Liquid / CSS Section, Complex Products / Bundles / Variants / Metafields, and the SEO Report (Perplexity) are quoted separately (no fixed price in the source docs). Cursor Pro and Figma are optional cost-recovery on Shopify — they are already in the Core Build, unlike Cloudflare. Cloudflare: Care Plan, Blog/News Setup, Popup/Modal, Logo Redesign, CMS Setup, SEO Report and Advanced Content Modelling are quoted separately; infrastructure setup tracks the chosen baseline ($250 Starter / $350 Standard). Netlify: Blog/News Setup, CMS Setup, Popup/Modal, Logo Redesign, SEO Report and Advanced Content Modelling are quoted separately (no fixed per-unit price in the rate-card PDF); Cursor Pro and Figma are included on every build.
 
 **The Tools card is live.** Rebuilt from `Nicole___Tool_Stack_Card_v5.html`. Search `id="tools-card"`.
 

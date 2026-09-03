@@ -1,0 +1,848 @@
+/* ============================================================
+   PRICING — ALL
+   Figma: "Nicole Steinmetz" → PRICING — Navigation (370:1574)
+   1440 × 2842. Tabbed profiles from nicole-platform-profiles_2.html
+   (Figma 493:137 is a screenshot of that prototype).
+   ------------------------------------------------------------
+   Platform subpages share the hero + intro block.
+   Squarespace: node 1:68, 1440 × 2470, /pricing/squarespace/
+   Shopify: node 1:117, 1440 × 2470, /pricing/shopify/
+   Cloudflare: node 288:4, 1440 × 2472, /pricing/cloudflare/
+   Netlify: node 153:203, 1440 × 2472, /pricing/netlify/
+   ------------------------------------------------------------
+   Flow layout. Figma y-coordinates in comments.
+   Breakpoints match home: 1040px / 640px — no mobile frame.
+   ============================================================ */
+
+.page-pricing .site-footer {
+  margin-top: var(--s-9); /* profiles bottom 2205 → footer 2301 */
+}
+
+/* ---- HERO — image 1440×756 at y=0 -------------------------- */
+.pricing-hero { position: relative; }
+
+.pricing-hero__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1440 / 756;
+  object-fit: cover;
+}
+
+/* Eyebrow overlaps the last ~60px of the illustration
+   (Figma y=696 inside a 756 image). Title sits on the seam.   */
+.pricing-intro {
+  position: relative;
+  margin-top: -60px;
+  padding-bottom: var(--s-8); /* cta 1119 → card 1225 */
+  text-align: center;
+}
+
+.pricing-intro .eyebrow { margin: 0 auto; }
+
+.pricing-intro__title {
+  max-width: 791px;
+  margin: 27px auto 0; /* eyebrow 696+30 → title 753 */
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.pricing-intro__lede {
+  max-width: 791px;
+  margin: 40px auto 0; /* title 753+92 → body 885 */
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  color: var(--ink-soft);
+}
+
+.pricing-intro__cta {
+  margin-top: 70px; /* body 885+131 → cta 1086 */
+}
+
+/* ---- SQUARESPACE SUBPAGE — Figma 1:68 ----------------------
+   Hero 1440×757. Intro geometry matches the overview (eyebrow
+   696, title 753, body 885) except the body is 92px not 131,
+   so the CTA sits 80px below it. The quote builder that fills
+   the Figma gap is from Nicole — Pricing Page (Squarespace)
+   v1_1.html, not the frame.                                   */
+.page-pricing-ss .pricing-hero__media img {
+  aspect-ratio: 1440 / 757;
+}
+
+.page-pricing-ss .pricing-intro__cta {
+  margin-top: 80px; /* body 885+92 → cta 1057 */
+}
+
+.page-pricing-ss .site-footer { margin-top: 0; }
+
+/* ---- SHOPIFY SUBPAGE — Figma 1:117 -------------------------
+   Hero 1440×755 (node 331:873). Intro geometry matches
+   Squarespace: eyebrow 679, title 746, body 885, CTA 1057.
+   Quote builder from Nicole — Pricing Page (Shopify) v1.html. */
+.page-pricing-shopify .pricing-hero__media img {
+  aspect-ratio: 1440 / 755;
+}
+.page-pricing-shopify .pricing-intro__cta {
+  margin-top: 80px; /* body 885+92 → cta 1057 */
+}
+.page-pricing-shopify .site-footer { margin-top: 0; }
+
+/* ---- CLOUDFLARE SUBPAGE — Figma 288:4 ----------------------
+   Hero 1440×757 (node 331:871; export is 1440×754). Intro
+   eyebrow 679, title 746, body 885×199, CTA 1139. Quote
+   builder from Nicole — Pricing Page (Cloudflare) v1.html. */
+.page-pricing-cf .pricing-hero__media img {
+  aspect-ratio: 1440 / 754;
+}
+.page-pricing-cf .pricing-intro__cta {
+  margin-top: 55px; /* body 885+199 → cta 1139 */
+}
+.page-pricing-cf .site-footer { margin-top: 0; }
+
+/* ---- NETLIFY SUBPAGE — Figma 153:203 ----------------------
+   Hero 1440×757 (node 331:872; export 2880×1514). Intro
+   eyebrow 679, title 746, body 885, CTA 1057. Quote builder
+   from Nicole — Pricing Page (Netlify) v1.html.               */
+.page-pricing-netlify .pricing-hero__media img {
+  aspect-ratio: 1440 / 757;
+}
+.page-pricing-netlify .pricing-intro__cta {
+  margin-top: 80px; /* body 885+92 → cta 1057 */
+}
+.page-pricing-netlify .site-footer { margin-top: 0; }
+
+.baseline-option--static { cursor: default; }
+.baseline-option--static:hover { border-color: var(--amber); }
+
+/* ---- QUOTE BUILDER — Squarespace / Shopify / Cloudflare / Netlify HTML */
+.quoter {
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-9);
+}
+
+.quoter-grid {
+  display: grid;
+  grid-template-columns: 1fr var(--quoter-sidebar);
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.qb-card {
+  background: var(--paper);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.summary {
+  position: sticky;
+  top: var(--s-5);
+  background: var(--rust);
+  color: var(--on-dark);
+  border-radius: var(--r-card);
+  padding: var(--quoter-summary-pad);
+}
+
+.js .qb-card,
+.js .summary {
+  opacity: 0;
+  transform: translateY(var(--quoter-enter-y));
+  transition:
+    opacity var(--quoter-enter) var(--ease),
+    transform var(--quoter-enter) var(--ease);
+}
+.js .summary { transition-delay: 100ms; }
+.qb-card.is-visible,
+.summary.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.qb-section {
+  padding: var(--quoter-section-pad);
+  border-bottom: 1px solid var(--card-line);
+}
+.qb-section:last-child { border-bottom: 0; }
+
+.qb-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--s-1);
+}
+.qb-section-head h2 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-kicker);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.qb-section-head span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--quoter-quiet);
+}
+
+.qb-section-note {
+  margin: var(--s-2) 0 14px;
+  font-size: var(--fs-quoter-note);
+  line-height: 1.5;
+  color: var(--quoter-quiet);
+}
+.qb-section-note.is-warning {
+  padding: var(--quoter-warn-pad);
+  color: var(--rust);
+  background: var(--rust-tint);
+  border: 1px solid var(--rust);
+  border-radius: var(--r-chip);
+}
+
+.qb-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-4);
+  padding: 14px 0;
+  border-top: 1px solid var(--tools-card-line);
+}
+.qb-section > .qb-row:first-of-type { border-top: 0; }
+
+.qb-row-main { flex: 1; min-width: 0; }
+
+.qb-row-title {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-quoter-row);
+  font-weight: 700;
+  color: var(--quoter-title);
+}
+
+.qb-badge {
+  padding: 2px var(--s-2);
+  border-radius: var(--r-pill);
+  background: var(--tools-card);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-badge);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.qb-row-desc {
+  margin-top: var(--s-1);
+  font-size: var(--fs-quoter-desc);
+  line-height: 1.5;
+  color: var(--quoter-quiet);
+}
+
+.qb-row-control {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 14px;
+}
+
+.qb-row-price {
+  min-width: 78px;
+  font-size: var(--fs-quoter-price);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--ink);
+}
+.qb-row-price.is-muted {
+  font-size: var(--fs-quoter-note);
+  font-weight: 600;
+  color: var(--quoter-quiet);
+}
+
+.baseline-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: var(--quoter-option-pad);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-quoter) var(--ease),
+    background-color var(--dur-quoter) var(--ease);
+}
+.baseline-option + .baseline-option { margin-top: var(--s-3); }
+.baseline-option:hover { border-color: var(--amber); }
+.baseline-option.is-selected {
+  border-color: var(--amber);
+  background: var(--amber-tint);
+}
+.baseline-option input {
+  flex: none;
+  width: var(--s-4);
+  height: var(--s-4);
+  margin-top: var(--s-1);
+  accent-color: var(--amber);
+}
+.baseline-option .b-title {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: var(--fs-quoter-option);
+  font-weight: 700;
+  color: var(--quoter-title);
+}
+.baseline-option .b-desc {
+  margin-top: var(--s-1);
+  font-size: var(--fs-quoter-desc);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.baseline-price { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.baseline-price.is-muted {
+  font-size: var(--fs-quoter-note);
+  font-weight: 600;
+  color: var(--quoter-quiet);
+}
+
+.qb-check {
+  flex: none;
+  width: var(--quoter-check);
+  height: var(--quoter-check);
+  border: 1px solid var(--tools-card-line);
+  border-radius: var(--r-quoter-check);
+  accent-color: var(--amber);
+  cursor: pointer;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--tools-card-line);
+  border-radius: var(--r-pill);
+}
+.stepper button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--quoter-step);
+  height: var(--quoter-step);
+  border: 0;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-ui);
+  cursor: pointer;
+  transition: background-color var(--dur-quoter) var(--ease), color var(--dur-quoter) var(--ease);
+}
+.stepper button:hover {
+  background: var(--amber-tint);
+  color: var(--rust);
+}
+.stepper button:disabled { cursor: not-allowed; }
+.stepper output {
+  width: var(--s-6);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.hour-input { display: flex; align-items: center; gap: var(--s-2); }
+.hour-input input {
+  width: var(--quoter-hour-w);
+  padding: 6px var(--s-2);
+  border: 1px solid var(--tools-card-line);
+  border-radius: var(--r-quoter-input);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: inherit;
+}
+.hour-input span { font-size: var(--fs-quoter-note); color: var(--quoter-quiet); }
+
+.qb-row.is-disabled { opacity: .4; pointer-events: none; }
+
+.summary-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.summary-head h2 {
+  font-size: var(--fs-ui);
+  font-weight: 700;
+}
+.summary-head .tag {
+  padding: var(--s-1) 10px;
+  border-radius: var(--r-pill);
+  background: var(--quoter-tag);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-badge);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.summary-lines {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--quoter-line-on-dark);
+}
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--s-1) 0;
+  font-size: var(--fs-quoter-desc);
+  font-variant-numeric: tabular-nums;
+}
+.summary-line span:first-child { color: var(--quoter-soft-on-dark); }
+
+.summary-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.summary-total .label { font-size: var(--fs-body); font-weight: 600; }
+.summary-total .amount {
+  font-size: var(--fs-quoter-total);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-foot {
+  margin-top: var(--s-2);
+  font-size: var(--fs-quoter-meta);
+  line-height: 1.5;
+  color: var(--quoter-muted-on-dark);
+}
+
+.summary-tbc {
+  margin-top: var(--s-4);
+  padding-top: 14px;
+  border-top: 1px solid var(--quoter-line-on-dark);
+}
+.summary-tbc[hidden] { display: none; }
+.summary-tbc h3 {
+  margin-bottom: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--quoter-kicker-on-dark);
+}
+.summary-tbc ul {
+  padding-left: var(--s-4);
+  list-style: disc;
+  font-size: var(--fs-quoter-note);
+  line-height: 1.7;
+  color: var(--quoter-soft-on-dark);
+}
+
+.shared-cta { margin-bottom: var(--s-9); }
+.cta-card {
+  padding: var(--quoter-cta-pad);
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  text-align: center;
+}
+.cta-card h2 {
+  margin-bottom: var(--s-2);
+  font-size: var(--fs-h3);
+  color: var(--quoter-title);
+}
+.cta-card p {
+  margin-bottom: 22px;
+  font-size: var(--fs-quoter-price);
+  color: var(--ink-soft);
+}
+
+@media (max-width: 980px) { /* stacks at --quoter-stack */
+  .quoter-grid { grid-template-columns: 1fr; }
+  .summary { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .qb-card,
+  .js .summary {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- SHORT VERSION — card y=1225, 1275×452 ----------------- */
+.pricing-short {
+  padding-bottom: 40px; /* card 1677 → profiles 1717 */
+}
+
+.pricing-short__card {
+  display: grid;
+  grid-template-columns: var(--scroller-w) 1fr;
+  gap: var(--s-8);
+  align-items: center;
+  padding: 45px 64px; /* logos y 1270 inside card 1225 */
+  background: var(--card);
+  border: 0.5px solid var(--card-line);
+  border-radius: var(--r-card);
+}
+
+/* Vertical logo scroller — vertical-logo-scroller.html.
+   Replaces the flattened Figma stack (217×351). Two sets
+   on the track so translateY(-50%) loops without a jump. */
+.logo-scroller {
+  position: relative;
+  width: var(--scroller-w);
+  height: var(--scroller-h);
+  justify-self: center;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.logo-scroller__track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.logo-scroller__set {
+  display: flex;
+  flex-direction: column;
+  gap: var(--scroller-gap);
+  padding-bottom: var(--scroller-gap);
+}
+
+.logo-scroller:hover .logo-scroller__track,
+.logo-scroller:focus-within .logo-scroller__track {
+  animation-play-state: paused;
+}
+
+.logo-scroller__item {
+  display: flex;
+  align-items: center;
+  gap: var(--scroller-item-gap);
+  flex-shrink: 0;
+}
+
+.logo-scroller__item img {
+  width: var(--scroller-mark);
+  height: var(--scroller-mark);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logo-scroller__item span {
+  font-weight: 700;
+  font-size: var(--fs-scroller);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo-scroller__track {
+    animation: logo-scroll-up var(--scroller-dur) linear infinite;
+  }
+}
+
+@keyframes logo-scroll-up {
+  to { transform: translateY(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-scroller__set[aria-hidden="true"] { display: none; }
+  .logo-scroller__set { padding-bottom: 0; }
+  .logo-scroller__track {
+    justify-content: center;
+    min-height: 100%;
+    padding-block: 12%;
+  }
+}
+
+.pricing-short__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  color: var(--ink);
+}
+
+.pricing-short__body {
+  margin-top: var(--s-4);
+  max-width: 761px;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+}
+
+.pricing-short__body p + p { margin-top: var(--s-5); }
+
+.pricing-short__jump {
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+}
+.pricing-short__jump:hover { color: var(--rust); }
+
+/* ---- PLATFORM PROFILES — animated tabs ---------------------
+   HTML prototype is the source for interaction + copy.
+   Figma 493:137 is a screenshot of that prototype.            */
+.profiles {
+  padding-bottom: var(--s-4);
+}
+
+.profiles__panel-shell {
+  background: var(--card);
+  border: 0.5px solid var(--card-line);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.profiles__tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 0.5px solid var(--card-line);
+}
+
+.profiles__tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--profiles-tab-y) var(--s-4);
+  background: transparent;
+  border: 0;
+  border-right: 0.5px solid var(--card-line);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  transition: background-color var(--dur-base) var(--ease);
+}
+.profiles__tab:last-child { border-right: 0; }
+
+.profiles__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--logo-tab-h);
+  opacity: .45;
+  filter: grayscale(1);
+  transition:
+    opacity var(--dur-base) var(--ease),
+    transform var(--dur-base) var(--ease),
+    filter var(--dur-base) var(--ease);
+}
+.profiles__logo img {
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+
+.profiles__tab:hover { background: var(--tools-card); }
+.profiles__tab:hover .profiles__logo {
+  opacity: .75;
+  transform: translateY(-1px);
+}
+
+.profiles__tab.is-active { background: var(--rust-tint); }
+.profiles__tab.is-active .profiles__logo {
+  opacity: 1;
+  filter: none;
+}
+.profiles__tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.5px;
+  height: 2px;
+  background: var(--rust);
+}
+
+/* Stack panels so height stays stable while they crossfade. */
+.profiles__stage { display: grid; }
+
+.profiles__panel {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity var(--profiles-fade) var(--ease),
+    transform var(--profiles-fade) var(--ease),
+    visibility var(--profiles-fade) var(--ease);
+}
+.profiles__panel.is-active {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.profiles__copy {
+  padding: var(--profiles-pad);
+  border-right: 0.5px solid var(--card-line);
+}
+.profiles__copy .eyebrow { margin-bottom: var(--s-3); }
+
+.profiles__copy-title {
+  max-width: 20ch;
+  margin-bottom: var(--s-4);
+  font-size: var(--fs-profile-title);
+  font-weight: 700;
+  line-height: var(--lh-profile-title);
+  color: var(--ink);
+}
+
+.profiles__copy-body {
+  max-width: 44ch;
+  margin-bottom: 28px;
+  color: var(--ink-soft);
+  line-height: var(--lh-compact);
+}
+
+.profiles__copy .pill { white-space: normal; }
+
+/* Worth knowing — nicole-platform-profiles_2.html .caveat */
+.profiles__note {
+  margin-top: var(--s-5);
+  padding: var(--profiles-note-pad);
+  background: var(--tools-card);
+  border-left: var(--profiles-note-bar) solid var(--tools-card-line);
+  border-radius: var(--r-profiles-note);
+}
+.profiles__note-label {
+  display: block;
+  margin: 0 0 var(--profiles-note-label-mb);
+  font-family: var(--font-mono);
+  font-size: var(--fs-quoter-kicker);
+  font-weight: 400;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--quoter-quiet);
+}
+.profiles__note-body {
+  margin: 0;
+  max-width: 42ch;
+  font-size: var(--fs-profile-note);
+  line-height: var(--lh-compact);
+  color: var(--ink-soft);
+}
+
+.profiles__points { display: flex; flex-direction: column; }
+
+.profiles__point {
+  padding: 28px var(--profiles-pad);
+  border-bottom: 0.5px solid var(--card-line);
+}
+.profiles__point:last-child { border-bottom: 0; }
+
+.profiles__point-title {
+  margin-bottom: var(--s-2);
+  font-size: var(--fs-profile-point);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.profiles__point-body {
+  max-width: 38ch;
+  font-size: var(--fs-profile-body);
+  line-height: var(--lh-compact);
+  color: var(--ink-soft);
+}
+
+html:not(.js) .profiles__tabs { display: none; }
+html:not(.js) .profiles__stage {
+  display: flex;
+  flex-direction: column;
+}
+html:not(.js) .profiles__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  grid-area: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profiles__panel { transform: none; }
+}
+
+/* ---- INNER BREAKPOINTS — invented; no mobile Figma frame --- */
+@media (max-width: 1040px) {
+  .pricing-short__card {
+    grid-template-columns: var(--scroller-w) 1fr;
+    gap: var(--s-6);
+    padding: var(--s-6) var(--s-6);
+  }
+  .profiles__copy,
+  .profiles__point { padding: var(--s-6); }
+}
+
+@media (max-width: 640px) {
+  .pricing-intro { margin-top: -32px; padding-bottom: var(--s-7); }
+  .pricing-intro__lede { margin-top: var(--s-5); }
+  .pricing-intro__cta { margin-top: var(--s-6); }
+
+  /* Invented — no mobile frame. Keep enough olive behind the
+     stacked header; centre crop because the diorama is centred. */
+  .page-pricing-ss .pricing-hero__media img,
+  .page-pricing-shopify .pricing-hero__media img,
+  .page-pricing-cf .pricing-hero__media img,
+  .page-pricing-netlify .pricing-hero__media img {
+    aspect-ratio: 4 / 5;
+    object-position: center center;
+  }
+
+  .qb-section { padding: var(--s-5); }
+  .qb-row {
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+  .qb-row-control { margin-left: auto; }
+  .cta-card { padding: var(--s-6) var(--s-5); }
+  .baseline-option .b-title { flex-wrap: wrap; }
+
+  .pricing-short__card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: var(--s-6) var(--s-5);
+  }
+  .pricing-short__body { margin-inline: auto; }
+
+  .profiles__tabs { grid-template-columns: repeat(2, 1fr); }
+  .profiles__tab:nth-child(2) { border-right: 0; }
+  .profiles__tab:nth-child(1),
+  .profiles__tab:nth-child(2) {
+    border-bottom: 0.5px solid var(--card-line);
+  }
+
+  .profiles__panel { grid-template-columns: 1fr; }
+  .profiles__copy {
+    border-right: 0;
+    border-bottom: 0.5px solid var(--card-line);
+  }
+  .profiles__copy,
+  .profiles__point { padding: var(--s-6) var(--s-5); }
+}

@@ -13,6 +13,7 @@
   /* ---- BRAND ---------------------------------------------- */
   --rust:        #894332;   /* primary CTA, CONTACT US pill     */
   --rust-press:  #6E3527;   /* :active — derived, not in Figma  */
+  --rust-tint:   #89433214; /* pricing tab active fill — rust @ 8% */
   --amber:       #F4A600;   /* PRICING pill                     */
   --amber-press: #D18F00;   /* derived                          */
   --blue:        #6A96C7;   /* FAQS pill                        */
@@ -73,10 +74,12 @@
   --ease:      cubic-bezier(.2, .6, .2, 1);
   --dur-fast:  140ms;
   --dur-base:  240ms;
+  --logo-hover: 1.06;
   --hero-caret-w:     2px;
   --hero-caret-blink: 530ms;
   --hero-title-lines: 2;
   --hero-title-lines-sm: 3;
+  --hero-type:        110ms; /* one character */
 
   /* ---- TOOLS CARD ------------------------------------------
      From Nicole___Tool_Stack_Card_v5.html — not Figma.
@@ -178,6 +181,74 @@
      Not in Figma — the row is static there. Duration is one
      full set-width loop; higher = slower.                     */
   --trusted-marquee:    36s;
+
+  /* ---- PRICING PROFILES ------------------------------------
+     Tabbed platform panel. Interaction from
+     nicole-platform-profiles_2.html; layout from Figma
+     370:1574 (the screenshot placeholder at 493:137).         */
+  --profiles-pad:       56px;   /* Figma copy/point padding     */
+  --profiles-tab-y:     32px;
+  --fs-profile-title:   1.625rem; /* 26px                       */
+  --fs-profile-point:   1.0625rem; /* 17px                      */
+  --fs-profile-body:    0.9375rem; /* 15px point body           */
+  --fs-profile-note:    0.875rem;  /* 14px Worth Knowing body   */
+  --lh-profile-title:   1.25;
+  --logo-tab-h:         26px;
+  --profiles-fade:      280ms;
+  --profiles-note-pad:  16px 20px; /* v2 .caveat                */
+  --profiles-note-bar:  3px;
+  --r-profiles-note:    8px;
+  --profiles-note-label-mb: 6px;
+
+  /* ---- PRICING LOGO SCROLLER -------------------------------
+     vertical-logo-scroller.html. Slot matches the flattened
+     Figma stack (217×351). Fill on the mark SVGs is --ink.    */
+  --scroller-w:         217px;
+  --scroller-h:         351px;
+  --scroller-mark:      28px;
+  --scroller-gap:       var(--s-7); /* 48px                    */
+  --scroller-item-gap:  var(--s-3); /* 12px                    */
+  --fs-scroller:        1.125rem;   /* 18px                    */
+  --scroller-dur:       14s;
+
+  /* ---- SQUARESPACE QUOTER ----------------------------------
+     Nicole — Pricing Page (Squarespace) v1_1.html.
+     Prices from Knee Coal Website Pricing 2026, Tier 01.
+     Colours already in the system; the rest is from the
+     prototype. --ink-faint is already rgba for the Tools
+     card, so the quoter's #8A8A8A is --quoter-quiet.          */
+  --amber-tint:         #F4A60014;
+  --quoter-title:       #2B2B2B;
+  --quoter-quiet:       #8A8A8A;
+  --quoter-sidebar:     340px;
+  --quoter-stack:       980px;
+  --quoter-enter:       600ms;
+  --quoter-enter-y:     20px;
+  --dur-quoter:         200ms;
+  --fs-quoter-kicker:   0.75rem;    /* 12px                    */
+  --fs-quoter-meta:     0.6875rem;  /* 11px                    */
+  --fs-quoter-badge:    0.625rem;   /* 10px                    */
+  --fs-quoter-note:     0.8125rem;  /* 13px                    */
+  --fs-quoter-desc:     0.84375rem; /* 13.5px                  */
+  --fs-quoter-price:    0.90625rem; /* 14.5px                  */
+  --fs-quoter-row:      0.9375rem;  /* 15px                    */
+  --fs-quoter-option:   0.96875rem; /* 15.5px                  */
+  --fs-quoter-total:    1.75rem;    /* 28px                    */
+  --quoter-section-pad: 26px 28px;
+  --quoter-option-pad:  18px 20px;
+  --quoter-summary-pad: 26px 24px;
+  --quoter-cta-pad:     40px;
+  --quoter-check:       20px;
+  --quoter-step:        30px;
+  --quoter-hour-w:      56px;
+  --r-quoter-check:     5px;
+  --r-quoter-input:     8px;
+  --quoter-line-on-dark: rgb(255 255 255 / .2);
+  --quoter-tag:          rgb(255 255 255 / .14);
+  --quoter-muted-on-dark: rgb(255 255 255 / .6);
+  --quoter-kicker-on-dark: rgb(255 255 255 / .7);
+  --quoter-soft-on-dark: rgb(255 255 255 / .82);
+  --quoter-warn-pad:    10px 14px;
 }
 
 @media (prefers-reduced-motion: reduce) {

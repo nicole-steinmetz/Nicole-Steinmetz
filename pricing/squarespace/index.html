@@ -24,8 +24,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;700&display=swap">
 
 <link rel="stylesheet" href="/css/tokens.css?v=quoter">
-<link rel="stylesheet" href="/css/styles.css?v=quoter">
-<link rel="stylesheet" href="/css/pricing.css?v=quoter">
+<link rel="stylesheet" href="/css/styles.css?v=footer-video">
+<link rel="stylesheet" href="/css/pricing.css?v=ss-video">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/pricing-squarespace-hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -61,26 +61,37 @@
 
 <main id="main">
 
-  <!-- Hero — Figma 331:874, 1440×757 -->
+  <!-- Hero — Figma 331:874, 1440×757. Video replaces the still;
+       the <picture> stays as the poster / reduced-motion fallback. -->
   <section class="pricing-hero" aria-label="Squarespace pricing">
-    <picture class="pricing-hero__media">
-      <source
-        type="image/webp"
-        srcset="/assets/img/pricing-squarespace-hero-720.webp 720w,
-                /assets/img/pricing-squarespace-hero-1080.webp 1080w,
-                /assets/img/pricing-squarespace-hero-1440.webp 1440w,
-                /assets/img/pricing-squarespace-hero-2880.webp 2880w"
-        sizes="100vw">
-      <img src="/assets/img/pricing-squarespace-hero-1440.jpg"
-           srcset="/assets/img/pricing-squarespace-hero-720.jpg 720w,
-                   /assets/img/pricing-squarespace-hero-1080.jpg 1080w,
-                   /assets/img/pricing-squarespace-hero-1440.jpg 1440w,
-                   /assets/img/pricing-squarespace-hero-2880.jpg 2880w"
-           sizes="100vw"
-           width="1440" height="757"
-           alt="Illustrated pop-up landscape of a mountain, a house by a pond, and mossy hills rising from an open book"
-           fetchpriority="high" decoding="async">
-    </picture>
+    <div class="pricing-hero__media">
+      <picture>
+        <source
+          type="image/webp"
+          srcset="/assets/img/pricing-squarespace-hero-720.webp 720w,
+                  /assets/img/pricing-squarespace-hero-1080.webp 1080w,
+                  /assets/img/pricing-squarespace-hero-1440.webp 1440w,
+                  /assets/img/pricing-squarespace-hero-2880.webp 2880w"
+          sizes="100vw">
+        <img src="/assets/img/pricing-squarespace-hero-1440.jpg"
+             srcset="/assets/img/pricing-squarespace-hero-720.jpg 720w,
+                     /assets/img/pricing-squarespace-hero-1080.jpg 1080w,
+                     /assets/img/pricing-squarespace-hero-1440.jpg 1440w,
+                     /assets/img/pricing-squarespace-hero-2880.jpg 2880w"
+             sizes="100vw"
+             width="1440" height="757"
+             alt="Illustrated pop-up landscape of a mountain, a house by a pond, and mossy hills rising from an open book"
+             fetchpriority="high" decoding="async">
+      </picture>
+      <video class="pricing-hero__video"
+             autoplay muted loop playsinline
+             preload="none"
+             disablepictureinpicture
+             width="2688" height="1536"
+             aria-hidden="true">
+        <source src="/assets/video/pricing-squarespace-hero.mp4" type="video/mp4">
+      </video>
+    </div>
   </section>
 
   <!-- Intro — Figma y=696 → 1090 -->
@@ -271,6 +282,13 @@
       <source type="image/webp" srcset="/assets/img/footer-bg-1440.webp 1440w, /assets/img/footer-bg-2880.webp 2880w" sizes="100vw">
       <img src="/assets/img/footer-bg-1440.jpg" alt="" width="1440" height="539" loading="lazy" decoding="async">
     </picture>
+    <video class="site-footer__video"
+           autoplay muted loop playsinline
+           preload="none"
+           disablepictureinpicture
+           width="1920" height="840">
+      <source src="/assets/video/footer.mp4" type="video/mp4">
+    </video>
   </div>
 
   <div class="site-footer__inner container">
@@ -318,5 +336,19 @@
 </footer>
 
 <script src="/js/squarespace-quoter.js" defer></script>
+<script src="/js/hero-title.js?v=footer-video" defer></script>
+<script>
+/* Hero video — fade over the still once playable; honour reduced motion. */
+(function () {
+  var v = document.querySelector(".pricing-hero__video");
+  if (!v) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    v.pause(); v.removeAttribute("src"); v.load(); return;
+  }
+  function show() { v.classList.add("is-ready"); }
+  if (v.readyState >= 3) { show(); return; }
+  v.addEventListener("canplay", show, { once: true });
+})();
+</script>
 </body>
 </html>

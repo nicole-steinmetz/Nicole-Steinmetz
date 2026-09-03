@@ -79,6 +79,15 @@ Used on `/pricing/` tabs. Sourced from `nicole-platform-profiles_1.html` (not Fi
 
 `pricing-netlify-hero` is a sky-heavy landscape and compresses well at the default quality 82.
 
+## Video → `assets/video/`
+
+| File | Used on | Notes |
+|---|---|---|
+| `hero.mp4` | Home hero | Still stays underneath for LCP + reduced motion |
+| `footer.mp4` | Home footer | Same overlay pattern |
+| `pricing-netlify-hero.mp4` | `/pricing/netlify/` | 2688×1536 |
+| `pricing-squarespace-hero.mp4` | `/pricing/squarespace/` | 2688×1536 · `nicole-steinmetz-squarespace-design.mp4` |
+
 ## Still needed, not in Figma
 
 - `favicon.svg`, `apple-touch-icon.png` (180×180)

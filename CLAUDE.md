@@ -26,6 +26,7 @@ css/styles.css                 shared + home
 css/pricing.css                pricing page only
 js/                            vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee, platform profiles, Squarespace + Shopify + Cloudflare + Netlify quoters
 assets/img/                    raster (hero, footer, UI panels)
+assets/video/                  looping hero / footer MP4s
 assets/svg/                    logo, icons, arrows
 assets/logos/                  Trusted By client marks
 tools/                         image optimisation script

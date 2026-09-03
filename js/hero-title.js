@@ -36,9 +36,9 @@
   });
 })();
 
-/* Hero title — fast type-on. The full string stays in the HTML
-   so crawlers and no-JS still see it. Deferred: does not block
-   parse or the hero image. Reduced motion skips to the end. */
+/* Hero title — type-on when the heading scrolls into view.
+   The full string stays in the HTML so crawlers and no-JS
+   still see it. Reduced motion skips to the end. */
 (function () {
   var title = document.getElementById("hero-title");
   if (!title) return;
@@ -47,6 +47,7 @@
 
   var full = textEl.textContent;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var CHAR_MS = 110; /* matches --hero-type */
 
   function done() {
     textEl.textContent = full;
@@ -59,22 +60,35 @@
     return;
   }
 
-  title.classList.add("is-typing");
-  textEl.textContent = "";
+  var started = false;
+  function begin() {
+    if (started) return;
+    started = true;
+    title.classList.add("is-typing");
+    textEl.textContent = "";
 
-  var i = 0;
-  var perFrame = 3;
-  var safety = window.setTimeout(done, 2000);
-
-  function step() {
-    i = Math.min(i + perFrame, full.length);
-    textEl.textContent = full.slice(0, i);
-    if (i < full.length) {
-      window.requestAnimationFrame(step);
-    } else {
-      window.clearTimeout(safety);
-      done();
-    }
+    var i = 0;
+    (function next() {
+      textEl.textContent = full.slice(0, ++i);
+      if (i < full.length) window.setTimeout(next, CHAR_MS);
+      else done();
+    })();
   }
-  window.requestAnimationFrame(step);
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            io.unobserve(title);
+            begin();
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(title);
+  } else {
+    begin();
+  }
 })();

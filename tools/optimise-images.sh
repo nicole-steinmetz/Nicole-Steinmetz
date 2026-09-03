@@ -98,10 +98,155 @@ else
   echo "  missing: footer-bg.(png|jpg)" >&2
 fi
 
+echo "pricing-hero"
+if PHERO=$(src_of pricing-hero); then
+  if [ -n "$IM" ]; then
+    for w in 720 1080 1440 2880; do
+      $IM "$PHERO" -resize "${w}x>" -strip -quality 82 "$IMG/pricing-hero-${w}.webp"
+      $IM "$PHERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/pricing-hero-${w}.jpg"
+      echo "  ${w}w"
+    done
+  else
+    python3 - "$PHERO" "$IMG" <<'PY'
+import sys
+from PIL import Image
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src)
+for w in (720, 1080, 1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/pricing-hero-{w}.webp", "WEBP", quality=82, method=6)
+    rgb.save(f"{out}/pricing-hero-{w}.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    print(f"  {w}w")
+PY
+  fi
+else
+  echo "  missing: pricing-hero.(png|jpg)" >&2
+fi
+
+echo "pricing-squarespace-hero"
+if SSHERO=$(src_of pricing-squarespace-hero); then
+  if [ -n "$IM" ]; then
+    for w in 720 1080 1440 2880; do
+      $IM "$SSHERO" -resize "${w}x>" -strip -quality 82 "$IMG/pricing-squarespace-hero-${w}.webp"
+      $IM "$SSHERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/pricing-squarespace-hero-${w}.jpg"
+      echo "  ${w}w"
+    done
+  else
+    python3 - "$SSHERO" "$IMG" <<'PY'
+import sys
+from PIL import Image
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src)
+for w in (720, 1080, 1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/pricing-squarespace-hero-{w}.webp", "WEBP", quality=82, method=6)
+    rgb.save(f"{out}/pricing-squarespace-hero-{w}.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    print(f"  {w}w")
+PY
+  fi
+else
+  echo "  missing: pricing-squarespace-hero.(png|jpg)" >&2
+fi
+
+echo "pricing-shopify-hero"
+if SHHERO=$(src_of pricing-shopify-hero); then
+  if [ -n "$IM" ]; then
+    for w in 720 1080 1440 2880; do
+      $IM "$SHHERO" -resize "${w}x>" -strip -quality 82 "$IMG/pricing-shopify-hero-${w}.webp"
+      $IM "$SHHERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/pricing-shopify-hero-${w}.jpg"
+      echo "  ${w}w"
+    done
+  else
+    python3 - "$SHHERO" "$IMG" <<'PY'
+import sys
+from PIL import Image
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src)
+for w in (720, 1080, 1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/pricing-shopify-hero-{w}.webp", "WEBP", quality=82, method=6)
+    rgb.save(f"{out}/pricing-shopify-hero-{w}.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    print(f"  {w}w")
+PY
+  fi
+else
+  echo "  missing: pricing-shopify-hero.(png|jpg)" >&2
+fi
+
+echo "pricing-cloudflare-hero"
+if CFHERO=$(src_of pricing-cloudflare-hero); then
+  if [ -n "$IM" ]; then
+    for w in 720 1080 1440 2880; do
+      $IM "$CFHERO" -resize "${w}x>" -strip -quality 82 "$IMG/pricing-cloudflare-hero-${w}.webp"
+      $IM "$CFHERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/pricing-cloudflare-hero-${w}.jpg"
+      echo "  ${w}w"
+    done
+  else
+    python3 - "$CFHERO" "$IMG" <<'PY'
+import sys
+from PIL import Image
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src)
+for w in (720, 1080, 1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/pricing-cloudflare-hero-{w}.webp", "WEBP", quality=82, method=6)
+    rgb.save(f"{out}/pricing-cloudflare-hero-{w}.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    print(f"  {w}w")
+PY
+  fi
+else
+  echo "  missing: pricing-cloudflare-hero.(png|jpg)" >&2
+fi
+
+echo "pricing-netlify-hero"
+if NLHERO=$(src_of pricing-netlify-hero); then
+  if [ -n "$IM" ]; then
+    for w in 720 1080 1440 2880; do
+      $IM "$NLHERO" -resize "${w}x>" -strip -quality 82 "$IMG/pricing-netlify-hero-${w}.webp"
+      $IM "$NLHERO" -resize "${w}x>" -strip -quality 82 -interlace Plane "$IMG/pricing-netlify-hero-${w}.jpg"
+      echo "  ${w}w"
+    done
+  else
+    python3 - "$NLHERO" "$IMG" <<'PY'
+import sys
+from PIL import Image
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src)
+for w in (720, 1080, 1440, 2880):
+    frame = im.copy()
+    if frame.width > w:
+        h = round(frame.height * w / frame.width)
+        frame = frame.resize((w, h), Image.Resampling.LANCZOS)
+    rgb = frame.convert("RGB")
+    rgb.save(f"{out}/pricing-netlify-hero-{w}.webp", "WEBP", quality=82, method=6)
+    rgb.save(f"{out}/pricing-netlify-hero-{w}.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    print(f"  {w}w")
+PY
+  fi
+else
+  echo "  missing: pricing-netlify-hero.(png|jpg)" >&2
+fi
+
 # UI panels: keep PNG (flat colour + fine text — JPEG will smear it),
 # just strip metadata and re-compress losslessly.
 echo "panels"
-for f in panel-the-tools panel-get-a-quote panel-start-a-project arrow-02 squarespace-badges; do
+for f in panel-the-tools panel-get-a-quote panel-start-a-project arrow-02 squarespace-badges pricing-platforms; do
   if P=$(src_of "$f"); then
     if [ -n "$IM" ]; then
       $IM "$P" -strip -define png:compression-level=9 "$IMG/$f.png"

@@ -10,6 +10,12 @@ Figma file: `zbpByfLeFxuP1uHNkh0ykX` → Home (`1:2`)
 
 | Figma layer | Node | Save as | Export |
 |---|---|---|---|
+| `nicole-steinmetz-webdesign-pricing 1` | `370:1670` | `pricing-hero.png` | PNG @2x (2848×1496) — variants `pricing-hero-{720,1080,1440,2880}.{webp,jpg}` |
+| `background_nicole_steinmetz_web_design 1` | `331:874` | `pricing-squarespace-hero.png` | PNG @2x (2880×1514) — variants `pricing-squarespace-hero-{720,1080,1440,2880}.{webp,jpg}` |
+| `nicole-steinmetz-web-design 1` | `331:873` | `pricing-shopify-hero.png` | PNG @2x (2880×1510) — variants `pricing-shopify-hero-{720,1080,1440,2880}.{webp,jpg}` |
+| `background-nicolesteinmetz-letsgo 1` | `331:871` | `pricing-cloudflare-hero.png` | PNG @2x (2880×1508) — variants `pricing-cloudflare-hero-{720,1080,1440,2880}.{webp,jpg}` |
+| `background-nicole-steinmrtz-web-design 1` | `331:872` | `pricing-netlify-hero.png` | PNG @2x (2880×1514) — variants `pricing-netlify-hero-{720,1080,1440,2880}.{webp,jpg}` |
+| `website design nicole steinmetz@3x 1` | `493:135` | `pricing-platforms.png` | stacked Cloudflare / Shopify / Netlify / Squarespace, displayed at 217×351 |
 | `nicole-steinmetz-01 1` | `54:4` | `hero.png` | PNG @2x (2880×1406) |
 | `nicole-steinmetz-web-design-perth-australia 1` | `370:1556` | `footer-bg.png` | PNG @2x |
 | `The Tools@3x 1` | `380:47` | `panel-the-tools.png` | PNG @2x (772×754) — exported; the live card does not reference it |
@@ -54,7 +60,24 @@ Left to right as they appear in the Trusted By row. **Each keeps its own dimensi
 
 Export the PNGs @3x. Slot 1 alt is **Hoodburger Family Restaurants** (read off the mark). Slot 2 is **Rose & Crown** (verified in Figma). Slot 6 is a "7" mark with no brand lettering — `TODO(alt)` in `index.html` until Nic confirms the client name.
 
+## Platform marks → `assets/logos/platforms/`
+
+Used on `/pricing/` tabs. Sourced from `nicole-platform-profiles_1.html` (not Figma vectors). Display height 26px.
+
+| File | Display |
+|---|---|
+| `cloudflare.png` | 76×26 |
+| `shopify.png` | 76×26 |
+| `squarespace.png` | 76×26 |
+| `netlify.png` | 76×26 |
+
 `hero-2880.webp` is ~571 KB at quality 75 — over the optimiser’s ~300 KB sanity check. A 2880 landscape illustration will not compress under that without looking crushed; leave it unless you want a smaller `srcset` top end.
+
+`pricing-shopify-hero-2880.webp` is re-encoded at quality 75 so it stays under ~300 KB. Re-running the optimiser at the default 82 will push it back over; drop that width to 75 again if you regenerate.
+
+`pricing-cloudflare-hero` is a detailed desert illustration — 1440w is ~315 KB at quality 82 and 2880w was 871 KB at 75. 2880 is re-encoded at quality 50; 1440 at 75 if you need it under ~300 KB.
+
+`pricing-netlify-hero` is a sky-heavy landscape and compresses well at the default quality 82.
 
 ## Still needed, not in Figma
 

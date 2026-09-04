@@ -93,7 +93,10 @@
 /* ---- CLOUDFLARE SUBPAGE — Figma 288:4 ----------------------
    Hero 1440×757 (node 331:871; export is 1440×754). Intro
    eyebrow 679, title 746, body 885×199, CTA 1139. Quote
-   builder from Nicole — Pricing Page (Cloudflare) v1.html. */
+   builder from Nicole — Pricing Page (Cloudflare) v1.html.
+   Video overlays the still once playable — same pattern as
+   Netlify.                                                    */
+.page-pricing-cf .pricing-hero__media { position: relative; }
 .page-pricing-cf .pricing-hero__media img {
   aspect-ratio: 1440 / 754;
 }

@@ -4,7 +4,7 @@ Read this before changing anything. It exists so Cursor doesn't reinvent decisio
 
 ## What this is
 
-The marketing site for Nicole Steinmetz, a web design studio (formally Knee Coal). Home is Figma `zbpByfLeFxuP1uHNkh0ykX` node `1:2`. Pricing overview is node `370:1574` (`/pricing/`). Squarespace pricing is node `1:68` (`/pricing/squarespace/`). Shopify pricing is node `1:117` (`/pricing/shopify/`). Cloudflare pricing is node `288:4` (`/pricing/cloudflare/`). Netlify pricing is node `153:203` (`/pricing/netlify/`).
+The marketing site for Nicole Steinmetz, a web design studio (formally Knee Coal). Home is Figma `zbpByfLeFxuP1uHNkh0ykX` node `1:2`. Pricing overview is node `370:1574` (`/pricing/`). Squarespace pricing is node `1:68` (`/pricing/squarespace/`). Shopify pricing is node `1:117` (`/pricing/shopify/`). Cloudflare pricing is node `288:4` (`/pricing/cloudflare/`). Netlify pricing is node `153:203` (`/pricing/netlify/`). Vercel pricing is node `153:154` (`/pricing/vercel/`).
 
 ## Stack
 
@@ -21,10 +21,11 @@ pricing/squarespace/index.html Squarespace pricing (hero, intro, working quote b
 pricing/shopify/index.html     Shopify pricing (hero, intro, working quote builder)
 pricing/cloudflare/index.html  Cloudflare pricing (hero, intro, working quote builder)
 pricing/netlify/index.html     Netlify pricing (hero, intro, working quote builder)
+pricing/vercel/index.html      Vercel pricing (hero, intro, working quote builder)
 css/tokens.css                 design tokens — the only place colours, type and spacing are defined
 css/styles.css                 shared + home
 css/pricing.css                pricing page only
-js/                            vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee, platform profiles, Squarespace + Shopify + Cloudflare + Netlify quoters
+js/                            vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee, platform profiles, Squarespace + Shopify + Cloudflare + Netlify + Vercel quoters
 assets/img/                    raster (hero, footer, UI panels)
 assets/svg/                    logo, icons, arrows
 assets/logos/                  Trusted By client marks

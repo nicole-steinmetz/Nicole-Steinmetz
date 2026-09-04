@@ -10,14 +10,14 @@ https://nicolesteinmetz.com/*  https://www.nicolesteinmetz.com/:splat  301!
 # Home (1:2), Pricing (370:1574, /pricing/), Squarespace
 # pricing (1:68, /pricing/squarespace/), Shopify pricing
 # (1:117, /pricing/shopify/), Cloudflare pricing
-# (288:4, /pricing/cloudflare/) and Netlify pricing
-# (153:203, /pricing/netlify/) are live.
+# (288:4, /pricing/cloudflare/), Netlify pricing
+# (153:203, /pricing/netlify/) and Vercel pricing
+# (153:154, /pricing/vercel/) are live.
 # FAQs, Contact, platform-decider, get-a-quote, start-a-project
-# and the remaining /pricing/{platform}/ sub-routes are not.
+# and any remaining inner routes are not.
 # 302, not 301: these URLs come back when the Figma pages are signed off.
 # python3 -m http.server does not honour this file — local preview still 404s.
 # ---------------------------------------------------------------------------
-/pricing/vercel/      /  302
 /faqs/*               /  302
 /platform-decider/    /  302
 /get-a-quote/         /  302

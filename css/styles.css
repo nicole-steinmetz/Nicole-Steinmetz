@@ -146,7 +146,7 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .hero { position: relative; }
 
-.hero__media { position: relative; }
+.hero__media { position: relative; isolation: isolate; }
 
 .hero__media img,
 .hero__media video {
@@ -168,6 +168,21 @@ a { color: inherit; text-decoration: none; }
 }
 .hero__video.is-ready { opacity: 1; }
 
+/* The clip fades toward white, then object-fit crops a little
+   of that fade on wide screens. This finishes the blend into
+   the page so the media edge doesn't read as a hard cut. */
+.hero__media::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 18%;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--paper), transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero__video { display: none; }
 }
@@ -176,6 +191,7 @@ a { color: inherit; text-decoration: none; }
    bottom is near-white so the overlap reads as flush.          */
 .hero__copy {
   position: relative;
+  z-index: 1;
   margin-top: -24px;
   padding-bottom: 152px;   /* cta bottom 1023 → pillar icons 1175 */
   text-align: center;

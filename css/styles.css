@@ -207,8 +207,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Figma: eyebrow y=679 → h1 y=746.
-   Two lines. Each character sweeps blue, coral, amber, then
-   black. When the second line starts, the first settles grey. */
+   Two lines. Each character sweeps blue, coral, amber.
+   The second line finishes at the soft ink. When it starts,
+   the first line settles to the warmer grey. */
 .hero__title {
   max-width: 920px; /* second line stays one row at 1440 */
   margin: 27px auto 0;
@@ -225,7 +226,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   color: var(--hero-muted);
 }
-.hero__line--focus { color: var(--ink-focus); }
+.hero__line--focus { color: var(--ink-soft); }
 .hero__char.is-in {
   animation: hero-char-in var(--hero-sweep) ease-out forwards;
 }
@@ -237,7 +238,7 @@ a { color: inherit; text-decoration: none; }
   20%  { color: var(--hero-sweep-blue); }
   50%  { color: var(--hero-sweep-coral); }
   80%  { color: var(--hero-sweep-amber); }
-  100% { color: var(--ink-focus); }
+  100% { color: var(--ink-soft); }
 }
 @keyframes hero-char-mute {
   0%   { color: color-mix(in srgb, var(--ink-focus) 12%, transparent); }

@@ -72,27 +72,62 @@
   });
 })();
 
-/* Hero title — type-on when the heading scrolls into view.
-   The full string stays in the HTML so crawlers and no-JS
-   still see it. Reduced motion skips to the end. */
+/* Hero title — type the first line, then hand emphasis to the
+   second. The full strings stay in the HTML so crawlers and
+   no-JS still see them. Reduced motion skips to the end. */
 (function () {
   var title = document.getElementById("hero-title");
   if (!title) return;
-  var textEl = title.querySelector(".hero__title-text");
-  if (!textEl) return;
+  var lead = title.querySelector(".hero__line--lead");
+  var focus = title.querySelector(".hero__line--focus");
+  if (!lead || !focus) return;
 
-  var full = textEl.textContent;
+  var leadFull = lead.textContent;
+  var focusFull = focus.textContent;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var CHAR_MS = 110; /* matches --hero-type */
 
-  function done() {
-    textEl.textContent = full;
+  function finish() {
+    if (!lead.querySelector(".hero__char")) {
+      lead.textContent = leadFull;
+      focus.textContent = focusFull;
+    }
+    lead.classList.remove("is-current");
+    focus.classList.add("is-current");
     title.classList.remove("is-typing");
-    title.classList.add("is-typed");
+    title.classList.add("is-focus", "is-typed");
   }
 
-  if (reduce || !full) {
-    done();
+  function typeLine(el, full, then) {
+    el.textContent = "";
+    var i = 0;
+    (function next() {
+      var ch = document.createElement("span");
+      ch.className = "hero__char is-in";
+      ch.textContent = full.charAt(i);
+      el.appendChild(ch);
+      i += 1;
+      if (i < full.length) window.setTimeout(next, CHAR_MS);
+      else if (then) then();
+    })();
+  }
+
+  /* Previous line sweeps through the same colours and lands grey. */
+  function muteLine(el) {
+    var step = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--hero-sweep-step")
+    ) || 25;
+    var chars = el.querySelectorAll(".hero__char");
+    chars.forEach(function (ch, n) {
+      ch.classList.remove("is-in");
+      ch.style.animation = "none";
+      void ch.offsetWidth;
+      ch.style.animation = "hero-char-mute var(--hero-sweep) ease-out " + (n * step) + "ms forwards";
+    });
+  }
+
+  if (reduce || !leadFull || !focusFull) {
+    finish();
     return;
   }
 
@@ -101,14 +136,17 @@
     if (started) return;
     started = true;
     title.classList.add("is-typing");
-    textEl.textContent = "";
+    lead.textContent = "";
+    focus.textContent = "";
+    lead.classList.add("is-current");
 
-    var i = 0;
-    (function next() {
-      textEl.textContent = full.slice(0, ++i);
-      if (i < full.length) window.setTimeout(next, CHAR_MS);
-      else done();
-    })();
+    typeLine(lead, leadFull, function () {
+      lead.classList.remove("is-current");
+      muteLine(lead);
+      focus.classList.add("is-current");
+      title.classList.add("is-focus");
+      typeLine(focus, focusFull, finish);
+    });
   }
 
   if ("IntersectionObserver" in window) {

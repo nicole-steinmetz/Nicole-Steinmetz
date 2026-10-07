@@ -22,6 +22,8 @@
   /* ---- INK ------------------------------------------------- */
   --ink:         #505050;   /* headings + pillar body           */
   --ink-soft:    #575757;   /* hero sub, eyebrow                */
+  --ink-focus:   #0E0E10;   /* hero line in focus               */
+  --hero-muted:  #A8A29E;   /* hero line after the colour sweep */
   --on-dark:     #FFFFFF;   /* text on rust / on footer image   */
 
   /* ---- SURFACES -------------------------------------------- */
@@ -72,6 +74,7 @@
 
   /* ---- MOTION ---------------------------------------------- */
   --ease:      cubic-bezier(.2, .6, .2, 1);
+  --ease-emph: cubic-bezier(.16, 1, .3, 1);
   --dur-fast:  140ms;
   --dur-base:  240ms;
   --logo-hover: 1.06;
@@ -80,6 +83,13 @@
   --hero-title-lines: 2;
   --hero-title-lines-sm: 3;
   --hero-type:        110ms; /* one character */
+  --hero-shift:       500ms; /* line hands emphasis to the next */
+  --hero-reveal:      400ms; /* lede follows the second line */
+  --hero-sweep:       600ms; /* one character's colour pass */
+  --hero-sweep-step:  25ms;  /* stagger between characters */
+  --hero-sweep-blue:  #498FFF;
+  --hero-sweep-coral: #FF7A7A;
+  --hero-sweep-amber: #FFBC74;
 
   /* ---- TOOLS CARD ------------------------------------------
      From Nicole___Tool_Stack_Card_v5.html — not Figma.

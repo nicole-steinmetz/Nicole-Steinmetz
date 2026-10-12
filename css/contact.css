@@ -1,0 +1,223 @@
+/* ============================================================
+   CONTACT — Figma 318:476, 1440 × 2311
+   ------------------------------------------------------------
+   Flow layout. Figma y-coordinates in comments.
+   Hero illustration is node 381:244. Its lower edge lightens
+   in the artwork; the mask (not a painted white bar) is what
+   blends that edge into the page.
+   Breakpoints match home: 1040px / 640px — no mobile frame.
+   ============================================================ */
+
+/* ---- HERO — node 381:244, visible 1440×752 at y=0 ---------- */
+.contact-hero { position: relative; }
+
+.contact-hero__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1440 / 752;
+}
+
+.contact-hero__media img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  /* Fade the bottom into the page. The artwork already lightens;
+     this mask is the blend, so the edge is transparency rather
+     than a baked white strip. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    transparent 96%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    transparent 96%
+  );
+}
+
+/* ---- INTRO — eyebrow y=812, title y=869, body y=975 -------- */
+.contact-intro {
+  width: min(791px, calc(100% - var(--gutter) * 2));
+  margin: 60px auto 0; /* hero bottom 752 → eyebrow 812 */
+  text-align: center;
+}
+
+.contact-intro .eyebrow { margin: 0; }
+
+.contact-intro__title {
+  margin: 24px auto 0; /* eyebrow box → title 869 */
+  min-height: 92px;
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.contact-intro__lede {
+  margin: 14px auto 0; /* title frame 869+92 → body 975 */
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  text-wrap: balance;
+  color: var(--ink-soft);
+}
+
+/* ---- CARDS — 408×336 at y=1239, gap 28, gutters 80 --------- */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px; /* 516 − (80+408) */
+  width: min(var(--page-max), calc(100% - var(--gutter) * 2));
+  margin: 133px auto 0; /* lede bottom 1106 → cards 1239 */
+  list-style: none;
+}
+
+.contact-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 336px;
+  padding: 33px 41px 41px 46px; /* title y=1272, body inset 46, bottom 41 */
+  background: var(--card);
+  border: 0.5px solid var(--card-line);
+  border-radius: var(--r-card);
+  color: inherit;
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.contact-card:hover,
+.contact-card:focus-visible {
+  transform: translateY(-3px);
+}
+
+.contact-card:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 3px;
+  border-radius: var(--r-card);
+}
+
+.contact-card__title {
+  max-width: 280px;
+  padding-right: var(--s-7);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.contact-card__arrow {
+  position: absolute;
+  top: 23px; /* arrow y=1262 − card y=1239 */
+  right: 25px;
+  display: grid;
+  place-items: center;
+  width: var(--tools-arrow);
+  height: var(--tools-arrow);
+  border-radius: var(--r-chip);
+  background: var(--paper);
+  border: 1px solid var(--tools-card-line);
+  color: var(--ink);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 8%, transparent);
+  transition:
+    transform var(--dur-quote) var(--ease-out),
+    box-shadow var(--dur-quote) var(--ease-out),
+    background var(--dur-quote) var(--ease-out),
+    border-color var(--dur-quote) var(--ease-out),
+    color var(--dur-quote) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contact-card__arrow {
+    animation: quote-breathe var(--tools-breathe) ease-in-out infinite;
+  }
+}
+
+.contact-card:hover .contact-card__arrow,
+.contact-card:focus-visible .contact-card__arrow {
+  animation: none;
+  transform: translateY(-2px) scale(1.04);
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--on-dark);
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--amber) 30%, transparent);
+}
+
+.contact-card__arrow svg {
+  width: var(--s-4);
+  height: var(--s-4);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.contact-card:hover .contact-card__arrow svg,
+.contact-card:focus-visible .contact-card__arrow svg {
+  transform: translate(1px, -1px) rotate(8deg);
+}
+
+.contact-card__body {
+  max-width: 321px;
+  margin-top: auto;
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  color: var(--ink-black);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-card,
+  .contact-card__arrow,
+  .contact-card__arrow svg {
+    transition: none;
+    animation: none;
+  }
+  .contact-card:hover,
+  .contact-card:focus-visible,
+  .contact-card:hover .contact-card__arrow,
+  .contact-card:focus-visible .contact-card__arrow,
+  .contact-card:hover .contact-card__arrow svg,
+  .contact-card:focus-visible .contact-card__arrow svg {
+    transform: none;
+  }
+}
+
+/* Cards bottom 1575 → footer 1772 */
+.page-contact .site-footer { margin-top: 197px; }
+
+/* ============================================================
+   TABLET — ≤1040px
+   No Figma frame exists below 1440. Review before launch.
+   ============================================================ */
+@media (max-width: 1040px) {
+  .contact-intro { margin-top: 48px; }
+  .contact-intro__title { min-height: 0; }
+  .contact-intro__lede { margin-top: var(--s-5); }
+
+  .contact-cards {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-top: var(--s-8);
+  }
+  .contact-card { min-height: 280px; padding: var(--s-6) var(--s-6) var(--s-7); }
+
+  .page-contact .site-footer { margin-top: 88px; }
+}
+
+/* ============================================================
+   PHONE — ≤640px
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Header stacks over the illustration. A taller frame keeps
+     the skater visible below the logo and pills. Unsigned. */
+  .contact-hero__media { aspect-ratio: 4 / 5; }
+  .contact-hero__media img { object-position: 72% 28%; }
+
+  .contact-intro { margin-top: var(--s-7); }
+  .contact-card { min-height: 240px; padding: var(--s-5); }
+  .contact-card__title { padding-right: var(--s-8); }
+  .contact-card__arrow { top: var(--s-5); right: var(--s-5); }
+
+  .page-contact .site-footer { margin-top: 64px; }
+}

@@ -22,6 +22,7 @@
   /* ---- INK ------------------------------------------------- */
   --ink:         #505050;   /* headings + pillar body           */
   --ink-soft:    #575757;   /* hero sub, eyebrow                */
+  --ink-black:   #000000;   /* contact card body — Figma 380:67 */
   --ink-focus:   #0E0E10;   /* hero line in focus               */
   --hero-muted:  #A8A29E;   /* hero line after the colour sweep */
   --on-dark:     #FFFFFF;   /* text on rust / on footer image   */
@@ -259,6 +260,24 @@
   --quoter-kicker-on-dark: rgb(255 255 255 / .7);
   --quoter-soft-on-dark: rgb(255 255 255 / .82);
   --quoter-warn-pad:    10px 14px;
+
+  /* ---- PROCESS — How a build runs -------------------------
+     Cursor brief v1. Not in the Home Figma frame.
+     --process-bg matches the cube matte so the frame edges
+     disappear. The brief names #f1f2e8; the poster samples
+     241,243,232. One channel apart — the brief value is used.
+     --process-line is the leader baked into the right edge
+     of the poster (183,182,187 at y=337).                    */
+  --process-bg:         #f1f2e8;
+  --process-line:       #b7b6bb;
+  --process-step:       65vh;
+  --process-marker:     400ms;
+  --process-upcoming:   0.4;
+  --process-num:        44px;
+  --fs-process-label:   0.6875rem; /* 11px mono ticks          */
+  --fs-process-badge:   0.75rem;
+  --r-process-tag:      2px;
+  --process-video-w:    420px;
 }
 
 @media (prefers-reduced-motion: reduce) {

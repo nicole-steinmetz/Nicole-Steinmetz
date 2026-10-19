@@ -135,7 +135,7 @@
       adobe: "Adobe Creative Suite", midjourney: "Midjourney",
       "page-low": "Low Content / System Page", "page-standard": "Standard Page",
       "page-complex": "Complex Page", "page-legal": "Legal Page",
-      "ai-copy": "AI-Generated Copywriting & SEO", "blog-post": "Blog Post Upload",
+      "ai-copy": "AI-Generated Copywriting & SEO", "blog-post": "Blog Post Upload", "blog-cms": "Blog CMS Setup (Sanity)",
       "react-component": "Custom React Component", integration: "Integration with Common Software",
       "external-link": "Simple External Link"
     };

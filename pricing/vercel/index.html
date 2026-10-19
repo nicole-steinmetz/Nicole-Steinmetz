@@ -179,22 +179,28 @@
             <div class="qb-row-price is-muted" id="price-ai-copy">—</div>
           </div>
           <div class="qb-row">
-            <div class="qb-row-main"><div class="qb-row-title">Blog / News Setup</div><p class="qb-row-desc">Blog listing + post templates · $75</p></div>
-            <div class="qb-row-control"><input type="checkbox" class="qb-check" data-price="75" data-target="blog-setup" aria-label="Blog / News Setup, $75"></div>
+            <div class="qb-row-main"><div class="qb-row-title">Blog Setup (posts uploaded by me)</div><p class="qb-row-desc">Blog listing + post templates — no editing dashboard; I upload posts for you · $75</p></div>
+            <div class="qb-row-control"><input type="checkbox" class="qb-check" data-price="75" data-target="blog-setup" aria-label="Blog Setup (posts uploaded by me), $75"></div>
             <div class="qb-row-price is-muted" id="price-blog-setup">—</div>
           </div>
           <div class="qb-row">
-            <div class="qb-row-main"><div class="qb-row-title">Blog Post Upload</div><p class="qb-row-desc">Formatting &amp; uploading into CMS — $30/post · approx. 20min</p></div>
+            <div class="qb-row-main"><div class="qb-row-title">Blog CMS Setup (Sanity)</div><p class="qb-row-desc">An easy editing dashboard for your blog — connected to your blog listing &amp; article layouts · image &amp; SEO fields · publish and the site updates itself · testing · one sample article · handover session + short editing guide · approx. 14hrs</p></div>
+            <div class="qb-row-control"><input type="checkbox" class="qb-check" data-price="980" data-target="blog-cms" aria-label="Blog CMS Setup (Sanity), $980"></div>
+            <div class="qb-row-price is-muted" id="price-blog-cms">—</div>
+          </div>
+          <div class="qb-row">
+            <div class="qb-row-main"><div class="qb-row-title">Blog Post Upload</div><p class="qb-row-desc">I format and upload posts for you — $30/post · approx. 20min</p></div>
             <div class="qb-row-control"><div class="stepper" data-price="30" data-target="blog-post"><button type="button" data-step="-1" aria-label="Fewer blog post uploads">&minus;</button><output>0</output><button type="button" data-step="1" aria-label="More blog post uploads">+</button></div></div>
             <div class="qb-row-price is-muted" id="price-blog-post">—</div>
           </div>
+          <p class="qb-section-note">Blog setup uses your site&rsquo;s existing styling. Designing a blog from scratch, moving an existing archive, search &amp; filtering, scheduled publishing and live previews are quoted separately. Sanity&rsquo;s free plan covers most small-business blogs — if you outgrow it, Sanity bills you directly (from US$15/user/mo).</p>
         </div>
 
         <div class="qb-section">
           <div class="qb-section-head"><h2>5 — CMS &amp; advanced content</h2></div>
           <div class="qb-row">
-            <div class="qb-row-main"><div class="qb-row-title">CMS Setup</div><p class="qb-row-desc">Sanity or Notion as CMS — so clients can self-manage content post-launch</p></div>
-            <div class="qb-row-control"><input type="checkbox" class="qb-check" data-tbc="CMS Setup" aria-label="CMS Setup, quoted separately"></div>
+            <div class="qb-row-main"><div class="qb-row-title">Whole-Site CMS Setup</div><p class="qb-row-desc">Sanity or Notion — make pages beyond the blog editable so you can self-manage content post-launch</p></div>
+            <div class="qb-row-control"><input type="checkbox" class="qb-check" data-tbc="Whole-Site CMS Setup" aria-label="Whole-Site CMS Setup, quoted separately"></div>
             <div class="qb-row-price is-muted">—</div>
           </div>
           <div class="qb-row">
@@ -243,6 +249,21 @@
             <div class="qb-row-control"><input type="checkbox" class="qb-check" data-price="450" data-target="logo" aria-label="Logo Redesign Package, $450"></div>
             <div class="qb-row-price is-muted" id="price-logo">—</div>
           </div>
+        </div>
+
+        <div class="qb-section">
+          <div class="qb-section-head"><h2>9 — Vercel hosting</h2><span>Billed by Vercel</span></div>
+          <p class="qb-section-note">Hosting is billed by Vercel directly, in USD, and set up in your business&rsquo;s name with access for me. Vercel&rsquo;s free plan is for personal, non-commercial use only, so business sites need Pro: US$20/month, which includes one deploying user and US$20 of monthly usage. Each extra deploying user is US$20/month (view-only access is free), so with you as owner and me deploying, expect about US$40/month. Usage beyond the included amount is billed on top — I&rsquo;ll set a spending alert at launch.</p>
+        </div>
+
+        <div class="qb-section">
+          <div class="qb-section-head"><h2>10 — Ongoing care plan</h2><span>Recommended</span></div>
+          <div class="qb-row">
+            <div class="qb-row-main"><div class="qb-row-title">Care Plan</div><p class="qb-row-desc">A hand-built site has no platform team looking after it — monthly uptime &amp; contact-form checks, Vercel usage &amp; spend checks, dependency &amp; security updates, DNS/SSL monitoring, analytics summary, 30min of small changes each month · $45/mo or $495/yr</p></div>
+            <div class="qb-row-control"><input type="checkbox" class="qb-check" data-tbc="Care Plan ($45/mo or $495/yr)" aria-label="Care Plan, $45 a month or $495 a year, quoted separately"></div>
+            <div class="qb-row-price is-muted">—</div>
+          </div>
+          <p class="qb-section-note">Ongoing monthly cost — not part of the one-time project total above. Month-to-month, cancel any time; annual prepay is 12 months for the price of 11.</p>
         </div>
 
       </div>
@@ -333,6 +354,6 @@
   </div>
 </footer>
 
-<script src="/js/vercel-quoter.js" defer></script>
+<script src="/js/vercel-quoter.js?v=blog-cms" defer></script>
 </body>
 </html>

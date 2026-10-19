@@ -96,8 +96,9 @@
       adobe: "Adobe Creative Suite",
       "page-low": "Low Content / System Page", "page-standard": "Standard Page",
       "page-complex": "Complex Page", "page-legal": "Legal Page",
-      "ai-copy": "AI-Generated Copywriting & SEO", "blog-setup": "Blog / News Setup",
-      "blog-post": "Blog Post Upload", integration: "Integration with Common Software",
+      "ai-copy": "AI-Generated Copywriting & SEO", "blog-setup": "Blog Setup (posts uploaded by me)",
+      "blog-cms": "Blog CMS Setup (Sanity)", "blog-post": "Blog Post Upload",
+      integration: "Integration with Common Software",
       "external-link": "Simple External Link", popup: "Popup / Modal Setup",
       logo: "Logo Redesign Package"
     };

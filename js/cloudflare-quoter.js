@@ -1,5 +1,5 @@
 /* Cloudflare quote builder.
-   Source: Nicole — Pricing Page (Cloudflare) v1.html.
+   Source: Nicole — Pricing Page (Cloudflare) v2.html.
    Prices from Cloudflare_Build_Rate_Card_2026.pdf. Vanilla only.
    Infrastructure setup tracks the chosen baseline
    ($250 Starter / $350 Standard), not a flat add-on. */
@@ -138,7 +138,7 @@
     ];
 
     var addOnLabels = {
-      adobe: "Adobe Creative Suite", midjourney: "Midjourney",
+      adobe: "Adobe Creative Suite", midjourney: "Midjourney", "blog-cms": "Blog CMS Setup (Sanity)",
       "page-low": "Low Content / System Page", "page-standard": "Standard Page",
       "page-complex": "Complex Page", "page-legal": "Legal Page",
       "ai-copy": "AI-Generated Copywriting & SEO", "blog-post": "Blog Post Upload",

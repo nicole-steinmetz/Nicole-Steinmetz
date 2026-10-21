@@ -1,37 +1,30 @@
 /* ============================================================
    FAQS — /faqs/
    ------------------------------------------------------------
-   From Nicole — FAQ Page v2.html. Not a Figma frame.
-   Flow layout. Header and footer are the shared site chrome
-   (dark bar, same as /process/, so the white logo holds).
+   From Nicole — FAQ Page v2.html. Banner is Figma 381:246.
+   Flow layout. The shared header is absolute, so the white
+   logo sits on the illustration the way the frame draws it.
    Breakpoints match the site: 1040px / 640px — no mobile frame.
    ============================================================ */
 
-.page-faqs .site-header {
-  position: relative;
-  background: var(--ink-focus);
-}
-
 .page-faqs [hidden] { display: none !important; }
 
-.page-faqs .pill[aria-current="page"] {
-  box-shadow: 0 0 0 2px var(--ink-focus), 0 0 0 4px var(--blue);
-}
-
-/* ---- HERO -------------------------------------------------- */
-.faq-hero__media {
-  height: clamp(160px, 22vw, 300px);
-  border-radius: var(--r-faq);
-  background:
-    radial-gradient(circle at 20% 30%, var(--faq-hero-a), transparent 55%),
-    radial-gradient(circle at 80% 70%, var(--faq-hero-b), transparent 55%),
-    linear-gradient(135deg, var(--faq-hero-from), var(--faq-hero-mid) 45%, var(--faq-hero-to));
+/* ---- HERO — node 381:246, 1443×758 at y=0 ------------------
+   The file is already white by ~88% of its height, so the
+   eyebrow (y=696) sits in that fade: 62px on a 1440 frame. */
+.faq-hero__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2848 / 1496;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .faq-hero__copy {
   max-width: 760px;
-  margin: 0 auto;
-  padding: var(--faq-section) 0 var(--s-5);
+  margin: -4.3vw auto 0; /* 62px at 1440 — eyebrow into the white */
+  padding: 0 0 var(--s-5);
   text-align: center;
 }
 
@@ -497,7 +490,7 @@
 
 /* ---- PHONE — ≤640px. No mobile frame. --------------------- */
 @media (max-width: 640px) {
-  .faq-hero__copy { padding-top: var(--gutter-md); }
+  .faq-hero__copy { margin-top: -16px; }
 
   .faq-search { padding: var(--s-6) var(--s-4) var(--faq-gap); }
 

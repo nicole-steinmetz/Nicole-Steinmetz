@@ -25,7 +25,8 @@
 
 <link rel="stylesheet" href="/css/tokens.css?v=faqs">
 <link rel="stylesheet" href="/css/styles.css?v=links">
-<link rel="stylesheet" href="/css/faqs.css?v=1">
+<link rel="preload" as="image" href="/assets/img/faq-hero-1440.webp" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="/css/faqs.css?v=banner">
 <script>document.documentElement.classList.add('js');</script>
 <script type="application/ld+json">
 {
@@ -583,8 +584,28 @@
      Logo answer is redesign only — the cards have no from-scratch price.
      Before We Start Designing is not linked: that page is not published. -->
 <main id="main">
+  <!-- Banner — Figma 381:246, 1443×758 at y=0. The artwork fades to white. -->
+  <div class="faq-hero__media">
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/assets/img/faq-hero-720.webp 720w,
+                /assets/img/faq-hero-1080.webp 1080w,
+                /assets/img/faq-hero-1440.webp 1440w,
+                /assets/img/faq-hero-2848.webp 2848w"
+        sizes="100vw">
+      <img src="/assets/img/faq-hero-1440.jpg"
+           srcset="/assets/img/faq-hero-720.jpg 720w,
+                   /assets/img/faq-hero-1080.jpg 1080w,
+                   /assets/img/faq-hero-1440.jpg 1440w,
+                   /assets/img/faq-hero-2848.jpg 2848w"
+           sizes="100vw"
+           width="1440" height="756"
+           alt="Illustration of a woman working at a computer on a beach at sunset, a green diamond floating above her"
+           fetchpriority="high" decoding="async">
+    </picture>
+  </div>
   <div class="container">
-    <div class="faq-hero__media" aria-hidden="true"></div>
     <div class="faq-hero__copy">
       <p class="eyebrow faq-reveal">FAQS</p>
       <h1 class="faq-hero__title faq-reveal" style="--d:80ms">Most of what you'd ask, answered already.</h1>

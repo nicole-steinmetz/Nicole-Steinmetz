@@ -99,8 +99,7 @@
       "ai-copy": "AI-Generated Copywriting & SEO", "blog-setup": "Blog Setup (posts uploaded by me)",
       "blog-cms": "Blog CMS Setup (Sanity)", "blog-post": "Blog Post Upload",
       integration: "Integration with Common Software",
-      "external-link": "Simple External Link", popup: "Popup / Modal Setup",
-      logo: "Logo Redesign Package"
+      "external-link": "Simple External Link", popup: "Popup / Modal Setup"
     };
     var stepperPrices = {
       "page-low": 95, "page-standard": 135, "page-complex": 275, "page-legal": 70,

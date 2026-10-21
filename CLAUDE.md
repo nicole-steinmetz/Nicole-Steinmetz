@@ -12,6 +12,8 @@ Plain HTML, CSS and (if ever needed) vanilla JS. **No framework, no build step, 
 
 This is a deliberate choice, not an oversight. It's a static marketing page. Adding a framework would add a build pipeline, a dependency tree and a class of bugs, in exchange for nothing. If a genuine need appears — a CMS, shared layouts across five-plus pages, real server logic — revisit it then and say why in the commit.
 
+Two exceptions live in `functions/`. A static file cannot send mail, so the quote builders post to `functions/api/quote.js`, which emails the summary to `nicole@kneecoal.com` as a table. The FAQ most-read cards post to `functions/api/faq-view.js` and read `functions/api/faq-top.js`; those count opens in a KV namespace. Without the binding the page still works and shows the three seeded questions.
+
 ## Files
 
 ```
@@ -22,10 +24,16 @@ pricing/shopify/index.html     Shopify pricing (hero, intro, working quote build
 pricing/cloudflare/index.html  Cloudflare pricing (hero, intro, working quote builder)
 pricing/netlify/index.html     Netlify pricing (hero, intro, working quote builder)
 pricing/vercel/index.html      Vercel pricing (hero, intro, working quote builder)
+faqs/index.html                FAQs — search, most-read cards, FAQPage schema
 css/tokens.css                 design tokens — the only place colours, type and spacing are defined
 css/styles.css                 shared + home
 css/pricing.css                pricing page only
-js/                            vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee, platform profiles, Squarespace + Shopify + Cloudflare + Netlify + Vercel quoters
+css/faqs.css                   FAQ page only
+js/                            vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee, platform profiles, Squarespace + Shopify + Cloudflare + Netlify + Vercel quoters, quote send, FAQ search
+functions/api/quote.js         Pages Function — emails a quote summary
+functions/api/faq-view.js      Pages Function — counts an opened FAQ
+functions/api/faq-top.js       Pages Function — returns the three most-read slugs
+functions/_lib/faq-slugs.js    allowlist shared by the two FAQ functions
 assets/img/                    raster (hero, footer, UI panels)
 assets/video/                  looping hero / footer MP4s
 assets/svg/                    logo, icons, arrows

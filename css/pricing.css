@@ -473,6 +473,82 @@
   color: var(--quoter-soft-on-dark);
 }
 
+/* Send-quote form — not in the Figma frame. Sits under the summary
+   so the estimate and the request stay together. */
+.summary-send {
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--quoter-line-on-dark);
+}
+.summary-send h3 {
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+.summary-send > p:not(.summary-send__status) {
+  margin-top: var(--s-2);
+  font-size: var(--fs-quoter-note);
+  line-height: 1.5;
+  color: var(--quoter-soft-on-dark);
+}
+.summary-send label {
+  display: block;
+  margin-top: var(--s-3);
+}
+.summary-send label span {
+  display: block;
+  font-size: var(--fs-quoter-note);
+  color: var(--quoter-soft-on-dark);
+}
+.summary-send input,
+.summary-send textarea {
+  display: block;
+  width: 100%;
+  margin-top: var(--s-1);
+  padding: var(--s-2) var(--s-3);
+  border: 0;
+  border-radius: var(--r-quoter-input);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-body);
+}
+.summary-send textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+.summary-send button {
+  display: block;
+  width: 100%;
+  margin-top: var(--s-4);
+  min-height: 44px;
+  padding: var(--s-2) var(--s-4);
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  color: var(--rust);
+  font: inherit;
+  font-size: var(--fs-ui);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.summary-send button:hover { background: var(--card); }
+.summary-send button:disabled:hover { background: var(--paper); }
+.summary-send button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.summary :focus-visible { outline-color: var(--on-dark); }
+.summary-send__status {
+  margin-top: var(--s-3);
+  font-size: var(--fs-quoter-note);
+  line-height: 1.5;
+  color: var(--on-dark);
+}
+.summary-send__status:empty { display: none; }
+.summary-send__status.is-error { font-weight: 700; }
+
 .shared-cta { margin-bottom: var(--s-9); }
 .cta-card {
   padding: var(--quoter-cta-pad);

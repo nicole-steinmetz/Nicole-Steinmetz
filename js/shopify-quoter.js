@@ -94,7 +94,7 @@
       "ai-copy": "AI-Generated Copywriting & SEO", "blog-setup": "Blog / News Setup",
       "blog-post": "Blog Post Upload", "product-upload": "Product Upload",
       integration: "Integration with Common Software", "external-link": "Simple External Link",
-      popup: "Popup Plugin Setup", logo: "Logo Redesign Package"
+      popup: "Popup Plugin Setup"
     };
     var stepperPrices = {
       "page-low": 85, "page-standard": 120, "page-complex": 220, "page-legal": 60,

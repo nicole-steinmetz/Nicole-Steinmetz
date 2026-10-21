@@ -1,0 +1,48 @@
+// Shared by faq-view.js and faq-top.js. Keep in sync with the <details id> values on /faqs/.
+// Not a route: it exports no onRequest handler.
+export const SLUGS = new Set([
+  "how-do-i-get-a-quote",
+  "what-should-i-have-ready-before-we-talk",
+  "i-already-have-a-domain-and-email-set-up-how-do-we-handle-access",
+  "do-you-work-with-clients-outside-australia",
+  "what-does-a-project-cost",
+  "how-long-does-a-build-take",
+  "whats-the-process-start-to-finish",
+  "which-platform-is-right-for-my-project",
+  "can-you-redesign-my-existing-website",
+  "what-happens-if-i-change-my-mind-about-the-platform-partway-through",
+  "how-many-rounds-of-changes-are-included",
+  "what-actually-counts-as-a-round",
+  "what-if-several-people-in-our-business-need-to-have-input",
+  "how-quickly-do-you-need-our-feedback-and-how-long-do-changes-take",
+  "whats-the-difference-between-a-change-and-a-variation",
+  "what-does-seo-setup-actually-include",
+  "what-does-ai-integration-actually-mean-for-my-business",
+  "what-keeps-a-build-on-time-and-on-budget",
+  "do-you-write-the-copy-and-source-the-images-or-do-i-supply-them",
+  "what-about-photography-can-you-supply-images",
+  "what-if-my-content-isnt-ready-yet-copy-images-sitemap",
+  "how-do-you-handle-mobile",
+  "do-you-do-branding-and-logo-work-as-well",
+  "whats-actually-included-in-the-handover",
+  "can-i-update-the-website-myself-after-launch",
+  "how-do-i-upgrade-my-squarespace-subscription",
+  "will-i-have-full-access-to-my-own-site",
+  "what-happens-if-something-breaks-after-launch",
+  "do-you-offer-ongoing-support-or-website-maintenance",
+  "can-you-manage-future-blog-posts-and-resources-for-me",
+  "how-do-i-manage-my-analytics-and-sales-data",
+  "do-you-charge-hourly-or-a-fixed-price",
+  "what-are-your-payment-terms",
+  "how-do-third-party-subscriptions-get-paid-apps-email-hosting",
+  "what-actually-counts-as-a-page",
+  "whats-not-included-in-the-build-price",
+  "do-i-need-to-pay-for-hosting-domains-or-software-separately",
+  "what-if-i-need-more-pages-or-features-partway-through",
+  "who-owns-the-site-once-its-finished",
+  "what-if-i-need-to-pause-or-cancel-after-weve-started",
+  "will-you-use-our-site-as-an-example-of-your-work"
+]);
+
+// Fallback "most read" cards, used until real counts exist.
+export const SEEDS = ["how-do-i-get-a-quote", "how-long-does-a-build-take", "whats-the-process-start-to-finish"];

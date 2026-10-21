@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400..700&display=swap">
 
 <link rel="stylesheet" href="/css/tokens.css?v=contact">
-<link rel="stylesheet" href="/css/styles.css?v=hero-ink">
+<link rel="stylesheet" href="/css/styles.css?v=links">
 <link rel="stylesheet" href="/css/contact.css?v=1">
 <script>document.documentElement.classList.add('js');</script>
 
@@ -37,7 +37,8 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="site-header__logo" href="/" aria-label="Nicole Steinmetz — home">
-      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="193" height="95">
+      <!-- Grey lockup: this hero is white cloud behind the mark. -->
+      <img src="/assets/svg/logo-grey.svg" alt="Miss Nicole Steinmetz" width="193" height="95">
     </a>
 
     <nav class="nav" aria-label="Primary">
@@ -95,7 +96,7 @@
   <section aria-label="Ways to get in touch">
     <ul class="contact-cards">
       <li>
-        <a class="contact-card" data-site-link="email" href="mailto:nicole@kneecoal.com">
+        <a class="contact-card" data-site-link="email">
           <h2 class="contact-card__title">Email</h2>
           <span class="contact-card__arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="16" height="16" focusable="false">
@@ -106,7 +107,7 @@
         </a>
       </li>
       <li>
-        <a class="contact-card" data-site-link="whatsapp" href="https://wa.me/+61402765878" target="_blank" rel="noopener noreferrer">
+        <a class="contact-card" data-site-link="whatsapp">
           <h2 class="contact-card__title">WhatsApp</h2>
           <span class="contact-card__arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="16" height="16" focusable="false">
@@ -117,7 +118,7 @@
         </a>
       </li>
       <li>
-        <a class="contact-card" data-site-link="booking" href="https://calendar.app.google/VhKn1WLoZNS8Aq899" target="_blank" rel="noopener noreferrer">
+        <a class="contact-card" data-site-link="booking">
           <h2 class="contact-card__title">Video Call</h2>
           <span class="contact-card__arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="16" height="16" focusable="false">
@@ -167,30 +168,33 @@
       <h2 class="footer-col__title" id="f-clarifications">Clarifications</h2>
       <ul>
         <li><a href="/faqs/">All FAQs</a></li>
-        <li><a href="/platform-decider/">Compare platforms</a></li>
-        <li><a data-site-link="booking" href="https://calendar.app.google/VhKn1WLoZNS8Aq899" target="_blank" rel="noopener noreferrer">Book video call</a></li>
+        <li><a href="/pricing/">Compare platforms</a></li>
+        <li><a data-site-link="booking">Book video call</a></li>
       </ul>
     </nav>
 
     <nav class="footer-col" aria-labelledby="f-contact">
       <h2 class="footer-col__title" id="f-contact">Contact</h2>
       <ul>
-        <li><a data-site-link="email" href="mailto:nicole@kneecoal.com">Email us</a></li>
-        <li><a data-site-link="whatsapp" href="https://wa.me/+61402765878" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-        <li><a data-site-link="booking" href="https://calendar.app.google/VhKn1WLoZNS8Aq899" target="_blank" rel="noopener noreferrer">Video call</a></li>
+        <li><a data-site-link="email">Email us</a></li>
+        <li><a data-site-link="whatsapp">WhatsApp</a></li>
+        <li><a data-site-link="booking">Video call</a></li>
       </ul>
     </nav>
   </div>
 
   <div class="site-footer__base container">
-    <p class="site-footer__copy">&copy; 2026 <strong>Nicole Steinmetz</strong> All rights and so many wrongs reserved.</p>
+    <div class="site-footer__meta">
+      <p class="site-footer__copy">&copy; 2026 <strong>Nicole Steinmetz</strong> All rights and so many wrongs reserved.</p>
+      <a class="site-footer__privacy" href="/privacy/">Privacy Policy</a>
+    </div>
     <img class="site-footer__badges" src="/assets/img/circle-platinum-2026.png"
          alt="Squarespace Circle Platinum Partner, 2026"
          width="1024" height="319" loading="lazy" decoding="async">
   </div>
 </footer>
 
-<script src="/js/site-config.js" defer></script>
+<script src="/js/site-config.js?v=links" defer></script>
 <script src="/js/hero-title.js?v=footer-video" defer></script>
 </body>
 </html>

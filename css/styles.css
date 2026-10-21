@@ -1217,6 +1217,250 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
+   PROCESS — How a build runs
+   Its own page at /process/. Not in the Home Figma frame.
+   The cube video is cropped; the timeline
+   (Discover / Design / Launch / Training) is HTML. The
+   leader line is baked into the right edge of the video
+   (y≈337 of 688) and meets the ruler.
+   Desktop is ≥900px, per the brief — not the site's 1040.
+   ============================================================ */
+.page-process .site-header {
+  position: relative;
+  background: var(--ink-focus);
+}
+.process {
+  margin-top: 123px;
+  background: var(--process-bg);
+  padding-block: var(--s-8) var(--s-9);
+}
+.page-process .process { margin-top: 0; }
+/* The cream band replaces the paper gap above the footer image. */
+body:has(.process) .site-footer { margin-top: 0; }
+
+.process__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: var(--s-7);
+}
+
+.process__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-8);
+  align-items: start;
+}
+
+.process__sticky {
+  position: sticky;
+  top: 10vh;
+  height: 80vh;
+}
+
+.process__stage {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 0;
+}
+
+.process__video {
+  /* Cap by the sticky column and by 80vh so the 640/688 frame
+     never overflows or shifts when the file loads. */
+  width: min(var(--process-video-w), calc(100% - 9.5rem), calc(80vh * 640 / 688));
+  height: auto;
+  aspect-ratio: 640 / 688;
+  flex: none;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.process__timeline { flex: none; }
+
+.process__ruler {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-7);
+  padding-left: var(--s-4);
+}
+.process__ruler::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  bottom: 0.7em;
+  width: 1px;
+  background: var(--process-line);
+}
+
+.process__marker {
+  position: absolute;
+  z-index: 0;
+  background: var(--rust);
+  border-radius: var(--r-process-tag);
+  pointer-events: none;
+  transition:
+    top var(--process-marker) var(--ease),
+    left var(--process-marker) var(--ease),
+    width var(--process-marker) var(--ease),
+    height var(--process-marker) var(--ease);
+}
+
+.process__label {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: var(--s-1) var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-process-label);
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--quoter-quiet);
+  white-space: nowrap;
+}
+.process__label::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--s-4) * -1);
+  top: 50%;
+  width: var(--s-4);
+  height: 1px;
+  background: var(--process-line);
+}
+.process__label.is-active { color: var(--on-dark); }
+
+.process__steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.process__step {
+  display: flex;
+  align-items: center;
+  min-height: var(--process-step);
+}
+
+.process__card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-5);
+  width: 100%;
+  min-width: 0;
+}
+
+.process__step--training .process__card {
+  background: var(--paper);
+  border-radius: var(--r-card);
+  padding: var(--s-6);
+}
+
+.process__num {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--process-num);
+  height: var(--process-num);
+  border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  border-radius: 50%;
+  color: var(--ink);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  line-height: 1;
+}
+.process__glyph {
+  font-family: var(--font-sans);
+  font-variant-emoji: text;
+}
+.process__step.is-active .process__num {
+  border-color: var(--rust);
+  color: var(--rust);
+}
+.process__step.is-complete .process__num,
+.process__step.is-active[data-heart] .process__num {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: var(--on-dark);
+}
+
+.process__copy { min-width: 0; }
+.process__name {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.process__text {
+  margin-top: var(--s-3);
+  max-width: 46ch;
+  font-size: var(--fs-body);
+  line-height: var(--lh-compact);
+  color: var(--ink);
+}
+.process__more {
+  font-weight: 600;
+  color: var(--rust);
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.process__more:hover { border-bottom-color: currentColor; }
+
+.process__badge {
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--s-4);
+  padding: var(--s-1) var(--s-3);
+  border: 1px solid color-mix(in srgb, var(--ink) 40%, transparent);
+  border-radius: var(--r-pill);
+  color: var(--ink);
+  font-size: var(--fs-process-badge);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.process__step--training .process__badge {
+  background: var(--ink-focus);
+  border-color: var(--ink-focus);
+  color: var(--on-dark);
+}
+
+/* Upcoming steps dim only once JS can track the centre line,
+   and only on the desktop layout. */
+@media (min-width: 900px) {
+  .js .process__step {
+    opacity: var(--process-upcoming);
+    transition: opacity var(--process-marker) var(--ease);
+  }
+  .js .process__step.is-active,
+  .js .process__step.is-complete,
+  .js .process__step:first-child { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .process__step { opacity: 1; }
+}
+
+/* Brief: stack below 900px. Video is not sticky; timeline hides;
+   every step stays readable. */
+@media (max-width: 899px) {
+  .process__grid { grid-template-columns: 1fr; gap: var(--s-7); }
+  .process__sticky { position: static; height: auto; }
+  .process__stage { justify-content: center; }
+  .process__timeline { display: none; }
+  .process__video { width: 70%; }
+  .process__step { min-height: 0; opacity: 1; }
+  .process__steps { display: grid; gap: var(--s-7); }
+}
+
+/* ============================================================
    FOOTER — Figma y=2704, height 539, full-bleed masked image
    ============================================================ */
 .site-footer {
@@ -1289,8 +1533,21 @@ a { color: inherit; text-decoration: none; }
   padding-block: 26px 40px;
   border-top: 1px solid rgba(255, 255, 255, .35);
 }
+.site-footer__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-6);
+}
 .site-footer__copy { font-size: var(--fs-body); color: var(--on-dark); }
 .site-footer__copy strong { font-weight: 700; }
+.site-footer__privacy {
+  font-size: var(--fs-body);
+  color: var(--on-dark);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.site-footer__privacy:hover { border-bottom-color: currentColor; }
 .site-footer__badges { width: 303px; height: auto; }
 
 /* ============================================================
@@ -1316,6 +1573,7 @@ a { color: inherit; text-decoration: none; }
   .panels { grid-template-columns: 1fr; margin-top: var(--s-5); }
 
   .trusted { margin-top: 72px; }
+  .process { margin-top: 88px; }
   .trusted__row { justify-content: center; gap: var(--s-6) var(--s-7); }
   .trusted__viewport.is-marquee .trusted__row {
     justify-content: flex-start;
@@ -1373,6 +1631,8 @@ a { color: inherit; text-decoration: none; }
   .proj-grid { column-gap: var(--proj-grid-gap-sm); }
 
   .trusted { margin-top: 56px; }
+  .process { margin-top: 64px; padding-block: var(--s-7); }
+  .process__step--training .process__card { padding: var(--s-5); }
   .trusted__viewport { margin-top: var(--s-7); }
   .trusted__row { gap: var(--s-6); }
   .trusted__row img { max-height: 44px; width: auto; }

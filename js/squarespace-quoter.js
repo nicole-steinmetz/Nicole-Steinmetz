@@ -139,8 +139,7 @@
       "page-complex": "Complex Page", "page-legal": "Legal Page",
       "ai-copy": "AI-Generated Copywriting & SEO", "blog-post": "Blog Post Upload",
       "blog-setup": "Blog / News Setup", "integration": "Integration with Common Software",
-      "external-link": "Simple External Link", "popup": "Popup Plugin Setup",
-      "logo": "Logo Redesign Package"
+      "external-link": "Simple External Link", "popup": "Popup Plugin Setup"
     };
     var stepperPrices = {
       "page-low": 75, "page-standard": 100, "page-complex": 185, "page-legal": 55,

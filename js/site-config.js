@@ -1,10 +1,9 @@
 /* Contact details. The only place these are set.
-   Every mailto, WhatsApp and booking link on the contact page
-   reads them via [data-site-link]. */
+   Every email, WhatsApp and booking control uses [data-site-link]. */
 (function () {
   var EMAIL = "nicole@kneecoal.com";
-  var WHATSAPP_NUMBER = "+61402765878";
-  var BOOKING_URL = "https://calendar.app.google/VhKn1WLoZNS8Aq899";
+  var WHATSAPP_NUMBER = "61402765878";
+  var BOOKING_URL = "https://calendar.app.google/LL4k82UrifLjbCxH9";
 
   var hrefs = {
     email: "mailto:" + EMAIL,
@@ -26,6 +25,9 @@
     if (key === "whatsapp" || key === "booking") {
       el.setAttribute("target", "_blank");
       el.setAttribute("rel", "noopener noreferrer");
+    } else {
+      el.removeAttribute("target");
+      el.removeAttribute("rel");
     }
   });
 })();

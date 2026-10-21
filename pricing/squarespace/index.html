@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
 
 <link rel="stylesheet" href="/css/tokens.css?v=quoter">
 <link rel="stylesheet" href="/css/styles.css?v=quoter">
-<link rel="stylesheet" href="/css/pricing.css?v=ss-video">
+<link rel="stylesheet" href="/css/pricing.css?v=quote-send">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/pricing-squarespace-hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -43,7 +43,6 @@
     <nav class="nav" aria-label="Primary">
       <ul class="nav__list">
         <li><a class="pill pill--amber" href="/pricing/">Pricing</a></li>
-        <!-- TODO(link): /faqs/ — parked on home via _redirects until Figma is signed off. -->
         <li><a class="pill pill--blue" href="/faqs/">FAQs</a></li>
         <li>
           <a class="pill pill--rust pill--has-icon" href="/contact/">
@@ -99,7 +98,6 @@
     <p class="eyebrow">Pricing — Squarespace</p>
     <h1 class="pricing-intro__title">The set-and-forget site,<br> done properly.</h1>
     <p class="pricing-intro__lede">Squarespace is the right call when you want a beautiful site you can actually run yourself &mdash; no developer on retainer, no maintenance surprises. It&rsquo;s where I built my Top 1% Platinum pedigree, so you get platform mastery, not template shuffling. Tick what you need below for an instant estimate.</p>
-    <!-- TODO(link): /faqs/ — parked on home via _redirects until Figma is signed off. -->
     <a class="pill pill--rust pill--has-icon pricing-intro__cta" href="/faqs/">
       FAQs
       <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
@@ -231,18 +229,10 @@
           </div>
         </div>
 
-        <div class="qb-section">
-          <div class="qb-section-head"><h2>7 — Branding &amp; design</h2></div>
-          <div class="qb-row">
-            <div class="qb-row-main"><div class="qb-row-title">Logo Redesign Package</div><p class="qb-row-desc">Simplifying or modernising your existing logo — refined vector files, updated colour palette &amp; font pairing · $375</p></div>
-            <div class="qb-row-control"><input type="checkbox" class="qb-check" data-price="375" data-target="logo" aria-label="Logo Redesign Package, $375"></div>
-            <div class="qb-row-price is-muted" id="price-logo">—</div>
-          </div>
-        </div>
-
       </div>
 
-      <aside class="summary" id="summaryCard" aria-live="polite">
+      <aside class="summary" id="summaryCard">
+        <div aria-live="polite">
         <div class="summary-head"><h2>Quote Summary</h2><span class="tag">Squarespace</span></div>
         <div class="summary-lines" id="summaryLines"></div>
         <div class="summary-total">
@@ -254,6 +244,28 @@
           <h3>To be quoted separately</h3>
           <ul id="summaryTbcList"></ul>
         </div>
+        </div>
+        <form class="summary-send" id="quoteSend" novalidate aria-describedby="quoteSendStatus">
+          <h3>Send this quote</h3>
+          <p>Nicole gets this as a table and replies to the email address below.</p>
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name" required maxlength="80">
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" inputmode="email" required maxlength="120" spellcheck="false">
+          </label>
+          <label>
+            <span>Note, optional</span>
+            <textarea name="note" rows="3" maxlength="2000"></textarea>
+          </label>
+          <div class="visually-hidden" aria-hidden="true">
+            <label>Leave blank <input type="text" name="hp" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <button type="submit">Send quote</button>
+          <p class="summary-send__status" id="quoteSendStatus" role="status"></p>
+        </form>
       </aside>
 
     </div>
@@ -263,7 +275,6 @@
     <div class="cta-card">
       <h2>Still weighing up which platform is yours?</h2>
       <p>The FAQs cover how I choose platforms, timelines, and what happens after launch.</p>
-      <!-- TODO(link): /faqs/ — parked on home via _redirects until Figma is signed off. -->
       <a class="pill pill--blue pill--has-icon" href="/faqs/">
         Read the FAQs
         <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
@@ -303,10 +314,10 @@
     <nav class="footer-col" aria-labelledby="f-clarifications">
       <h2 class="footer-col__title" id="f-clarifications">Clarifications</h2>
       <ul>
-        <!-- TODO(link): /faqs/ and /platform-decider/ — parked on home via _redirects. -->
+        <!-- TODO(link): /platform-decider/ — parked on home via _redirects. -->
         <li><a href="/faqs/">All FAQs</a></li>
         <li><a href="/platform-decider/">Compare platforms</a></li>
-        <li><a href="https://calendar.app.google/LKjv1zT4b7R2NhJ69" target="_blank" rel="noopener">Book video call</a></li>
+        <li><a href="https://calendar.app.google/LL4k82UrifLjbCxH9" target="_blank" rel="noopener">Book video call</a></li>
       </ul>
     </nav>
 
@@ -315,7 +326,7 @@
       <ul>
         <li><a href="mailto:nicole@kneecoal.com">Email us</a></li>
         <li><a href="https://api.whatsapp.com/send?phone=61402765878" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="https://calendar.app.google/LKjv1zT4b7R2NhJ69" target="_blank" rel="noopener">Video call</a></li>
+        <li><a href="https://calendar.app.google/LL4k82UrifLjbCxH9" target="_blank" rel="noopener">Video call</a></li>
       </ul>
     </nav>
   </div>
@@ -329,6 +340,7 @@
 </footer>
 
 <script src="/js/squarespace-quoter.js" defer></script>
+<script src="/js/quote-send.js" defer></script>
 <script>
 /* Hero video — fade over the still once playable; honour reduced motion. */
 (function () {

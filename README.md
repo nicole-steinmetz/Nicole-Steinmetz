@@ -25,29 +25,51 @@ Cloudflare Pages → Create project → Connect to Git, or drag this folder into
 - Build command: *(leave empty)*
 - Build output directory: `/`
 
-`_headers` and `_redirects` are picked up automatically.
+`_headers` and `_redirects` are picked up automatically. `functions/` is picked up as Pages Functions.
+
+## Quote emails
+
+Each quote builder (`/pricing/squarespace/`, `/pricing/shopify/`, `/pricing/cloudflare/`, `/pricing/netlify/`, `/pricing/vercel/`) can send its summary to nicole@kneecoal.com. The visitor adds a name and email; `functions/api/quote.js` builds one HTML table (who they are, then every line, the total, and anything quoted separately) and sets reply-to to their address.
+
+A static page cannot send mail, so this is a Pages Function rather than more front-end code. It does nothing until Cloudflare can send from this domain:
+
+1. Onboard `nicolesteinmetz.com` for [Email Sending](https://developers.cloudflare.com/email-service/), so `quotes@nicolesteinmetz.com` is a valid from-address.
+2. On the Pages project, add a **Send Email** binding named `EMAIL` with destination address `nicole@kneecoal.com`.
+
+Until both are in place, the form tells the visitor to email directly.
+
+## FAQ most-read counts
+
+`/faqs/` shows three seeded questions until a KV namespace is bound. The page still works without it.
+
+1. Cloudflare dashboard → Workers & Pages → KV → Create a namespace (for example `faq-views`).
+2. Pages project → Settings → Bindings → Add → KV namespace. Variable name `FAQ_VIEWS`. Add it for Production, then redeploy.
+
+`POST /api/faq-view` increments an allowlisted question. `GET /api/faq-top` returns the top three. If a question is added or renamed, update `functions/_lib/faq-slugs.js` to match its `id`.
 
 ---
 
 ## Blocking before launch
 
-**1. Most inner routes don't exist yet — parked on home.** Home (`1:2`), Pricing (`370:1574`, `/pricing/`), Squarespace pricing (`1:68`, `/pricing/squarespace/`), Shopify pricing (`1:117`, `/pricing/shopify/`), Cloudflare pricing (`288:4`, `/pricing/cloudflare/`), Netlify pricing (`153:203`, `/pricing/netlify/`) and Vercel pricing (`153:154`, `/pricing/vercel/`) are built. FAQs and Contact frames are still being finalised; there is no platform-decider, get-a-quote or start-a-project frame. Search `TODO(link)`.
+**1. One inner route is still parked on home.** Home (`1:2`), Pricing (`370:1574`, `/pricing/`), Squarespace pricing (`1:68`, `/pricing/squarespace/`), Shopify pricing (`1:117`, `/pricing/shopify/`), Cloudflare pricing (`288:4`, `/pricing/cloudflare/`), Netlify pricing (`153:203`, `/pricing/netlify/`), Vercel pricing (`153:154`, `/pricing/vercel/`), Contact (`318:476`, `/contact/`), How a build runs (`/process/`) and FAQs (`/faqs/`) are live. The Privacy Policy is not. Search `TODO(link)`.
 
 | Route | Status |
 |---|---|
+| `/` | Live — home |
 | `/pricing/` | Live — overview + animated platform profiles |
 | `/pricing/squarespace/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Squarespace) v1_1.html`) |
 | `/pricing/shopify/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Shopify) v1.html`) |
 | `/pricing/cloudflare/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Cloudflare) v1.html`) |
 | `/pricing/netlify/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Netlify) v1.html`) |
 | `/pricing/vercel/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Vercel) v1.html`) |
-| `/faqs/` | Parked |
-| `/platform-decider/` | Parked |
-| `/get-a-quote/`, `/start-a-project/` | Parked |
+| `/contact/` | Live — hero, intro, email / WhatsApp / booking cards |
+| `/process/` | Live — How a build runs |
+| `/faqs/` | Live — search, most-read cards, FAQPage schema (`Nicole — FAQ Page v3.html`) |
+| `/privacy/` | Parked — redirects home |
 
 `python3 -m http.server` ignores `_redirects`, so parked routes 404 locally — Cloudflare Pages will not.
 
-**2. The three home cards are live, but they are still display-only.** They look like tools; they are not working tools yet. The Squarespace, Shopify, Cloudflare, Netlify and Vercel quote builders are the exception — they are real running calculators, transcribed from the `Nicole — Pricing Page` prototypes and Knee Coal Website Pricing 2026. Squarespace: One-Page Website, Markup.io and Adobe Creative Suite are still “quoted separately”. Shopify: Custom Liquid / CSS Section, Complex Products / Bundles / Variants / Metafields, and the SEO Report (Perplexity) are quoted separately (no fixed price in the source docs). Cursor Pro and Figma are optional cost-recovery on Shopify — they are already in the Core Build, unlike Cloudflare. Cloudflare: Care Plan, Blog/News Setup, Popup/Modal, Logo Redesign, CMS Setup, SEO Report and Advanced Content Modelling are quoted separately; infrastructure setup tracks the chosen baseline ($250 Starter / $350 Standard). Netlify: Blog/News Setup, CMS Setup, Popup/Modal, Logo Redesign, SEO Report and Advanced Content Modelling are quoted separately (no fixed per-unit price in the rate-card PDF); Cursor Pro and Figma are included on every build.
+**2. The three home cards are live, but they are still display-only.** They look like tools; they are not working tools yet. The Squarespace, Shopify, Cloudflare, Netlify and Vercel quote builders are the exception — they are real running calculators, transcribed from the `Nicole — Pricing Page` prototypes and Knee Coal Website Pricing 2026. Squarespace: One-Page Website, Markup.io and Adobe Creative Suite are still “quoted separately”. Shopify: Custom Liquid / CSS Section, Complex Products / Bundles / Variants / Metafields, and the SEO Report (Perplexity) are quoted separately (no fixed price in the source docs). Cursor Pro and Figma are optional cost-recovery on Shopify — they are already in the Core Build, unlike Cloudflare. Cloudflare: Blog/News Setup, Popup/Modal, CMS Setup, SEO Report and Advanced Content Modelling are quoted separately; infrastructure setup tracks the chosen baseline ($250 Starter / $350 Standard). Netlify: Blog/News Setup, CMS Setup, Popup/Modal, SEO Report and Advanced Content Modelling are quoted separately (no fixed per-unit price in the rate-card PDF); Cursor Pro and Figma are included on every build.
 
 **The Tools card is live.** Rebuilt from `Nicole___Tool_Stack_Card_v5.html`. Search `id="tools-card"`.
 
@@ -63,8 +85,8 @@ Cloudflare Pages → Create project → Connect to Git, or drag this folder into
 
 ## Worth doing, not blocking
 
-- `favicon.svg`, `apple-touch-icon.png`, `og-image.jpg` are referenced but absent
-- Add `sitemap.xml` and `robots.txt` once there's more than one page
+- `og-image.jpg` is referenced but absent
+- `robots.txt` and `sitemap.xml` list the live routes only
 - Mobile layout below 1040px is an interpretation — no mobile frame exists in Figma
 - Two typos were fixed against the Figma source: **NETIFY** → Netlify, and the footer heading order. The "All rights and so many wrongs reserved" line is intentional and was left alone.
 

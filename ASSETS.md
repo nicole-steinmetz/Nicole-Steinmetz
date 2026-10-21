@@ -90,7 +90,6 @@ Used on `/pricing/` tabs. Sourced from `nicole-platform-profiles_1.html` (not Fi
 
 ## Still needed, not in Figma
 
-- `favicon.svg`, `apple-touch-icon.png` (180×180)
 - `assets/img/og-image.jpg` — 1200×630 social card
 
 ---

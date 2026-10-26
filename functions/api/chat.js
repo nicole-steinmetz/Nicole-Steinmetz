@@ -9,7 +9,7 @@ import faqs from "../_lib/faqs.json";
 import {
   FaqIndex, isPricing, buildPrompt, metaFor, clean, faqLink, validate, allowedOrigin,
   TAG_RE, SYSTEM_PROMPT, PRICING_URL, PRICING_REPLY, LIMIT_REPLY, ERROR_REPLY,
-  CONTACT_ACTIONS, COST_SLUG
+  NO_MATCH_REPLY, CONTACT_ACTIONS, COST_SLUG, exactFaq
 } from "../_lib/faq-core.js";
 import { noteAsked } from "../_lib/faq-sessions.js";
 
@@ -44,8 +44,22 @@ async function allow(env, ip) {
 
 const sse = (obj) => `data: ${JSON.stringify(obj)}\n\n`;
 
+function logFaqError(error) {
+  const status = error && Number.isInteger(error.status) ? error.status : null;
+  const message = String((error && error.message) || "unknown")
+    .replace(/sk-ant-[A-Za-z0-9_-]+/g, "[redacted]")
+    .slice(0, 300);
+  console.error(JSON.stringify({ msg: "faq chat failed", status, message }));
+}
+
+function fail(message, status) {
+  const error = new Error(message);
+  error.status = status;
+  return error;
+}
+
 async function* anthropicText(env, prompt) {
-  if (!env.ANTHROPIC_API_KEY) throw new Error("ANTHROPIC_API_KEY is not set");
+  if (!env.ANTHROPIC_API_KEY) throw fail("ANTHROPIC_API_KEY is not set", null);
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -61,7 +75,12 @@ async function* anthropicText(env, prompt) {
       messages: [{ role: "user", content: prompt }]
     })
   });
-  if (!res.ok || !res.body) throw new Error(`Anthropic ${res.status}`);
+  if (!res.ok || !res.body) {
+    let detail = "";
+    try { detail = await res.text(); } catch { detail = ""; }
+    detail = detail.replace(/sk-ant-[A-Za-z0-9_-]+/g, "[redacted]").replace(/\s+/g, " ").trim().slice(0, 180);
+    throw fail(detail ? `Anthropic ${res.status}: ${detail}` : `Anthropic ${res.status}`, res.status);
+  }
   const reader = res.body.getReader();
   const dec = new TextDecoder();
   let buf = "";
@@ -78,7 +97,7 @@ async function* anthropicText(env, prompt) {
         try { ev = JSON.parse(line.slice(5).trim()); } catch { continue; }
         if (ev.type === "content_block_delta" && ev.delta && ev.delta.type === "text_delta") yield ev.delta.text;
         else if (ev.type === "message_stop") return;
-        else if (ev.type === "error") throw new Error((ev.error && ev.error.message) || "Anthropic error");
+        else if (ev.type === "error") throw fail((ev.error && ev.error.message) || "Anthropic error", null);
       }
     }
   } finally {
@@ -107,11 +126,38 @@ async function* answer(env, input) {
   }
 
   const found = top.map((x) => x[0]);
+  if (!found.length) {
+    yield sse({ type: "meta", kind: "fallback", links: [], actions: CONTACT_ACTIONS });
+    yield sse({ type: "delta", text: NO_MATCH_REPLY });
+    yield sse({ type: "done" });
+    return;
+  }
+
+  // The provider key is not on this Pages project. An exact FAQ still has
+  // its full answer, so use that. Anything else stays the real error.
+  if (!env.ANTHROPIC_API_KEY) {
+    const error = fail("ANTHROPIC_API_KEY is not set", null);
+    logFaqError(error);
+    const exact = exactFaq(index, message);
+    if (exact) {
+      yield sse({ type: "meta", kind: "answer", links: [faqLink(exact)], actions: [] });
+      yield sse({ type: "delta", text: exact.answer });
+      yield sse({ type: "done" });
+      return;
+    }
+    yield sse({ type: "error", text: ERROR_REPLY, actions: CONTACT_ACTIONS });
+    return;
+  }
+
   let buf = "";
   let tagged = false;
+  let noMatch = false;
   try {
     for await (const text of anthropicText(env, buildPrompt(message, history, found))) {
-      if (tagged) { yield sse({ type: "delta", text: clean(text) }); continue; }
+      if (tagged) {
+        if (!noMatch) yield sse({ type: "delta", text: clean(text) });
+        continue;
+      }
       buf += text;
       if (buf.includes("\n") || buf.length > 60) {
         const nl = buf.indexOf("\n");
@@ -122,25 +168,30 @@ async function* answer(env, input) {
           meta = metaFor(first, found);
           if (meta.kind === "chat" && top.length && top[0][1] >= 4) meta = metaFor("USED: 1", found);
         } else {
-          meta = metaFor(found.length ? "USED: 1" : "NONE", found);
+          meta = metaFor("USED: 1", found);
           rest = buf;
         }
+        noMatch = meta.kind === "fallback";
         yield sse(meta);
         tagged = true;
-        if (rest.trim()) yield sse({ type: "delta", text: clean(rest.trimStart()) });
+        if (noMatch) yield sse({ type: "delta", text: NO_MATCH_REPLY });
+        else if (rest.trim()) yield sse({ type: "delta", text: clean(rest.trimStart()) });
       }
     }
     if (!tagged) {
       const nl = buf.indexOf("\n");
       let first = nl >= 0 ? buf.slice(0, nl) : buf;
       let rest = nl >= 0 ? buf.slice(nl + 1) : "";
-      if (!TAG_RE.test(first)) { first = found.length ? "USED: 1" : "NONE"; rest = buf; }
-      yield sse(metaFor(first, found));
-      if (rest.trim()) yield sse({ type: "delta", text: clean(rest.trim()) });
+      if (!TAG_RE.test(first)) { first = "USED: 1"; rest = buf; }
+      const meta = metaFor(first, found);
+      noMatch = meta.kind === "fallback";
+      yield sse(meta);
+      if (noMatch) yield sse({ type: "delta", text: NO_MATCH_REPLY });
+      else if (rest.trim()) yield sse({ type: "delta", text: clean(rest.trim()) });
     }
     yield sse({ type: "done" });
   } catch (e) {
-    console.error("faq chat failed", e && e.message);
+    logFaqError(e);
     yield sse({ type: "error", text: ERROR_REPLY, actions: CONTACT_ACTIONS });
   }
 }

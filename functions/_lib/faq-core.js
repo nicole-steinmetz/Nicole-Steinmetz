@@ -21,6 +21,7 @@ export const PRICING_REPLY = "My pricing depends on the platform and the size of
 export const LIMIT_REPLY = "You've asked a lot of questions in a short time, so I've paused the assistant for a little while. " +
   "If you'd like to keep talking, book a call or get in touch directly.";
 export const ERROR_REPLY = "Sorry, I couldn't answer that just now. Please try again, or get in touch directly.";
+export const NO_MATCH_REPLY = "I don't have that in my FAQs.";
 
 export const SYSTEM_PROMPT = `You are the FAQ assistant on the website of Nicole Steinmetz, a web design studio. You reply in first person as Nicole ("I", "my").
 
@@ -124,6 +125,13 @@ export class FaqIndex {
       .slice(0, k)
       .filter((x) => x[1] >= 1.5);
   }
+}
+
+export function exactFaq(index, message) {
+  const nq = norm(message);
+  if (!nq) return null;
+  const i = index.aliases.findIndex((list) => list.some((a) => a === nq));
+  return i >= 0 ? index.faqs[i] : null;
 }
 
 export function isPricing(message, top) {

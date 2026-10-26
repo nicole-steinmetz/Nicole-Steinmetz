@@ -1548,7 +1548,7 @@ body:has(.process) .site-footer { margin-top: 0; }
   transition: border-color var(--dur-fast) var(--ease);
 }
 .site-footer__privacy:hover { border-bottom-color: currentColor; }
-.site-footer__badges { width: 303px; height: auto; }
+.site-footer__badges { width: var(--footer-badge); height: auto; }
 
 /* ============================================================
    TABLET — ≤1040px

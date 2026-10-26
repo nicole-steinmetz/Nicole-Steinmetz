@@ -161,9 +161,10 @@
 .contact-card__body {
   max-width: 321px;
   margin-top: auto;
-  font-size: var(--fs-lede);
-  line-height: var(--lh-lede);
-  color: var(--ink-black);
+  font-size: var(--fs-card); /* 15px, Figma contact card body */
+  line-height: var(--lh-card); /* 23.4px */
+  letter-spacing: 0;
+  color: var(--ink); /* #505050 */
 }
 
 @media (prefers-reduced-motion: reduce) {

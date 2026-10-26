@@ -20,9 +20,8 @@
   --blue-press:  #5A81AE;   /* derived                          */
 
   /* ---- INK ------------------------------------------------- */
-  --ink:         #505050;   /* headings + pillar body           */
+  --ink:         #505050;   /* headings, body, contact cards    */
   --ink-soft:    #575757;   /* hero sub, eyebrow                */
-  --ink-black:   #000000;   /* contact card body — Figma 380:67 */
   --ink-focus:   #0E0E10;   /* hero line in focus               */
   --hero-muted:  #A8A29E;   /* hero line after the colour sweep */
   --on-dark:     #FFFFFF;   /* text on rust / on footer image   */
@@ -49,6 +48,7 @@
   --fs-h2:       clamp(1.5rem, 2.08vw, 1.875rem); /* 24 → 30px  */
   --fs-h3:       clamp(1.25rem, 1.53vw, 1.375rem);/* 20 → 22px  */
   --fs-body:     1rem;                            /* 16px       */
+  --fs-card:     0.9375rem;                       /* 15px — contact card body */
   --fs-ui:       1rem;                            /* 16px       */
   --fs-footer-h: 1.25rem;                         /* 20px       */
 
@@ -56,9 +56,11 @@
   --lh-lede:     1.495;  /* 32.9 / 22                           */
   --lh-body:     1.875;  /* 30 / 16 — How We Build prose        */
   --lh-compact:  1.5625; /* 25 / 16 — pillar body               */
+  --lh-card:     1.56;   /* 23.4 / 15 — contact card body       */
   --ls-eyebrow:  0.1em;  /* 1.4px / 14px                        */
 
   /* ---- LAYOUT ---------------------------------------------- */
+  --footer-badge: 76px;   /* Circle lockup, 25% of the 303px frame */
   --page-max:    1280px; /* 1440 frame − 80px gutters           */
   --gutter:      80px;
   --gutter-md:   40px;

@@ -1,0 +1,800 @@
+[
+  {
+    "slug": "how-do-i-get-a-quote",
+    "category": "starting-a-project",
+    "question": "How do I get a quote?",
+    "aliases": [
+      "how do i get a quote",
+      "can i get a quote",
+      "request a quote",
+      "how do i enquire about a website",
+      "what do you need to quote my site"
+    ],
+    "answer": "Send me a note about your business, roughly what you need the site to do, and when you'd like it live. The quotes that come back fastest are the ones where you already know your page count, whether your copy and images exist, whether you own your domain, and what you've budgeted — with those four I can usually scope the whole thing in one pass.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-do-i-get-a-quote"
+  },
+  {
+    "slug": "what-should-i-have-ready-before-we-talk",
+    "category": "starting-a-project",
+    "question": "What should I have ready before we talk?",
+    "aliases": [
+      "what do i need before the first call",
+      "how should i prepare for our first chat",
+      "what to bring to the intro call",
+      "what do i need to prepare before we talk",
+      "do i need a sitemap before we speak"
+    ],
+    "answer": "A rough sitemap, any brand assets you already have, your domain details, and a budget range. None of it needs to be final. It just means the first call is spent on your business rather than on admin.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-should-i-have-ready-before-we-talk"
+  },
+  {
+    "slug": "i-already-have-a-domain-and-email-set-up-how-do-we-handle-access",
+    "category": "starting-a-project",
+    "question": "I already have a domain and email set up — how do we handle access?",
+    "aliases": [
+      "how do i give you access to my domain",
+      "do i need to send you my passwords",
+      "registrar access for the designer",
+      "delegate access to my email provider",
+      "i already own a domain how do we connect it"
+    ],
+    "answer": "Don't send me passwords if your registrar or email provider offers a better option — most of the big ones have a delegate or invited-user function, which gives me the access I need without handing over your login, and lets you revoke it the moment we're done. Where that option doesn't exist — some smaller registrars and IT companies don't offer it — your username and password work fine; just change the password once we've wrapped up. Send me every domain you own, including the one you're currently using, so nothing gets missed, and if you're connecting more than one to the new site, let me know which should be the primary. Tell me who manages your email before we start too, because moving a site without accounting for existing email records is how businesses accidentally lose their inbox on launch day.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#i-already-have-a-domain-and-email-set-up-how-do-we-handle-access"
+  },
+  {
+    "slug": "do-you-work-with-clients-outside-australia",
+    "category": "starting-a-project",
+    "question": "Do you work with clients outside Australia?",
+    "aliases": [
+      "do you work with overseas clients",
+      "can you work with someone outside australia",
+      "do you work with japan clients",
+      "what currency do you charge in",
+      "do you work across time zones"
+    ],
+    "answer": "Yes. I'm based across Australia and Japan and work with clients in both. Everything runs remotely — scoping, reviews and handover all work fine across time zones. Pricing is in AUD.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#do-you-work-with-clients-outside-australia"
+  },
+  {
+    "slug": "what-does-a-project-cost",
+    "category": "starting-a-project",
+    "question": "What does a project cost?",
+    "aliases": [
+      "how much does a website cost",
+      "what do your websites cost",
+      "how much for a new website",
+      "website price",
+      "where is your pricing"
+    ],
+    "answer": "It depends on the platform and the size of the build, and the full breakdown by platform is on the Pricing page. Everything beyond the core build is quoted per item before any work starts on it, so nothing appears on an invoice you haven't already seen.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-does-a-project-cost"
+  },
+  {
+    "slug": "how-long-does-a-build-take",
+    "category": "starting-a-project",
+    "question": "How long does a build take?",
+    "aliases": [
+      "how long will my website take",
+      "how long to build a site",
+      "website turnaround time",
+      "how many months for a website build",
+      "when can my site be live"
+    ],
+    "answer": "Anywhere from one to six months. The two things that move that number are the complexity of the site and how many people are making decisions — a single decision-maker with content ready is a different project to a five-department sign-off, even at identical scope. Your quote carries a committed timeline based on your actual situation.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-long-does-a-build-take"
+  },
+  {
+    "slug": "whats-the-process-start-to-finish",
+    "category": "how-a-build-runs",
+    "question": "What's the process, start to finish?",
+    "aliases": [
+      "what is your process",
+      "how does a website project work",
+      "what are the steps from start to finish",
+      "walk me through how you build a site",
+      "how does working with you go"
+    ],
+    "answer": "1. Let's chat. We start with a call about your business, what you need the site to do, and when you'd like it live. From there, I'll send through a quote based on your sitemap.\n2. Gather your content. Before I start designing, I'll need your images and near-final copy. Everything you need to get ready is on the Before We Start Designing page.\n3. Lock in the scope. We confirm your pages and content together, and that's what your build is scheduled around.\n4. Desktop design. I design and build the full site for desktop first. At this stage, please review it on a laptop or desktop. It won't look right on your phone yet, and that's completely normal.\n5. Perfect desktop. We use your rounds of changes to get desktop exactly right. Once you've signed it off, we move on to mobile.\n6. Mobile optimisation. Now's the time to grab your phone. I optimise every page for mobile, and you get a round of mobile touch-ups.\n7. Final invoice. The balance is settled before the site goes live.\n8. Handover. The site moves into your account and it's all yours, with full access from here on. Your domain stays with your current provider, like Crazy Domains or GoDaddy. I simply point it to your new site.\n9. Go live. Connecting your domain is the very last step. It can take up to 48 hours to show everywhere, so don't worry if it appears for some people before others.\n10. Training. Once you're live, we'll do a session on your own site so you feel confident making updates yourself.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#whats-the-process-start-to-finish"
+  },
+  {
+    "slug": "which-platform-is-right-for-my-project",
+    "category": "how-a-build-runs",
+    "question": "Which platform is right for my project?",
+    "aliases": [
+      "squarespace or shopify",
+      "which platform should i use",
+      "what platform do you recommend",
+      "should i go custom or use a platform",
+      "squarespace vs shopify vs custom"
+    ],
+    "answer": "Squarespace for simple, low-maintenance sites you'll manage yourself. Shopify where selling is the core function of the business. A custom build where the brief needs more motion, interaction or flexibility than a platform comfortably handles — those get designed in Figma, built in Cursor and deployed to Cloudflare, Netlify or Vercel depending on whether you're optimising for security and long-term ownership, straightforward marketing and forms, or a premium interactive experience. I'll walk you through the trade-offs rather than just naming one.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#which-platform-is-right-for-my-project"
+  },
+  {
+    "slug": "can-you-redesign-my-existing-website",
+    "category": "how-a-build-runs",
+    "question": "Can you redesign my existing website?",
+    "aliases": [
+      "can you redo my current website",
+      "do you redesign websites",
+      "i want a revamp of my old site",
+      "is it better to start fresh or redesign",
+      "can you rebuild my existing site"
+    ],
+    "answer": "Yes, within the platforms I work in. Whether that's the right call depends on what you're currently sitting on — if the template is restrictive, or you're fighting it every time you want to change something, starting fresh usually works out more cost-effective than designing around limitations you'll still have afterwards. I'll tell you which one you're looking at before you commit to either.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#can-you-redesign-my-existing-website"
+  },
+  {
+    "slug": "what-happens-if-i-change-my-mind-about-the-platform-partway-through",
+    "category": "how-a-build-runs",
+    "question": "What happens if I change my mind about the platform partway through?",
+    "aliases": [
+      "can i switch platforms mid project",
+      "what if i want to change platform halfway",
+      "i want to move from squarespace to shopify during the build",
+      "changing platform after we start",
+      "will switching platform cost extra"
+    ],
+    "answer": "We can move, but it's a re-quote rather than an adjustment. Each platform is priced differently because the work is different — the design has to be rebuilt to suit how that platform actually functions, custom code rarely carries across, and features that were included on one platform can become paid add-ons on another. Switching after the build has started usually means paying for some of the same work twice. It's worth spending the extra time at the discovery stage rather than deciding halfway.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-happens-if-i-change-my-mind-about-the-platform-partway-through"
+  },
+  {
+    "slug": "how-many-rounds-of-changes-are-included",
+    "category": "how-a-build-runs",
+    "question": "How many rounds of changes are included?",
+    "aliases": [
+      "how many revisions do i get",
+      "how many rounds of edits are included",
+      "number of change rounds",
+      "how many rounds on a multi page site",
+      "what happens after my included rounds"
+    ],
+    "answer": "Two on a one-page site, three on a multi-page build, and your quote confirms exactly which applies to you. Rounds beyond that allowance are billed hourly rather than refused — you're never stuck, it just stops being free.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-many-rounds-of-changes-are-included"
+  },
+  {
+    "slug": "what-actually-counts-as-a-round",
+    "category": "how-a-build-runs",
+    "question": "What actually counts as a round?",
+    "aliases": [
+      "what is a round of changes",
+      "what is a revision round",
+      "when does a round start and end",
+      "do late changes go into the next round",
+      "what counts as one round of feedback"
+    ],
+    "answer": "One consolidated list of changes covering the whole build, sent in one go. Send everything you want changed before I start, because the moment I begin working on your list, that round is closed — anything arriving after that carries into the next round. It isn't about being rigid; reopening a round mid-edit is how three rounds quietly becomes six.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-actually-counts-as-a-round"
+  },
+  {
+    "slug": "what-if-several-people-in-our-business-need-to-have-input",
+    "category": "how-a-build-runs",
+    "question": "What if several people in our business need to have input?",
+    "aliases": [
+      "multiple people giving feedback",
+      "my team all want input",
+      "too many cooks on my website",
+      "who should send the feedback list",
+      "several stakeholders reviewing the site"
+    ],
+    "answer": "That's normal, and departments piping in isn't a problem in itself — it just needs one person nominated to gather everything and send it as a single list. What costs money is the same feedback arriving three times from three directions. Once your included rounds are used, every further round is billed hourly, so consolidating properly is the cheapest thing you can do.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-if-several-people-in-our-business-need-to-have-input"
+  },
+  {
+    "slug": "how-quickly-do-you-need-our-feedback-and-how-long-do-changes-take",
+    "category": "how-a-build-runs",
+    "question": "How quickly do you need our feedback, and how long do changes take?",
+    "aliases": [
+      "how fast do i need to give feedback",
+      "how long do changes take",
+      "feedback deadline",
+      "turnaround time for revisions",
+      "how soon do you make changes"
+    ],
+    "answer": "Five days is the target for getting feedback back to me — beyond that a project loses momentum and starts competing with work that's moved ahead of it. On my side, changes take between one and seven days depending on how complex they are.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-quickly-do-you-need-our-feedback-and-how-long-do-changes-take"
+  },
+  {
+    "slug": "whats-the-difference-between-a-change-and-a-variation",
+    "category": "how-a-build-runs",
+    "question": "What's the difference between a change and a variation?",
+    "aliases": [
+      "change vs variation",
+      "what is a variation",
+      "what is the difference between a change and a variation",
+      "is a new page a change or a variation",
+      "when does extra work become a variation"
+    ],
+    "answer": "A change is a refinement to something already scoped — different colour, reworded heading, moved section. A variation is new work: a change of direction after sign-off, new content, new layouts, extra pages, additional products, or new functionality. Variations aren't part of your included rounds; they're quoted before anything starts, so nothing lands on an invoice you haven't approved.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#whats-the-difference-between-a-change-and-a-variation"
+  },
+  {
+    "slug": "what-does-seo-setup-actually-include",
+    "category": "how-a-build-runs",
+    "question": "What does \"SEO setup\" actually include?",
+    "aliases": [
+      "what is included in seo setup",
+      "what seo do you do",
+      "do you set up google search console",
+      "meta titles and descriptions included",
+      "does my build include seo"
+    ],
+    "answer": "A defined technical baseline: page titles, meta descriptions, heading hierarchy, indexability, an XML sitemap, a robots file, redirects where you're migrating off an existing site, and Google Search Console connected and verified. That's the foundation that lets you rank for what you're already good at. It isn't a ranking promise — nobody can honestly make one, because nobody controls the algorithm or your competitors.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-does-seo-setup-actually-include"
+  },
+  {
+    "slug": "what-does-ai-integration-actually-mean-for-my-business",
+    "category": "how-a-build-runs",
+    "question": "What does \"AI integration\" actually mean for my business?",
+    "aliases": [
+      "what is ai integration",
+      "do you use ai to build sites",
+      "is the copy ai generated",
+      "do you do ai for my business",
+      "ai copywriting and seo per page"
+    ],
+    "answer": "Two separate things worth pulling apart. There's AI in how the site gets built — faster iteration, and AI-generated copywriting and SEO available per page, disclosed as AI-generated in every deliverable. And there's AI in how your business runs day to day: the automations, workflows and tools that sit behind the site rather than on it. That second one is a conversation worth having before the platform gets chosen rather than after, because it changes what the site needs to be able to do.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-does-ai-integration-actually-mean-for-my-business"
+  },
+  {
+    "slug": "what-keeps-a-build-on-time-and-on-budget",
+    "category": "how-a-build-runs",
+    "question": "What keeps a build on time and on budget?",
+    "aliases": [
+      "how do i keep my project on budget",
+      "how do i avoid delays",
+      "what slows a website build down",
+      "how to stay on schedule",
+      "what do you need to keep the build on track"
+    ],
+    "answer": "Five things, in order of impact: a finalised sitemap so the page count and the quote match exactly, images ready to go, copy in near-final form, your logo and brand files finalised, and any non-negotiables — a booking system, plans for where the site goes next — flagged early so the right platform gets chosen from day one. Projects that stay in scope are the ones where the real material exists before design begins.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-keeps-a-build-on-time-and-on-budget"
+  },
+  {
+    "slug": "do-you-write-the-copy-and-source-the-images-or-do-i-supply-them",
+    "category": "copy-images-design",
+    "question": "Do you write the copy and source the images, or do I supply them?",
+    "aliases": [
+      "do you write website copy",
+      "who writes the content",
+      "can you write my copy",
+      "do i need to supply images",
+      "who provides the text and photos"
+    ],
+    "answer": "Supplied by you is ideal — it's what keeps a build fastest and truest to how you actually sound. If you'd rather not write it, AI-generated copywriting and SEO is available per page, and it's noted as AI-generated in every deliverable without exception.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#do-you-write-the-copy-and-source-the-images-or-do-i-supply-them"
+  },
+  {
+    "slug": "what-about-photography-can-you-supply-images",
+    "category": "copy-images-design",
+    "question": "What about photography — can you supply images?",
+    "aliases": [
+      "can you supply photography",
+      "do you provide photos",
+      "can you source images for me",
+      "can you generate images",
+      "i dont have photos for my site"
+    ],
+    "answer": "Your own photos are still the strongest option, even in an AI world — they're the thing that makes a site look like your business rather than a template. Where you don't have them, I can generate imagery instead, and that's an added cost on top of the build. The Pricing page has the detail.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-about-photography-can-you-supply-images"
+  },
+  {
+    "slug": "what-if-my-content-isnt-ready-yet-copy-images-sitemap",
+    "category": "copy-images-design",
+    "question": "What if my content isn't ready yet — copy, images, sitemap?",
+    "aliases": [
+      "my content isnt ready",
+      "can you start without copy",
+      "can you start before i have images",
+      "what if i dont have a sitemap yet",
+      "do i need content before you begin design"
+    ],
+    "answer": "I can't start until images and near-final copy are in. It's the difference between designing something once and designing it twice, and it's what keeps your revision rounds focused on design rather than content. The Before We Start Designing page lists everything to get ready.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-if-my-content-isnt-ready-yet-copy-images-sitemap"
+  },
+  {
+    "slug": "how-do-you-handle-mobile",
+    "category": "copy-images-design",
+    "question": "How do you handle mobile?",
+    "aliases": [
+      "is my site mobile friendly",
+      "do you do mobile optimisation",
+      "is mobile included in the price",
+      "when do you do the mobile version",
+      "mobile design"
+    ],
+    "answer": "Mobile optimisation is part of the core price, never an add-on, and it comes after desktop sign-off. I build and perfect the desktop site first, and only once you've confirmed desktop is final do I optimise every page for mobile, with one round set aside for mobile touch-ups. Until then, please review on a laptop or desktop — the site will look unfinished on your phone, and that's expected. Images are the part worth raising early — a wide hero shot that looks right on a desktop will crop hard on a phone, so anything with a face, text or a product edge sitting near the frame needs either a second crop or a different photo entirely. I flag those during design rather than after launch.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-do-you-handle-mobile"
+  },
+  {
+    "slug": "do-you-do-branding-and-logo-work-as-well",
+    "category": "copy-images-design",
+    "question": "Do you do branding and logo work as well?",
+    "aliases": [
+      "do you design logos",
+      "do you do branding",
+      "can you make me a logo",
+      "i need a new logo",
+      "do you offer brand identity"
+    ],
+    "answer": "No — I don't offer logo or branding work. Please bring your finished logo and brand files with you (see what file formats and sizes to send). If you need a new logo, have it finalised before the site design starts, or you end up paying to design the same pages twice.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#do-you-do-branding-and-logo-work-as-well"
+  },
+  {
+    "slug": "whats-actually-included-in-the-handover",
+    "category": "once-youre-live",
+    "question": "What's actually included in the handover?",
+    "aliases": [
+      "what does the handover include",
+      "what happens at handover",
+      "handover session",
+      "what do i get when the site is finished",
+      "website training at the end"
+    ],
+    "answer": "On Squarespace and Shopify it's a working session on your own site: adding and editing pages, updating content and images, managing products or posts, and where you're selling, walking through the connections your store depends on — product catalogue syncing, sales channel and commerce manager setup, and how to tell when a sync has broken. The line is that I show you how the systems are configured and how to run them day to day; the ongoing management of third-party accounts stays with you. Anything you'd rather hand back to me afterwards is hourly, and plenty of clients do exactly that.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#whats-actually-included-in-the-handover"
+  },
+  {
+    "slug": "can-i-update-the-website-myself-after-launch",
+    "category": "once-youre-live",
+    "question": "Can I update the website myself after launch?",
+    "aliases": [
+      "can i edit the site myself",
+      "can i update my own website",
+      "can i make my own changes after launch",
+      "is a custom build editable by me",
+      "will i be able to manage the site"
+    ],
+    "answer": "On Squarespace and Shopify, yes — those platforms are built to be client-managed, and the handover session at the end of your build walks you through your own site so you can make your own updates. Custom builds are different: they aren't designed for editing without touching code, so you get a handover call covering how everything is set up, and updates come through me at the hourly rate. If self-editing matters to you on a custom build, a CMS can be added so you manage the content yourself — worth raising before the platform is chosen, not after.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#can-i-update-the-website-myself-after-launch"
+  },
+  {
+    "slug": "how-do-i-upgrade-my-squarespace-subscription",
+    "category": "once-youre-live",
+    "question": "How do I upgrade my Squarespace subscription?",
+    "aliases": [
+      "upgrade my squarespace plan",
+      "how to upgrade squarespace",
+      "change my squarespace subscription",
+      "squarespace billing plan upgrade",
+      "where do i upgrade squarespace"
+    ],
+    "answer": "Easiest done on a laptop or desktop rather than your phone. Log into squarespace.com with your account email and password and you'll land on your dashboard — click the website button next to your site's thumbnail. That takes you into the editor, with your site preview on the right and a blue Subscribe button at the bottom of the left-hand panel. Click it and follow the payment prompts; paying annually gets you the biggest discount, and our Squarespace discount applies automatically at checkout. We're notified the moment you subscribe, so we can connect your domain straight away.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-do-i-upgrade-my-squarespace-subscription"
+  },
+  {
+    "slug": "will-i-have-full-access-to-my-own-site",
+    "category": "once-youre-live",
+    "question": "Will I have full access to my own site?",
+    "aliases": [
+      "will i have admin access",
+      "do i own the login to my site",
+      "do i get full access",
+      "will i be locked out of my website",
+      "who has administration access"
+    ],
+    "answer": "Yes, always. You hold full administration access from handover onward, and it stays yours. One thing worth knowing: if the site breaks because of changes made on your end, fixing it is billed hourly — that's a repair, not a defect.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#will-i-have-full-access-to-my-own-site"
+  },
+  {
+    "slug": "what-happens-if-something-breaks-after-launch",
+    "category": "once-youre-live",
+    "question": "What happens if something breaks after launch?",
+    "aliases": [
+      "something broke after launch",
+      "my site has a bug after going live",
+      "is there a warranty on the site",
+      "30 day defect fix",
+      "who fixes problems after launch"
+    ],
+    "answer": "Anything that's a genuine defect against the agreed scope — something not working the way it was signed off — I fix at no charge for 30 days after launch. After that window, and for anything that's a change rather than a defect, it moves to the hourly rate with scope confirmed before I start.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-happens-if-something-breaks-after-launch"
+  },
+  {
+    "slug": "do-you-offer-ongoing-support-or-website-maintenance",
+    "category": "once-youre-live",
+    "question": "Do you offer ongoing support or website maintenance?",
+    "aliases": [
+      "do you offer website maintenance",
+      "ongoing support",
+      "do you have a monthly retainer",
+      "website care plan",
+      "can you look after my site long term"
+    ],
+    "answer": "Yes — billed hourly, scoped and agreed with you before anything starts. There's no monthly plan and no minimum spend, which for most sites works out cheaper than paying for a retainer you don't use. If you'd rather have someone on standby every month, flag it early and we'll work out what that needs to look like.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#do-you-offer-ongoing-support-or-website-maintenance"
+  },
+  {
+    "slug": "can-you-manage-future-blog-posts-and-resources-for-me",
+    "category": "once-youre-live",
+    "question": "Can you manage future blog posts and resources for me?",
+    "aliases": [
+      "can you post my blog for me",
+      "do you manage blog posts",
+      "can you upload news posts",
+      "blog setup",
+      "can i run my own blog"
+    ],
+    "answer": "Either way works. Blog and news setup is a one-off item, and I can upload posts for you per post if you'd rather not touch it. On Squarespace and Shopify most clients do the setup with me and then run it themselves — managing posts is one of the things the handover session covers. On custom builds, a Sanity blog dashboard gives you the same self-publishing.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#can-you-manage-future-blog-posts-and-resources-for-me"
+  },
+  {
+    "slug": "how-do-i-manage-my-analytics-and-sales-data",
+    "category": "once-youre-live",
+    "question": "How do I manage my analytics and sales data?",
+    "aliases": [
+      "where do i see my traffic",
+      "how do i see my sales data",
+      "is google analytics set up",
+      "where are my orders reported",
+      "website analytics"
+    ],
+    "answer": "Analytics is connected as part of every core build, so traffic and referral data is there from launch. Sales data lives in the platform itself — Shopify's own reporting covers orders, products and customers without anything extra. POS systems, Instagram Shop and marketplace connections are integrations quoted per item, and they're worth raising before the build rather than after, because they influence which platform is right in the first place.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-do-i-manage-my-analytics-and-sales-data"
+  },
+  {
+    "slug": "do-you-charge-hourly-or-a-fixed-price",
+    "category": "working-together",
+    "question": "Do you charge hourly or a fixed price?",
+    "aliases": [
+      "hourly or fixed price",
+      "do you charge by the hour",
+      "is the quote fixed",
+      "fixed price website",
+      "when do you bill hourly"
+    ],
+    "answer": "Core builds are fixed-price, so you know the number before anything starts. Anything outside that scope — variations, extra rounds of changes, custom animation, ad hoc requests, post-launch support — is hourly, and always confirmed with you before the work begins.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#do-you-charge-hourly-or-a-fixed-price"
+  },
+  {
+    "slug": "what-are-your-payment-terms",
+    "category": "working-together",
+    "question": "What are your payment terms?",
+    "aliases": [
+      "how do payments work",
+      "do you take a deposit",
+      "payment schedule",
+      "25 percent upfront",
+      "when do i pay the final invoice"
+    ],
+    "answer": "For a first project together it's 25% to start and the remaining 75% before the site goes live. There's no late fee and no interest — but launch doesn't happen until the final payment has come through, so the timing is entirely in your hands. Where hosting is billed through a third party, that also needs to be settled before your domain can be pointed at the new site.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-are-your-payment-terms"
+  },
+  {
+    "slug": "how-do-third-party-subscriptions-get-paid-apps-email-hosting",
+    "category": "working-together",
+    "question": "How do third-party subscriptions get paid — apps, email, hosting?",
+    "aliases": [
+      "who pays for apps and subscriptions",
+      "who pays for hosting renewals",
+      "who pays for google workspace",
+      "third party subscriptions",
+      "who holds the accounts for my apps"
+    ],
+    "answer": "Directly by you, to the provider, on accounts in your own name. Shopify apps, Google Workspace, your domain renewal and your hosting plan are all ongoing costs of running the business rather than part of the build, and they're itemised and talked through during quoting so there are no surprises later. Software I use to build your site is a separate thing — it's passed on at cost with no markup, for the build period only, and it stops when the project does.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#how-do-third-party-subscriptions-get-paid-apps-email-hosting"
+  },
+  {
+    "slug": "what-actually-counts-as-a-page",
+    "category": "working-together",
+    "question": "What actually counts as a \"page\"?",
+    "aliases": [
+      "how do you count pages",
+      "what counts as a page",
+      "does a long page count as two pages",
+      "anchor links page count",
+      "pages with jump links"
+    ],
+    "answer": "If a page needs its own in-page navigation to jump between sections, it counts as two — regardless of how many URLs it lives at. The material inside it is doing the job of more than one page, so it gets quoted that way.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-actually-counts-as-a-page"
+  },
+  {
+    "slug": "whats-not-included-in-the-build-price",
+    "category": "working-together",
+    "question": "What's not included in the build price?",
+    "aliases": [
+      "what is not included in the price",
+      "what costs extra",
+      "what is excluded from the quote",
+      "extras not covered by the build price",
+      "are there hidden costs"
+    ],
+    "answer": "Hosting and platform fees, domain registration and renewal, third-party app subscriptions, copywriting unless you've added it, image generation or licensing, and anything not listed on the accepted quote. Software used to build your site is passed on at cost with no markup, for the duration of the build. Extra pages, integrations, popups and blog setup are all quoted per item, and nothing gets added to an invoice without being confirmed with you first.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#whats-not-included-in-the-build-price"
+  },
+  {
+    "slug": "do-i-need-to-pay-for-hosting-domains-or-software-separately",
+    "category": "working-together",
+    "question": "Do I need to pay for hosting, domains, or software separately?",
+    "aliases": [
+      "do i pay for hosting separately",
+      "who pays for my domain",
+      "are hosting and domain included",
+      "ongoing costs after the build",
+      "do i pay for software separately"
+    ],
+    "answer": "Yes. Hosting, your domain registration and any third-party apps the site relies on sit outside the build price and are ongoing costs to you. We go through all of it during quoting, so you know what's recurring and what it costs before you commit — not after. Your domain is always registered in your name, and third-party accounts are set up in your name too, so you're never locked out of your own business.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#do-i-need-to-pay-for-hosting-domains-or-software-separately"
+  },
+  {
+    "slug": "what-if-i-need-more-pages-or-features-partway-through",
+    "category": "working-together",
+    "question": "What if I need more pages or features partway through?",
+    "aliases": [
+      "i need more pages mid project",
+      "adding features partway through",
+      "can i add a page later",
+      "can i add pages during the build",
+      "what if the scope grows"
+    ],
+    "answer": "Everything outside the core build is quoted per item before any work starts on it. You'll always see the number before you commit to it.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-if-i-need-more-pages-or-features-partway-through"
+  },
+  {
+    "slug": "who-owns-the-site-once-its-finished",
+    "category": "working-together",
+    "question": "Who owns the site once it's finished?",
+    "aliases": [
+      "who owns my website",
+      "do i own the site",
+      "who owns the code",
+      "ownership of the finished site",
+      "website ownership after final payment"
+    ],
+    "answer": "You do, from the moment the final payment clears. I keep the right to access and maintain the site where we've agreed I'm doing ongoing work, and my own reusable components, templates and working files stay mine — but the site itself is yours.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#who-owns-the-site-once-its-finished"
+  },
+  {
+    "slug": "what-if-i-need-to-pause-or-cancel-after-weve-started",
+    "category": "working-together",
+    "question": "What if I need to pause or cancel after we've started?",
+    "aliases": [
+      "can i pause my project",
+      "how do i cancel",
+      "what if i need to put the project on hold",
+      "cancelling mid build",
+      "can i take a break and come back"
+    ],
+    "answer": "Pausing is fine and it happens — business gets busy, budgets shift, someone needs a decision from a board. The one thing to know is that a paused project releases its place in the schedule, so if I've taken on other work in the meantime, yours picks back up behind it rather than where it left off. If you cancel outright, work completed to that point is invoiced and payable. And if I ever had to cancel — which would only be an emergency — you keep everything I've built at no charge. Nobody ends up paying for nothing.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-if-i-need-to-pause-or-cancel-after-weve-started"
+  },
+  {
+    "slug": "will-you-use-our-site-as-an-example-of-your-work",
+    "category": "working-together",
+    "question": "Will you use our site as an example of your work?",
+    "aliases": [
+      "will you show my site in your portfolio",
+      "do you use clients as examples",
+      "can i opt out of being a case study",
+      "will you credit yourself on my website",
+      "do you reference clients you built for"
+    ],
+    "answer": "Probably, yes — I may reference that I built your website. If you'd rather I didn't, just say so and I won't.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#will-you-use-our-site-as-an-example-of-your-work"
+  },
+  {
+    "slug": "can-you-move-my-site-from-wordpress-shopify-or-another-platform",
+    "category": "starting-a-project",
+    "question": "Can you move my site from WordPress, Shopify or another platform?",
+    "aliases": [
+      "move my site from wordpress",
+      "migrate my site to a new platform",
+      "can you transfer my website",
+      "i am on wordpress can you move me",
+      "will my products import"
+    ],
+    "answer": "Sites can't be transferred from one platform to another, so a move is a rebuild on the new platform. Structured data like products (title, description, price, weight, dimensions and main image) can usually be imported, while categories, tags, downloads and page layouts are rebuilt by hand. Old Squarespace 7.0 sites also need a rebuild rather than an upgrade. If your URL structure is changing, I set up redirects so you keep your search rankings — see what SEO setup includes.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#can-you-move-my-site-from-wordpress-shopify-or-another-platform"
+  },
+  {
+    "slug": "ive-seen-a-site-i-love-can-you-build-something-like-it",
+    "category": "starting-a-project",
+    "question": "I've seen a site I love — can you build something like it?",
+    "aliases": [
+      "can you copy a site i like",
+      "build me something like this site",
+      "i have a reference website",
+      "can you match a site i love",
+      "can you build something like another site"
+    ],
+    "answer": "Send it over — a site you love is a great brief. To be honest with you, many showcase sites are built by full agency teams over months with very large budgets, so I won't promise an exact match. What I can do is borrow the ideas and sections that matter most to you and fit them to your budget and platform. Some animated, high-end looks need a custom build rather than Squarespace, and I'll tell you if that's the case.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#ive-seen-a-site-i-love-can-you-build-something-like-it"
+  },
+  {
+    "slug": "ive-built-a-prototype-with-an-ai-site-builder-can-you-turn-it-into-a-real-website",
+    "category": "starting-a-project",
+    "question": "I've built a prototype with an AI site builder — can you turn it into a real website?",
+    "aliases": [
+      "i built a prototype with ai",
+      "turn my ai site into a real website",
+      "lovable or bolt prototype",
+      "emergent prototype to live site",
+      "can you rebuild my ai generated site"
+    ],
+    "answer": "Yes, this is increasingly common. I review your prototype, then build it properly on Cloudflare, Netlify or Vercel, in a hosting account in your name. Prompt-based builders charge per prompt, can revert to earlier versions unpredictably and are hard to maintain, so the prototype works best as the brief rather than the final product. As a realistic guide, the first draft of a custom build takes at least two weeks.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#ive-built-a-prototype-with-an-ai-site-builder-can-you-turn-it-into-a-real-website"
+  },
+  {
+    "slug": "whats-the-difference-between-connecting-and-transferring-my-domain",
+    "category": "how-a-build-runs",
+    "question": "What's the difference between connecting and transferring my domain?",
+    "aliases": [
+      "connect vs transfer a domain",
+      "do i need to transfer my domain",
+      "should i transfer my domain",
+      "point my domain to the new site",
+      "will transferring my domain break my email"
+    ],
+    "answer": "Connecting points your existing domain at the new site and it stays with your registrar (GoDaddy, Crazy Domains and so on). Transferring moves the domain itself to a new registrar, which is rarely needed and can break email — if you do transfer, have whoever manages your email export the existing DNS records first. After connecting, DNS takes up to 48 hours, occasionally up to 72, to show everywhere, and the security certificate (the padlock) is issued automatically by the platform once DNS settles, so nobody can speed it up. If it's still not secure after that window, I chase the platform's support. Any extra domains you own can all point to your one primary domain; for access, see how we handle domain and email access.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#whats-the-difference-between-connecting-and-transferring-my-domain"
+  },
+  {
+    "slug": "can-i-see-the-site-before-it-goes-live",
+    "category": "how-a-build-runs",
+    "question": "Can I see the site before it goes live?",
+    "aliases": [
+      "can i preview the site",
+      "do i see the site before launch",
+      "private preview link",
+      "staging link",
+      "when will the new site replace my old one"
+    ],
+    "answer": "Yes, you review on a private preview link the whole way through — Squarespace and Shopify have built-in addresses for this, and custom builds get a preview URL. If you already have a live site, the new one is built in the background and only replaces it on launch day. New pages stay out of the navigation until then.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#can-i-see-the-site-before-it-goes-live"
+  },
+  {
+    "slug": "whats-the-best-way-to-send-feedback-or-report-a-problem",
+    "category": "how-a-build-runs",
+    "question": "What's the best way to send feedback or report a problem?",
+    "aliases": [
+      "how do i send feedback",
+      "how do i report a problem",
+      "best way to give feedback",
+      "how do i report a bug on my site",
+      "should i email or book a call"
+    ],
+    "answer": "Book a call. In an age of AI, a quick call is still the fastest way to keep a build on track — we go through the site together on screen, and nothing gets lost in a long email thread. Before the call, have one person gather everyone's notes into a single list, and review text internally so the call isn't spent on rewording (see what counts as a round). For text changes, send the whole paragraph rewritten rather than just the words that change: copy it from the site, make your edit and paste the full paragraph back. Where a section has several lines in the same font and size, send that whole block. If something looks broken between calls, send a screenshot plus the device, browser and screen size, because layouts adapt per screen and \"the text looks off\" is hard to reproduce without that. Try a hard refresh first, as cached old versions cause a lot of \"it looks broken\" moments.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#whats-the-best-way-to-send-feedback-or-report-a-problem"
+  },
+  {
+    "slug": "where-do-my-contact-form-submissions-go-and-why-am-i-not-getting-them",
+    "category": "how-a-build-runs",
+    "question": "Where do my contact form submissions go, and why am I not getting them?",
+    "aliases": [
+      "where do form submissions go",
+      "why dont i get contact form emails",
+      "contact form not sending",
+      "enquiries not arriving",
+      "form emails going missing"
+    ],
+    "answer": "Submissions are emailed to the address you nominate, one address per form, and a backup copy can be stored in a Google Sheet or exported as a spreadsheet. If they stop arriving, it's almost always a company email filter — ask your IT person to whitelist the platform's sending address — or the receiving address has changed. Please tell me which email should receive enquiries before launch.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#where-do-my-contact-form-submissions-go-and-why-am-i-not-getting-them"
+  },
+  {
+    "slug": "what-file-formats-and-sizes-should-i-send",
+    "category": "copy-images-design",
+    "question": "What file formats and sizes should I send?",
+    "aliases": [
+      "what image sizes do you need",
+      "what file format for my logo",
+      "what photo resolution do you need",
+      "can i send screenshots of images",
+      "how should i supply photos"
+    ],
+    "answer": "For photos, send the original full-resolution files, not screenshots or images pulled from a brochure or website, which look blurry when enlarged. Logos are best as vector (SVG, AI, EPS or PDF) or a transparent PNG, and headshots or team photos should be taken with room around the subject so they can be cropped consistently. For video, landscape works best across desktop and mobile; background videos need to be short (under a minute) and play muted, and longer videos are best hosted on YouTube or Vimeo and embedded. Sorting files into a folder per page saves time, and for large files please share a Drive or Dropbox link rather than emailing them.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#what-file-formats-and-sizes-should-i-send"
+  },
+  {
+    "slug": "can-you-train-my-team-including-new-staff-later-on",
+    "category": "once-youre-live",
+    "question": "Can you train my team, including new staff later on?",
+    "aliases": [
+      "can you train my staff",
+      "training for new team members",
+      "extra training sessions",
+      "onboard new starters on the site",
+      "staff training on the website"
+    ],
+    "answer": "Every build includes a handover session — see what's included in the handover. Extra sessions for other team members, or new starters down the track, are easy to book and billed hourly like other support. Sessions run on video call, on your own site, and you're welcome to record them.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#can-you-train-my-team-including-new-staff-later-on"
+  },
+  {
+    "slug": "do-you-do-ongoing-seo-backlinks-or-ranking-reports",
+    "category": "once-youre-live",
+    "question": "Do you do ongoing SEO, backlinks or ranking reports?",
+    "aliases": [
+      "do you do ongoing seo",
+      "do you build backlinks",
+      "ranking reports",
+      "do you do local seo",
+      "monthly seo reports"
+    ],
+    "answer": "No — I do on-site SEO as part of the build (see what SEO setup includes). Ongoing work like backlink building, content campaigns, local SEO management and monthly ranking reports is specialist work, and I'm happy to recommend someone. Analytics is connected from launch so that you, or an SEO specialist, have the data to work from.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#do-you-do-ongoing-seo-backlinks-or-ranking-reports"
+  },
+  {
+    "slug": "why-did-something-on-my-site-stop-working-after-an-update",
+    "category": "once-youre-live",
+    "question": "Why did something on my site stop working after an update?",
+    "aliases": [
+      "site stopped working after an update",
+      "my site broke after a squarespace update",
+      "widget stopped working",
+      "shopify update broke my site",
+      "why did my site suddenly break"
+    ],
+    "answer": "Platforms like Squarespace and Shopify update themselves, and occasionally an update clashes with custom code or a third-party widget. If it's a defect against the agreed scope, it's covered free within the 30-day post-launch defect window. After that it's fixed under ongoing support, scoped before I start. Custom builds on Cloudflare, Netlify or Vercel don't change under you in the same way.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#why-did-something-on-my-site-stop-working-after-an-update"
+  },
+  {
+    "slug": "which-domain-should-i-buy-and-who-should-own-it",
+    "category": "starting-a-project",
+    "question": "Which domain should I buy, and who should own it?",
+    "aliases": [
+      "which domain should i buy",
+      "where do i buy a domain",
+      "who should register my domain",
+      "domain name tips",
+      "should i buy my domain through you"
+    ],
+    "answer": "You should own it — buy it yourself, in your business's name, on your own account with a registrar like GoDaddy. I'm added as the technical contact, which gives me what I need to connect it without the domain ever leaving your hands. Pick something short, easy to spell and close to your business name. If you're registering a .com.au, you'll need your ABN.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#which-domain-should-i-buy-and-who-should-own-it"
+  },
+  {
+    "slug": "why-cant-anyone-open-the-photos-sent-through-my-website-form",
+    "category": "once-youre-live",
+    "question": "Why can't anyone open the photos sent through my website form?",
+    "aliases": [
+      "cant open photos from my form",
+      "heic file wont open",
+      "iphone photos not opening",
+      "form image uploads wont open",
+      "what is a heic file"
+    ],
+    "answer": "It's almost always an iPhone photo saved in HEIC format. iPhones use HEIC by default, and many Windows computers and email apps can't open it. To stop it at the source, the person taking the photos can switch their iPhone to Settings → Camera → Formats → Most Compatible, which saves new photos as JPEG. For files you've already received, a free online HEIC-to-JPEG converter does the job, or open them in Preview on a Mac and export as JPEG — and if you're stuck, send them to me and I'll convert them for you.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#why-cant-anyone-open-the-photos-sent-through-my-website-form"
+  },
+  {
+    "slug": "can-you-set-up-email-addresses-for-my-staff",
+    "category": "once-youre-live",
+    "question": "Can you set up email addresses for my staff?",
+    "aliases": [
+      "can you set up staff emails",
+      "create business email addresses",
+      "set up email mailboxes",
+      "google workspace email setup",
+      "new email address for an employee"
+    ],
+    "answer": "Yes. I charge for my time to set them up, and the ongoing cost for each mailbox is billed to your own card on your own account, so the subscription always sits with you. Send me the names and addresses you'd like, and I'll take care of the rest.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#can-you-set-up-email-addresses-for-my-staff"
+  },
+  {
+    "slug": "why-are-my-emails-going-to-spam",
+    "category": "once-youre-live",
+    "question": "Why are my emails going to spam?",
+    "aliases": [
+      "why do my emails go to spam",
+      "emails landing in junk",
+      "spf dkim dmarc",
+      "should i use gmail for business email",
+      "email deliverability"
+    ],
+    "answer": "Usually because they're sent from a free address like Gmail or Hotmail, or from a domain whose email settings haven't been set up. Sending from an address on your own domain (you@yourbusiness.com.au), with the SPF, DKIM and DMARC records in place, tells inboxes your mail is genuinely from you. I can set those up for you.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#why-are-my-emails-going-to-spam"
+  },
+  {
+    "slug": "are-small-tweaks-after-launch-billable",
+    "category": "once-youre-live",
+    "question": "Are small tweaks after launch billable?",
+    "aliases": [
+      "are small tweaks free after launch",
+      "do you charge for small edits",
+      "do quick text changes cost extra",
+      "post launch tweaks cost",
+      "best way to request small changes"
+    ],
+    "answer": "Yes — small changes are billed for my time, like any other ongoing support. The most affordable way to handle them is to bunch tasks together: keep a running list and send it in one go, rather than one change at a time. For text changes, send the whole paragraph rewritten so I can paste it straight in.",
+    "url": "https://www.nicolesteinmetz.com/faqs/#are-small-tweaks-after-launch-billable"
+  }
+]

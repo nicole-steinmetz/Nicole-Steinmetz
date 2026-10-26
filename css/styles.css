@@ -1558,6 +1558,9 @@ body:has(.process) .site-footer { margin-top: 0; }
 @media (max-width: 1040px) {
   :root { --gutter: var(--gutter-md); }
 
+  /* Clears the FAQ chat icon, which sits fixed at the bottom right. */
+  .has-faq-widget body { padding-bottom: var(--s-9); }
+
   .site-header { padding-block: var(--s-5); }
   .site-header__logo img { width: 150px; }
 

@@ -33,8 +33,8 @@ Each quote builder (`/pricing/squarespace/`, `/pricing/shopify/`, `/pricing/clou
 
 A static page cannot send mail, so this is a Pages Function rather than more front-end code. It does nothing until Cloudflare can send from this domain:
 
-1. Onboard `nicolesteinmetz.com` for [Email Sending](https://developers.cloudflare.com/email-service/), so `quotes@nicolesteinmetz.com` is a valid from-address.
-2. On the Pages project, add a **Send Email** binding named `EMAIL` with destination address `nicole@kneecoal.com`.
+1. Onboard `kneecoal.com` for [Email Sending](https://developers.cloudflare.com/email-service/), so `quotes@kneecoal.com` is a valid from-address. That address is the sender name only. It is not a mailbox.
+2. Create an API token with **Account → Email Sending → Edit**. On the Pages project, add it under **Settings → Variables and secrets** as a secret named `EMAIL_API_TOKEN`. Pages does not list a Send Email binding. Redeploy after saving the secret.
 
 Until both are in place, the form tells the visitor to email directly.
 

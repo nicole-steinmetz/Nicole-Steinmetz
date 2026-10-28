@@ -1,16 +1,13 @@
 /* Pages Function — emails a copy of an FAQ chat to nicole@kneecoal.com.
-   Uses the same Send Email binding as functions/api/quote.js:
-     variable name EMAIL
-     destination address nicole@kneecoal.com
+   Uses the same mail path as functions/api/quote.js.
    A transcript is only accepted for a chat_id that /api/chat has already seen,
    and only for questions that have not already been emailed. */
 
 import faqs from "../_lib/faqs.json";
 import { PRICING_URL, allowedOrigin } from "../_lib/faq-core.js";
 import { beginTranscript, finishTranscript } from "../_lib/faq-sessions.js";
+import { canSendMail, sendSiteMail } from "../_lib/send-mail.js";
 
-const TO = "nicole@kneecoal.com";
-const FROM = "quotes@nicolesteinmetz.com";
 const CHAT_ID_RE = /^[A-Za-z0-9-]{8,64}$/;
 const CRED_RE = /reply with your password|reply with the code|send your password|send us your password|enter your password below|confirm your card number|your full card number|seed phrase|recovery phrase|verify your card|social security number|confirm your bank details|\bcvv\b/i;
 
@@ -116,19 +113,17 @@ export async function onRequestPost({ request, env }) {
 
   const open = await beginTranscript(env, transcript.chatId, transcript.asked);
   if (!open) return json({ sent: false }, 202);
-  if (!env.EMAIL || typeof env.EMAIL.send !== "function") return json({ sent: false }, 503);
+  if (!canSendMail(env)) return json({ sent: false }, 503);
 
   const message = buildEmail(transcript.turns, transcript.page);
   try {
-    await env.EMAIL.send({
-      to: TO,
-      from: { email: FROM, name: "Nicole Steinmetz website" },
+    await sendSiteMail(env, {
       subject: message.subject,
       html: message.html,
       text: message.text
     });
   } catch (e) {
-    console.error("faq transcript email failed", e && e.message);
+    console.error("faq transcript email failed", e && e.code, e && e.message);
     return json({ sent: false }, 502);
   }
 

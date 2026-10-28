@@ -1,13 +1,8 @@
 /* Pages Function — emails a quote summary to nicole@kneecoal.com.
    A static page cannot send mail, so this is the one piece of server logic.
-   The from-address must be on a domain onboarded to Cloudflare Email Sending.
-   Pages → Settings → Bindings → Send Email:
-     variable name EMAIL
-     destination address nicole@kneecoal.com
-   That destination matches js/site-config.js and cannot be overridden here. */
+   Delivery is in functions/_lib/send-mail.js. The recipient is fixed there. */
 
-const TO = "nicole@kneecoal.com";
-const FROM = "quotes@nicolesteinmetz.com";
+import { canSendMail, sendSiteMail } from "../_lib/send-mail.js";
 
 const PLATFORMS = new Set([
   "Squarespace",
@@ -50,16 +45,14 @@ export async function onRequestPost(context) {
   const quote = parseQuote(payload);
   if (quote.error) return json({ ok: false, error: quote.error }, 400);
 
-  if (!env.EMAIL || typeof env.EMAIL.send !== "function") {
+  if (!canSendMail(env)) {
     return json({ ok: false, error: "Quote email isn’t set up yet. Email nicole@kneecoal.com directly." }, 503);
   }
 
   const message = buildQuoteEmail(quote);
 
   try {
-    await env.EMAIL.send({
-      to: TO,
-      from: { email: FROM, name: "Nicole Steinmetz website" },
+    await sendSiteMail(env, {
       replyTo: { email: quote.email, name: quote.name },
       subject: message.subject,
       html: message.html,

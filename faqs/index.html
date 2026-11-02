@@ -23,10 +23,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400..700&display=swap">
 
-<link rel="stylesheet" href="/css/tokens.css?v=badge">
-<link rel="stylesheet" href="/css/styles.css?v=badge">
+<link rel="stylesheet" href="/css/tokens.css?v=banner-sm">
+<link rel="stylesheet" href="/css/styles.css?v=nav">
 <link rel="preload" as="image" href="/assets/img/faq-hero-1440.webp" type="image/webp" fetchpriority="high">
-<link rel="stylesheet" href="/css/faqs.css?v=banner">
+<link rel="stylesheet" href="/css/faqs.css?v=faq-hero-video">
 <script>document.documentElement.classList.add('js');</script>
 <script type="application/ld+json">
 {
@@ -604,6 +604,14 @@
            alt="Illustration of a woman working at a computer on a beach at sunset, a green diamond floating above her"
            fetchpriority="high" decoding="async">
     </picture>
+    <video class="faq-hero__video"
+           autoplay muted loop playsinline
+           preload="none"
+           disablepictureinpicture
+           width="1280" height="720"
+           aria-hidden="true">
+      <source src="/assets/video/faq-hero.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="container">
     <div class="faq-hero__copy">
@@ -1035,7 +1043,44 @@
 
 <script src="/js/site-config.js?v=links" defer></script>
 <script src="/js/hero-title.js?v=footer-video" defer></script>
-<script src="/js/faqs.js?v=1" defer></script>
-<script src="/js/faq-widget.js?v=closed2" defer></script>
+<script>
+/* Banner video — fade over the still once it is playing.
+   Reduced motion keeps the still and drops the file. */
+(function () {
+  var video = document.querySelector(".faq-hero__video");
+  if (!video) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    video.pause();
+    video.removeAttribute("autoplay");
+    while (video.firstChild) video.removeChild(video.firstChild);
+    video.removeAttribute("src");
+    video.load();
+    return;
+  }
+
+  video.muted = true;
+  video.setAttribute("playsinline", "");
+
+  function ready() { video.classList.add("is-ready"); }
+  video.addEventListener("playing", ready, { once: true });
+  if (video.readyState >= 3) ready();
+
+  var play = function () {
+    var pending = video.play();
+    if (pending && pending.catch) pending.catch(function () {});
+  };
+  play();
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) video.pause();
+    else play();
+  });
+})();
+</script>
+<script src="/js/faq-aliases.js?v=1" defer></script>
+<script src="/js/faqs.js?v=faq-accordion" defer></script>
+<script src="/js/nav.js" defer></script>
+<script src="/js/faq-widget.js?v=faq-ask" defer></script>
 </body>
 </html>

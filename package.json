@@ -1,0 +1,7 @@
+{
+  "name": "nicolesteinmetz-com",
+  "private": true,
+  "scripts": {
+    "check": "node scripts/check-site.mjs"
+  }
+}

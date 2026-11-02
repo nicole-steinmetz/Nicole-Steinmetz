@@ -50,6 +50,8 @@
       "can you work with someone outside australia",
       "do you work with japan clients",
       "what currency do you charge in",
+      "charged in what currency",
+      "what currency are your prices",
       "do you work across time zones"
     ],
     "answer": "Yes. I'm based across Australia and Japan and work with clients in both. Everything runs remotely — scoping, reviews and handover all work fine across time zones. Pricing is in AUD.",
@@ -106,7 +108,9 @@
       "which platform should i use",
       "what platform do you recommend",
       "should i go custom or use a platform",
-      "squarespace vs shopify vs custom"
+      "squarespace vs shopify vs custom",
+      "what platforms do you work on",
+      "which platforms do you work on"
     ],
     "answer": "Squarespace for simple, low-maintenance sites you'll manage yourself. Shopify where selling is the core function of the business. A custom build where the brief needs more motion, interaction or flexibility than a platform comfortably handles — those get designed in Figma, built in Cursor and deployed to Cloudflare, Netlify or Vercel depending on whether you're optimising for security and long-term ownership, straightforward marketing and forms, or a premium interactive experience. I'll walk you through the trade-offs rather than just naming one.",
     "url": "https://www.nicolesteinmetz.com/faqs/#which-platform-is-right-for-my-project"
@@ -538,6 +542,7 @@
     "aliases": [
       "who owns my website",
       "do i own the site",
+      "do i own my site when it's finished",
       "who owns the code",
       "ownership of the finished site",
       "website ownership after final payment"

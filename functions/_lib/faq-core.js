@@ -2,8 +2,9 @@
 
 export const PRICING_URL = "https://www.nicolesteinmetz.com/pricing/";
 // Booking URL matches js/site-config.js BOOKING_URL.
+export const BOOK_ACTION = { label: "Book a call", url: "https://calendar.app.google/VhKn1WLoZNS8Aq899" };
 export const CONTACT_ACTIONS = [
-  { label: "Book a call", url: "https://calendar.app.google/VhKn1WLoZNS8Aq899" },
+  BOOK_ACTION,
   { label: "Contact me", url: "https://www.nicolesteinmetz.com/contact/" },
 ];
 export const COST_SLUG = "what-does-a-project-cost";
@@ -134,6 +135,18 @@ export function exactFaq(index, message) {
   return i >= 0 ? index.faqs[i] : null;
 }
 
+// A FAQ we can quote in full. Exact wording wins. Otherwise the top hit has to
+// be clearly ahead of the next one, so a loose overlap is not treated as an answer.
+export function bestFaq(index, message, context = "") {
+  const exact = exactFaq(index, message);
+  if (exact) return exact;
+  const top = index.search(message, context, 3);
+  if (!top.length) return null;
+  const second = top[1] ? top[1][1] : 0;
+  if (top[0][1] >= 6.5 && top[0][1] >= second + 1.5) return top[0][0];
+  return null;
+}
+
 export function isPricing(message, top) {
   if (PRICING_STRONG_RE.test(message)) return true;
   if (!PRICING_SOFT_RE.test(message)) return false;
@@ -158,9 +171,9 @@ export function metaFor(tag, faqs) {
   if (t.startsWith("USED")) {
     const picked = (t.match(/\d+/g) || []).map(Number).filter((n) => n > 0 && n <= faqs.length).map((n) => faqs[n - 1]).slice(0, 2);
     if (picked.length) return { type: "meta", kind: "answer", links: picked.map(faqLink), actions: [] };
-    return { type: "meta", kind: "fallback", links: [], actions: CONTACT_ACTIONS };
+    return { type: "meta", kind: "fallback", links: [], actions: [BOOK_ACTION] };
   }
-  if (t === "NONE") return { type: "meta", kind: "fallback", links: [], actions: CONTACT_ACTIONS };
+  if (t === "NONE") return { type: "meta", kind: "fallback", links: [], actions: [BOOK_ACTION] };
   return { type: "meta", kind: t === "OFFTOPIC" ? "offtopic" : "chat", links: [], actions: [] };
 }
 

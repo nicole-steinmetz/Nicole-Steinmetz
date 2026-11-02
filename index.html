@@ -19,7 +19,7 @@
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <!-- Fonts. Self-hosting is the launch-blocker item in ASSETS.md → Fonts. -->
@@ -27,8 +27,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400..700&display=swap">
 
-<link rel="stylesheet" href="/css/tokens.css?v=badge">
-<link rel="stylesheet" href="/css/styles.css?v=badge">
+<link rel="stylesheet" href="/css/tokens.css?v=banner-sm">
+<link rel="stylesheet" href="/css/styles.css?v=nav">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -56,8 +56,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="site-header__logo" href="/" aria-label="Nicole Steinmetz — home">
-      <!-- Grey lockup: this hero is pale sky and white cloud behind the mark. -->
-      <img src="/assets/svg/logo-grey.svg" alt="Miss Nicole Steinmetz" width="193" height="95">
+      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="193" height="95">
     </a>
 
     <nav class="nav" aria-label="Primary">
@@ -167,7 +166,7 @@
         <div class="how__tools-unit">
           <span class="how__tools-label">Built on</span>
           <span class="how__tools-chip">
-            <span class="how__tools-icon"><svg viewBox="0 0 32 32" focusable="false"><path d="M4 13h13a3 3 0 0 1 0 6H10" fill="none" stroke="#000" stroke-width="3.4" stroke-linecap="round"/><path d="M28 19H15a3 3 0 0 1 0-6h7" fill="none" stroke="#000" stroke-width="3.4" stroke-linecap="round"/></svg></span>
+            <span class="how__tools-icon"><svg viewBox="0 0 32 32" focusable="false"><path d="M4 13h13a3 3 0 0 1 0 6H10" fill="none" stroke="#505050" stroke-width="3.4" stroke-linecap="round"/><path d="M28 19H15a3 3 0 0 1 0-6h7" fill="none" stroke="#505050" stroke-width="3.4" stroke-linecap="round"/></svg></span>
             <span class="how__tools-word">squarespace</span>
           </span>
         </div>
@@ -181,7 +180,7 @@
         <div class="how__tools-unit">
           <span class="how__tools-label">Deployed on</span>
           <span class="how__tools-chip">
-            <span class="how__tools-icon"><svg viewBox="0 0 32 32" focusable="false"><polygon points="16,5 29,27 3,27" fill="#000"/></svg></span>
+            <span class="how__tools-icon"><svg viewBox="0 0 32 32" focusable="false"><polygon points="16,5 29,27 3,27" fill="#505050"/></svg></span>
             <span class="how__tools-word">Vercel</span>
           </span>
         </div>
@@ -224,8 +223,7 @@
 
       <div class="how__tools-content">
         <span class="how__tools-eyebrow">The Tools</span>
-        <!-- TODO(link): /platform-decider/ — parked on home via _redirects. -->
-        <a class="how__tools-arrow" href="/platform-decider/" aria-label="See the full tool stack">
+        <a class="how__tools-arrow" href="/tools/" aria-label="See the full tool stack">
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
             <path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -236,8 +234,7 @@
     <div class="how__card">
       <h2 class="how__title" id="how-title">How We Build</h2>
       <p class="how__body">Every project starts with the same question: what does this business actually need? Squarespace for simple, low-maintenance sites that clients can manage themselves. Shopify for businesses where selling is the core function. Custom builds for briefs that need more motion, interaction, or flexibility than a platform can comfortably handle &mdash; usually on Cloudflare, so hosting, domain and security sit in one account the business owns, with Vercel or Netlify where the brief calls for it. I choose the right system for the job, not the most fashionable one.</p>
-      <!-- TODO(link): /platform-decider/ — no Figma frame. Parked on home via _redirects. -->
-      <a class="learn-more" href="/platform-decider/">Learn more <span aria-hidden="true">&rarr;</span></a>
+      <a class="learn-more" href="/faqs/#whats-the-process-start-to-finish">Learn more <span aria-hidden="true">&rarr;</span></a>
     </div>
   </section>
 
@@ -258,8 +255,7 @@
 
       <div class="quote-content">
         <span class="quote-eyebrow">Get a Quote</span>
-        <!-- TODO(link): /get-a-quote/ — no Figma page. Parked on home via _redirects. -->
-        <a class="quote-arrow" href="/get-a-quote/" aria-label="Start your quote">
+        <a class="quote-arrow" href="/pricing/" aria-label="Start your quote">
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
             <path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -324,8 +320,7 @@
 
       <div class="proj-content">
         <span class="proj-eyebrow">Start a Project</span>
-        <!-- TODO(link): /start-a-project/ — no Figma page. Parked on home via _redirects. -->
-        <a class="proj-arrow" href="/start-a-project/" aria-label="Start a project">
+        <a class="proj-arrow" href="/contact/" aria-label="Start a project">
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
             <path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -423,6 +418,97 @@
     </div>
   </section>
 
+  <!-- ==========================================================
+       PROCESS — How a build runs
+       Cursor brief v1. Not in the Home Figma frame.
+       Cube video is decorative; the timeline is HTML.
+       ========================================================== -->
+  <section class="process" id="process" aria-labelledby="process-title">
+    <div class="container">
+      <h2 class="process__title" id="process-title">How a build runs</h2>
+      <div class="process__grid">
+        <div class="process__sticky">
+          <div class="process__stage">
+            <video class="process__video"
+                   autoplay muted loop playsinline
+                   preload="metadata"
+                   disablepictureinpicture
+                   poster="/assets/img/process-cube-poster.jpg"
+                   width="640" height="688"
+                   aria-hidden="true">
+              <source src="/assets/video/process-cube.webm" type="video/webm">
+              <source src="/assets/video/process-cube.mp4" type="video/mp4">
+            </video>
+            <div class="process__timeline" aria-hidden="true">
+              <div class="process__ruler">
+                <span class="process__marker"></span>
+                <span class="process__label">Discover</span>
+                <span class="process__label">Design</span>
+                <span class="process__label">Launch</span>
+                <span class="process__label">Training</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ol class="process__steps">
+          <li class="process__step is-active" data-step="1" aria-current="step">
+            <div class="process__card">
+              <span class="process__num">
+                <span class="process__glyph">1</span>
+                <span class="process__status visually-hidden">Step 1</span>
+              </span>
+              <div class="process__copy">
+                <h3 class="process__name">Discovery &amp; Scope</h3>
+                <p class="process__text">We start with a chat about your business, what the site needs to do and when you&rsquo;d like it live. Before design begins, your images and near-final copy come in, and we lock in your pages together so your build is scheduled around something real. <a class="process__more" href="/faqs/#what-if-my-content-isnt-ready-yet-copy-images-sitemap">Before We Start Designing <span aria-hidden="true">&rarr;</span></a></p>
+                <span class="process__badge">Scope locked</span>
+              </div>
+            </div>
+          </li>
+          <li class="process__step" data-step="2">
+            <div class="process__card">
+              <span class="process__num">
+                <span class="process__glyph">2</span>
+                <span class="process__status visually-hidden">Step 2</span>
+              </span>
+              <div class="process__copy">
+                <h3 class="process__name">Desktop Design &amp; Build</h3>
+                <p class="process__text">I design and build the full site for desktop first, so please review it on a laptop or desktop at this stage. We use your rounds of changes to get it exactly right, and nothing moves to mobile until you&rsquo;ve signed desktop off.</p>
+                <span class="process__badge">Desktop signed off</span>
+              </div>
+            </div>
+          </li>
+          <li class="process__step" data-step="3">
+            <div class="process__card">
+              <span class="process__num">
+                <span class="process__glyph">3</span>
+                <span class="process__status visually-hidden">Step 3</span>
+              </span>
+              <div class="process__copy">
+                <h3 class="process__name">Mobile &amp; Launch</h3>
+                <p class="process__text">Now&rsquo;s the time to grab your phone. I optimise every page for mobile and you get a round of touch-ups. Once the balance is settled, the site moves into your account and your domain is pointed live. It can take up to 48 hours to show everywhere.</p>
+                <span class="process__badge">Live</span>
+              </div>
+            </div>
+          </li>
+          <li class="process__step process__step--training" data-step="4" data-heart>
+            <div class="process__card">
+              <span class="process__num">
+                <span class="process__glyph">4</span>
+                <span class="process__status visually-hidden">Step 4</span>
+              </span>
+              <div class="process__copy">
+                <h3 class="process__name">Training</h3>
+                <p class="process__text">Once you&rsquo;re live, we do a one-on-one session on your own site so you feel confident making updates yourself.</p>
+                <span class="process__badge">Yours to keep</span>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ============================================================
@@ -467,10 +553,9 @@
     <nav class="footer-col" aria-labelledby="f-clarifications">
       <h2 class="footer-col__title" id="f-clarifications">Clarifications</h2>
       <ul>
-        <!-- TODO(link): /platform-decider/ — parked on home via _redirects. -->
         <li><a href="/faqs/">All FAQs</a></li>
-        <li><a href="/platform-decider/">Compare platforms</a></li>
-        <li><a href="https://calendar.app.google/LL4k82UrifLjbCxH9" target="_blank" rel="noopener">Book video call</a></li>
+        <li><a href="/pricing/#platform-profiles">Compare platforms</a></li>
+        <li><a href="https://calendar.app.google/LKjv1zT4b7R2NhJ69" target="_blank" rel="noopener">Book video call</a></li>
       </ul>
     </nav>
 
@@ -479,7 +564,7 @@
       <ul>
         <li><a href="mailto:nicole@kneecoal.com">Email us</a></li>
         <li><a href="https://api.whatsapp.com/send?phone=61402765878" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="https://calendar.app.google/LL4k82UrifLjbCxH9" target="_blank" rel="noopener">Video call</a></li>
+        <li><a href="https://calendar.app.google/LKjv1zT4b7R2NhJ69" target="_blank" rel="noopener">Video call</a></li>
       </ul>
     </nav>
   </div>
@@ -497,6 +582,8 @@
 <script src="/js/project-card.js" defer></script>
 <script src="/js/hero-title.js?v=hero-sweep" defer></script>
 <script src="/js/trusted-marquee.js" defer></script>
-<script src="/js/faq-widget.js?v=closed2" defer></script>
+<script src="/js/process.js" defer></script>
+<script src="/js/nav.js" defer></script>
+<script src="/js/faq-widget.js?v=faq-ask" defer></script>
 </body>
 </html>

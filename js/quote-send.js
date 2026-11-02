@@ -27,7 +27,7 @@
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         emailInput.setAttribute("aria-invalid", "true");
       }
-      setStatus("Add your name and a valid email so Nicole can reply.", true);
+      setStatus("Add your name and a valid email so I can reply.", true);
       (name ? emailInput : nameInput).focus();
       return;
     }
@@ -88,7 +88,7 @@
     }).then(function (result) {
       if (result.ok && result.body && result.body.ok) {
         form.reset();
-        setStatus("Sent. Nicole has the summary and will reply to you.", false);
+        setStatus("Sent. I’ll reply to you by email.", false);
         return;
       }
       setStatus(

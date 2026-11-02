@@ -34,6 +34,10 @@ function within1(a,b){
 function wordHit(w,alt){
   if(w===alt)return true;
   if(alt.length>=3&&w.length>alt.length&&w.indexOf(alt)===0)return true;
+  /* "longe" should still find "long"; "site" should find "website" */
+  if(w.length>=4&&alt.length===w.length+1&&alt.indexOf(w)===0)return true;
+  if(alt.length>=4&&w.length>alt.length&&w.slice(-alt.length)===alt)return true;
+  if(w.length>=4&&alt.length>w.length&&alt.slice(-w.length)===w)return true;
   if(alt.length>=5&&w.length>=5&&within1(w,alt))return true;
   return false;
 }
@@ -44,10 +48,11 @@ var SYN=[
   ['seo','google'],
   ['edit','update','changes','revisions'],
   ['own','ownership'],
-  ['support','maintenance','care']
+  ['support','maintenance','care'],
+  ['spam','junk']
 ];
 var PHRASES=['how much','how long'];
-var STOP='how do does i a an the what whats is are my me you your can will to of for in on it we our and or who which when'.split(' ');
+var STOP='how do does i a an the what whats is are my me you your can will to of for in on it we our and or who which when until just really actually please still'.split(' ');
 function groupFor(tok){
   var t2=tok.replace(/s$/,''),found=null;
   for(var i=0;i<SYN.length&&!found;i++){
@@ -68,10 +73,15 @@ function parseQuery(raw){
   var stripped=qn.split(' ').filter(function(t){return STOP.indexOf(t)<0;}).join(' ');
   return {groups:groups,qn:qn,stripped:stripped};
 }
+var ALIASES=window.FAQ_ALIASES||{};
 var index=items.map(function(el){
   var d=el.querySelector('details');
   var qt=norm(el.querySelector('.q-text').textContent),at=norm(el.querySelector('.faq-answer').textContent);
-  return {el:el,d:d,cat:el.getAttribute('data-cat'),parent:el.parentNode,qtxt:' '+qt+' ',qw:qt.split(' '),aw:at.split(' ')};
+  var aliases=(ALIASES[d.id]||[]).map(function(s){
+    var n=norm(s);
+    return n?{n:n,words:n.split(' ').filter(Boolean),txt:' '+n+' '}:null;
+  }).filter(Boolean);
+  return {el:el,d:d,cat:el.getAttribute('data-cat'),parent:el.parentNode,qtxt:' '+qt+' ',qw:qt.split(' '),atxt:' '+at+' ',aw:at.split(' '),aliases:aliases};
 });
 /* weight of a group in a word list: 1 literal, .6 synonym, 0 none; also count of hitting words */
 function groupWeight(g,words){
@@ -91,21 +101,53 @@ function phraseHit(g,txt){
   for(var i=0;i<g.length;i++){if(g[i].indexOf(' ')>-1&&txt.indexOf(' '+g[i]+' ')>-1)return i===0?1:.6;}
   return 0;
 }
+function aliasHit(alias,g){
+  return Math.max(groupWeight(g,alias.words).w,phraseHit(g,alias.txt));
+}
+function groupHits(it,g){
+  if(Math.max(groupWeight(g,it.qw).w,phraseHit(g,it.qtxt))>0)return true;
+  if(Math.max(groupWeight(g,it.aw).w,phraseHit(g,it.atxt))>0)return true;
+  for(var i=0;i<it.aliases.length;i++){if(aliasHit(it.aliases[i],g)>0)return true;}
+  return false;
+}
 function scoreItem(it,pq){
+  var groups=pq.used||pq.groups;
+  if(!groups.length)return 0;
   var total=0,allQ=true;
-  for(var k=0;k<pq.groups.length;k++){
-    var g=pq.groups[k],q=groupWeight(g,it.qw),a=groupWeight(g,it.aw);
-    var qp=phraseHit(g,it.qtxt),ap=phraseHit(g,' '+it.aw.join(' ')+' ');
-    var qw=Math.max(q.w,qp),aw=Math.max(a.w,ap),ac=Math.max(a.c,ap?1:0);
+  for(var k=0;k<groups.length;k++){
+    var g=groups[k];
+    var q=Math.max(groupWeight(g,it.qw).w,phraseHit(g,it.qtxt));
+    var ans=groupWeight(g,it.aw),ap=phraseHit(g,it.atxt);
+    var aw=Math.max(ans.w,ap),ac=Math.max(ans.c,ap?1:0),al=0;
+    for(var i=0;i<it.aliases.length;i++){var h=aliasHit(it.aliases[i],g);if(h>al)al=h;}
+    var qw=Math.max(q,al);
     if(!qw&&!aw)return 0;
-    if(!qw)allQ=false;
+    if(!q)allQ=false;
     total+=5*qw+aw*Math.min(ac,3);
   }
-  if(!pq.groups.length)return 0;
   if(allQ)total+=10;
-  var full=pq.stripped&&(pq.stripped.indexOf(' ')>-1||pq.groups.length===1)?pq.stripped:'';
+  var full=pq.stripped&&(pq.stripped.indexOf(' ')>-1||groups.length===1)?pq.stripped:'';
   if((full&&it.qtxt.indexOf(' '+full+' ')>-1)||(pq.qn.indexOf(' ')>-1&&it.qtxt.indexOf(' '+pq.qn+' ')>-1))total+=20;
-  return total;
+  /* One alias covering the whole question outranks a looser answer hit. */
+  var aliasBest=0;
+  it.aliases.forEach(function(alias){
+    var t=0;
+    for(var k=0;k<groups.length;k++){
+      var w=aliasHit(alias,groups[k]);
+      if(!w){t=0;break;}
+      t+=5*w;
+    }
+    if(!t){
+      if(alias.words.length>=2&&(' '+pq.qn+' ').indexOf(alias.txt)>-1)t=30;
+      else return;
+    } else {
+      t+=15;
+      if(alias.n===pq.qn||alias.txt.indexOf(' '+pq.qn+' ')>-1)t+=80;
+      else if(alias.words.length>=2&&(' '+pq.qn+' ').indexOf(alias.txt)>-1)t+=30;
+    }
+    if(t>aliasBest)aliasBest=t;
+  });
+  return total+aliasBest;
 }
 
 /* ---------- highlighting ---------- */
@@ -150,13 +192,20 @@ function setOpen(d,val){
   suppress.push(d);
   d.open=val;
 }
+function closeOthers(current){
+  index.forEach(function(it){if(it.d!==current)setOpen(it.d,false);});
+}
 function restoreOrder(){
   index.forEach(function(it){if(it.el.parentNode!==it.parent)it.parent.appendChild(it.el);});
   /* appending in document order keeps each section's original sequence */
   index.forEach(function(it){it.parent.appendChild(it.el);});
 }
 function apply(){
-  var raw=input.value,pq=parseQuery(raw),searching=pq.groups.length>0,visible=[];
+  var raw=input.value,pq=parseQuery(raw),visible=[];
+  var live=pq.groups.filter(function(g){return index.some(function(it){return groupHits(it,g);});});
+  /* A word that appears nowhere (until, wont) must not hide the question. */
+  pq.used=live.length?live:pq.groups;
+  var searching=pq.groups.length>0;
   clearMarks();
   restoreOrder();
   index.forEach(function(it){it.el.hidden=false;});
@@ -228,9 +277,24 @@ function resetFilters(){
 }
 
 /* ---------- deep links + scrolling ---------- */
-function scrollToEl(el){
+function scrollToEl(el,behavior){
   if(!el)return;
-  requestAnimationFrame(function(){el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});});
+  var b=behavior||(reduce?'auto':'smooth');
+  requestAnimationFrame(function(){
+    /* scrollIntoView skips the offset once the browser has already jumped to the hash.
+       'auto' follows the page's smooth scroll and loses that race, so an instant
+       correction has to turn smooth scrolling off for the one jump. */
+    var margin=parseFloat(getComputedStyle(el).scrollMarginTop)||0;
+    var top=Math.max(0,el.getBoundingClientRect().top+window.scrollY-margin);
+    if(b==='smooth'){window.scrollTo({top:top,behavior:'smooth'});return;}
+    try{window.scrollTo({top:top,behavior:'instant'});}
+    catch(err){
+      var root=document.documentElement,prev=root.style.scrollBehavior;
+      root.style.scrollBehavior='auto';
+      window.scrollTo(0,top);
+      root.style.scrollBehavior=prev;
+    }
+  });
 }
 function openAndScroll(slug){
   var d=document.getElementById(slug);
@@ -238,7 +302,13 @@ function openAndScroll(slug){
   var wrap=d.closest('.faq-item');
   if(wrap.hidden||!wrap.closest('.faq-cat'))resetFilters();
   d.open=true;
-  scrollToEl(wrap);
+  var summary=d.querySelector('summary');
+  /* A smooth scroll started before load gets overwritten by the browser's hash jump. */
+  scrollToEl(wrap||d,reduce||document.readyState!=='complete'?'auto':'smooth');
+  if(summary){
+    try{summary.focus({preventScroll:true});}
+    catch(err){summary.focus();}
+  }
   return true;
 }
 function handleHash(){
@@ -318,6 +388,7 @@ document.addEventListener('toggle',function(e){
   var ai=autoOpened.indexOf(d);
   if(ai>-1)autoOpened.splice(ai,1);
   if(!d.open)return;
+  closeOthers(d);
   var key='faqv:'+d.id;
   try{if(sessionStorage.getItem(key))return;}catch(err){}
   try{

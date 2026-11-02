@@ -9,38 +9,13 @@ import faqs from "../_lib/faqs.json";
 import {
   FaqIndex, isPricing, buildPrompt, metaFor, clean, faqLink, validate, allowedOrigin,
   TAG_RE, SYSTEM_PROMPT, PRICING_URL, PRICING_REPLY, LIMIT_REPLY, ERROR_REPLY,
-  NO_MATCH_REPLY, CONTACT_ACTIONS, COST_SLUG, exactFaq
+  NO_MATCH_REPLY, CONTACT_ACTIONS, BOOK_ACTION, COST_SLUG, bestFaq
 } from "../_lib/faq-core.js";
 import { noteAsked } from "../_lib/faq-sessions.js";
+import { allow } from "../_lib/rate-limit.js";
 
 const index = new FaqIndex(faqs);
-const memoryHits = new Map();
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
-
-async function allow(env, ip) {
-  const limit = Number(env.RATE_LIMIT_PER_HOUR || 20);
-  const now = Date.now();
-  if (env.RATE_LIMIT_KV) {
-    const key = `rl:${ip}`;
-    const rec = (await env.RATE_LIMIT_KV.get(key, "json")) || { n: 0, start: now };
-    if (now - rec.start > 3600_000) { rec.n = 0; rec.start = now; }
-    if (rec.n >= limit) return false;
-    rec.n += 1;
-    const ttl = Math.max(60, Math.ceil((rec.start + 3600_000 - now) / 1000));
-    await env.RATE_LIMIT_KV.put(key, JSON.stringify(rec), { expirationTtl: ttl });
-    return true;
-  }
-  const list = (memoryHits.get(ip) || []).filter((t) => now - t < 3600_000);
-  if (list.length >= limit) { memoryHits.set(ip, list); return false; }
-  list.push(now);
-  memoryHits.set(ip, list);
-  if (memoryHits.size > 5000) {
-    for (const [key, times] of memoryHits) {
-      if (!times.length || now - times[times.length - 1] > 3600_000) memoryHits.delete(key);
-    }
-  }
-  return true;
-}
 
 const sse = (obj) => `data: ${JSON.stringify(obj)}\n\n`;
 
@@ -105,6 +80,27 @@ async function* anthropicText(env, prompt) {
   }
 }
 
+function coverFaqs(message, found) {
+  const n = normCover(message);
+  const slugs = [];
+  if (n.includes("process") || n.includes("start to finish") || n.includes("steps")) {
+    slugs.push("whats-the-process-start-to-finish");
+  }
+  if (n.includes("how long") || n.includes("timeline") || n.includes("month") || n.includes("week")) {
+    slugs.push("how-long-does-a-build-take");
+  }
+  const out = found.slice();
+  for (const slug of slugs) {
+    const faq = index.bySlug[slug];
+    if (faq && !out.some((item) => item.slug === slug)) out.push(faq);
+  }
+  return out;
+}
+
+function normCover(text) {
+  return (text || "").toLowerCase().replace(/[\u2019']/g, "").replace(/[^a-z0-9]+/g, " ");
+}
+
 async function* answer(env, input) {
   const { message, history } = input;
   const prevUser = history.slice(-4).filter((t) => t.role === "user").map((t) => t.content).join(" ");
@@ -125,27 +121,29 @@ async function* answer(env, input) {
     return;
   }
 
-  const found = top.map((x) => x[0]);
-  if (!found.length) {
-    yield sse({ type: "meta", kind: "fallback", links: [], actions: CONTACT_ACTIONS });
+  let found = top.map((x) => x[0]);
+  const covered = coverFaqs(message, found);
+  found = covered;
+
+  if (!env.ANTHROPIC_API_KEY) {
+    logFaqError(fail("ANTHROPIC_API_KEY is not set", null));
+    const faq = bestFaq(index, message, prevUser);
+    if (faq) {
+      yield sse({ type: "meta", kind: "answer", links: [faqLink(faq)], actions: [] });
+      yield sse({ type: "delta", text: faq.answer });
+      yield sse({ type: "done" });
+      return;
+    }
+    yield sse({ type: "meta", kind: "fallback", links: [], actions: [BOOK_ACTION] });
     yield sse({ type: "delta", text: NO_MATCH_REPLY });
     yield sse({ type: "done" });
     return;
   }
 
-  // The provider key is not on this Pages project. An exact FAQ still has
-  // its full answer, so use that. Anything else stays the real error.
-  if (!env.ANTHROPIC_API_KEY) {
-    const error = fail("ANTHROPIC_API_KEY is not set", null);
-    logFaqError(error);
-    const exact = exactFaq(index, message);
-    if (exact) {
-      yield sse({ type: "meta", kind: "answer", links: [faqLink(exact)], actions: [] });
-      yield sse({ type: "delta", text: exact.answer });
-      yield sse({ type: "done" });
-      return;
-    }
-    yield sse({ type: "error", text: ERROR_REPLY, actions: CONTACT_ACTIONS });
+  if (!found.length) {
+    yield sse({ type: "meta", kind: "fallback", links: [], actions: [BOOK_ACTION] });
+    yield sse({ type: "delta", text: NO_MATCH_REPLY });
+    yield sse({ type: "done" });
     return;
   }
 

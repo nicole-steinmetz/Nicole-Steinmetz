@@ -20,7 +20,7 @@
   --blue-press:  #5A81AE;   /* derived                          */
 
   /* ---- INK ------------------------------------------------- */
-  --ink:         #505050;   /* headings, body, contact cards    */
+  --ink:         #505050;   /* body, section headings, cards    */
   --ink-soft:    #575757;   /* hero sub, eyebrow                */
   --ink-focus:   #0E0E10;   /* hero line in focus               */
   --hero-muted:  #A8A29E;   /* hero line after the colour sweep */
@@ -52,7 +52,7 @@
   --fs-ui:       1rem;                            /* 16px       */
   --fs-footer-h: 1.25rem;                         /* 20px       */
 
-  --lh-tight:    1.15;   /* h1                                  */
+  --lh-tight:    1.15;   /* h1 — 46px at the 40px cap          */
   --lh-lede:     1.495;  /* 32.9 / 22                           */
   --lh-body:     1.875;  /* 30 / 16 — How We Build prose        */
   --lh-compact:  1.5625; /* 25 / 16 — pillar body               */
@@ -65,6 +65,9 @@
   --gutter:      80px;
   --gutter-md:   40px;
   --gutter-sm:   20px;
+  /* Phone banners share the home hero. Desktop stays on each
+     Figma frame; this is only the stacked-header crop. */
+  --banner-ratio-sm: 4 / 5;
 
   /* ---- SPACING (8px rhythm) -------------------------------- */
   --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
@@ -74,6 +77,14 @@
   /* ---- RADIUS ---------------------------------------------- */
   --r-card: 15px;
   --r-pill: 40px;
+
+  /* ---- PILL BUTTONS ----------------------------------------
+     Inset matches the FAQ launcher (“Ask a question”):
+     14px 22px, and a 23.25px line box (15px × 1.55).
+     js/faq-widget.js reads these same custom properties.     */
+  --pill-pad-y: 14px;
+  --pill-pad-x: 22px;
+  --pill-line:  23.25px;
 
   /* ---- MOTION ---------------------------------------------- */
   --ease:      cubic-bezier(.2, .6, .2, 1);
@@ -231,7 +242,7 @@
      prototype. --ink-faint is already rgba for the Tools
      card, so the quoter's #8A8A8A is --quoter-quiet.          */
   --amber-tint:         #F4A60014;
-  --quoter-title:       #2B2B2B;
+  --quoter-title:       #505050;
   --quoter-quiet:       #8A8A8A;
   --quoter-sidebar:     340px;
   --quoter-stack:       980px;
@@ -284,8 +295,9 @@
   /* ---- FAQS ------------------------------------------------
      Nicole — FAQ Page v2.html. Not in the Home Figma frame.
      Header and footer are the site's. #FFAD00 is the search
-     control and the disclosure hover; it is not --amber.      */
-  --faq-ink:            #2B2B2B;
+     control and the disclosure hover; it is not --amber.
+     --faq-tap is the tablet hit size for the row controls.    */
+  --faq-ink:            #505050;
   --faq-quiet:          #6B6B6B;
   --faq-line:           #B9B3AC;
   --faq-orange:         #FFAD00;
@@ -308,9 +320,9 @@
   --faq-search-h:       64px;
   --faq-go-h:           48px;
   --faq-icon:           34px;
+  --faq-tap:            44px;
   --faq-card-min:       260px;
   --faq-float:          6s;
-  --fs-faq-title:       clamp(2.125rem, 5.4vw, 3.75rem); /* 34 → 60 */
   --fs-faq-search:      clamp(1.375rem, 3vw, 1.875rem);  /* 22 → 30 */
   --fs-faq-cat:         clamp(1.5rem, 3vw, 2rem);        /* 24 → 32 */
   --fs-faq-mr:          1.1875rem;  /* 19px */
@@ -318,7 +330,6 @@
   --fs-faq-meta:        0.8125rem;  /* 13px */
   --fs-faq-chip:        0.875rem;   /* 14px */
   --fs-faq-kicker:      0.6875rem;  /* 11px */
-  --lh-faq-title:       1.08;
   --lh-faq-q:           1.4;
   --lh-faq-mr:          1.3;
 }

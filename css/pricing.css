@@ -43,11 +43,7 @@
 .pricing-intro__title {
   max-width: 791px;
   margin: 27px auto 0; /* eyebrow 696+30 → title 753 */
-  font-size: var(--fs-h1);
-  font-weight: 700;
-  line-height: var(--lh-tight);
   text-wrap: balance;
-  color: var(--ink);
 }
 
 .pricing-intro__lede {
@@ -520,8 +516,7 @@
   display: block;
   width: 100%;
   margin-top: var(--s-4);
-  min-height: 44px;
-  padding: var(--s-2) var(--s-4);
+  padding: var(--pill-pad-y) var(--pill-pad-x);
   border: 0;
   border-radius: var(--r-pill);
   background: var(--paper);
@@ -529,7 +524,7 @@
   font: inherit;
   font-size: var(--fs-ui);
   font-weight: 700;
-  line-height: 1;
+  line-height: var(--pill-line);
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -1010,15 +1005,20 @@ html:not(.js) .profiles__panel {
   .pricing-intro__lede { margin-top: var(--s-5); }
   .pricing-intro__cta { margin-top: var(--s-6); }
 
-  /* Invented — no mobile frame. Keep enough olive behind the
-     stacked header; centre crop because the diorama is centred. */
+  /* Same phone height as the home hero. The hub figure sits
+     on the right, so that crop shifts right; the dioramas
+     stay centred. */
+  .pricing-hero__media img,
   .page-pricing-ss .pricing-hero__media img,
   .page-pricing-shopify .pricing-hero__media img,
   .page-pricing-cf .pricing-hero__media img,
   .page-pricing-netlify .pricing-hero__media img,
   .page-pricing-vercel .pricing-hero__media img {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: var(--banner-ratio-sm);
     object-position: center center;
+  }
+  body.page-pricing:not([class*="page-pricing-"]) .pricing-hero__media img {
+    object-position: 65% center;
   }
 
   .qb-section { padding: var(--s-5); }

@@ -15,6 +15,20 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: 1440 / 752;
+  /* Fade the bottom into the page. It sits on the frame, not the
+     picture, so a phone zoom cannot slide it off the edge. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 86%,
+    transparent 100%
+  );
 }
 
 .contact-hero__media img {
@@ -23,27 +37,16 @@
   max-width: none;
   object-fit: cover;
   object-position: center top;
-  /* Fade the bottom into the page. The artwork already lightens;
-     this mask is the blend, so the edge is transparency rather
-     than a baked white strip. */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 78%,
-    transparent 96%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 78%,
-    transparent 96%
-  );
 }
 
-/* ---- INTRO — eyebrow y=812, title y=869, body y=975 -------- */
+/* ---- INTRO — same seam as pricing and FAQs -----------------
+   The eyebrow overlaps the banner fade by 60px, matching
+   .pricing-intro. Figma had this 60px below the frame; the
+   mask already spends that white, so the heading was sitting
+   further down than the other pages. */
 .contact-intro {
   width: min(791px, calc(100% - var(--gutter) * 2));
-  margin: 60px auto 0; /* hero bottom 752 → eyebrow 812 */
+  margin: -60px auto 0;
   text-align: center;
 }
 
@@ -52,11 +55,7 @@
 .contact-intro__title {
   margin: 24px auto 0; /* eyebrow box → title 869 */
   min-height: 92px;
-  font-size: var(--fs-h1);
-  font-weight: 700;
-  line-height: var(--lh-tight);
   text-wrap: balance;
-  color: var(--ink);
 }
 
 .contact-intro__lede {
@@ -67,7 +66,7 @@
   color: var(--ink-soft);
 }
 
-/* ---- CARDS — 408×336 at y=1239, gap 28, gutters 80 --------- */
+/* ---- CARDS — 408 wide, 212px tall (preview 177px + 20%) --- */
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -81,7 +80,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 336px;
+  min-height: 212px; /* preview height 177px, plus 20% */
   padding: 33px 41px 41px 46px; /* title y=1272, body inset 46, bottom 41 */
   background: var(--card);
   border: 0.5px solid var(--card-line);
@@ -192,7 +191,7 @@
    No Figma frame exists below 1440. Review before launch.
    ============================================================ */
 @media (max-width: 1040px) {
-  .contact-intro { margin-top: 48px; }
+  .contact-intro { margin-top: -60px; }
   .contact-intro__title { min-height: 0; }
   .contact-intro__lede { margin-top: var(--s-5); }
 
@@ -201,7 +200,7 @@
     max-width: 520px;
     margin-top: var(--s-8);
   }
-  .contact-card { min-height: 280px; padding: var(--s-6) var(--s-6) var(--s-7); }
+  .contact-card { min-height: 212px; padding: var(--s-6) var(--s-6) var(--s-7); }
 
   .page-contact .site-footer { margin-top: 88px; }
 }
@@ -210,13 +209,36 @@
    PHONE — ≤640px
    ============================================================ */
 @media (max-width: 640px) {
-  /* Header stacks over the illustration. A taller frame keeps
-     the skater visible below the logo and pills. Unsigned. */
-  .contact-hero__media { aspect-ratio: 4 / 5; }
-  .contact-hero__media img { object-position: 72% 28%; }
+  /* Unsigned. The artwork is a wide landscape. On a phone the
+     frame is a portrait and the picture is zoomed onto the skater. */
+  .contact-hero__media {
+    aspect-ratio: var(--banner-ratio-sm);
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 72%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 72%,
+      transparent 100%
+    );
+  }
+  .contact-hero__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 82% 30%;
+    transform: scale(1.4);
+    transform-origin: 82% 30%;
+  }
 
-  .contact-intro { margin-top: var(--s-7); }
-  .contact-card { min-height: 240px; padding: var(--s-5); }
+  .contact-intro { margin-top: -32px; }
+  .contact-card { min-height: 178px; padding: var(--s-5); }
   .contact-card__title { padding-right: var(--s-8); }
   .contact-card__arrow { top: var(--s-5); right: var(--s-5); }
 

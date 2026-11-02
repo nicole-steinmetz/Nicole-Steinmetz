@@ -1,0 +1,138 @@
+/* ============================================================
+   TOOLS — /tools/
+   No Figma frame. Type, colour and spacing use tokens.css.
+   Checked against the live tokens: --ink #505050, --card
+   #F7F6F5, --card-line #DAD6D2, --r-card 15px, --r-pill 40px,
+   --amber #F4A600, --blue #6A96C7, --rust #894332.
+   Inter and IBM Plex Mono are --font-sans and --font-mono.
+   Breakpoints match the site: 1040 / 640. No mobile frame.
+   ============================================================ */
+
+.page-tools .site-header {
+  position: relative;
+  background: var(--ink-focus);
+}
+
+.page-tools .site-footer { margin-top: var(--s-9); }
+
+.tools {
+  padding-block: var(--s-8) 0;
+}
+
+.tools__prose { max-width: 68ch; }
+
+.tools__byline,
+.tools__updated {
+  margin-top: var(--s-4);
+  color: var(--ink-soft);
+}
+
+.tools__updated time { font-weight: 700; color: var(--ink); }
+
+.tools h2 {
+  margin-top: var(--s-8);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.tools h3 {
+  margin-top: var(--s-6);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.tools p,
+.tools li { line-height: var(--lh-body); }
+
+.tools p { margin-top: var(--s-4); }
+
+.tools ul {
+  margin-top: var(--s-4);
+  padding-left: 1.25em;
+  list-style: disc;
+}
+
+.tools li + li { margin-top: var(--s-3); }
+
+.tools a:not(.pill) {
+  color: var(--rust);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.tools a:not(.pill):hover { color: var(--blue); }
+
+.tools__note {
+  padding: var(--s-4) var(--s-5);
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+}
+
+.tools__platform { margin-top: var(--s-2); }
+
+.tools__glance { margin-top: var(--s-8); }
+
+.tools__glance > p { max-width: 68ch; }
+
+.tools__table-wrap {
+  overflow-x: auto;
+  margin-top: var(--s-5);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-card);
+  background: var(--paper);
+}
+
+.tools table {
+  width: 100%;
+  min-width: 52rem;
+  border-collapse: collapse;
+}
+
+.tools caption {
+  padding: var(--s-4) var(--s-5) 0;
+  text-align: left;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.tools th,
+.tools td {
+  padding: var(--s-4) var(--s-5);
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--card-line);
+  line-height: var(--lh-compact);
+}
+
+.tools thead th {
+  background: var(--card);
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.tools tbody th {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Tablet and phone — no Figma frame. Review before launch. */
+@media (max-width: 1040px) {
+  .tools { padding-block: var(--s-7) 0; }
+  .page-tools .site-footer { margin-top: var(--s-8); }
+}
+
+@media (max-width: 640px) {
+  .tools h2 { margin-top: var(--s-7); }
+  .tools th,
+  .tools td,
+  .tools caption { padding: var(--s-3) var(--s-4); }
+}

@@ -16,16 +16,16 @@
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;700&display=swap">
 
-<link rel="stylesheet" href="/css/tokens.css?v=badge">
-<link rel="stylesheet" href="/css/styles.css?v=badge">
-<link rel="stylesheet" href="/css/pricing.css?v=custom-builds">
+<link rel="stylesheet" href="/css/tokens.css?v=banner-sm">
+<link rel="stylesheet" href="/css/styles.css?v=nav">
+<link rel="stylesheet" href="/css/pricing.css?v=banner-h">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/pricing-hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -87,13 +87,15 @@
     <p class="eyebrow">Pricing — all</p>
     <h1 class="pricing-intro__title">Which platform is right for your website?</h1>
     <p class="pricing-intro__lede">There isn&rsquo;t one best platform &mdash; there&rsquo;s the one that fits how your business actually works. This page walks through the five I build on, what each one is genuinely good at, and which is likely to suit you. Once you know where you land, I&rsquo;ll send you the pricing for that platform.</p>
-    <a class="pill pill--rust pill--has-icon pricing-intro__cta" href="/contact/">
+    <div class="pricing-intro__cta">
+    <a class="pill pill--rust pill--has-icon" href="/contact/">
       Contact
       <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
         <circle cx="10.5" cy="10.5" r="10.5" fill="white"/>
         <path d="M9.70506 13.2053L9.32397 13.2122C9.10548 13.2159 8.89669 13.2053 8.68282 13.2048L7.61808 13.2022L4.74074 13.2006C4.6308 13.2006 4.54488 13.2132 4.43494 13.2048C4.26264 13.1916 4.08342 13.2538 3.90927 13.1869C3.8058 13.1995 3.71572 13.2053 3.60163 13.1858L3.60024 8.37682L11.5181 8.37418L6.81571 2.99605C6.85174 2.96862 6.88177 2.97021 6.93258 2.95755L12.0198 2.96019C12.0928 3.05619 12.1376 3.11157 12.2309 3.18753L18.9048 10.8148L12.0752 18.6198L6.86237 18.6151L7.75989 17.5512L9.906 15.1111L11.556 13.2238L11.0511 13.2169C10.9236 13.2148 10.7892 13.1753 10.6622 13.2064C10.5439 13.2349 10.0095 13.1995 9.70506 13.2053Z" fill="currentColor"/>
       </svg>
     </a>
+    </div>
   </section>
 
   <!-- Short version — Figma y=1225, card 1275×452 -->
@@ -150,7 +152,7 @@
             Do you want to log in and change things yourself? That&rsquo;s Squarespace.<br>
             Does the site need to do more than a template allows? That&rsquo;s a custom build &mdash; Cloudflare, Netlify or Vercel underneath.
           </p>
-          <p>Going custom? <a class="pricing-short__jump" href="#custom-builds">See how the three compare</a> — or just <a class="pricing-short__jump" href="/contact/">tell me what you need</a> and I&rsquo;ll pick.</p>
+          <p>Know which of those three you are? <a class="pricing-short__jump" href="#platform-profiles">Jump to that profile below</a>. If you don&rsquo;t, the profiles are written to make it obvious.</p>
         </div>
       </div>
     </div>
@@ -326,7 +328,7 @@
         <h3 class="c-name">Netlify</h3>
         <p class="c-best">Keep your existing domain provider</p>
         <ul class="c-list">
-          <li><strong>Hosting:</strong> free for small sites, or US$9–20/month as traffic and updates grow.</li>
+          <li><strong>Hosting:</strong> US$0–20/month. Free for small sites, up to US$20/month as traffic and updates grow.</li>
           <li><strong>Forms:</strong> built in, with no extra service needed.</li>
           <li><strong>Plan:</strong> most business sites need Pro (US$20/month) so I can manage the site with you.</li>
         </ul>
@@ -337,9 +339,9 @@
         <h3 class="c-name">Vercel</h3>
         <p class="c-best">For more app-like projects</p>
         <ul class="c-list">
-          <li><strong>Hosting:</strong> business sites need the paid plan, from US$20/month.</li>
-          <li><strong>Access:</strong> with you as owner and me deploying, expect about US$40/month.</li>
-          <li><strong>Usage:</strong> extra usage beyond the included amount is billed on top.</li>
+          <li><strong>Hosting:</strong> Business and commercial sites require the Pro plan (the free Hobby tier is strictly non-commercial).</li>
+          <li><strong>Access:</strong> Pro starts at US$20/month, which includes one seat and US$20 in usage credit. With you as the team Owner and me added as a deploying developer, that is two paid seats at US$40/month base. (Team members who only need read-only access to review previews or manage invoices are free.)</li>
+          <li><strong>Usage:</strong> Metered usage (bandwidth, build minutes, serverless compute) is first offset by the included monthly credit. Any usage beyond that is billed on top.</li>
         </ul>
         <div class="c-catch"><p>I only recommend Vercel when your project clearly needs it.</p></div>
       </article>
@@ -356,6 +358,13 @@
       <source type="image/webp" srcset="/assets/img/footer-bg-1440.webp 1440w, /assets/img/footer-bg-2880.webp 2880w" sizes="100vw">
       <img src="/assets/img/footer-bg-1440.jpg" alt="" width="1440" height="539" loading="lazy" decoding="async">
     </picture>
+    <video class="site-footer__video"
+           autoplay muted loop playsinline
+           preload="none"
+           disablepictureinpicture
+           width="1920" height="840">
+      <source src="/assets/video/footer.mp4" type="video/mp4">
+    </video>
   </div>
 
   <div class="site-footer__inner container">
@@ -379,7 +388,7 @@
       <ul>
         <li><a href="/faqs/">All FAQs</a></li>
         <li><a href="/pricing/#platform-profiles">Compare platforms</a></li>
-        <li><a href="https://calendar.app.google/LL4k82UrifLjbCxH9" target="_blank" rel="noopener">Book video call</a></li>
+        <li><a href="https://calendar.app.google/LKjv1zT4b7R2NhJ69" target="_blank" rel="noopener">Book video call</a></li>
       </ul>
     </nav>
 
@@ -388,7 +397,7 @@
       <ul>
         <li><a href="mailto:nicole@kneecoal.com">Email us</a></li>
         <li><a href="https://api.whatsapp.com/send?phone=61402765878" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="https://calendar.app.google/LL4k82UrifLjbCxH9" target="_blank" rel="noopener">Video call</a></li>
+        <li><a href="https://calendar.app.google/LKjv1zT4b7R2NhJ69" target="_blank" rel="noopener">Video call</a></li>
       </ul>
     </nav>
   </div>
@@ -402,6 +411,8 @@
 </footer>
 
 <script src="/js/platform-profiles.js" defer></script>
-<script src="/js/faq-widget.js?v=closed2" defer></script>
+<script src="/js/hero-title.js?v=footer-video" defer></script>
+<script src="/js/nav.js" defer></script>
+<script src="/js/faq-widget.js?v=faq-ask" defer></script>
 </body>
 </html>

@@ -9,12 +9,13 @@ https://nicolesteinmetz.com/*  https://www.nicolesteinmetz.com/:splat  301!
 # UNBUILT ROUTES — holding pattern.
 # Home, Pricing (and the five platform pages), Contact,
 # How a build runs (/process/) and FAQs (/faqs/) are live.
-# Privacy Policy, the platform decider, get-a-quote and
-# start-a-project are not.
-# 302, not 301: these URLs come back when the pages are signed off.
+# Privacy Policy is not built yet.
+# Old quote, project and platform-decider URLs now land on the
+# pages those controls actually open.
+# 302, not 301: the privacy URL comes back when that page exists.
 # python3 -m http.server does not honour this file — local preview still 404s.
 # ---------------------------------------------------------------------------
 /privacy/*            /  302
-/platform-decider/    /  302
-/get-a-quote/         /  302
-/start-a-project/     /  302
+/platform-decider/    /pricing/#platform-profiles  302
+/get-a-quote/         /pricing/  302
+/start-a-project/     /contact/  302

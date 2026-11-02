@@ -51,7 +51,7 @@ Until both are in place, the form tells the visitor to email directly.
 
 ## Blocking before launch
 
-**1. One inner route is still parked on home.** Home (`1:2`), Pricing (`370:1574`, `/pricing/`), Squarespace pricing (`1:68`, `/pricing/squarespace/`), Shopify pricing (`1:117`, `/pricing/shopify/`), Cloudflare pricing (`288:4`, `/pricing/cloudflare/`), Netlify pricing (`153:203`, `/pricing/netlify/`), Vercel pricing (`153:154`, `/pricing/vercel/`), Contact (`318:476`, `/contact/`), How a build runs (`/process/`) and FAQs (`/faqs/`) are live. The Privacy Policy is not. Search `TODO(link)`.
+**1. One inner route is still parked on home.** Home (`1:2`), Pricing (`370:1574`, `/pricing/`), Squarespace pricing (`1:68`, `/pricing/squarespace/`), Shopify pricing (`1:117`, `/pricing/shopify/`), Cloudflare pricing (`288:4`, `/pricing/cloudflare/`), Netlify pricing (`153:203`, `/pricing/netlify/`), Vercel pricing (`153:154`, `/pricing/vercel/`), Contact (`318:476`, `/contact/`), How a build runs (`/process/`), FAQs (`/faqs/`) and Tools (`/tools/`) are live. The Privacy Policy is not. Search `TODO(link)`.
 
 | Route | Status |
 |---|---|
@@ -65,6 +65,7 @@ Until both are in place, the form tells the visitor to email directly.
 | `/contact/` | Live — hero, intro, email / WhatsApp / booking cards |
 | `/process/` | Live — How a build runs |
 | `/faqs/` | Live — search, most-read cards, FAQPage schema (`Nicole — FAQ Page v3.html`) |
+| `/tools/` | Live — what each platform, host and build tool is, and how they fit |
 | `/privacy/` | Parked — redirects home |
 
 `python3 -m http.server` ignores `_redirects`, so parked routes 404 locally — Cloudflare Pages will not.

@@ -9,6 +9,10 @@
 
 .page-faqs [hidden] { display: none !important; }
 
+/* The header sits over the hero, then scrolls away. Fragment links still need
+   the same gap the accordion items already reserve. */
+html:has(body.page-faqs) { scroll-padding-top: var(--s-5); }
+
 /* ---- HERO — node 381:246, 1443×758 at y=0 ------------------
    The file is already white by ~88% of its height, so the
    eyebrow (y=696) sits in that fade: 62px on a 1440 frame. */
@@ -23,7 +27,7 @@
 
 .faq-hero__copy {
   max-width: 760px;
-  margin: -4.3vw auto 0; /* 62px at 1440 — eyebrow into the white */
+  margin: -60px auto 0; /* same banner overlap as .pricing-intro */
   padding: 0 0 var(--s-5);
   text-align: center;
 }
@@ -32,12 +36,7 @@
 
 .faq-hero__title {
   margin: 0 0 var(--s-5);
-  font-size: var(--fs-faq-title);
-  font-weight: 700;
-  line-height: var(--lh-faq-title);
-  letter-spacing: -0.025em;
   text-wrap: balance;
-  color: var(--faq-ink);
 }
 
 .faq-hero__lede {
@@ -65,7 +64,7 @@
   letter-spacing: -0.015em;
   text-align: center;
   text-wrap: balance;
-  color: var(--faq-ink);
+  color: var(--ink-soft);
 }
 
 .faq-search__field {
@@ -84,6 +83,12 @@
   color: var(--faq-ink);
   font: inherit;
   font-size: var(--fs-body);
+  appearance: none;
+}
+
+.faq-search__field input::-webkit-search-decoration,
+.faq-search__field input::-webkit-search-cancel-button {
+  appearance: none;
 }
 
 .faq-search__field input::placeholder {
@@ -99,7 +104,7 @@
 
 .faq-search__go {
   position: absolute;
-  top: var(--s-2);
+  top: 50%;
   right: var(--s-2);
   z-index: 3;
   height: var(--faq-go-h);
@@ -113,6 +118,8 @@
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  white-space: nowrap;
+  translate: 0 -50%;
   cursor: pointer;
   transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
@@ -338,6 +345,7 @@
 }
 
 .faq-details {
+  scroll-margin-top: var(--s-5);
   border: 1px solid var(--card-line);
   border-radius: var(--r-card);
   background: var(--card);
@@ -482,15 +490,44 @@
   transform: none;
 }
 
-/* ---- TABLET — ≤1040px. No mobile frame. ------------------- */
-@media (max-width: 1040px) {
+/* ---- TABLET — 641–1040px. No mobile frame. ----------------
+   Desktop rules above stay as they are. Three most-read cards
+   still fit at 1024; they stack further down, gap kept.       */
+@media (max-width: 1040px) and (min-width: 641px) {
+  .faq-details summary {
+    padding-right: calc(var(--s-5) + var(--faq-tap) + var(--s-3) + var(--faq-tap) + var(--s-4));
+  }
+
+  .faq-details h3 { overflow-wrap: break-word; }
+
+  .faq-details summary::after,
+  .faq-copy {
+    width: var(--faq-tap);
+    height: var(--faq-tap);
+    top: calc(var(--s-5) + (var(--fs-faq-q) * var(--lh-faq-q) / 2));
+  }
+
+  .faq-copy {
+    right: calc(var(--s-5) + var(--faq-tap) + var(--s-3));
+  }
+}
+
+/* 1024 still holds three cards. Below this the row is too
+   narrow, so it stacks to one column and keeps --faq-gap. */
+@media (max-width: 899px) {
   .faq-most__row { grid-template-columns: 1fr; }
   .faq-most__card { min-height: 0; }
 }
 
 /* ---- PHONE — ≤640px. No mobile frame. --------------------- */
 @media (max-width: 640px) {
-  .faq-hero__copy { margin-top: -16px; }
+  /* Same phone height as the home hero. The figure sits right of
+     centre, so the crop shifts that way. */
+  .faq-hero__media img {
+    aspect-ratio: var(--banner-ratio-sm);
+    object-position: 60% center;
+  }
+  .faq-hero__copy { margin-top: -32px; }
 
   .faq-search { padding: var(--s-6) var(--s-4) var(--faq-gap); }
 

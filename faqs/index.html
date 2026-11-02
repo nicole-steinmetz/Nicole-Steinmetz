@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="/css/tokens.css?v=banner-sm">
 <link rel="stylesheet" href="/css/styles.css?v=nav">
 <link rel="preload" as="image" href="/assets/img/faq-hero-1440.webp" type="image/webp" fetchpriority="high">
-<link rel="stylesheet" href="/css/faqs.css?v=faq-hero-video">
+<link rel="stylesheet" href="/css/faqs.css?v=hero-clear">
 <script>document.documentElement.classList.add('js');</script>
 <script type="application/ld+json">
 {
@@ -605,7 +605,7 @@
            fetchpriority="high" decoding="async">
     </picture>
     <video class="faq-hero__video"
-           autoplay muted loop playsinline
+           autoplay muted playsinline
            preload="none"
            disablepictureinpicture
            width="1280" height="720"
@@ -1042,7 +1042,7 @@
 </footer>
 
 <script src="/js/site-config.js?v=links" defer></script>
-<script src="/js/hero-title.js?v=footer-video" defer></script>
+<script src="/js/hero-title.js?v=hero-clear" defer></script>
 <script>
 /* Banner video — fade over the still once it is playing.
    Reduced motion keeps the still and drops the file. */
@@ -1066,7 +1066,11 @@
   video.addEventListener("playing", ready, { once: true });
   if (video.readyState >= 3) ready();
 
+  video.loop = false;
+  video.removeAttribute("loop");
+
   var play = function () {
+    if (video.ended) return;
     var pending = video.play();
     if (pending && pending.catch) pending.catch(function () {});
   };

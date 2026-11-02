@@ -1,6 +1,7 @@
-/* Hero video — muted loop over the still. Reduced motion keeps
+/* Hero video — plays once over the still. Reduced motion keeps
    the still and unloads the file. Autoplay can fail silently;
-   the still stays visible underneath. */
+   the still stays visible underneath. The handoff below brings
+   the main heading up when the clip ends. */
 (function () {
   var video = document.querySelector(".hero__video");
   if (!video) return;
@@ -17,6 +18,8 @@
 
   video.muted = true;
   video.setAttribute("playsinline", "");
+  video.loop = false;
+  video.removeAttribute("loop");
 
   function ready() {
     video.classList.add("is-ready");
@@ -25,6 +28,7 @@
   if (video.readyState >= 3) ready();
 
   var play = function () {
+    if (video.ended) return;
     var p = video.play();
     if (p && p.catch) p.catch(function () {});
   };
@@ -36,7 +40,90 @@
   });
 })();
 
-/* Footer video — same pattern as the hero video. */
+/* Banner clips don't loop cleanly. Play each one once, and if
+   the reader is still on it when it finishes, glide the main
+   heading to the top of the viewport. A scroll, wheel or
+   keypress before then leaves the page where they put it. */
+(function () {
+  var videos = document.querySelectorAll(
+    ".hero__video, .pricing-hero__video, .faq-hero__video"
+  );
+  if (!videos.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var handedOff = false;
+  var origin = window.scrollY;
+  /* A restored scroll position means they already left the banner. */
+  if (origin > 32) handedOff = true;
+
+  function takeOver() { handedOff = true; }
+
+  window.addEventListener("wheel", function (e) {
+    if (e.deltaY || e.deltaX) takeOver();
+  }, { passive: true });
+  window.addEventListener("touchmove", takeOver, { passive: true });
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp" ||
+        e.key === "PageDown" || e.key === "PageUp" ||
+        e.key === "Home" || e.key === "End" || e.key === " ") takeOver();
+  });
+  window.addEventListener("scroll", function () {
+    if (Math.abs(window.scrollY - origin) > 32) takeOver();
+  }, { passive: true });
+
+  function headingAfter(video) {
+    var nodes = document.querySelectorAll(
+      ".hero__title, .pricing-intro__title, .faq-hero__title"
+    );
+    for (var i = 0; i < nodes.length; i++) {
+      if (video.compareDocumentPosition(nodes[i]) & Node.DOCUMENT_POSITION_FOLLOWING) {
+        return nodes[i];
+      }
+    }
+    return null;
+  }
+
+  function handoff(video) {
+    if (handedOff || video.dataset.handed === "1") return;
+    video.dataset.handed = "1";
+    if (!video.duration || video.currentTime < 0.5) return;
+    var heading = headingAfter(video);
+    if (!heading) return;
+    var gap = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--s-5")
+    ) || 24;
+    var top = heading.getBoundingClientRect().top;
+    /* The clip fades to white and overlaps the heading. Scroll
+       far enough that the video itself has left the screen. */
+    var media = video.closest(".hero__media, .pricing-hero__media, .faq-hero__media") || video;
+    var videoClear = media.getBoundingClientRect().bottom;
+    var delta = Math.max(top - gap, videoClear);
+    if (delta <= 1) return;
+    window.scrollTo({
+      top: Math.max(0, window.scrollY + delta),
+      behavior: "smooth"
+    });
+  }
+
+  Array.prototype.forEach.call(videos, function (video) {
+    video.loop = false;
+    video.removeAttribute("loop");
+    video.addEventListener("ended", function () {
+      if (!document.hidden) {
+        handoff(video);
+        return;
+      }
+      document.addEventListener("visibilitychange", function onVis() {
+        if (document.hidden) return;
+        document.removeEventListener("visibilitychange", onVis);
+        handoff(video);
+      });
+    });
+    if (video.ended) handoff(video);
+  });
+})();
+
+/* Footer video — muted loop over the still. */
 (function () {
   var video = document.querySelector(".site-footer__video");
   if (!video) return;

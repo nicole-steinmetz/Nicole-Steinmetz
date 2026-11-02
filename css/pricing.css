@@ -20,7 +20,7 @@
 }
 
 /* ---- HERO — image 1440×756 at y=0 -------------------------- */
-.pricing-hero { position: relative; }
+.pricing-hero { position: relative; isolation: isolate; }
 
 .pricing-hero__media img {
   width: 100%;
@@ -33,6 +33,7 @@
    (Figma y=696 inside a 756 image). Title sits on the seam.   */
 .pricing-intro {
   position: relative;
+  z-index: 1;
   margin-top: -60px;
   padding-bottom: var(--s-8); /* cta 1119 → card 1225 */
   text-align: center;

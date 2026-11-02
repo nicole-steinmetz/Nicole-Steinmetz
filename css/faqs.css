@@ -14,16 +14,32 @@
 html:has(body.page-faqs) { scroll-padding-top: var(--s-5); }
 
 /* ---- HERO — node 381:246, 1443×758 at y=0 ------------------
-   The file is already white by ~88% of its height, so the
-   eyebrow (y=696) sits in that fade: 62px on a 1440 frame. */
-.faq-hero__media img {
+   The still is already white by ~88% of its height, so the
+   eyebrow sits in that fade. The video is the same artwork,
+   1280×720, and fades in over the still once it can play.
+   The still stays put as the fallback. */
+.faq-hero__media { position: relative; }
+
+.faq-hero__media img,
+.faq-hero__video {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 2848 / 1496;
   object-fit: cover;
-  object-position: center top;
+  object-position: center bottom;
 }
+
+.faq-hero__video {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease);
+}
+
+.faq-hero__video.is-ready { opacity: 1; }
 
 .faq-hero__copy {
   max-width: 760px;
@@ -523,7 +539,8 @@ html:has(body.page-faqs) { scroll-padding-top: var(--s-5); }
 @media (max-width: 640px) {
   /* Same phone height as the home hero. The figure sits right of
      centre, so the crop shifts that way. */
-  .faq-hero__media img {
+  .faq-hero__media img,
+  .faq-hero__video {
     aspect-ratio: var(--banner-ratio-sm);
     object-position: 60% center;
   }
@@ -565,4 +582,5 @@ html:has(body.page-faqs) { scroll-padding-top: var(--s-5); }
   }
 
   .faq-most__card.is-in { animation: none; }
+  .faq-hero__video { display: none; }
 }

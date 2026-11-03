@@ -1252,21 +1252,25 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .page-process .site-header {
   position: relative;
-  background: var(--ink-focus);
+  background: var(--process-bg);
 }
 .process {
-  margin-top: 123px;
   background: var(--process-bg);
   padding-block: var(--s-8) var(--s-9);
 }
-.page-process .process { margin-top: 0; }
 /* The cream band replaces the paper gap above the footer image. */
 body:has(.process) .site-footer { margin-top: 0; }
 
-.process__title { margin-bottom: var(--s-7); }
-/* Home uses this class on an h2. The process page h1 takes the
-   shared page-title style instead. */
-h2.process__title {
+.process__title { margin-bottom: var(--s-5); }
+.process__lede {
+  max-width: 46rem;
+  margin-bottom: var(--s-8);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+}
+.process__subhead {
+  margin-bottom: var(--s-7);
   font-size: var(--fs-h2);
   font-weight: 700;
   line-height: 1.2;
@@ -1453,11 +1457,6 @@ h2.process__title {
   font-weight: 600;
   line-height: 1.2;
 }
-.process__step--training .process__badge {
-  background: var(--ink-focus);
-  border-color: var(--ink-focus);
-  color: var(--on-dark);
-}
 
 /* Upcoming steps dim only once JS can track the centre line,
    and only on the desktop layout. */
@@ -1610,7 +1609,6 @@ h2.process__title {
   .panels { grid-template-columns: 1fr; margin-top: var(--s-5); }
 
   .trusted { margin-top: 72px; }
-  .process { margin-top: 88px; }
   .trusted__row { justify-content: center; gap: var(--s-6) var(--s-7); }
   .trusted__viewport.is-marquee .trusted__row {
     justify-content: flex-start;
@@ -1684,7 +1682,7 @@ h2.process__title {
   .proj-grid { column-gap: var(--proj-grid-gap-sm); }
 
   .trusted { margin-top: 56px; }
-  .process { margin-top: 64px; padding-block: var(--s-7); }
+  .process { padding-block: var(--s-7); }
   .process__step--training .process__card { padding: var(--s-5); }
   .trusted__viewport { margin-top: var(--s-7); }
   .trusted__row { gap: var(--s-6); }

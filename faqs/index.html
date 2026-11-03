@@ -27,7 +27,10 @@
 <link rel="stylesheet" href="/css/styles.css?v=nav">
 <link rel="preload" as="image" href="/assets/img/faq-hero-1440.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="/css/faqs.css?v=hero-clear">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+document.documentElement.classList.add('js');
+if (location.hash.replace(/^#/, '') === 'whats-the-process-start-to-finish') location.replace('/process/');
+</script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -127,7 +130,7 @@
   {
    "@type": "Question",
    "name": "What's the process, start to finish?",
-   "url": "https://www.nicolesteinmetz.com/faqs/#whats-the-process-start-to-finish",
+   "url": "https://www.nicolesteinmetz.com/process/",
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "1. Let's chat. We start with a call about your business, what you need the site to do, and when you'd like it live. From there, I'll send through a quote based on your sitemap.\n2. Gather your content. Before I start designing, I'll need your images and near-final copy.\n3. Lock in the scope. We confirm your pages and content together, and that's what your build is scheduled around.\n4. Desktop design. I design and build the full site for desktop first. At this stage, please review it on a laptop or desktop. It won't look right on your phone yet, and that's completely normal.\n5. Perfect desktop. We use your rounds of changes to get desktop exactly right. Once you've signed it off, we move on to mobile.\n6. Mobile optimisation. Now's the time to grab your phone. I optimise every page for mobile, and you get a round of mobile touch-ups.\n7. Final invoice. The balance is settled before the site goes live.\n8. Handover. The site moves into your account and it's all yours, with full access from here on. Your domain stays with your current provider, like Crazy Domains or GoDaddy. I simply point it to your new site.\n9. Go live. Connecting your domain is the very last step. It can take up to 48 hours to show everywhere, so don't worry if it appears for some people before others.\n10. Training. Once you're live, we'll do a session on your own site so you feel confident making updates yourself."
@@ -658,7 +661,7 @@
 <span class="faq-most__pill">Most read</span>
 <p class="faq-most__q">What's the process, start to finish?</p>
 <p class="faq-most__a">Ten steps, from the first call through to training once you’re live.</p>
-<a class="faq-most__link" href="#whats-the-process-start-to-finish">Read the answer <span aria-hidden="true">→</span><span class="visually-hidden"> to: What's the process, start to finish?</span></a>
+<a class="faq-most__link" href="/process/">Read the answer <span aria-hidden="true">→</span><span class="visually-hidden"> to: What's the process, start to finish?</span></a>
 </article>
       </div>
     </section>
@@ -1083,7 +1086,7 @@
 })();
 </script>
 <script src="/js/faq-aliases.js?v=1" defer></script>
-<script src="/js/faqs.js?v=faq-accordion" defer></script>
+<script src="/js/faqs.js?v=process-go" defer></script>
 <script src="/js/nav.js" defer></script>
 <script src="/js/faq-widget.js?v=faq-ask" defer></script>
 </body>

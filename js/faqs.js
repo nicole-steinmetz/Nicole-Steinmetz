@@ -3,6 +3,8 @@
 (function(){
 'use strict';
 var CANON='https://www.nicolesteinmetz.com/faqs/';
+var PROCESS_SLUG='whats-the-process-start-to-finish';
+var PROCESS_URL='/process/';
 var reduce=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 var items=[].slice.call(document.querySelectorAll('.faq-item'));
 var cats=[].slice.call(document.querySelectorAll('.faq-cat'));
@@ -244,7 +246,7 @@ function apply(){
     visible.forEach(function(r){highlight(r.it.el.querySelector('.q-text'),alts);highlight(r.it.el.querySelector('.faq-answer'),alts);});
   }
   var shouldOpen=[];
-  if(searching&&visible.length&&(visible.length===1||visible[0].sc>=visible[1].sc*1.5))shouldOpen=[visible[0].it.d];
+  if(searching&&visible.length&&(visible.length===1||visible[0].sc>=visible[1].sc*1.5)&&visible[0].it.d.id!==PROCESS_SLUG)shouldOpen=[visible[0].it.d];
   autoOpened.forEach(function(d){if(shouldOpen.indexOf(d)<0)setOpen(d,false);});
   autoOpened=[];
   shouldOpen.forEach(function(d){if(!d.open)setOpen(d,true);autoOpened.push(d);});
@@ -314,6 +316,7 @@ function openAndScroll(slug){
 function handleHash(){
   var id='';
   try{id=decodeURIComponent(location.hash.slice(1));}catch(e){}
+  if(id===PROCESS_SLUG){location.replace(PROCESS_URL);return;}
   if(!id)return;
   var el=document.getElementById(id);
   if(!el)return;
@@ -330,10 +333,11 @@ var status=document.getElementById('copy-status');
 document.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('.faq-copy');
   if(!b)return;
-  var slug=b.getAttribute('data-slug'),url=CANON+'#'+slug;
+  var slug=b.getAttribute('data-slug'),url=slug===PROCESS_SLUG?('https://www.nicolesteinmetz.com'+PROCESS_URL):(CANON+'#'+slug);
   function done(){
     b.classList.add('copied');status.textContent='Link copied';
     setTimeout(function(){b.classList.remove('copied');status.textContent='';},1800);
+    if(slug===PROCESS_SLUG)return;
     try{history.replaceState(null,'','#'+slug);}catch(err){}
   }
   function fallback(){
@@ -352,6 +356,7 @@ var cards=[].slice.call(document.querySelectorAll('.faq-most__card'));
 cards.forEach(function(c){
   c.querySelector('.faq-most__link').addEventListener('click',function(e){
     var slug=c.getAttribute('data-slug');
+    if(slug===PROCESS_SLUG)return;
     if(openAndScroll(slug)){
       e.preventDefault();
       try{history.replaceState(null,'','#'+slug);}catch(err){}
@@ -363,7 +368,7 @@ function fillCard(c,slug){
   c.setAttribute('data-slug',slug);
   c.querySelector('.faq-most__q').textContent=d.querySelector('.q-text').textContent;
   c.querySelector('.faq-most__a').textContent=d.getAttribute('data-teaser')||'';
-  c.querySelector('.faq-most__link').setAttribute('href','#'+slug);
+  c.querySelector('.faq-most__link').setAttribute('href',slug===PROCESS_SLUG?PROCESS_URL:('#'+slug));
 }
 if(/^https?:$/.test(location.protocol)&&window.fetch){
   fetch('/api/faq-top',{headers:{'Accept':'application/json'}})
@@ -412,6 +417,16 @@ else{
   rev.forEach(function(el){io.observe(el);});
 }
 
+var processFaq=document.getElementById(PROCESS_SLUG);
+if(processFaq){
+  var processSummary=processFaq.querySelector('summary');
+  if(processSummary){
+    processSummary.addEventListener('click',function(e){
+      e.preventDefault();
+      location.assign(PROCESS_URL);
+    });
+  }
+}
 apply();
 handleHash();
 })();

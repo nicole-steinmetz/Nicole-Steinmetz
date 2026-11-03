@@ -250,3 +250,46 @@
   wire(document);
   document.addEventListener("blog-article-ready", function () { wire(document); });
 })();
+
+/* Index search. Matches the platform tag, the title and the
+   excerpt. A tag on a post links here with ?q= so the field
+   opens already filtered. */
+(function () {
+  var form = document.querySelector(".blog-search");
+  if (!form) return;
+  var input = form.querySelector("input");
+  var grid = document.querySelector(".blog-grid");
+  var empty = document.querySelector(".blog-search__empty");
+  if (!input || !grid) return;
+  var cards = grid.querySelectorAll("a.blog-card");
+
+  function apply(raw) {
+    var query = raw.trim().toLowerCase();
+    var shown = 0;
+    Array.prototype.forEach.call(cards, function (card) {
+      var match = !query || card.textContent.toLowerCase().indexOf(query) !== -1;
+      card.hidden = !match;
+      if (match) shown += 1;
+    });
+    grid.classList.toggle("is-filtered", shown < 2);
+    if (empty) empty.hidden = shown !== 0;
+  }
+
+  var initial = new URLSearchParams(window.location.search).get("q") || "";
+  if (initial) input.value = initial;
+  apply(input.value);
+
+  input.addEventListener("input", function () {
+    apply(input.value);
+    var url = new URL(window.location.href);
+    var value = input.value.trim();
+    if (value) url.searchParams.set("q", value);
+    else url.searchParams.delete("q");
+    history.replaceState(null, "", url);
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    apply(input.value);
+  });
+})();

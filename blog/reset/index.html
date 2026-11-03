@@ -26,7 +26,7 @@
 
 <link rel="stylesheet" href="/css/tokens.css?v=star">
 <link rel="stylesheet" href="/css/styles.css?v=video-replay">
-<link rel="stylesheet" href="/css/blog.css?v=star">
+<link rel="stylesheet" href="/css/blog.css?v=footer-dark">
 <script>document.documentElement.classList.add('js');</script>
 
 <script type="application/ld+json">
@@ -93,6 +93,9 @@
     </div>
     <h1>Reset: a daily training plan I built because I needed one</h1>
     <div class="blog-byline"><span class="blog-avatar" aria-hidden="true">N</span>Nicole Steinmetz · Web designer and developer</div>
+    <ul class="blog-tags" aria-label="Platforms">
+      <li><a class="blog-tag" href="/blog/?q=cloudflare">Cloudflare</a></li>
+    </ul>
   </section>
   <svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1" /></svg>
 
@@ -143,24 +146,34 @@
   <svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1" /></svg>
   <section class="blog-grid" aria-label="Other articles">
     <svg class="blog-split" aria-hidden="true" focusable="false"><line x1="0.5" y1="0" x2="0.5" y2="100%" /></svg>
-    <div class="blog-card blog-card--empty">More soon</div>
+    <a class="blog-card" href="/blog/hoodburger/" aria-haspopup="dialog">
+      <div class="blog-meta">
+        <span class="blog-by"><span class="blog-avatar" aria-hidden="true">N</span>Nicole Steinmetz</span>
+        <span class="blog-when"><b>Case study</b></span>
+      </div>
+      <ul class="blog-tags" aria-label="Platforms">
+        <li><span class="blog-tag">Shopify</span></li>
+      </ul>
+      <div class="blog-thumb">
+        <img src="/assets/img/hoodburger-cover.jpg" alt="" width="1024" height="682">
+      </div>
+      <div class="blog-card__row">
+        <h2>Hoodburger: a Shopify site and loyalty program for a 5-store Perth burger chain</h2>
+        <span class="blog-card__plus" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" focusable="false">
+            <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </div>
+      <p>Dawn theme, 15 templates, and a Marsello loyalty program themed like an RPG.</p>
+    </a>
     <div class="blog-card blog-card--empty">More soon</div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="site-footer__bg" aria-hidden="true">
-    <picture>
-      <source type="image/webp" srcset="/assets/img/footer-bg-1440.webp 1440w, /assets/img/footer-bg-2880.webp 2880w" sizes="100vw">
-      <img src="/assets/img/footer-bg-1440.jpg" alt="" width="1440" height="539" loading="lazy" decoding="async">
-    </picture>
-    <video class="site-footer__video"
-           autoplay muted playsinline
-           preload="none"
-           disablepictureinpicture
-           width="1920" height="840">
-      <source src="/assets/video/footer.mp4" type="video/mp4">
-    </video>
+    <img src="/assets/img/footer-bg-dark.jpg" alt="" width="1024" height="419" loading="lazy" decoding="async">
   </div>
 
   <div class="site-footer__inner container">
@@ -213,7 +226,7 @@
 <script src="/js/site-config.js?v=links" defer></script>
 <script src="/js/hero-title.js?v=video-replay" defer></script>
 <script src="/js/nav.js" defer></script>
-<script src="/js/blog.js?v=star" defer></script>
+<script src="/js/blog.js?v=tags" defer></script>
 <script src="/js/faq-widget.js?v=faq-ask" defer></script>
 </body>
 </html>

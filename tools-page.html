@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Tools Compared: Squarespace, Shopify &amp; Hosting | Nicole Steinmetz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;700&display=swap">
+<style>
+  /* Paste into a Squarespace Code Block with a wrapping
+     <div class="tools-page">. Every rule is scoped to that class.
+     Press-kit SVGs were not in the repo. Logo marks below are
+     outline placeholders, not official brand artwork. */
+  .tools-page {
+    --bg: #101010;
+    --line: #2E3238;
+    --text: #FFFFFF;
+    --text-muted: #8F99A8;
+    --text-dim: #6F7988;
+    --btn-line: #505A68;
+    --blue: #6996C7;
+    --amber: #F5A603;
+    --rust: #894332;
+    --surface-light: #F7F6F5;
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .tools-page *,
+  .tools-page *::before,
+  .tools-page *::after { box-sizing: border-box; }
+  .tools-page h1,
+  .tools-page h2,
+  .tools-page p,
+  .tools-page ul,
+  .tools-page figure { margin: 0; }
+  .tools-page ul { padding: 0; list-style: none; }
+  .tools-page a { color: var(--text); }
+  .tools-page img,
+  .tools-page svg,
+  .tools-page video { display: block; max-width: 100%; }
+  .tools-page :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+  }
+  .tools-page__skip {
+    position: absolute;
+    left: 16px;
+    top: 8px;
+    transform: translateY(-150%);
+    background: var(--bg);
+    color: var(--text);
+    padding: 8px 12px;
+  }
+  .tools-page__skip:focus { transform: none; }
+
+  .tools-page__wrap {
+    width: min(1200px, 100%);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+  .tools-page__copy { max-width: 720px; }
+  .tools-page h1 {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    letter-spacing: 0;
+    color: var(--text);
+  }
+  .tools-page h2 {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 32.9px;
+    letter-spacing: 0;
+    color: var(--text);
+  }
+  .tools-page__eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 32.9px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    /* --text-dim is 4.32:1 on --bg, under AA at 14px, so labels use muted (6.61:1). */
+    color: var(--text-muted);
+  }
+  .tools-page__tone { display: block; color: var(--text-muted); font-weight: 400; }
+  .tools-page h1 .tools-page__tone { font-weight: 700; }
+  .tools-page__lede { margin-top: 24px; max-width: 720px; }
+  .tools-page__meta { margin-top: 16px; }
+  .tools-page__meta time { color: var(--text); font-weight: 700; }
+  .tools-page a.tools-page__textlink {
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .tools-page__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 22px;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+    text-decoration: none;
+    transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .tools-page a.tools-page__btn--primary {
+    background: var(--amber);
+    color: var(--bg);
+  }
+  .tools-page a.tools-page__btn--secondary {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--text);
+  }
+  .tools-page__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+  .tools-page__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 720px) minmax(260px, 1fr);
+    gap: 48px;
+    align-items: center;
+    padding-block: 64px 0;
+  }
+  .tools-page__stage {
+    position: relative;
+    min-height: 360px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .tools-page__video { width: 100%; height: 100%; object-fit: cover; }
+  .tools-page__video:not([src]) { display: none; }
+  .tools-page__stage:has(.tools-page__video[src]) .tools-page__stage-ui { display: none; }
+  .tools-page__stage-ui {
+    min-height: 360px;
+    padding: 28px;
+    display: grid;
+    align-content: center;
+    gap: 16px;
+  }
+  .tools-page__bars { display: flex; align-items: flex-end; gap: 8px; height: 72px; }
+  .tools-page__bars i {
+    display: block;
+    width: 8px;
+    height: 28%;
+    border-radius: 4px;
+    background: var(--blue);
+    transform-origin: bottom center;
+  }
+  .tools-page__bars i:nth-child(2),
+  .tools-page__bars i:nth-child(5) { background: var(--amber); height: 55%; }
+  .tools-page__bars i:nth-child(3) { height: 40%; }
+  .tools-page__bars i:nth-child(4) { height: 78%; }
+  .tools-page__bars i:nth-child(6) { height: 48%; }
+
+  .tools-page__layout {
+    display: grid;
+    grid-template-columns: 168px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+    margin-top: 96px;
+  }
+  .tools-page__steps {
+    position: sticky;
+    top: 32px;
+    display: grid;
+    gap: 14px;
+  }
+  .tools-page__steps a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .tools-page__steps a[aria-current="true"] {
+    color: var(--text);
+    box-shadow: inset 2px 0 0 var(--blue);
+    padding-left: 12px;
+  }
+  .tools-page__section {
+    margin-top: 96px;
+    padding-top: 96px;
+    border-top: 1px solid var(--line);
+  }
+  .tools-page__layout .tools-page__section:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .tools-page__section > h2 + p,
+  .tools-page__lead { margin-top: 16px; max-width: 720px; }
+
+  .tools-page__grid,
+  .tools-page__cards,
+  .tools-page__tiles {
+    display: grid;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .tools-page__grid { grid-template-columns: 1fr 1fr; }
+  .tools-page__cards { grid-template-columns: 1fr 1fr; }
+  .tools-page__tiles { grid-template-columns: repeat(4, 1fr); }
+
+  .tools-page__cell,
+  .tools-page__card,
+  .tools-page__tile,
+  .tools-page__callout {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: transparent;
+  }
+  .tools-page__cell,
+  .tools-page__tile { padding: 24px; }
+  .tools-page__cell svg,
+  .tools-page__mark { margin-bottom: 16px; color: var(--text-muted); }
+  .tools-page__callout { max-width: 720px; margin-top: 32px; padding: 24px; }
+  .tools-page__card { overflow: hidden; }
+  .tools-page__preview {
+    height: 60%;
+    min-height: 220px;
+    border-bottom: 1px solid var(--line);
+    padding: 20px;
+    display: grid;
+    align-content: end;
+    gap: 12px;
+  }
+  .tools-page__card-body { padding: 20px 20px 24px; }
+  .tools-page__card-body h2 { margin-top: 0; }
+  .tools-page__card-body p { margin-top: 8px; }
+  .tools-page__card-body .tools-page__btn { margin-top: 20px; }
+  .tools-page__kicker { margin-top: 16px; }
+
+  .tools-page__ui-row,
+  .tools-page__tick {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--text-muted);
+  }
+  .tools-page__tick { justify-content: flex-start; }
+  .tools-page__box {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--btn-line);
+    border-radius: 3px;
+    flex: none;
+  }
+  .tools-page__tick.is-on .tools-page__box {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+  .tools-page__log { display: grid; gap: 6px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 14px; line-height: 25px; letter-spacing: 0; text-transform: none; }
+  .tools-page__pill {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: var(--amber);
+    color: var(--bg);
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+  }
+  .tools-page__map { position: relative; height: 140px; border: 1px solid var(--line); border-radius: 12px; }
+  .tools-page__map span {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--blue);
+  }
+  .tools-page__map span:nth-child(2) { background: var(--amber); }
+  .tools-page__map span:nth-child(1) { top: 28%; left: 18%; }
+  .tools-page__map span:nth-child(2) { top: 42%; left: 46%; }
+  .tools-page__map span:nth-child(3) { top: 22%; left: 70%; }
+  .tools-page__map span:nth-child(4) { top: 62%; left: 30%; }
+  .tools-page__map span:nth-child(5) { top: 58%; left: 78%; }
+  .tools-page__map span:nth-child(6) { top: 36%; left: 58%; }
+
+  .tools-page table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+  .tools-page caption { margin-bottom: 16px; text-align: left; color: var(--text-muted); }
+  .tools-page th,
+  .tools-page td {
+    padding: 16px 16px 16px 0;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--line);
+    line-height: 25px;
+  }
+  .tools-page th { color: var(--text); font-weight: 700; }
+  .tools-page thead th {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    line-height: 32.9px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .tools-page td { color: var(--text-muted); font-weight: 400; }
+  .tools-page__note { margin-top: 32px; max-width: 720px; }
+  .tools-page__close {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .tools-page__close h2 { max-width: 36ch; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tools-page__btn--primary:hover { transform: translateY(-2px); }
+    .tools-page__btn--secondary:hover { border-color: var(--btn-line); }
+    .tools-page__cell,
+    .tools-page__card,
+    .tools-page__tile {
+      transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .tools-page__cell:hover,
+    .tools-page__card:hover,
+    .tools-page__tile:hover {
+      transform: translateY(-4px);
+      border-color: var(--btn-line);
+    }
+    .tools-page__cell:active,
+    .tools-page__card:active,
+    .tools-page__tile:active,
+    .tools-page__btn:active {
+      transform: scale(0.98);
+      transition-duration: 0.05s;
+    }
+    .tools-page .will-reveal { opacity: 0; }
+    .tools-page .will-reveal.is-in {
+      animation: tools-rise 0.5s var(--ease) forwards;
+      animation-delay: calc(var(--i, 0) * 60ms);
+    }
+    .tools-page.is-playing .tools-page__bars i { animation: tools-bar 4.2s var(--ease) infinite; }
+    .tools-page.is-playing .tools-page__bars i:nth-child(2) { animation-duration: 3.6s; animation-delay: 0.2s; }
+    .tools-page.is-playing .tools-page__bars i:nth-child(3) { animation-duration: 4.9s; animation-delay: 0.4s; }
+    .tools-page.is-playing .tools-page__bars i:nth-child(4) { animation-duration: 3.8s; animation-delay: 0.1s; }
+    .tools-page.is-playing .tools-page__bars i:nth-child(5) { animation-duration: 4.5s; animation-delay: 0.3s; }
+    .tools-page.is-playing .tools-page__bars i:nth-child(6) { animation-duration: 4.1s; }
+    .tools-page.is-playing .tools-page__map span { animation: tools-pulse 4.2s var(--ease) infinite; }
+    .tools-page.is-playing .tools-page__map span:nth-child(odd) { animation-duration: 3.6s; }
+    .tools-page.is-playing .tools-page__map span:nth-child(3n) { animation-duration: 4.9s; }
+    .tools-page.is-playing .tools-page__tick .tools-page__box { opacity: 0.35; }
+    .tools-page.is-playing .tools-page__tick.is-on .tools-page__box {
+      animation: tools-tick 4.4s var(--ease) infinite;
+    }
+    .tools-page.is-playing .tools-page__tick:nth-child(2).is-on .tools-page__box { animation-delay: 0.4s; }
+    .tools-page.is-playing .tools-page__tick:nth-child(3).is-on .tools-page__box { animation-delay: 0.8s; }
+    .tools-page.is-playing .tools-page__log span {
+      opacity: 0;
+      animation: tools-type 4.8s var(--ease) infinite;
+    }
+    .tools-page.is-playing .tools-page__log span:nth-child(2) { animation-delay: 0.8s; }
+    .tools-page.is-playing .tools-page__log span:nth-child(3) { animation-delay: 1.6s; }
+    .tools-page.is-playing .tools-page__pill { animation: tools-type 4.8s var(--ease) 2s infinite; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tools-page__tick.is-on .tools-page__box,
+    .tools-page__log span,
+    .tools-page__pill { opacity: 1; }
+  }
+  @keyframes tools-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes tools-bar {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+  }
+  @keyframes tools-pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+  @keyframes tools-tick {
+    0%, 12% { opacity: 0.35; background: transparent; }
+    28%, 80% { opacity: 1; background: var(--amber); }
+    100% { opacity: 0.35; background: transparent; }
+  }
+  @keyframes tools-type {
+    0%, 8% { opacity: 0; }
+    20%, 78% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @media (max-width: 900px) {
+    .tools-page__hero,
+    .tools-page__layout { grid-template-columns: 1fr; }
+    .tools-page__steps { display: none; }
+    .tools-page__layout { margin-top: 56px; }
+    .tools-page__tiles { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .tools-page__wrap { padding-inline: 16px; }
+    .tools-page__section { margin-top: 56px; padding-top: 56px; }
+    .tools-page__grid,
+    .tools-page__cards,
+    .tools-page__tiles { grid-template-columns: 1fr; }
+    .tools-page thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    .tools-page tr {
+      display: block;
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .tools-page th,
+    .tools-page td {
+      display: block;
+      padding: 8px 0;
+      border-bottom: 0;
+    }
+    .tools-page td::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 4px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 1.4px;
+      line-height: 25px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="tools-page">
+<a class="tools-page__skip" href="#main">Skip to content</a>
+<main id="main">
+  <header class="tools-page__hero tools-page__wrap">
+    <div class="tools-page__copy">
+      <p class="tools-page__eyebrow">The tools</p>
+      <h1>
+        <span>Understanding the tools.</span>
+        <span class="tools-page__tone">What each one is, and what happens behind the scenes.</span>
+      </h1>
+      <p class="tools-page__lede">Choosing website tools means three separate decisions: the platform your site runs on, where it is hosted, and the tools used to design and build it.</p>
+      <p class="tools-page__meta">Written by Nicole Steinmetz, a solo web designer based in Perth, Western Australia.<br>Last updated: <time datetime="2026-10-26">26 October 2026</time></p>
+      <div class="tools-page__actions">
+        <a class="tools-page__btn tools-page__btn--primary" href="#platforms">See the platforms</a>
+        <a class="tools-page__btn tools-page__btn--secondary" href="https://nicolesteinmetz.com/pricing/">Pricing</a>
+      </div>
+    </div>
+    <div class="tools-page__stage">
+      <video class="tools-page__video" muted loop playsinline width="640" height="400" aria-label="Hero footage, not yet added"></video>
+      <div class="tools-page__stage-ui" aria-hidden="true">
+        <p class="tools-page__eyebrow">Quote</p>
+        <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Pages</span></div>
+        <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Design</span></div>
+        <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Launch</span></div>
+        <div class="tools-page__bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="tools-page__layout tools-page__wrap">
+    <nav class="tools-page__steps" aria-label="On this page">
+      <a href="#how-pieces-fit">How it fits</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#compare">Compare</a>
+      <a href="#build-tools">Tools</a>
+    </nav>
+    <div>
+      <section class="tools-page__section" id="how-pieces-fit" aria-labelledby="how-pieces-fit-title">
+        <h2 id="how-pieces-fit-title">How the pieces fit</h2>
+        <div class="tools-page__grid">
+          <article class="tools-page__cell reveal" style="--i:0">
+            <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false"><rect x="5" y="6" width="22" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 26h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <p class="tools-page__eyebrow">Platform</p>
+            <p>The software you log into to edit your site. Squarespace and Shopify include hosting.</p>
+          </article>
+          <article class="tools-page__cell reveal" style="--i:1">
+            <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false"><rect x="6" y="7" width="20" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="6" y="16" width="20" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <p class="tools-page__eyebrow">Hosting</p>
+            <p>The computers that show your site to visitors. A custom-coded site needs its own host.</p>
+          </article>
+          <article class="tools-page__cell reveal" style="--i:2">
+            <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 16h20M16 6c3 3 3 17 0 20M16 6c-3 3-3 17 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p class="tools-page__eyebrow">Domain</p>
+            <p>Your web address, such as yourbusiness.com.au.</p>
+          </article>
+          <article class="tools-page__cell reveal" style="--i:3">
+            <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false"><path d="M8 6h12a4 4 0 0 1 0 8H8zM8 14h14a4 4 0 0 1 0 8H8zM8 6v20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <p class="tools-page__eyebrow">DNS</p>
+            <p>The address book that tells the internet where your website and your email live.</p>
+          </article>
+        </div>
+        <p class="tools-page__callout">One genuine gotcha: moving DNS to Cloudflare or Netlify can interrupt your email if the MX records aren't copied across first. It is a one-time step and carries no risk when handled properly, so I list your existing records before anything changes. See the FAQ on <a class="tools-page__textlink" href="https://nicolesteinmetz.com/faqs/#i-already-have-a-domain-and-email-set-up-how-do-we-handle-access">domain and email access</a>.</p>
+      </section>
+
+      <section class="tools-page__section" id="platforms" aria-labelledby="platforms-title">
+        <h2 id="platforms-title">Platforms</h2>
+        <p class="tools-page__lead">A custom build is hand-written code, so it needs a host. These are the three I use. None has a visual editor, and I keep access to your site after launch for further changes. See the FAQ on <a class="tools-page__textlink" href="https://nicolesteinmetz.com/faqs/#can-i-update-the-website-myself-after-launch">updating your site after launch</a>.</p>
+        <div class="tools-page__cards">
+          <article class="tools-page__card reveal" style="--i:0">
+            <div class="tools-page__preview" aria-hidden="true">
+              <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Pages</span></div>
+              <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Design</span></div>
+              <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Launch</span></div>
+              <div class="tools-page__bars"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="tools-page__card-body">
+              <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Squarespace, placeholder mark"><title>Squarespace</title><path d="M4 14h14a3 3 0 0 1 0 6H8M28 18H14a3 3 0 0 1 0-6h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <p class="tools-page__eyebrow">Platform</p>
+              <h2>Squarespace</h2>
+              <p>Fast, low-maintenance sites you can update yourself</p>
+              <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
+              <p>Limited data model, checkout and workflow control</p>
+              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/squarespace/">Open the quoter</a>
+            </div>
+          </article>
+          <article class="tools-page__card reveal" style="--i:1">
+            <div class="tools-page__preview" aria-hidden="true">
+              <div class="tools-page__ui-row"><span>Cart</span><span>Ready</span></div>
+              <div class="tools-page__ui-row"><span>Items</span><span data-count="4">4</span></div>
+              <div class="tools-page__bars"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="tools-page__card-body">
+              <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Shopify, placeholder mark"><title>Shopify</title><path d="M8 12h16l-1.2 12H9.2z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 12a4 4 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <p class="tools-page__eyebrow">Platform</p>
+              <h2>Shopify</h2>
+              <p>Reliable hosted commerce with a strong admin</p>
+              <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
+              <p>Polish often relies on paid apps and Shopify's conventions</p>
+              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/shopify/">Open the quoter</a>
+            </div>
+          </article>
+          <article class="tools-page__card reveal" style="--i:2">
+            <div class="tools-page__preview" aria-hidden="true">
+              <div class="tools-page__map"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="tools-page__bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="tools-page__card-body">
+              <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Cloudflare, placeholder mark"><title>Cloudflare</title><path d="M10 22h12a4 4 0 0 0 .4-8 6 6 0 0 0-11.5-1.5A3.8 3.8 0 0 0 10 22z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <p class="tools-page__eyebrow">Hosting</p>
+              <h2>Cloudflare Pages</h2>
+              <p>Very fast delivery with flexible infrastructure</p>
+              <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
+              <p>You are running a technical platform, not a self-contained CMS</p>
+              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/cloudflare/">Open the quoter</a>
+            </div>
+          </article>
+          <article class="tools-page__card reveal" style="--i:3">
+            <div class="tools-page__preview" aria-hidden="true">
+              <div class="tools-page__log">
+                <span>Building</span>
+                <span>Preview ready</span>
+                <span>Publish</span>
+              </div>
+              <span class="tools-page__pill">Published</span>
+            </div>
+            <div class="tools-page__card-body">
+              <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Netlify, placeholder mark"><title>Netlify</title><path d="M8 10l8 6-8 6zM24 10l-8 6 8 6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              <p class="tools-page__eyebrow">Hosting</p>
+              <h2>Netlify</h2>
+              <p>Familiar deploys, private previews and built-in forms</p>
+              <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
+              <p>Usage-based billing and platform-specific features</p>
+              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/netlify/">Open the quoter</a>
+            </div>
+          </article>
+          <!-- Vercel card left out until it is decided. Slot only.
+          <article class="tools-page__card">
+            <div class="tools-page__card-body">
+              <h2>Vercel</h2>
+              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/vercel/">Open the quoter</a>
+            </div>
+          </article>
+          -->
+        </div>
+      </section>
+
+      <section class="tools-page__section" id="compare" aria-labelledby="at-a-glance">
+        <h2 id="at-a-glance">The five platforms at a glance</h2>
+        <p><strong>Recommendation:</strong> choose by the job. Squarespace if you'll edit the site yourself, Shopify if selling is the business, and a custom build when a template can't do what you need.</p>
+        <table>
+          <caption>Genuine strength, core compromise and when to avoid each platform</caption>
+          <thead>
+            <tr>
+              <th scope="col">Platform</th>
+              <th scope="col">Genuine strength</th>
+              <th scope="col">Core compromise</th>
+              <th scope="col">Avoid when</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Squarespace</th>
+              <td data-label="Genuine strength">Fast, low-maintenance sites you can update yourself</td>
+              <td data-label="Core compromise">Limited data model, checkout and workflow control</td>
+              <td data-label="Avoid when">The site is commerce-led, membership-heavy or needs deep integrations</td>
+            </tr>
+            <tr>
+              <th scope="row">Shopify</th>
+              <td data-label="Genuine strength">Reliable hosted commerce with a strong admin</td>
+              <td data-label="Core compromise">Polish often relies on paid apps and Shopify's conventions</td>
+              <td data-label="Avoid when">Selling is only a minor feature</td>
+            </tr>
+            <tr>
+              <th scope="row">Cloudflare Pages</th>
+              <td data-label="Genuine strength">Very fast delivery with flexible infrastructure</td>
+              <td data-label="Core compromise">You are running a technical platform, not a self-contained CMS</td>
+              <td data-label="Avoid when">You need low-skill, day-to-day ownership</td>
+            </tr>
+            <tr>
+              <th scope="row">Netlify</th>
+              <td data-label="Genuine strength">Familiar deploys, private previews and built-in forms</td>
+              <td data-label="Core compromise">Usage-based billing and platform-specific features</td>
+              <td data-label="Avoid when">You expect no technical stewardship at all</td>
+            </tr>
+            <tr>
+              <th scope="row">Vercel</th>
+              <td data-label="Genuine strength">Polished, interactive sites that can grow app-like</td>
+              <td data-label="Core compromise">Costs more to run than the other two hosts, in return for top-tier performance and room to grow</td>
+              <td data-label="Avoid when">You only need a simple site, where Cloudflare or Netlify will serve you well</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="tools-page__section" id="build-tools" aria-labelledby="build-tools-title">
+        <h2 id="build-tools-title">The tools I build with</h2>
+        <p class="tools-page__lead">Website design leads. These tools support it.</p>
+        <div class="tools-page__tiles">
+          <article class="tools-page__tile reveal" style="--i:0">
+            <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Figma, placeholder mark"><title>Figma</title><circle cx="16" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="24" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <p class="tools-page__eyebrow">Figma</p>
+            <p>Where I design your layouts for you to review before building.</p>
+          </article>
+          <article class="tools-page__tile reveal" style="--i:1">
+            <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Adobe, placeholder mark"><title>Adobe</title><path d="M6 26L16 6l10 20h-6l-4-8-4 8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <p class="tools-page__eyebrow">Adobe</p>
+            <p>Preparing images and graphics for the web.</p>
+          </article>
+          <article class="tools-page__tile reveal" style="--i:2">
+            <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Cursor, placeholder mark"><title>Cursor</title><path d="M16 4l11 6.5v11L16 28 5 21.5v-11z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <p class="tools-page__eyebrow">Cursor</p>
+            <p>The editor I code custom sites in. AI handles the repetitive tasks, and the design decisions stay with me.</p>
+          </article>
+          <article class="tools-page__tile reveal" style="--i:3">
+            <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Formspark, placeholder mark"><title>Formspark</title><rect x="7" y="5" width="16" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 12h8M11 17h8M11 22h5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <p class="tools-page__eyebrow">Formspark</p>
+            <p>Handles enquiry form submissions on custom builds.</p>
+          </article>
+        </div>
+        <p class="tools-page__note">Building a custom site takes some paid software. I list it as its own line on your quote, at cost, so you can see exactly what you're paying for. Cursor, Figma and Formspark are listed on custom builds. Adobe and Midjourney are optional extras I add only if your project needs them. See <a class="tools-page__textlink" href="https://nicolesteinmetz.com/pricing/">Pricing</a> for what applies to your platform.</p>
+        <p class="tools-page__note">AI is an edge layered on top of the design work, not a substitute for it. For how it applies to your project, read the FAQ on <a class="tools-page__textlink" href="https://nicolesteinmetz.com/faqs/#what-does-ai-integration-actually-mean-for-my-business">what AI integration means</a>.</p>
+      </section>
+
+      <section class="tools-page__section tools-page__close" aria-labelledby="next-steps">
+        <h2 id="next-steps">Next steps. <span class="tools-page__tone">Questions go through contact.</span></h2>
+        <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/contact/">Contact us</a>
+      </section>
+    </div>
+  </div>
+</main>
+</div>
+<script>
+(function () {
+  var root = document.querySelector(".tools-page");
+  if (!root) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    /* Loops wait until the first view has settled, then run. A click, key, or scroll starts them immediately. */
+    var play = function () { root.classList.add("is-playing"); };
+    var timer = window.setTimeout(play, 5500);
+    ["pointerdown", "keydown", "scroll"].forEach(function (type) {
+      window.addEventListener(type, function () {
+        window.clearTimeout(timer);
+        play();
+      }, { once: true, passive: true });
+    });
+  }
+  var reveals = root.querySelectorAll(".reveal");
+  if (!reduce && "IntersectionObserver" in window) {
+    reveals.forEach(function (el) { el.classList.add("will-reveal"); });
+    var seen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        seen.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(function (el) { seen.observe(el); });
+  }
+
+  root.querySelectorAll("[data-count]").forEach(function (node) {
+    var end = Number(node.getAttribute("data-count")) || 0;
+    if (reduce) { node.textContent = String(end); return; }
+    var started = false;
+    function run() {
+      if (started) return;
+      started = true;
+      var t0 = performance.now();
+      function frame(now) {
+        var p = Math.min(1, (now - t0) / 1200);
+        node.textContent = String(Math.round(end * p));
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+    if (!("IntersectionObserver" in window)) { run(); return; }
+    var watch = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        run();
+        watch.unobserve(node);
+      });
+    }, { threshold: 0.4 });
+    watch.observe(node);
+  });
+
+  var links = root.querySelectorAll(".tools-page__steps a");
+  if (!links.length || !("IntersectionObserver" in window)) return;
+  var sections = [];
+  links.forEach(function (link) {
+    var section = document.getElementById((link.getAttribute("href") || "").slice(1));
+    if (section) sections.push(section);
+  });
+  function mark(id) {
+    links.forEach(function (link) {
+      var on = link.getAttribute("href") === "#" + id;
+      if (on) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  }
+  if (sections[0]) mark(sections[0].id);
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) mark(entry.target.id);
+    });
+  }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
+  sections.forEach(function (section) { spy.observe(section); });
+})();
+</script>
+</body>
+</html>

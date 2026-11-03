@@ -1379,12 +1379,6 @@ body:has(.process) .site-footer { margin-top: 0; }
   min-width: 0;
 }
 
-.process__step--training .process__card {
-  background: var(--paper);
-  border-radius: var(--r-card);
-  padding: var(--s-6);
-}
-
 .process__num {
   position: relative;
   flex: none;
@@ -1407,8 +1401,7 @@ body:has(.process) .site-footer { margin-top: 0; }
   border-color: var(--rust);
   color: var(--rust);
 }
-.process__step.is-complete .process__num,
-.process__step.is-active[data-heart] .process__num {
+.process__step.is-complete .process__num {
   background: var(--rust);
   border-color: var(--rust);
   color: var(--on-dark);
@@ -1470,6 +1463,7 @@ body:has(.process) .site-footer { margin-top: 0; }
    every step stays readable. */
 @media (max-width: 899px) {
   .process__grid { grid-template-columns: 1fr; gap: var(--s-7); }
+  .process__scroll { order: -1; }
   .process__sticky { position: static; height: auto; }
   .process__stage { justify-content: center; }
   .process__timeline { display: none; }
@@ -1675,7 +1669,6 @@ body:has(.process) .site-footer { margin-top: 0; }
 
   .trusted { margin-top: 56px; }
   .process { padding-block: var(--s-7); }
-  .process__step--training .process__card { padding: var(--s-5); }
   .trusted__viewport { margin-top: var(--s-7); }
   .trusted__row { gap: var(--s-6); }
   .trusted__row img { max-height: 44px; width: auto; }

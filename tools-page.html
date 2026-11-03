@@ -94,9 +94,11 @@
     color: var(--text-muted);
   }
   .tools-page__tone { display: block; color: var(--text-muted); font-weight: 400; }
-  .tools-page h1 .tools-page__tone { font-weight: 700; }
-  .tools-page__lede { margin-top: 24px; max-width: 720px; }
-  .tools-page__meta { margin-top: 16px; }
+  .tools-page h1 .tools-page__tone { font-weight: 700; margin-top: 8px; }
+  .tools-page__lede { margin-top: 24px; max-width: 520px; }
+  .tools-page__lines { display: grid; gap: 10px; max-width: 520px; }
+  .tools-page__lines > span { display: block; }
+  .tools-page__meta { margin-top: 20px; }
   .tools-page__meta time { color: var(--text); font-weight: 700; }
   .tools-page a.tools-page__textlink {
     color: var(--text-muted);
@@ -208,7 +210,7 @@
     border-top: 0;
   }
   .tools-page__section > h2 + p,
-  .tools-page__lead { margin-top: 16px; max-width: 720px; }
+  .tools-page__lead { margin-top: 20px; max-width: 520px; }
 
   .tools-page__grid,
   .tools-page__cards,
@@ -233,7 +235,8 @@
   .tools-page__tile { padding: 24px; }
   .tools-page__cell svg,
   .tools-page__mark { margin-bottom: 16px; color: var(--text-muted); }
-  .tools-page__callout { max-width: 720px; margin-top: 32px; padding: 24px; }
+  .tools-page__callout { max-width: 560px; margin-top: 32px; padding: 24px; }
+  .tools-page__callout.tools-page__lines { gap: 12px; }
   .tools-page__card { overflow: hidden; }
   .tools-page__preview {
     height: 60%;
@@ -325,7 +328,8 @@
     color: var(--text-muted);
   }
   .tools-page td { color: var(--text-muted); font-weight: 400; }
-  .tools-page__note { margin-top: 32px; max-width: 720px; }
+  .tools-page__note { margin-top: 28px; max-width: 520px; }
+  .tools-page__note + .tools-page__note { margin-top: 20px; }
   .tools-page__close {
     display: flex;
     flex-wrap: wrap;
@@ -469,13 +473,21 @@
       <p class="tools-page__eyebrow">The tools</p>
       <h1>
         <span>Understanding the tools.</span>
-        <span class="tools-page__tone">What each one is, and what happens behind the scenes.</span>
+        <span class="tools-page__tone">What each one is,<br>and what happens behind the scenes.</span>
       </h1>
-      <p class="tools-page__lede">Choosing website tools means three separate decisions: the platform your site runs on, where it is hosted, and the tools used to design and build it.</p>
-      <p class="tools-page__meta">Written by Nicole Steinmetz, a solo web designer based in Perth, Western Australia.<br>Last updated: <time datetime="2026-10-26">26 October 2026</time></p>
+      <p class="tools-page__lede tools-page__lines">
+        <span>Choosing website tools means three separate decisions:</span>
+        <span>the platform your site runs on,</span>
+        <span>where it is hosted,</span>
+        <span>and the tools used to design and build it.</span>
+      </p>
+      <p class="tools-page__meta tools-page__lines">
+        <span>Written by Nicole Steinmetz, a solo web designer based in Perth, Western Australia.</span>
+        <span>Last updated: <time datetime="2026-10-26">26 October 2026</time></span>
+      </p>
       <div class="tools-page__actions">
         <a class="tools-page__btn tools-page__btn--primary" href="#platforms">See the platforms</a>
-        <a class="tools-page__btn tools-page__btn--secondary" href="https://nicolesteinmetz.com/pricing/">Pricing</a>
+        <a class="tools-page__btn tools-page__btn--secondary" href="/pricing/">Pricing</a>
       </div>
     </div>
     <div class="tools-page__stage">
@@ -504,12 +516,12 @@
           <article class="tools-page__cell reveal" style="--i:0">
             <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false"><rect x="5" y="6" width="22" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 26h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             <p class="tools-page__eyebrow">Platform</p>
-            <p>The software you log into to edit your site. Squarespace and Shopify include hosting.</p>
+            <p class="tools-page__lines"><span>The software you log into to edit your site.</span><span>Squarespace and Shopify include hosting.</span></p>
           </article>
           <article class="tools-page__cell reveal" style="--i:1">
             <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false"><rect x="6" y="7" width="20" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="6" y="16" width="20" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
             <p class="tools-page__eyebrow">Hosting</p>
-            <p>The computers that show your site to visitors. A custom-coded site needs its own host.</p>
+            <p class="tools-page__lines"><span>The computers that show your site to visitors.</span><span>A custom-coded site needs its own host.</span></p>
           </article>
           <article class="tools-page__cell reveal" style="--i:2">
             <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 16h20M16 6c3 3 3 17 0 20M16 6c-3 3-3 17 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
@@ -522,12 +534,21 @@
             <p>The address book that tells the internet where your website and your email live.</p>
           </article>
         </div>
-        <p class="tools-page__callout">One genuine gotcha: moving DNS to Cloudflare or Netlify can interrupt your email if the MX records aren't copied across first. It is a one-time step and carries no risk when handled properly, so I list your existing records before anything changes. See the FAQ on <a class="tools-page__textlink" href="https://nicolesteinmetz.com/faqs/#i-already-have-a-domain-and-email-set-up-how-do-we-handle-access">domain and email access</a>.</p>
+        <p class="tools-page__callout tools-page__lines">
+          <span>One genuine gotcha: moving DNS to Cloudflare or Netlify can interrupt your email if the MX records aren't copied across first.</span>
+          <span>It is a one-time step and carries no risk when handled properly, so I list your existing records before anything changes.</span>
+          <span>See the FAQ on <a class="tools-page__textlink" href="/faqs/#i-already-have-a-domain-and-email-set-up-how-do-we-handle-access">domain and email access</a>.</span>
+        </p>
       </section>
 
       <section class="tools-page__section" id="platforms" aria-labelledby="platforms-title">
         <h2 id="platforms-title">Platforms</h2>
-        <p class="tools-page__lead">A custom build is hand-written code, so it needs a host. These are the three I use. None has a visual editor, and I keep access to your site after launch for further changes. See the FAQ on <a class="tools-page__textlink" href="https://nicolesteinmetz.com/faqs/#can-i-update-the-website-myself-after-launch">updating your site after launch</a>.</p>
+        <p class="tools-page__lead tools-page__lines">
+          <span>A custom build is hand-written code, so it needs a host.</span>
+          <span>These are the three I use.</span>
+          <span>None has a visual editor, and I keep access to your site after launch for further changes.</span>
+          <span>See the FAQ on <a class="tools-page__textlink" href="/faqs/#can-i-update-the-website-myself-after-launch">updating your site after launch</a>.</span>
+        </p>
         <div class="tools-page__cards">
           <article class="tools-page__card reveal" style="--i:0">
             <div class="tools-page__preview" aria-hidden="true">
@@ -543,7 +564,7 @@
               <p>Fast, low-maintenance sites you can update yourself</p>
               <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
               <p>Limited data model, checkout and workflow control</p>
-              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/squarespace/">Open the quoter</a>
+              <a class="tools-page__btn tools-page__btn--primary" href="/pricing/squarespace/">Open the quoter</a>
             </div>
           </article>
           <article class="tools-page__card reveal" style="--i:1">
@@ -559,7 +580,7 @@
               <p>Reliable hosted commerce with a strong admin</p>
               <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
               <p>Polish often relies on paid apps and Shopify's conventions</p>
-              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/shopify/">Open the quoter</a>
+              <a class="tools-page__btn tools-page__btn--primary" href="/pricing/shopify/">Open the quoter</a>
             </div>
           </article>
           <article class="tools-page__card reveal" style="--i:2">
@@ -574,7 +595,7 @@
               <p>Very fast delivery with flexible infrastructure</p>
               <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
               <p>You are running a technical platform, not a self-contained CMS</p>
-              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/cloudflare/">Open the quoter</a>
+              <a class="tools-page__btn tools-page__btn--primary" href="/pricing/cloudflare/">Open the quoter</a>
             </div>
           </article>
           <article class="tools-page__card reveal" style="--i:3">
@@ -593,14 +614,14 @@
               <p>Familiar deploys, private previews and built-in forms</p>
               <p class="tools-page__eyebrow tools-page__kicker">Core compromise</p>
               <p>Usage-based billing and platform-specific features</p>
-              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/netlify/">Open the quoter</a>
+              <a class="tools-page__btn tools-page__btn--primary" href="/pricing/netlify/">Open the quoter</a>
             </div>
           </article>
           <!-- Vercel card left out until it is decided. Slot only.
           <article class="tools-page__card">
             <div class="tools-page__card-body">
               <h2>Vercel</h2>
-              <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/pricing/vercel/">Open the quoter</a>
+              <a class="tools-page__btn tools-page__btn--primary" href="/pricing/vercel/">Open the quoter</a>
             </div>
           </article>
           -->
@@ -609,7 +630,12 @@
 
       <section class="tools-page__section" id="compare" aria-labelledby="at-a-glance">
         <h2 id="at-a-glance">The five platforms at a glance</h2>
-        <p><strong>Recommendation:</strong> choose by the job. Squarespace if you'll edit the site yourself, Shopify if selling is the business, and a custom build when a template can't do what you need.</p>
+        <p class="tools-page__lines">
+          <span><strong>Recommendation:</strong> choose by the job.</span>
+          <span>Squarespace if you'll edit the site yourself.</span>
+          <span>Shopify if selling is the business.</span>
+          <span>A custom build when a template can't do what you need.</span>
+        </p>
         <table>
           <caption>Genuine strength, core compromise and when to avoid each platform</caption>
           <thead>
@@ -672,7 +698,7 @@
           <article class="tools-page__tile reveal" style="--i:2">
             <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Cursor, placeholder mark"><title>Cursor</title><path d="M16 4l11 6.5v11L16 28 5 21.5v-11z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
             <p class="tools-page__eyebrow">Cursor</p>
-            <p>The editor I code custom sites in. AI handles the repetitive tasks, and the design decisions stay with me.</p>
+            <p class="tools-page__lines"><span>The editor I code custom sites in.</span><span>AI handles the repetitive tasks, and the design decisions stay with me.</span></p>
           </article>
           <article class="tools-page__tile reveal" style="--i:3">
             <svg class="tools-page__mark" viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="Formspark, placeholder mark"><title>Formspark</title><rect x="7" y="5" width="16" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 12h8M11 17h8M11 22h5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
@@ -680,13 +706,22 @@
             <p>Handles enquiry form submissions on custom builds.</p>
           </article>
         </div>
-        <p class="tools-page__note">Building a custom site takes some paid software. I list it as its own line on your quote, at cost, so you can see exactly what you're paying for. Cursor, Figma and Formspark are listed on custom builds. Adobe and Midjourney are optional extras I add only if your project needs them. See <a class="tools-page__textlink" href="https://nicolesteinmetz.com/pricing/">Pricing</a> for what applies to your platform.</p>
-        <p class="tools-page__note">AI is an edge layered on top of the design work, not a substitute for it. For how it applies to your project, read the FAQ on <a class="tools-page__textlink" href="https://nicolesteinmetz.com/faqs/#what-does-ai-integration-actually-mean-for-my-business">what AI integration means</a>.</p>
+        <p class="tools-page__note tools-page__lines">
+          <span>Building a custom site takes some paid software.</span>
+          <span>I list it as its own line on your quote, at cost, so you can see exactly what you're paying for.</span>
+          <span>Cursor, Figma and Formspark are listed on custom builds.</span>
+          <span>Adobe and Midjourney are optional extras I add only if your project needs them.</span>
+          <span>See <a class="tools-page__textlink" href="/pricing/">Pricing</a> for what applies to your platform.</span>
+        </p>
+        <p class="tools-page__note tools-page__lines">
+          <span>AI is an edge layered on top of the design work, not a substitute for it.</span>
+          <span>For how it applies to your project, read the FAQ on <a class="tools-page__textlink" href="/faqs/#what-does-ai-integration-actually-mean-for-my-business">what AI integration means</a>.</span>
+        </p>
       </section>
 
       <section class="tools-page__section tools-page__close" aria-labelledby="next-steps">
-        <h2 id="next-steps">Next steps. <span class="tools-page__tone">Questions go through contact.</span></h2>
-        <a class="tools-page__btn tools-page__btn--primary" href="https://nicolesteinmetz.com/contact/">Contact us</a>
+        <h2 id="next-steps"><span>Next steps.</span> <span class="tools-page__tone">Questions go through contact.</span></h2>
+        <a class="tools-page__btn tools-page__btn--primary" href="/contact/">Contact</a>
       </section>
     </div>
   </div>

@@ -1,54 +1,65 @@
 /* ============================================================
    TOOLS — /tools/
-   No Figma frame. Type, colour and spacing use tokens.css.
-   Checked against the live tokens: --ink #505050, --card
-   #F7F6F5, --card-line #DAD6D2, --r-card 15px, --r-pill 40px,
-   --amber #F4A600, --blue #6A96C7, --rust #894332.
-   Inter and IBM Plex Mono are --font-sans and --font-mono.
-   Breakpoints match the site: 1040 / 640. No mobile frame.
+   Dark page, same roles as the blog: #101010 ground, white
+   headings, muted body. Cards sit in a row and stack on
+   small screens. Below 1040px is an interpretation.
    ============================================================ */
+
+.page-tools {
+  background: var(--blog-bg);
+  color: var(--blog-body);
+}
 
 .page-tools .site-header {
   position: relative;
-  background: var(--ink-focus);
+  background: var(--blog-bg);
 }
 
-.page-tools .site-footer { margin-top: var(--s-9); }
+.page-tools .site-footer { margin-top: var(--tools-section); }
 
-.tools {
-  padding-block: var(--s-8) 0;
-}
+.page-tools .site-footer__bg img { object-position: center bottom; }
 
-.tools__prose { max-width: 68ch; }
+.page-tools :focus-visible { outline-color: var(--tools-spot-blue); }
+
+.tools { padding-block: var(--s-8) 0; }
+
+.tools__prose,
+.tools__lead,
+.tools__glance > p { max-width: 68ch; }
 
 .tools__byline,
 .tools__updated {
   margin-top: var(--s-4);
-  color: var(--ink-soft);
+  color: var(--blog-body);
 }
 
-.tools__updated time { font-weight: 700; color: var(--ink); }
+.tools__updated time { font-weight: 700; color: var(--blog-heading); }
+
+.tools h1 { color: var(--blog-heading); }
 
 .tools h2 {
   margin-top: var(--s-8);
-  font-size: var(--fs-h2);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--ink);
+  font-size: var(--tools-h2);
+  font-weight: 400;
+  line-height: var(--tools-h2-lh);
+  letter-spacing: 0;
+  color: var(--blog-heading);
 }
 
 .tools h3 {
-  margin-top: var(--s-6);
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--ink);
+  font-size: var(--tools-h2);
+  font-weight: 400;
+  line-height: var(--tools-h2-lh);
+  letter-spacing: 0;
+  color: var(--blog-heading);
 }
 
 .tools p,
-.tools li { line-height: var(--lh-body); }
+.tools li { line-height: var(--lh-compact); color: var(--blog-body); }
 
 .tools p { margin-top: var(--s-4); }
+
+.tools strong { color: var(--blog-heading); font-weight: 700; }
 
 .tools ul {
   margin-top: var(--s-4);
@@ -59,45 +70,72 @@
 .tools li + li { margin-top: var(--s-3); }
 
 .tools a:not(.pill) {
-  color: var(--rust);
+  color: var(--blog-body);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
 
-.tools a:not(.pill):hover { color: var(--blue); }
+.tools a:not(.pill):hover { color: var(--blog-heading); }
 
-.tools__note {
-  padding: var(--s-4) var(--s-5);
-  background: var(--card);
-  border: 1px solid var(--card-line);
-  border-radius: var(--r-card);
+.tools__band { margin-top: var(--tools-section); }
+
+.tools__band > h2 { margin-top: 0; }
+
+.tools__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: var(--s-5);
+  align-items: stretch;
 }
 
-.tools__platform { margin-top: var(--s-2); }
+.tools__row--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-.tools__glance { margin-top: var(--s-8); }
+.tools__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  min-width: 0;
+  padding: var(--blog-pad);
+  border: 1px solid var(--blog-raised);
+  border-radius: var(--blog-radius);
+  background: var(--blog-surface);
+}
 
-.tools__glance > p { max-width: 68ch; }
+.tools__card > p,
+.tools__card > h3 { margin-top: 0; }
+
+.tools__note {
+  padding: var(--s-4);
+  background: var(--blog-bg);
+  border: 1px solid var(--blog-hairline);
+  border-radius: var(--blog-radius);
+}
+
+.tools__more { margin-top: auto; }
+
+.tools__glance { margin-top: var(--tools-section); }
+
+.tools__glance > h2 { margin-top: 0; }
 
 .tools__table-wrap {
   overflow-x: auto;
   margin-top: var(--s-5);
-  border: 1px solid var(--card-line);
-  border-radius: var(--r-card);
-  background: var(--paper);
+  border: 1px solid var(--blog-raised);
+  border-radius: var(--blog-radius);
+  background: var(--blog-surface);
 }
 
 .tools table {
   width: 100%;
-  min-width: 52rem;
   border-collapse: collapse;
 }
 
 .tools caption {
   padding: var(--s-4) var(--s-5) 0;
   text-align: left;
-  font-weight: 700;
-  color: var(--ink);
+  font-weight: 400;
+  color: var(--blog-heading);
 }
 
 .tools th,
@@ -105,33 +143,36 @@
   padding: var(--s-4) var(--s-5);
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid var(--card-line);
+  border-top: 1px solid var(--blog-raised);
   line-height: var(--lh-compact);
+  color: var(--blog-body);
 }
 
 .tools thead th {
-  background: var(--card);
+  background: var(--blog-bg);
   font-family: var(--font-mono);
   font-size: var(--fs-eyebrow);
   font-weight: 400;
   letter-spacing: var(--ls-eyebrow);
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--blog-heading);
 }
 
 .tools tbody th {
   font-weight: 700;
-  color: var(--ink);
+  color: var(--blog-heading);
 }
 
-/* Tablet and phone — no Figma frame. Review before launch. */
 @media (max-width: 1040px) {
   .tools { padding-block: var(--s-7) 0; }
-  .page-tools .site-footer { margin-top: var(--s-8); }
+  .tools__row--three { grid-template-columns: 1fr; }
+  .page-tools .site-footer { margin-top: var(--tools-section-sm); }
+  .tools__band,
+  .tools__glance { margin-top: var(--tools-section-sm); }
 }
 
-@media (max-width: 640px) {
-  .tools h2 { margin-top: var(--s-7); }
+@media (max-width: 700px) {
+  .tools__row { grid-template-columns: 1fr; }
   .tools th,
   .tools td,
   .tools caption { padding: var(--s-3) var(--s-4); }

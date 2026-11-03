@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Reset: a daily training plan I built because I needed one — Nicole Steinmetz</title>
+<meta name="description" content="A case study: building Reset, a daily training app, with Emergent and moving it to Cloudflare.">
+<link rel="canonical" href="https://www.nicolesteinmetz.com/blog/reset/">
+<link rel="alternate" type="application/rss+xml" title="Nicole Steinmetz" href="/rss.xml">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nicolesteinmetz.com/blog/reset/">
+<meta property="og:title" content="Reset: a daily training plan I built because I needed one — Nicole Steinmetz">
+<meta property="og:description" content="A case study: building Reset, a daily training app, with Emergent and moving it to Cloudflare.">
+<meta property="og:image" content="https://www.nicolesteinmetz.com/assets/img/og-image.jpg">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400..700&display=swap">
+
+<link rel="stylesheet" href="/css/tokens.css?v=blog">
+<link rel="stylesheet" href="/css/styles.css?v=video-replay">
+<link rel="stylesheet" href="/css/blog.css?v=dark2">
+<script>document.documentElement.classList.add('js');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Reset: a daily training plan I built because I needed one",
+  "description": "A case study: building Reset, a daily training app, with Emergent and moving it to Cloudflare.",
+  "datePublished": "2026-11-03",
+  "dateModified": "2026-11-03",
+  "inLanguage": "en-AU",
+  "url": "https://www.nicolesteinmetz.com/blog/reset/",
+  "mainEntityOfPage": "https://www.nicolesteinmetz.com/blog/reset/",
+  "author": {
+    "@type": "Person",
+    "name": "Nicole Steinmetz",
+    "jobTitle": "Web designer and developer",
+    "url": "https://www.nicolesteinmetz.com/"
+  }
+}
+</script>
+</head>
+
+<body class="page-blog">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__logo" href="/" aria-label="Nicole Steinmetz — home">
+      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="193" height="95">
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="pill pill--amber" href="/pricing/">Pricing</a></li>
+        <li><a class="pill pill--blue" href="/faqs/">FAQs</a></li>
+        <li>
+          <a class="pill pill--rust pill--has-icon" href="/contact/">
+            Contact us
+            <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
+              <circle cx="10.5" cy="10.5" r="10.5" fill="white"/>
+              <path d="M9.70506 13.2053L9.32397 13.2122C9.10548 13.2159 8.89669 13.2053 8.68282 13.2048L7.61808 13.2022L4.74074 13.2006C4.6308 13.2006 4.54488 13.2132 4.43494 13.2048C4.26264 13.1916 4.08342 13.2538 3.90927 13.1869C3.8058 13.1995 3.71572 13.2053 3.60163 13.1858L3.60024 8.37682L11.5181 8.37418L6.81571 2.99605C6.85174 2.96862 6.88177 2.97021 6.93258 2.95755L12.0198 2.96019C12.0928 3.05619 12.1376 3.11157 12.2309 3.18753L18.9048 10.8148L12.0752 18.6198L6.86237 18.6151L7.75989 17.5512L9.906 15.1111L11.556 13.2238L11.0511 13.2169C10.9236 13.2148 10.7892 13.1753 10.6622 13.2064C10.5439 13.2349 10.0095 13.1995 9.70506 13.2053Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Reset case study. From the 3 Nov 2026 prototype.
+     Header and footer are the site's. -->
+<main id="main" class="blog-frame">
+  <svg class="blog-rails" aria-hidden="true" focusable="false">
+    <line x1="0.5" y1="0" x2="0.5" y2="100%" />
+    <line x1="100%" y1="0" x2="100%" y2="100%" />
+    <circle cx="1.5" cy="1.5" r="1.5" />
+    <circle cx="100%" cy="1.5" r="1.5" />
+  </svg>
+  <section class="blog-post-head">
+    <div class="blog-crumb">
+      <a href="/blog/"><span aria-hidden="true">&larr;</span> Blog</a>
+      <span><time datetime="2026-11-03">3 Nov 2026</time> / <b>Case study</b></span>
+    </div>
+    <h1>Reset: a daily training plan I built because I needed one</h1>
+    <div class="blog-byline"><span class="blog-avatar" aria-hidden="true">N</span>Nicole Steinmetz · Web designer and developer</div>
+  </section>
+  <svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1" /></svg>
+
+  <section class="blog-cover" aria-hidden="true">
+    <div class="blog-thumb"><span>RESET</span></div>
+  </section>
+  <svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1" /></svg>
+
+  <div class="blog-layout">
+    <nav class="blog-toc" aria-label="On this page">
+      <a href="#problem" class="is-current" aria-current="true">The problem</a>
+      <a href="#build">The build</a>
+      <a href="#hosting">Hosting</a>
+      <a href="#learned">What I learned</a>
+    </nav>
+
+    <article class="blog-article">
+      <h2 id="problem">The problem</h2>
+      <p>I&rsquo;m a website designer, so I spend my days hunched over a screen, and I have tech neck to show for it. In Perth I train at the gym with friends and follow their schedule. When I&rsquo;m away from them, I struggle to stay motivated without a plan.</p>
+      <p>I&rsquo;d found a problem, so I built the solution.</p>
+
+      <h2 id="build">The build</h2>
+      <p>I started by collecting app designs I love on Mobbin, then turned them into a mockup. I took that into Emergent and built the first draft there.</p>
+      <p><strong>Reset</strong> is a quiet daily plan: a short &ldquo;Reset&rdquo; version for busy days that still keeps the streak, timers on each exercise, and a place to log my weights.</p>
+
+      <h2 id="hosting">Hosting</h2>
+      <p>I bought the domain through Spaceship. Emergent gets expensive once an app gets a lot of traffic, so I moved Reset to Cloudflare.</p>
+      <p><a href="https://nicolesteinmetz.space">See Reset live</a></p>
+
+      <h2 id="learned">What I learned</h2>
+      <p>Building an app is much easier now. I made Reset with Emergent, and the screens came together fast.</p>
+      <p>But how an app looks isn&rsquo;t the hard part. The hard part is how the information inside it fits together.</p>
+      <p>Think of Lego. A flat house is easy to build. A model where moving one piece changes five others is much harder, even if both look finished on the shelf.</p>
+      <p>Reset is the flat house. It&rsquo;s a list of exercises, a timer and a place to log my weights, so it was simple to build. A hotel booking system is the tricky model. Rooms, dates, guests and bookings all have to match up, and if one changes, the rest must change too.</p>
+      <aside class="blog-callout">
+        <span class="blog-kicker">The question I ask</span>
+        <p>Not &ldquo;can it build this screen?&rdquo; but &ldquo;does it still keep working when I change a rule?&rdquo;</p>
+      </aside>
+    </article>
+  </div>
+
+  <svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1" /></svg>
+  <section class="blog-more" aria-labelledby="more-title">
+    <h2 id="more-title">Other articles</h2>
+  </section>
+  <svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1" /></svg>
+  <section class="blog-grid" aria-label="Other articles">
+    <svg class="blog-split" aria-hidden="true" focusable="false"><line x1="0.5" y1="0" x2="0.5" y2="100%" /></svg>
+    <div class="blog-card blog-card--empty">More soon</div>
+    <div class="blog-card blog-card--empty">More soon</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__bg" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="/assets/img/footer-bg-1440.webp 1440w, /assets/img/footer-bg-2880.webp 2880w" sizes="100vw">
+      <img src="/assets/img/footer-bg-1440.jpg" alt="" width="1440" height="539" loading="lazy" decoding="async">
+    </picture>
+    <video class="site-footer__video"
+           autoplay muted playsinline
+           preload="none"
+           disablepictureinpicture
+           width="1920" height="840">
+      <source src="/assets/video/footer.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="site-footer__inner container">
+    <a class="site-footer__brand" href="/" aria-label="Nicole Steinmetz — home">
+      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="210" height="101" loading="lazy">
+    </a>
+
+    <nav class="footer-col" aria-labelledby="f-pricing">
+      <h2 class="footer-col__title" id="f-pricing">Pricing</h2>
+      <ul>
+        <li><a href="/pricing/squarespace/">Squarespace</a></li>
+        <li><a href="/pricing/shopify/">Shopify</a></li>
+        <li><a href="/pricing/vercel/">Vercel</a></li>
+        <li><a href="/pricing/cloudflare/">Cloudflare</a></li>
+        <li><a href="/pricing/netlify/">Netlify</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col" aria-labelledby="f-clarifications">
+      <h2 class="footer-col__title" id="f-clarifications">Clarifications</h2>
+      <ul>
+        <li><a href="/faqs/">All FAQs</a></li>
+        <li><a href="/pricing/#platform-profiles">Compare platforms</a></li>
+        <li><a data-site-link="booking" href="https://calendar.app.google/VhKn1WLoZNS8Aq899" target="_blank" rel="noopener noreferrer">Book video call</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col" aria-labelledby="f-contact">
+      <h2 class="footer-col__title" id="f-contact">Contact</h2>
+      <ul>
+        <li><a data-site-link="email" href="mailto:nicole@kneecoal.com">Email us</a></li>
+        <li><a data-site-link="whatsapp" href="https://wa.me/+61402765878" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a data-site-link="booking" href="https://calendar.app.google/VhKn1WLoZNS8Aq899" target="_blank" rel="noopener noreferrer">Video call</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="site-footer__base container">
+    <div class="site-footer__meta">
+      <p class="site-footer__copy">&copy; 2026 <strong>Nicole Steinmetz</strong> All rights and so many wrongs reserved.</p>
+      <a class="site-footer__privacy" href="/privacy/">Privacy Policy</a>
+    </div>
+    <img class="site-footer__badges" src="/assets/img/circle-platinum-2026.png"
+         alt="Squarespace Circle Platinum Partner, 2026"
+         width="1024" height="319" loading="lazy" decoding="async">
+  </div>
+</footer>
+
+<script src="/js/site-config.js?v=links" defer></script>
+<script src="/js/hero-title.js?v=video-replay" defer></script>
+<script src="/js/nav.js" defer></script>
+<script src="/js/blog.js" defer></script>
+<script src="/js/faq-widget.js?v=faq-ask" defer></script>
+</body>
+</html>

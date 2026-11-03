@@ -182,6 +182,7 @@
     load(href).then(function (html) {
       if (!panel || article.parentNode !== panel) return;
       article.innerHTML = html;
+      document.dispatchEvent(new Event("blog-article-ready"));
     }).catch(function () {
       window.location.href = href;
     });
@@ -224,4 +225,28 @@
       open(card);
     });
   });
+})();
+
+/* The orbiting light follows the button's own edge, so the
+   path is measured after layout and again if it resizes.
+   The case study can arrive later, inside the expanded card. */
+(function () {
+  function wire(root) {
+    var nodes = (root || document).querySelectorAll(".blog-star");
+    Array.prototype.forEach.call(nodes, function (el) {
+      if (el.getAttribute("data-star") === "on") return;
+      el.setAttribute("data-star", "on");
+      function setPath() {
+        var w = el.offsetWidth;
+        var h = el.offsetHeight;
+        if (!w || !h) return;
+        el.style.setProperty("--path", "path('M 0 0 H " + w + " V " + h + " H 0 V 0')");
+      }
+      setPath();
+      if (window.ResizeObserver) new ResizeObserver(setPath).observe(el);
+    });
+  }
+
+  wire(document);
+  document.addEventListener("blog-article-ready", function () { wire(document); });
 })();

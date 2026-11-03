@@ -4,7 +4,7 @@ Read this before changing anything. It exists so Cursor doesn't reinvent decisio
 
 ## What this is
 
-The marketing site for Nicole Steinmetz, a web design studio (formally Knee Coal). Home is Figma `zbpByfLeFxuP1uHNkh0ykX` node `1:2`. Pricing overview is node `370:1574` (`/pricing/`). Squarespace pricing is node `1:68` (`/pricing/squarespace/`). Shopify pricing is node `1:117` (`/pricing/shopify/`). Cloudflare pricing is node `288:4` (`/pricing/cloudflare/`). Netlify pricing is node `153:203` (`/pricing/netlify/`). Vercel pricing is node `153:154` (`/pricing/vercel/`).
+The marketing site for Nicole Steinmetz, a web design studio (formally Knee Coal). Home is Figma `zbpByfLeFxuP1uHNkh0ykX` node `1:2`. Pricing overview is node `370:1574` (`/pricing/`). Squarespace pricing is node `1:68` (`/pricing/squarespace/`). Shopify pricing is node `1:117` (`/pricing/shopify/`). Cloudflare pricing is node `288:4` (`/pricing/cloudflare/`). Netlify pricing is node `153:203` (`/pricing/netlify/`). Vercel pricing is node `153:154` (`/pricing/vercel/`). The blog (`/blog/`, `/blog/reset/`) is the 3 Nov 2026 prototype, not a Figma frame.
 
 ## Stack
 
@@ -25,11 +25,15 @@ pricing/cloudflare/index.html  Cloudflare pricing (hero, intro, working quote bu
 pricing/netlify/index.html     Netlify pricing (hero, intro, working quote builder)
 pricing/vercel/index.html      Vercel pricing (hero, intro, working quote builder)
 faqs/index.html                FAQs — search, most-read cards, FAQPage schema
+blog/index.html                blog index
+blog/reset/index.html          Reset case study
 css/tokens.css                 design tokens — the only place colours, type and spacing are defined
 css/styles.css                 shared + home
 css/pricing.css                pricing page only
 css/faqs.css                   FAQ page only
-js/                            vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee, platform profiles, Squarespace + Shopify + Cloudflare + Netlify + Vercel quoters, quote send, FAQ search
+css/blog.css                   blog index and case studies
+js/                            vanilla JS — Tools, Quote and Project cards, hero title, Trusted By marquee, platform profiles, Squarespace + Shopify + Cloudflare + Netlify + Vercel quoters, quote send, FAQ search, blog contents
+rss.xml                        blog feed
 functions/api/quote.js         Pages Function — emails a quote summary
 functions/api/faq-view.js      Pages Function — counts an opened FAQ
 functions/api/faq-top.js       Pages Function — returns the three most-read slugs

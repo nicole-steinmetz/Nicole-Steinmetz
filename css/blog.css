@@ -290,6 +290,7 @@ button.blog-card__plus {
   margin-block: var(--s-5);
   flex: 1;
   min-height: var(--blog-thumb-min);
+  aspect-ratio: 1024 / 571;
   border-radius: var(--blog-radius);
   border: 1px solid var(--blog-hairline);
   background: var(--blog-surface);
@@ -298,9 +299,19 @@ button.blog-card__plus {
   overflow: hidden;
 }
 
+.blog-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .blog-thumb::before {
   content: "";
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
@@ -389,6 +400,72 @@ button.blog-card__plus {
 }
 
 .blog-article a:hover { color: var(--blog-heading); }
+
+/* Star button. A light travels the outline; the outline is
+   the amber spot colour. The label stays heading white. */
+.blog-star {
+  --path: none;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--blog-star-h);
+  margin-top: var(--s-2);
+  padding: 0 var(--s-4);
+  overflow: hidden;
+  border: 2px solid var(--tools-spot-amber);
+  border-radius: var(--blog-radius);
+  background: var(--blog-bg);
+  color: var(--blog-heading);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.blog-article a.blog-star,
+.blog-article a.blog-star:hover {
+  color: var(--blog-heading);
+  text-decoration: none;
+}
+
+.blog-star:hover { background: var(--blog-surface); }
+
+.blog-star__light {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: var(--blog-star-light);
+  aspect-ratio: 1;
+  background: radial-gradient(ellipse at center, var(--tools-spot-amber), transparent 60%);
+  offset-path: var(--path);
+  offset-rotate: 0deg;
+  animation: blog-star-orbit var(--blog-star-dur) linear infinite;
+  pointer-events: none;
+}
+
+@keyframes blog-star-orbit {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+.blog-star__field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  color: var(--blog-heading);
+  pointer-events: none;
+}
+
+.blog-star__label {
+  position: relative;
+  z-index: 2;
+}
 
 .blog-callout {
   margin-block: var(--s-5);
@@ -499,7 +576,8 @@ button.blog-card__plus {
 }
 
 .blog-expand.is-open .blog-thumb {
-  min-height: var(--blog-cover-min);
+  flex: none;
+  min-height: 0;
   margin-inline: calc(var(--blog-pad) * -1);
   border-radius: 0;
   border-inline: 0;

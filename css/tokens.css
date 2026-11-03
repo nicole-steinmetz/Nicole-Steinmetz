@@ -385,6 +385,9 @@
   --blog-expand-dur:    500ms;
   --blog-expand-inset:  16px;
   --blog-plus:          32px;
+  --blog-star-h:        40px;
+  --blog-star-light:    110px;
+  --blog-star-dur:      3s;
 }
 
 @media (prefers-reduced-motion: reduce) {

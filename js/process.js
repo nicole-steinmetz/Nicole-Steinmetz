@@ -35,7 +35,6 @@
   }
 
   function glyphFor(step, i, state) {
-    if (state === "active" && step.hasAttribute("data-heart")) return "♥";
     if (state === "complete") return "✓";
     return String(i + 1);
   }

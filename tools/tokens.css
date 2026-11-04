@@ -1,0 +1,42 @@
+/* Design tokens. Source of truth: Brand Guide (Notion). Dark mode only. */
+:root {
+  /* Neutrals */
+  --color-page: #101010;      /* page background */
+  --color-surface: #202124;   /* title bars, cards */
+  --color-card-body: #1C1D1F; /* window body (NOT in brand guide, taken from design) */
+  --color-raised: #2E3238;    /* borders, dividers */
+
+  /* Text */
+  --color-heading: #FFFFFF;
+  --color-body: #8F99A8;
+  --color-muted: #6F7988;     /* X icon stroke */
+
+  /* Spot colours: highlights only (borders, buttons, animation). NEVER text. */
+  --color-blue: #6996C7;      /* window hover border */
+  --color-amber: #F5A603;     /* unused on this page */
+  --color-rust: #894332;      /* unused on this page */
+
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Type scale */
+  --h1-size: 40px;   --h1-line: 46px;    --h1-weight: 700;
+  --h2-size: 22px;   --h2-line: 32.9px;  --h2-weight: 600; /* used for "Cloudflare Pages" text-as-logo */
+  --p-size: 16px;    --p-line: 25px;
+  --h3-size: 14px;   --h3-line: 32.9px;  --h3-tracking: 1.4px; /* mono, uppercase */
+  --win-title-size: 12px; --win-title-tracking: 1.2px;         /* mono, uppercase */
+
+  /* Layout */
+  --page-max: 1280px;
+  --page-pad-y: 80px;
+  --page-pad-x: 72px;
+  --col-gap: 64px;
+  --section-gap: 64px;
+  --label-gap: 20px;
+  --grid-gap: 12px;
+  --sticky-top: 80px;
+
+  /* Motion */
+  --hover-ease: border-color .15s ease;
+}

@@ -1,0 +1,72 @@
+/* Requires tokens.css loaded first. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--color-page); }
+
+.page {
+  width: 100%; max-width: var(--page-max); margin: 0 auto;
+  padding: var(--page-pad-y) var(--page-pad-x);
+  background: var(--color-page);
+  font-family: var(--font-sans); color: var(--color-body);
+  display: flex; flex-wrap: wrap; gap: var(--col-gap); align-items: flex-start;
+}
+
+/* Left column */
+.side { flex: 1 1 320px; max-width: 400px; display: flex; flex-direction: column; gap: 16px; }
+.side h1 { margin: 0; font-size: var(--h1-size); line-height: var(--h1-line); font-weight: var(--h1-weight); color: var(--color-heading); }
+.side p, .note { margin: 0; font-size: var(--p-size); line-height: var(--p-line); color: var(--color-body); }
+.side p.intro { margin-top: 8px; }
+.side strong { color: var(--color-heading); }
+@media (min-width: 900px) { .side { position: sticky; top: var(--sticky-top); align-self: flex-start; } }
+
+/* Right column */
+.content { flex: 2 1 480px; min-width: 0; display: flex; flex-direction: column; gap: var(--section-gap); }
+.group { display: flex; flex-direction: column; gap: var(--label-gap); }
+.group h2 {
+  margin: 0; font-family: var(--font-mono); font-weight: 400;
+  font-size: var(--h3-size); line-height: var(--h3-line);
+  letter-spacing: var(--h3-tracking); text-transform: uppercase; color: var(--color-heading);
+}
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--grid-gap); }
+
+/* Window card */
+.win { border: 1px solid var(--color-raised); background: var(--color-card-body); display: flex; flex-direction: column; transition: var(--hover-ease); }
+.win:hover { z-index: 20 !important; border-color: var(--color-blue) !important; }
+.win-bar {
+  height: 40px; flex-shrink: 0; padding: 0 14px;
+  background: var(--color-surface); border-bottom: 1px solid var(--color-raised);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.win-title {
+  font-family: var(--font-mono); font-size: var(--win-title-size);
+  letter-spacing: var(--win-title-tracking); text-transform: uppercase; color: var(--color-heading);
+}
+.win-x { flex-shrink: 0; }
+.win-body { height: 120px; display: flex; align-items: center; justify-content: center; padding: 0 24px; }
+.win-body img { max-width: 100%; object-fit: contain; }
+.h32 { max-height: 32px; } .h44 { max-height: 44px; } .h48 { max-height: 48px; }
+.win-name { font-size: var(--h2-size); line-height: var(--h2-line); font-weight: var(--h2-weight); color: var(--color-heading); text-align: center; }
+
+/* Cascade */
+.cascade { position: relative; height: 420px; }
+.casc { position: absolute; width: 34%; aspect-ratio: 4 / 3; }
+.casc .win-body { flex: 1; height: auto; padding: 0; }
+.casc .win-body img { width: 64px; height: 64px; max-width: none; max-height: none; }
+.casc-1 { left: 0%;  top: 0px;   z-index: 1; }
+.casc-2 { left: 16%; top: 56px;  z-index: 2; }
+.casc-3 { left: 32%; top: 112px; z-index: 3; }
+.casc-4 { left: 48%; top: 168px; z-index: 4; }
+.casc-5 { left: 64%; top: 224px; z-index: 5; }
+
+.note { border-top: 1px solid var(--color-raised); padding-top: 24px; }
+.note .unlinked { text-decoration: underline; color: var(--color-heading); }
+
+@media (max-width: 760px) {
+  .cascade { height: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--grid-gap); }
+  .casc { position: static; width: auto; }
+}
+/* Deviation from design (flagged in HANDOVER.md): design keeps 72px side padding on phones, leaving ~246px content at 390px. */
+@media (max-width: 760px) {
+  .page { padding: 48px 20px; gap: 40px; }
+  .content { gap: 48px; }
+}
+@media (prefers-reduced-motion: reduce) { .win { transition: none; } }

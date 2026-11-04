@@ -39,18 +39,43 @@
   object-position: center top;
 }
 
+/* The still is the fallback. The clip fades in over it. */
+.contact-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.contact-hero__video.is-ready { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero__video { display: none; }
+}
+
 /* ---- INTRO — same seam as pricing and FAQs -----------------
    The eyebrow overlaps the banner fade by 60px, matching
    .pricing-intro. Figma had this 60px below the frame; the
    mask already spends that white, so the heading was sitting
    further down than the other pages. */
 .contact-intro {
+  position: relative;
+  z-index: 1;
   width: min(791px, calc(100% - var(--gutter) * 2));
   margin: -60px auto 0;
   text-align: center;
 }
 
 .contact-intro .eyebrow { margin: 0; }
+
+/* Once the clip has finished, the intro sits in the white
+   instead of overlapping the banner. The jump then lands
+   the eyebrow one step below the top of the viewport. */
+.page-contact.is-introduced .contact-intro { margin-top: var(--s-8); }
 
 .contact-intro__title {
   margin: 24px auto 0; /* eyebrow box → title 869 */
@@ -226,7 +251,8 @@
       transparent 100%
     );
   }
-  .contact-hero__media img {
+  .contact-hero__media img,
+  .contact-hero__video {
     position: absolute;
     inset: 0;
     width: 100%;

@@ -309,18 +309,77 @@ a { color: inherit; text-decoration: none; }
     opacity var(--hero-reveal) var(--ease-emph) 150ms,
     transform var(--hero-reveal) var(--ease-emph) 150ms;
 }
-.js .hero__title:not(.is-focus):not(.is-typed) ~ .hero__lede {
+.js .hero__title:not(.is-focus):not(.is-typed) ~ .hero__lede,
+.js .hero__title:not(.is-focus):not(.is-typed) ~ .hero__proof {
   opacity: 0;
   transform: translateY(10px);
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__line,
   .hero__lede,
+  .hero__proof,
   .hero__char { transition: none; animation: none; }
-  .js .hero__title:not(.is-focus):not(.is-typed) ~ .hero__lede {
+  .js .hero__title:not(.is-focus):not(.is-typed) ~ .hero__lede,
+  .js .hero__title:not(.is-focus):not(.is-typed) ~ .hero__proof {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Social proof under the lede. Not a Figma frame — the overlapping
+   circle row from the social-proof avatar pattern. */
+.hero__proof {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+  transition:
+    opacity var(--hero-reveal) var(--ease-emph) 150ms,
+    transform var(--hero-reveal) var(--ease-emph) 150ms;
+}
+.proof {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.proof__avatar {
+  position: relative;
+  z-index: calc(var(--i) + 1);
+  width: var(--s-8);
+  height: var(--s-8);
+  margin-left: calc(var(--s-4) * -1);
+  overflow: hidden;
+  border: var(--s-1) solid var(--paper);
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 16%, transparent);
+}
+.proof__avatar:first-child { margin-left: 0; }
+.proof__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-base) var(--ease);
+  transition-delay: calc(var(--i) * 60ms);
+}
+.proof:hover .proof__avatar img { transform: scale(var(--logo-hover)); }
+.proof__line {
+  font-size: var(--fs-ui);
+  line-height: var(--lh-compact);
+  color: var(--ink-soft);
+  text-wrap: balance;
+}
+.proof__line strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .proof__avatar img { transition: none; }
+  .proof:hover .proof__avatar img { transform: none; }
 }
 
 /* Figma: lede y=885 → cta y=990 */

@@ -267,7 +267,8 @@
     var query = raw.trim().toLowerCase();
     var shown = 0;
     Array.prototype.forEach.call(cards, function (card) {
-      var match = !query || card.textContent.toLowerCase().indexOf(query) !== -1;
+      var kindOk = !caseOnly || card.getAttribute("data-kind") === "case-study";
+      var match = kindOk && (!query || card.textContent.toLowerCase().indexOf(query) !== -1);
       card.hidden = !match;
       if (match) shown += 1;
     });
@@ -275,7 +276,18 @@
     if (empty) empty.hidden = shown !== 0;
   }
 
-  var initial = new URLSearchParams(window.location.search).get("q") || "";
+  var params = new URLSearchParams(window.location.search);
+  var caseOnly = params.get("view") === "case-studies";
+  if (caseOnly) {
+    var title = document.getElementById("blog-title");
+    var lede = document.querySelector(".blog-hero__lede");
+    if (title) title.textContent = "Case studies";
+    if (lede) lede.textContent = "Selected work for the businesses I build with.";
+    document.title = "Case studies — Nicole Steinmetz";
+    if (empty) empty.textContent = "No case studies match that.";
+  }
+
+  var initial = params.get("q") || "";
   if (initial) input.value = initial;
   apply(input.value);
 

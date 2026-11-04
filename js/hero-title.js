@@ -28,7 +28,7 @@
   if (video.readyState >= 3) ready();
 
   var play = function () {
-    if (video.ended) return;
+    if (video.ended || video.dataset.held === "1") return;
     var p = video.play();
     if (p && p.catch) p.catch(function () {});
   };
@@ -45,8 +45,75 @@
    heading to the top of the viewport. A scroll, wheel or
    keypress before then leaves the page where they put it. */
 (function () {
+  var REPLAY_ICON = "<svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5\"/></svg>";
+  var PAUSE_ICON = "<svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M7 5h3.2v14H7zM13.8 5H17v14h-3.2z\"/></svg>";
+  var PLAY_ICON = "<svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M8 5.5v13l11-6.5z\"/></svg>";
+
+  /* WCAG 2.2.2 — a moving clip that starts on its own needs a pause. */
+  function armPause(video) {
+    var host = video.closest(".hero__media, .pricing-hero__media, .faq-hero__media, .contact-hero__media, .site-footer");
+    if (!host || host.querySelector(":scope > .video-pause")) return;
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "video-pause";
+    button.innerHTML = PAUSE_ICON;
+    host.appendChild(button);
+
+    function paint() {
+      var held = video.dataset.held === "1";
+      button.hidden = video.ended;
+      button.setAttribute("aria-pressed", held ? "true" : "false");
+      button.setAttribute("aria-label", held ? "Play video" : "Pause video");
+      button.innerHTML = held ? PLAY_ICON : PAUSE_ICON;
+    }
+
+    button.addEventListener("click", function () {
+      if (video.ended) return;
+      if (video.dataset.held === "1") {
+        video.dataset.held = "0";
+        var pending = video.play();
+        if (pending && pending.catch) pending.catch(function () {});
+      } else {
+        video.dataset.held = "1";
+        video.pause();
+      }
+      paint();
+    });
+    video.addEventListener("play", paint);
+    video.addEventListener("pause", paint);
+    video.addEventListener("ended", function () { button.hidden = true; });
+    paint();
+  }
+
+  function armReplay(video) {
+    armPause(video);
+    video.loop = false;
+    video.removeAttribute("loop");
+    var host = video.closest(".hero__media, .pricing-hero__media, .faq-hero__media, .contact-hero__media, .site-footer");
+    if (!host || host.querySelector(":scope > .video-replay")) return;
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "video-replay";
+    button.hidden = true;
+    button.setAttribute("aria-label", "Play the video again");
+    button.innerHTML = REPLAY_ICON;
+    host.appendChild(button);
+    button.addEventListener("click", function () {
+      button.hidden = true;
+      video.dataset.held = "0";
+      try { video.currentTime = 0; } catch (err) {}
+      var pending = video.play();
+      if (pending && pending.catch) pending.catch(function () { button.hidden = false; });
+    });
+    video.addEventListener("play", function () { button.hidden = true; });
+    video.addEventListener("ended", function () { button.hidden = false; });
+    if (video.ended) button.hidden = false;
+  }
+
+  window.armVideoReplay = armReplay;
+
   var videos = document.querySelectorAll(
-    ".hero__video, .pricing-hero__video, .faq-hero__video"
+    ".hero__video, .pricing-hero__video, .faq-hero__video, .contact-hero__video"
   );
   if (!videos.length) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -73,7 +140,7 @@
 
   function headingAfter(video) {
     var nodes = document.querySelectorAll(
-      ".hero__title, .pricing-intro__title, .faq-hero__title"
+      ".hero__title, .pricing-intro__title, .faq-hero__title, .contact-intro__title"
     );
     for (var i = 0; i < nodes.length; i++) {
       if (video.compareDocumentPosition(nodes[i]) & Node.DOCUMENT_POSITION_FOLLOWING) {
@@ -83,10 +150,52 @@
     return null;
   }
 
+  /* html { scroll-behavior: smooth } turns behavior "auto" into a
+     glide. These landings are a jump, so smooth has to be off
+     for the one scroll. */
+  function jumpTo(top) {
+    var root = document.documentElement;
+    var prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, Math.max(0, top));
+    root.style.scrollBehavior = prev;
+  }
+
   function handoff(video) {
     if (handedOff || video.dataset.handed === "1") return;
     video.dataset.handed = "1";
     if (!video.duration || video.currentTime < 0.5) return;
+
+    /* Contact lands on the intro: eyebrow, heading, and the cards,
+       with the banner already off screen. The intro overlaps the
+       banner, so the overlap has to go before the scroll or the
+       eyebrow leaves with the illustration. */
+    if (video.classList.contains("contact-hero__video")) {
+      var intro = document.querySelector(".contact-intro");
+      var hero = document.querySelector(".contact-hero");
+      if (!intro || !hero) return;
+      document.body.classList.add("is-introduced");
+      var heroBottom = hero.getBoundingClientRect().bottom + window.scrollY;
+      if (heroBottom <= 1) return;
+      jumpTo(Math.ceil(heroBottom));
+      return;
+    }
+
+    /* FAQ lands on the intro: eyebrow, heading, and the search.
+       Clearing the whole clip scrolls past that, because the
+       artwork overlaps the copy. Instant, like the contact page. */
+    if (video.classList.contains("faq-hero__video")) {
+      var faqCopy = document.querySelector(".faq-hero__copy");
+      if (!faqCopy) return;
+      var faqAir = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--s-7")
+      ) || 48;
+      var faqDelta = faqCopy.getBoundingClientRect().top - faqAir;
+      if (faqDelta <= 1) return;
+      jumpTo(window.scrollY + faqDelta);
+      return;
+    }
+
     var heading = headingAfter(video);
     if (!heading) return;
     var gap = parseFloat(
@@ -106,8 +215,7 @@
   }
 
   Array.prototype.forEach.call(videos, function (video) {
-    video.loop = false;
-    video.removeAttribute("loop");
+    armReplay(video);
     video.addEventListener("ended", function () {
       if (!document.hidden) {
         handoff(video);
@@ -121,9 +229,12 @@
     });
     if (video.ended) handoff(video);
   });
+
+  window.armVideoReplay = armReplay;
 })();
 
-/* Footer video — muted loop over the still. */
+/* Footer video — plays once. The loop point jumps, so a replay
+   control appears on the last frame instead. */
 (function () {
   var video = document.querySelector(".site-footer__video");
   if (!video) return;
@@ -140,6 +251,9 @@
 
   video.muted = true;
   video.setAttribute("playsinline", "");
+  video.loop = false;
+  video.removeAttribute("loop");
+  if (window.armVideoReplay) window.armVideoReplay(video);
 
   function ready() {
     video.classList.add("is-ready");
@@ -148,6 +262,7 @@
   if (video.readyState >= 3) ready();
 
   var play = function () {
+    if (video.ended || video.dataset.held === "1") return;
     var p = video.play();
     if (p && p.catch) p.catch(function () {});
   };

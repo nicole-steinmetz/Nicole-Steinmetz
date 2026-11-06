@@ -25,7 +25,7 @@
 
 <link rel="stylesheet" href="/css/tokens.css?v=banner-sm">
 <link rel="stylesheet" href="/css/styles.css?v=nav">
-<link rel="stylesheet" href="/css/pricing.css?v=hero-clear">
+<link rel="stylesheet" href="/css/pricing.css?v=pricing-video">
 <script>document.documentElement.classList.add('js');</script>
 
 <link rel="preload" as="image" href="/assets/img/pricing-hero-1440.webp" type="image/webp" fetchpriority="high">
@@ -60,26 +60,37 @@
 
 <main id="main">
 
-  <!-- Hero — Figma 370:1670, 1440×756 -->
+  <!-- Hero — Figma 370:1670, 1440×756. Video plays over the still;
+       the picture stays as the poster and reduced-motion fallback. -->
   <section class="pricing-hero" aria-label="Pricing">
-    <picture class="pricing-hero__media">
-      <source
-        type="image/webp"
-        srcset="/assets/img/pricing-hero-720.webp 720w,
-                /assets/img/pricing-hero-1080.webp 1080w,
-                /assets/img/pricing-hero-1440.webp 1440w,
-                /assets/img/pricing-hero-2880.webp 2880w"
-        sizes="100vw">
-      <img src="/assets/img/pricing-hero-1440.jpg"
-           srcset="/assets/img/pricing-hero-720.jpg 720w,
-                   /assets/img/pricing-hero-1080.jpg 1080w,
-                   /assets/img/pricing-hero-1440.jpg 1440w,
-                   /assets/img/pricing-hero-2880.jpg 2880w"
-           sizes="100vw"
-           width="1440" height="756"
-           alt="Illustrated figure sitting with a laptop on striped steps"
-           fetchpriority="high" decoding="async">
-    </picture>
+    <div class="pricing-hero__media">
+      <picture>
+        <source
+          type="image/webp"
+          srcset="/assets/img/pricing-hero-720.webp 720w,
+                  /assets/img/pricing-hero-1080.webp 1080w,
+                  /assets/img/pricing-hero-1440.webp 1440w,
+                  /assets/img/pricing-hero-2880.webp 2880w"
+          sizes="100vw">
+        <img src="/assets/img/pricing-hero-1440.jpg"
+             srcset="/assets/img/pricing-hero-720.jpg 720w,
+                     /assets/img/pricing-hero-1080.jpg 1080w,
+                     /assets/img/pricing-hero-1440.jpg 1440w,
+                     /assets/img/pricing-hero-2880.jpg 2880w"
+             sizes="100vw"
+             width="1440" height="756"
+             alt="Illustrated figure sitting with a laptop on striped steps"
+             fetchpriority="high" decoding="async">
+      </picture>
+      <video class="pricing-hero__video"
+             autoplay muted playsinline
+             preload="none"
+             disablepictureinpicture
+             width="1280" height="720"
+             aria-hidden="true">
+        <source src="/assets/video/pricing-hero.mp4?v=miss-nicole" type="video/mp4">
+      </video>
+    </div>
   </section>
 
   <!-- Intro — Figma y=696 → 1119 -->
@@ -412,6 +423,35 @@
 
 <script src="/js/platform-profiles.js" defer></script>
 <script src="/js/hero-title.js?v=footer-video" defer></script>
+<script>
+/* Hero video — fade over the still once playable. Reduced motion
+   keeps the picture and drops the file. */
+(function () {
+  var v = document.querySelector(".pricing-hero__video");
+  if (!v) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    v.pause();
+    v.removeAttribute("autoplay");
+    while (v.firstChild) v.removeChild(v.firstChild);
+    v.removeAttribute("src");
+    v.load();
+    return;
+  }
+  function show() { v.classList.add("is-ready"); }
+  v.addEventListener("playing", show, { once: true });
+  if (v.readyState >= 3) show();
+  var play = function () {
+    if (v.ended) return;
+    var pending = v.play();
+    if (pending && pending.catch) pending.catch(function () {});
+  };
+  play();
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) v.pause();
+    else play();
+  });
+})();
+</script>
 <script src="/js/nav.js" defer></script>
 <script src="/js/faq-widget.js?v=faq-ask" defer></script>
 </body>

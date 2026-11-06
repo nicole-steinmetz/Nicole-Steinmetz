@@ -22,6 +22,8 @@
 /* ---- HERO — image 1440×756 at y=0 -------------------------- */
 .pricing-hero { position: relative; isolation: isolate; }
 
+.pricing-hero__media { position: relative; }
+
 .pricing-hero__media img {
   width: 100%;
   height: auto;
@@ -1018,7 +1020,8 @@ html:not(.js) .profiles__panel {
     aspect-ratio: var(--banner-ratio-sm);
     object-position: center center;
   }
-  body.page-pricing:not([class*="page-pricing-"]) .pricing-hero__media img {
+  body.page-pricing:not([class*="page-pricing-"]) .pricing-hero__media img,
+  body.page-pricing:not([class*="page-pricing-"]) .pricing-hero__video {
     object-position: 65% center;
   }
 

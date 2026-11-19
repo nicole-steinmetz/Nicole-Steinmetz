@@ -102,8 +102,10 @@
     text-decoration: none; color: var(--text);
   }
   .tools-page a.tools-page__btn--amber { background: var(--amber); color: var(--bg); border-color: var(--amber); }
-  .tools-page a.tools-page__btn--line { background: transparent; border-color: var(--line); color: var(--text); }
-  .tools-page a.tools-page__btn--line:hover { border-color: var(--btn-line); }
+  .tools-page a.tools-page__btn--line,
+  .tools-page button.tools-page__btn--line { background: transparent; border-color: var(--line); color: var(--text); }
+  .tools-page a.tools-page__btn--line:hover,
+  .tools-page button.tools-page__btn--line:hover { border-color: var(--btn-line); }
 
   .tools-page__nav {
     position: fixed; z-index: 30; top: 16px; left: 50%; transform: translateX(-50%);
@@ -191,8 +193,36 @@
 
   .tools-page__split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
   .tools-page__panel { padding: 20px; display: grid; gap: 12px; align-content: start; }
-  .tools-page__mail { display: grid; gap: 8px; }
-  .tools-page__mail i { display: block; height: 36px; border: 1px solid var(--line); border-radius: 8px; }
+  .tools-page__panel h3 { margin: 0; font-size: 16px; line-height: 25px; font-weight: 600; color: var(--text); }
+  .tools-page__route { position: relative; height: 34px; margin: 0 8px; }
+  .tools-page__route-line { position: absolute; left: 0; right: 0; top: 16px; border-top: 1px dashed var(--line); }
+  .tools-page__route-node {
+    position: absolute; top: 10px; width: 12px; height: 12px; margin-left: -6px;
+    border-radius: 50%; background: var(--line);
+  }
+  .tools-page__route-pkt {
+    position: absolute; top: 7px; left: 0; width: 18px; height: 18px; margin-left: -9px;
+    border-radius: 50%;
+  }
+  .tools-page__route-pkt--stop { background: var(--rust); }
+  .tools-page__route-pkt--go { background: var(--blue); }
+  .tools-page__route-pkt.is-done.tools-page__route-pkt--stop { left: 50%; }
+  .tools-page__route-pkt.is-done.tools-page__route-pkt--go { left: 100%; }
+  .tools-page__route-labels {
+    display: flex; justify-content: space-between;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 14px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted);
+  }
+  .tools-page__step {
+    display: flex; align-items: center; gap: 10px; min-height: 40px; margin: 0;
+    padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; color: var(--text-muted);
+  }
+  .tools-page__step i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex: none; }
+  .tools-page__step.is-on { color: var(--text); }
+  .tools-page__step--bad.is-on i { background: var(--rust); }
+  .tools-page__step--good.is-on i { background: var(--blue); }
+  .tools-page__route-replay { display: flex; justify-content: flex-end; margin-top: 16px; }
+  .tools-page button.tools-page__btn { font-family: inherit; cursor: pointer; }
   .tools-page__badge {
     justify-self: start; padding: 6px 12px; border-radius: 9999px; color: var(--text); font-weight: 700;
   }
@@ -245,6 +275,130 @@
   .tools-page__light tbody th,
   .tools-page__light td::before { color: var(--ink-h); }
   .tools-page__name { display: flex; align-items: center; gap: 10px; }
+  .tools-page__compare-source { display: none; }
+  .tools-page #compare,
+  .tools-page #quote {
+    --card: #202124;
+    --line-strong: #4A4F57;
+    --slab-top: #3A3F47;
+    --amber-left: #B97D02;
+    --amber-right: #D99403;
+    color: var(--text);
+  }
+  .tools-page #compare .tools-page__eyebrow,
+  .tools-page #quote .tools-page__eyebrow { color: var(--text); }
+  .tools-page #compare h2 { margin-bottom: 32px; max-width: 760px; color: var(--text); font-weight: 700; }
+  .tools-page #quote .cmp-quote > div > p { color: var(--text); max-width: 52ch; }
+  .tools-page #compare h3,
+  .tools-page #compare h4,
+  .tools-page #compare p,
+  .tools-page #compare li,
+  .tools-page #quote .cmp-stack,
+  .tools-page #quote .cmp-stack li { color: var(--text); }
+  .tools-page .cmp-tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+  .tools-page .cmp-tab {
+    font-family: inherit; font-size: 15px; font-weight: 600; line-height: 20px;
+    padding: 12px 24px; border-radius: 9999px; background: var(--card); color: var(--text);
+    border: 1px solid var(--line-strong); cursor: pointer;
+  }
+  .tools-page .cmp-tab:hover { border-color: var(--text); }
+  .tools-page .cmp-tab[aria-selected="true"] { background: var(--blue); color: var(--bg); border-color: var(--blue); }
+  .tools-page .cmp-panel { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .tools-page .cmp-panel[hidden] { display: none; }
+  .tools-page .cmp-detail { display: grid; grid-template-columns: 1.1fr 1fr; }
+  .tools-page .cmp-copy { padding: 48px; border-right: 1px solid var(--line); }
+  .tools-page .cmp-copy h3 { font-size: 22px; line-height: 32.9px; font-weight: 700; margin-bottom: 12px; max-width: 22ch; }
+  .tools-page .cmp-lede { margin-bottom: 28px; max-width: 46ch; }
+  .tools-page a.cmp-btn {
+    display: inline-flex; align-items: center; font-size: 15px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.3px; text-decoration: none; color: var(--text);
+    padding: 12px 24px; border-radius: 9999px; background: var(--rust); border: 1px solid var(--rust);
+  }
+  .tools-page a.cmp-btn:hover { border-color: var(--text); text-decoration: none; }
+  .tools-page .cmp-caveat { margin-top: 28px; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  .tools-page .cmp-pill {
+    display: inline-block; font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; line-height: 16px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--text); padding: 4px 12px; border-radius: 9999px; margin-bottom: 10px; background: var(--rust);
+  }
+  .tools-page .cmp-caveat p { font-size: 15px; line-height: 23px; max-width: 46ch; }
+  .tools-page .cmp-points { display: flex; flex-direction: column; }
+  .tools-page .cmp-point { padding: 32px 48px; border-bottom: 1px solid var(--line); flex: 1; }
+  .tools-page .cmp-point:last-child { border-bottom: none; }
+  .tools-page .cmp-point h4 { font-size: 17px; line-height: 26px; font-weight: 600; margin: 0 0 8px; }
+  .tools-page .cmp-point p { font-size: 15px; line-height: 23px; max-width: 40ch; }
+  .tools-page .cmp-glance { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 24px; border-top: 1px solid var(--line); }
+  .tools-page .cmp-cell { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .tools-page .cmp-label {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; line-height: 16px;
+    letter-spacing: 1.4px; text-transform: uppercase; color: var(--text);
+  }
+  .tools-page .cmp-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .tools-page .cmp-dot--blue { background: var(--blue); }
+  .tools-page .cmp-dot--amber { background: var(--amber); }
+  .tools-page .cmp-dot--rust { background: var(--rust); }
+  .tools-page .cmp-cell p { font-size: 15px; line-height: 23px; }
+  .tools-page .cmp-custom { margin-top: 72px; }
+  .tools-page .cmp-custom h3 { font-size: 22px; line-height: 32.9px; font-weight: 700; margin-bottom: 12px; }
+  .tools-page .cmp-custom > .cmp-lede { margin-bottom: 32px; max-width: 680px; }
+  .tools-page .cmp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .tools-page .cmp-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px 24px; display: flex; flex-direction: column; }
+  .tools-page .cmp-name { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; line-height: 20px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 500; margin: 0 0 8px; color: var(--text); }
+  .tools-page .cmp-best { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0 0 16px; }
+  .tools-page .cmp-list { list-style: none; margin: 0; padding: 0; font-size: 15px; line-height: 23px; }
+  .tools-page .cmp-list li { padding: 10px 0; border-top: 1px solid var(--line); }
+  .tools-page .cmp-list li:first-child { border-top: none; padding-top: 0; }
+  .tools-page .cmp-catch { margin-top: auto; padding-top: 16px; }
+  .tools-page .cmp-catch p { font-size: 14px; line-height: 21px; background: var(--bg); border: 1px solid var(--line-strong); border-radius: 10px; padding: 12px 14px; }
+  .tools-page .cmp-foot { margin-top: 24px; font-size: 14px; line-height: 22px; max-width: 820px; }
+  .tools-page .cmp-quote { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: start; }
+  .tools-page .cmp-stack { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .tools-page .cmp-iso { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 400 / 330; }
+  .tools-page .cmp-iso svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .tools-page .cmp-iso .s-name { font-family: Inter, sans-serif; font-size: 15px; font-weight: 600; fill: var(--text); }
+  .tools-page .cmp-iso .s-sub { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: 1px; fill: var(--text); }
+  .tools-page .cmp-iso .leader { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+  .tools-page .cmp-iso .top-t { fill: var(--slab-top); }
+  .tools-page .cmp-iso .left-t { fill: var(--line); }
+  .tools-page .cmp-iso .right-t { fill: var(--line-strong); }
+  .tools-page .cmp-iso .ghost polygon { fill: none; stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .tools-page .cmp-iso .ghost { transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1); }
+  .tools-page .cmp-iso .added { opacity: 0; transform: translateY(-44px); transition: transform 0.45s cubic-bezier(0.3, 1.3, 0.5, 1), opacity 0.25s cubic-bezier(0.2, 0, 0, 1); pointer-events: none; }
+  .tools-page .cmp-iso .added .a-top { fill: var(--amber); }
+  .tools-page .cmp-iso .added .a-left { fill: var(--amber-left); }
+  .tools-page .cmp-iso .added .a-right { fill: var(--amber-right); }
+  .tools-page .cmp-iso .opt-on .added { opacity: 1; transform: translateY(0); }
+  .tools-page .cmp-opt:hover .cmp-hit { background: rgba(255, 255, 255, 0.05); }
+  .tools-page .cmp-iso .opt-on .ghost { opacity: 0; }
+  .tools-page .cmp-iso .opt-on .sub-off { display: none; }
+  .tools-page .cmp-iso .opt-off .sub-on { display: none; }
+  .tools-page .cmp-opt { position: absolute; left: 0; width: 100%; display: block; cursor: pointer; border-radius: 12px; }
+  .tools-page .cmp-opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .tools-page .cmp-opt input:focus-visible + .cmp-hit { outline: 2px solid var(--text); outline-offset: -2px; }
+  .tools-page .cmp-hit { position: absolute; inset: 0; border-radius: 12px; }
+  .tools-page .cmp-qbar { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .tools-page .cmp-count { font-weight: 700; display: flex; align-items: center; gap: 10px; color: var(--text); }
+  .tools-page .cmp-count .cmp-dot { background: var(--amber); }
+  .tools-page .cmp-note { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; line-height: 18px; color: var(--text); }
+  .tools-page .cmp-tools { list-style: none; margin: 20px 0 0; padding: 0; font-size: 14px; line-height: 21px; }
+  .tools-page .cmp-tools li { padding: 8px 0; border-top: 1px solid var(--line); color: var(--text); }
+  .tools-page .cmp-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  @media (max-width: 900px) {
+    .tools-page .cmp-detail, .tools-page .cmp-cards, .tools-page .cmp-quote { grid-template-columns: 1fr; }
+    .tools-page .cmp-copy { border-right: none; border-bottom: 1px solid var(--line); }
+    .tools-page .cmp-glance { grid-template-columns: 1fr; }
+    .tools-page .cmp-quote { gap: 40px; }
+  }
+  @media (max-width: 700px) {
+    .tools-page .cmp-tabs { gap: 8px; }
+    .tools-page .cmp-tab { padding: 10px 16px; font-size: 14px; }
+    .tools-page .cmp-copy, .tools-page .cmp-point { padding: 28px 20px; }
+    .tools-page .cmp-glance { padding: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tools-page .cmp-iso .ghost, .tools-page .cmp-iso .added { transition: none; }
+  }
 
   .tools-page__quote { display: grid; gap: 8px; }
   .tools-page__quote div, .tools-page__code p {
@@ -325,7 +479,9 @@
     .tools-page.is-playing .tools-page__log span:nth-child(2) { animation-delay: 0.6s; }
     .tools-page.is-playing .tools-page__log span:nth-child(3) { animation-delay: 1.2s; }
     .tools-page.is-playing .tools-page__pill { animation: tools-type 4.8s var(--ease) 1.8s infinite; }
-    .tools-page.is-playing .tools-page__badge { animation: tools-pop 0.5s var(--ease) both; }
+    .tools-page__route-pkt { transition: left 1s var(--ease); }
+    .tools-page__route-pkt--go.is-run { transition-duration: 1.8s; }
+    .tools-page__step, .tools-page__step i, .tools-page__badge { transition: color 0.3s var(--ease), background 0.3s var(--ease), opacity 0.4s var(--ease); }
     .tools-page.is-playing .tools-page__env { animation: tools-flap 3.6s var(--ease) infinite; }
     .tools-page .tools-page__quote.is-in div { animation: tools-in 0.5s var(--ease) both; }
     .tools-page .tools-page__quote.is-in div:nth-child(2) { animation-delay: 60ms; }
@@ -461,17 +617,40 @@
     <div class="tools-page__wrap">
       <p class="tools-page__eyebrow">[ 02 ] DNS</p>
       <h2>Moving DNS can interrupt your email. <span class="tools-page__tone">It doesn't, once the MX records are copied across first.</span></h2>
-      <div class="tools-page__split">
+      <div class="tools-page__split" id="route">
         <article class="tools-page__panel">
-          <h2>Moving DNS without a plan</h2>
-          <div class="tools-page__mail" aria-hidden="true"><i></i><i></i><i></i></div>
+          <h3>Moving DNS without a plan</h3>
+          <div class="tools-page__route" aria-hidden="true">
+            <div class="tools-page__route-line"></div>
+            <span class="tools-page__route-node" style="left:0"></span>
+            <span class="tools-page__route-node" style="left:50%"></span>
+            <span class="tools-page__route-node" style="left:100%"></span>
+            <span class="tools-page__route-pkt tools-page__route-pkt--stop is-done" data-route="stop"></span>
+          </div>
+          <p class="tools-page__route-labels"><span>Sender</span><span>DNS</span><span>Inbox</span></p>
+          <p class="tools-page__step tools-page__step--bad is-on"><i></i>Nameservers switched on the day</p>
+          <p class="tools-page__step tools-page__step--bad is-on"><i></i>New DNS has no MX records</p>
+          <p class="tools-page__step tools-page__step--bad is-on"><i></i>Mail has nowhere to go</p>
           <span class="tools-page__badge tools-page__badge--bad">Email stops</span>
         </article>
         <article class="tools-page__panel">
-          <h2>With a plan</h2>
-          <div class="tools-page__mail" aria-hidden="true"><i></i><i></i><i></i></div>
+          <h3>With a plan</h3>
+          <div class="tools-page__route" aria-hidden="true">
+            <div class="tools-page__route-line"></div>
+            <span class="tools-page__route-node" style="left:0"></span>
+            <span class="tools-page__route-node" style="left:50%"></span>
+            <span class="tools-page__route-node" style="left:100%"></span>
+            <span class="tools-page__route-pkt tools-page__route-pkt--go is-done" data-route="go"></span>
+          </div>
+          <p class="tools-page__route-labels"><span>Sender</span><span>DNS</span><span>Inbox</span></p>
+          <p class="tools-page__step tools-page__step--good is-on"><i></i>MX records copied across first</p>
+          <p class="tools-page__step tools-page__step--good is-on"><i></i>Nameservers switched</p>
+          <p class="tools-page__step tools-page__step--good is-on"><i></i>Mail follows the same route</p>
           <span class="tools-page__badge tools-page__badge--good">Email keeps flowing</span>
         </article>
+      </div>
+      <div class="tools-page__route-replay">
+        <button type="button" class="tools-page__btn tools-page__btn--line" id="route-replay">Replay</button>
       </div>
     </div>
   </section>
@@ -479,8 +658,8 @@
   <section class="tools-page__section" id="platforms">
     <div class="tools-page__wrap">
       <p class="tools-page__eyebrow">[ 03 ] Platforms</p>
-      <h2>Squarespace and Shopify. <span class="tools-page__tone">These are the three I use.</span></h2>
-      <p style="max-width:640px;margin-top:16px">A custom build is hand-written code, so it needs a host. These are the three I use. None has a visual editor, and I keep access to your site after launch for further changes. See the FAQ on <a href="/faqs/#can-i-update-the-website-myself-after-launch">updating your site after launch</a>.</p>
+      <h2>Squarespace, Cloudflare and Shopify. <span class="tools-page__tone">These are the three I use.</span></h2>
+      <p style="max-width:640px;margin-top:16px">Squarespace is best for managing the site yourself, and it doesn't accept custom code. Shopify is for products. Cloudflare is my preferred host for a custom static site, and this site is built on it. A custom build is hand-written code, so it needs a host. It has no visual editor, and I keep access to your site after launch for further changes. See the FAQ on <a href="/faqs/#can-i-update-the-website-myself-after-launch">updating your site after launch</a>.</p>
       <div class="tools-page__cards">
         <article class="tools-page__card reveal" style="--i:0">
           <div class="tools-page__preview" aria-hidden="true">
@@ -584,12 +763,152 @@
     </div>
   </section>
 
-  <section class="tools-page__section tools-page__light" id="compare">
+  <section class="tools-page__section" id="compare">
     <div class="tools-page__wrap">
       <p class="tools-page__eyebrow">[ 05 ] Compare</p>
-      <h2>The five platforms at a glance. <span class="tools-page__tone">Choose by the job.</span></h2>
-      <p style="max-width:640px;margin-top:12px"><strong>Recommendation:</strong> choose by the job. Squarespace if you'll edit the site yourself, Shopify if selling is the business, and a custom build when a template can't do what you need.</p>
-      <table>
+      <h2 id="compare-title">The five platforms at a glance. Choose by the job.</h2>
+
+      <div class="cmp-tabs" role="tablist" aria-label="Platforms" id="tabs">
+        <button class="cmp-tab" type="button" role="tab" id="tab-cloudflare" data-target="cloudflare" aria-selected="true" aria-controls="panel-cloudflare" tabindex="0">Cloudflare</button>
+        <button class="cmp-tab" type="button" role="tab" id="tab-shopify" data-target="shopify" aria-selected="false" aria-controls="panel-shopify" tabindex="-1">Shopify</button>
+        <button class="cmp-tab" type="button" role="tab" id="tab-squarespace" data-target="squarespace" aria-selected="false" aria-controls="panel-squarespace" tabindex="-1">Squarespace</button>
+        <button class="cmp-tab" type="button" role="tab" id="tab-netlify" data-target="netlify" aria-selected="false" aria-controls="panel-netlify" tabindex="-1">Netlify</button>
+      </div>
+
+      <div class="cmp-panel" id="panel-cloudflare" role="tabpanel" aria-labelledby="tab-cloudflare" tabindex="0">
+        <div class="cmp-detail">
+          <div class="cmp-copy">
+            <p class="tools-page__eyebrow">Platform — Cloudflare</p>
+            <h3>The infrastructure behind a custom build</h3>
+            <p class="cmp-lede">Cloudflare is the network a hand-built site runs on — domain, hosting and delivery in one account you own, built to handle real traffic without extra setup.</p>
+            <a class="cmp-btn" href="/pricing/cloudflare/">See Cloudflare pricing</a>
+            <div class="cmp-caveat">
+              <span class="cmp-pill">Worth knowing</span>
+              <p>This is infrastructure, not a client-run platform — someone has to own the account and the ongoing decisions. Moving DNS here can interrupt email if MX records aren't copied across first — a one-time step, and no risk when it's handled properly at launch.</p>
+            </div>
+          </div>
+          <div class="cmp-points">
+            <div class="cmp-point"><h4>Fast wherever they are</h4><p>Served from the edge, close to every visitor — not from one data centre on the other side of the world.</p></div>
+            <div class="cmp-point"><h4>Security built in</h4><p>DDoS protection and SSL come with the platform, not as something to configure and hope for the best.</p></div>
+          </div>
+        </div>
+        <div class="cmp-glance">
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--blue"></span>Genuine strength</div><p>Very fast delivery with flexible infrastructure</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--amber"></span>Core compromise</div><p>You are running a technical platform, not a self-contained CMS</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--rust"></span>Avoid when</div><p>You need low-skill, day-to-day ownership</p></div>
+        </div>
+      </div>
+
+      <div class="cmp-panel" id="panel-shopify" role="tabpanel" aria-labelledby="tab-shopify" tabindex="0" hidden>
+        <div class="cmp-detail">
+          <div class="cmp-copy">
+            <p class="tools-page__eyebrow">Platform — Shopify</p>
+            <h3>The commerce engine underneath</h3>
+            <p class="cmp-lede">Once selling is the job, Shopify runs the parts that matter most — checkout, inventory, fulfilment — so the build can focus on how it looks and feels.</p>
+            <a class="cmp-btn" href="/pricing/shopify/">See Shopify pricing</a>
+            <div class="cmp-caveat">
+              <span class="cmp-pill">Worth knowing</span>
+              <p>Shopify is a retail operating platform, not a finished storefront — expect to add apps as needs grow, and Shopify's own transaction fee applies if payments run through anything other than Shopify Payments.</p>
+            </div>
+          </div>
+          <div class="cmp-points">
+            <div class="cmp-point"><h4>Checkout that just works</h4><p>A native, trusted checkout customers already recognise — one less reason to abandon a cart.</p></div>
+            <div class="cmp-point"><h4>The commerce stack, already there</h4><p>Inventory, shipping, discounts and payments are built in from day one, not bolted on later.</p></div>
+          </div>
+        </div>
+        <div class="cmp-glance">
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--blue"></span>Genuine strength</div><p>Reliable hosted commerce with a strong admin</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--amber"></span>Core compromise</div><p>Polish often relies on paid apps and Shopify's conventions</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--rust"></span>Avoid when</div><p>Selling is only a minor feature</p></div>
+        </div>
+      </div>
+
+      <div class="cmp-panel" id="panel-squarespace" role="tabpanel" aria-labelledby="tab-squarespace" tabindex="0" hidden>
+        <div class="cmp-detail">
+          <div class="cmp-copy">
+            <p class="tools-page__eyebrow">Platform — Squarespace</p>
+            <h3>Built for hands-on control</h3>
+            <p class="cmp-lede">Squarespace keeps editing in reach after launch — content, pages, pricing, all from the same screen the site was built in. Built by a Squarespace Platinum Expert (Top 1%), so the setup holds up long after handover.</p>
+            <a class="cmp-btn" href="/pricing/squarespace/">See Squarespace pricing</a>
+            <div class="cmp-caveat">
+              <span class="cmp-pill">Worth knowing</span>
+              <p>Squarespace buys speed and simple day-to-day ownership — it's a poorer fit if the business later needs it to behave like Shopify, a CRM or a custom app.</p>
+            </div>
+          </div>
+          <div class="cmp-points">
+            <div class="cmp-point"><h4>No developer on speed dial</h4><p>Swap a photo, add a page, update a price — from the same screen the site was built in.</p></div>
+            <div class="cmp-point"><h4>Design and hosting in one place</h4><p>Templates, domain, hosting and editing all live under one login — nothing else to manage.</p></div>
+          </div>
+        </div>
+        <div class="cmp-glance">
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--blue"></span>Genuine strength</div><p>Fast, low-maintenance sites you can update yourself</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--amber"></span>Core compromise</div><p>Limited data model, checkout and workflow control</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--rust"></span>Avoid when</div><p>The site is commerce-led, membership-heavy or needs deep integrations</p></div>
+        </div>
+      </div>
+
+      <div class="cmp-panel" id="panel-netlify" role="tabpanel" aria-labelledby="tab-netlify" tabindex="0" hidden>
+        <div class="cmp-detail">
+          <div class="cmp-copy">
+            <p class="tools-page__eyebrow">Platform — Netlify</p>
+            <h3>A deploy pipeline for custom code</h3>
+            <p class="cmp-lede">Netlify runs the other kind of custom build — lean hosting with a workflow built around fast, git-based deploys, so changes go out clean without the overhead of managing servers.</p>
+            <a class="cmp-btn" href="/pricing/netlify/">See Netlify pricing</a>
+            <div class="cmp-caveat">
+              <span class="cmp-pill">Worth knowing</span>
+              <p>Netlify is excellent at publishing a custom site reliably — it isn't a full backend. Like Cloudflare, moving DNS here can interrupt email if records aren't copied across first.</p>
+            </div>
+          </div>
+          <div class="cmp-points">
+            <div class="cmp-point"><h4>Deploy without the drama</h4><p>Every update goes out through the same clean pipeline — previewable before it ever touches the live site.</p></div>
+            <div class="cmp-point"><h4>Built for the modern web</h4><p>Plays well with the frameworks and tools a genuinely custom site is built from.</p></div>
+          </div>
+        </div>
+        <div class="cmp-glance">
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--blue"></span>Genuine strength</div><p>Familiar deploys, private previews and built-in forms</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--amber"></span>Core compromise</div><p>Usage-based billing and platform-specific features</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--rust"></span>Avoid when</div><p>You expect no technical stewardship at all</p></div>
+        </div>
+      </div>
+
+      <div class="cmp-custom" id="custom-builds" aria-labelledby="custom-title" role="region">
+        <p class="tools-page__eyebrow">Custom builds</p>
+        <h3 id="custom-title">Which custom-build platform suits you?</h3>
+        <p class="cmp-lede">All three host a hand-built site well. The difference is how your domain is set up — I'll recommend one, so you don't need to choose.</p>
+        <div class="cmp-cards">
+          <article class="cmp-card">
+            <h4 class="cmp-name">Cloudflare</h4>
+            <p class="cmp-best">Very fast delivery with flexible infrastructure</p>
+            <ul class="cmp-list">
+              <li><strong>Forms:</strong> handled by a one-off form service, included in your build.</li>
+              <li><strong>Avoid when:</strong> you need low-skill, day-to-day ownership.</li>
+            </ul>
+            <div class="cmp-catch"><p>Your domain's settings move to Cloudflare, so I review your email setup first.</p></div>
+          </article>
+          <article class="cmp-card">
+            <h4 class="cmp-name">Netlify</h4>
+            <p class="cmp-best">Keep your existing domain provider</p>
+            <ul class="cmp-list">
+              <li><strong>Forms:</strong> built in, with no extra service needed.</li>
+              <li><strong>Plan:</strong> most business sites need a paid plan so I can manage the site with you.</li>
+              <li><strong>Avoid when:</strong> you expect no technical stewardship at all.</li>
+            </ul>
+            <div class="cmp-catch"><p>If the monthly allowance runs out, the site pauses — I set you up on the right plan from day one.</p></div>
+          </article>
+          <article class="cmp-card">
+            <h4 class="cmp-name">Vercel</h4>
+            <p class="cmp-best">For more app-like projects</p>
+            <ul class="cmp-list">
+              <li><strong>Hosting:</strong> business sites need a paid plan.</li>
+              <li><strong>Avoid when:</strong> you only need a simple site, where Cloudflare or Netlify will serve you well.</li>
+            </ul>
+            <div class="cmp-catch"><p>I only recommend Vercel when your project clearly needs it.</p></div>
+          </article>
+        </div>
+        <p class="cmp-foot">Hosting accounts are set up in your business's name, with access for me.</p>
+      </div>
+
+      <table class="tools-page__compare-source">
         <caption>Genuine strength, core compromise and when to avoid each platform</caption>
         <thead>
           <tr><th scope="col">Platform</th><th scope="col">Genuine strength</th><th scope="col">Core compromise</th><th scope="col">Avoid when</th></tr>
@@ -621,8 +940,8 @@
           </tr>
           <tr>
             <th scope="row">Vercel</th>
-            <td data-label="Genuine strength">Polished, interactive sites that can grow app-like</td>
-            <td data-label="Core compromise">Costs more to run than the other two hosts, in return for top-tier performance and room to grow</td>
+            <td data-label="Genuine strength">For more app-like projects</td>
+            <td data-label="Core compromise">Business sites need a paid plan</td>
             <td data-label="Avoid when">You only need a simple site, where Cloudflare or Netlify will serve you well</td>
           </tr>
         </tbody>
@@ -631,17 +950,70 @@
   </section>
 
   <section class="tools-page__section" id="quote">
-    <div class="tools-page__wrap tools-page__split">
-      <div>
-        <p class="tools-page__eyebrow">[ 06 ] The quote</p>
-        <h2>Why tools appear on your quote. <span class="tools-page__tone">At cost, so you can see exactly what you're paying for.</span></h2>
-        <p style="margin-top:16px">Building a custom site takes some paid software. I list it as its own line on your quote, at cost, so you can see exactly what you're paying for. Cursor, Figma and Formspark are listed on custom builds. Adobe and Midjourney are optional extras I add only if your project needs them. See <a href="/pricing/">Pricing</a> for what applies to your platform.</p>
-      </div>
-      <div class="tools-page__mock tools-page__quote reveal" aria-hidden="true">
-        <div><span>Domain</span><b>$—</b></div>
-        <div><span>Hosting</span><b>$—</b></div>
-        <div><span>Platform</span><b>$—</b></div>
-        <div><span>Build tools</span><b>$—</b></div>
+    <div class="tools-page__wrap">
+      <div class="cmp-quote">
+        <div>
+          <p class="tools-page__eyebrow">[ 06 ] The quote</p>
+          <h2>Why tools appear on your quote. <span class="tools-page__tone">At cost, so you can see exactly what you're paying for.</span></h2>
+          <p style="margin-top:16px">Building a custom site takes some paid software. I list it as its own line on your quote, at cost, so you can see exactly what you're paying for. Cursor, Figma and Formspark are listed on custom builds. Adobe and Midjourney are optional extras I add only if your project needs them. See <a href="/pricing/">Pricing</a> for what applies to your platform.</p>
+        </div>
+        <div class="cmp-stack">
+          <div class="cmp-iso" id="stack">
+            <svg viewBox="0 0 400 330" role="img" aria-labelledby="stack-t stack-d" xmlns="http://www.w3.org/2000/svg">
+              <title id="stack-t">Your quote as a stack of tools</title>
+              <desc id="stack-d">Cursor Pro, Figma and Formspark are included. Adobe Creative Suite and Midjourney are optional and can be added.</desc>
+              <g transform="translate(90 270)"><polygon class="top-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="left-t" points="-75,0 0,32 0,48 -75,16"/><polygon class="right-t" points="0,32 75,0 75,16 0,48"/></g>
+              <path class="leader" d="M168 278 H186"/>
+              <text class="s-name" x="194" y="274">Cursor Pro</text>
+              <text class="s-sub" x="194" y="292">INCLUDED · $–</text>
+              <g transform="translate(90 226)"><polygon class="top-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="left-t" points="-75,0 0,32 0,48 -75,16"/><polygon class="right-t" points="0,32 75,0 75,16 0,48"/></g>
+              <path class="leader" d="M168 234 H186"/>
+              <text class="s-name" x="194" y="230">Figma</text>
+              <text class="s-sub" x="194" y="248">INCLUDED · $–</text>
+              <g transform="translate(90 182)"><polygon class="top-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="left-t" points="-75,0 0,32 0,48 -75,16"/><polygon class="right-t" points="0,32 75,0 75,16 0,48"/></g>
+              <path class="leader" d="M168 190 H186"/>
+              <text class="s-name" x="194" y="186">Formspark</text>
+              <text class="s-sub" x="194" y="204">INCLUDED · $–</text>
+              <g id="g-adobe" class="opt-off">
+                <g transform="translate(90 138)"><g class="ghost"><polygon class="g-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="g-l" points="-75,0 0,32 0,48 -75,16"/><polygon class="g-r" points="0,32 75,0 75,16 0,48"/></g></g>
+                <g transform="translate(90 138)"><g class="added"><polygon class="a-top" points="0,-32 75,0 0,32 -75,0"/><polygon class="a-left" points="-75,0 0,32 0,48 -75,16"/><polygon class="a-right" points="0,32 75,0 75,16 0,48"/></g></g>
+                <path class="leader" d="M168 146 H186"/>
+                <text class="s-name" x="194" y="142">Adobe Creative Suite</text>
+                <text class="s-sub sub-off" x="194" y="160">OPTIONAL · TAP TO ADD</text>
+                <text class="s-sub sub-on" x="194" y="160">ADDED · $–</text>
+              </g>
+              <g id="g-midjourney" class="opt-off">
+                <g transform="translate(90 94)"><g class="ghost"><polygon class="g-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="g-l" points="-75,0 0,32 0,48 -75,16"/><polygon class="g-r" points="0,32 75,0 75,16 0,48"/></g></g>
+                <g transform="translate(90 94)"><g class="added"><polygon class="a-top" points="0,-32 75,0 0,32 -75,0"/><polygon class="a-left" points="-75,0 0,32 0,48 -75,16"/><polygon class="a-right" points="0,32 75,0 75,16 0,48"/></g></g>
+                <path class="leader" d="M168 102 H186"/>
+                <text class="s-name" x="194" y="98">Midjourney</text>
+                <text class="s-sub sub-off" x="194" y="116">OPTIONAL · TAP TO ADD</text>
+                <text class="s-sub sub-on" x="194" y="116">ADDED · $–</text>
+              </g>
+            </svg>
+            <label class="cmp-opt" style="top:calc(100% * 118 / 330);height:calc(100% * 52 / 330)">
+              <input type="checkbox" id="opt-adobe" data-g="g-adobe">
+              <span class="cmp-hit"></span>
+              <span class="cmp-sr">Add Adobe Creative Suite: photo editing, video editing, illustration or custom graphics</span>
+            </label>
+            <label class="cmp-opt" style="top:calc(100% * 64 / 330);height:calc(100% * 52 / 330)">
+              <input type="checkbox" id="opt-midjourney" data-g="g-midjourney">
+              <span class="cmp-hit"></span>
+              <span class="cmp-sr">Add Midjourney: AI image creation for hero shots, graphics and visuals</span>
+            </label>
+          </div>
+          <div class="cmp-qbar">
+            <div class="cmp-count"><span class="cmp-dot" aria-hidden="true"></span><span id="count" aria-live="polite">3 lines on your quote</span></div>
+            <div class="cmp-note">Passed on at cost — no markup</div>
+          </div>
+          <ul class="cmp-tools">
+            <li><strong>Cursor Pro:</strong> required for all custom builds.</li>
+            <li><strong>Figma:</strong> required for all custom builds.</li>
+            <li><strong>Formspark:</strong> form backend for the standard contact form.</li>
+            <li><strong>Adobe Creative Suite (optional):</strong> photo editing, video editing, illustration or custom graphics.</li>
+            <li><strong>Midjourney (optional):</strong> AI image creation for hero shots, graphics and visuals.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -775,6 +1147,83 @@
     ["pointerdown", "keydown", "scroll"].forEach(function (type) {
       window.addEventListener(type, function () { window.clearTimeout(timer); play(); }, { once: true, passive: true });
     });
+  }
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("#compare #tabs .cmp-tab"));
+  function selectTab(tab, focus) {
+    tabs.forEach(function (item) {
+      var on = item === tab;
+      item.setAttribute("aria-selected", on ? "true" : "false");
+      item.tabIndex = on ? 0 : -1;
+      document.getElementById(item.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { selectTab(tab, false); });
+    tab.addEventListener("keydown", function (event) {
+      var next = null;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") next = tabs[(i + 1) % tabs.length];
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (event.key === "Home") next = tabs[0];
+      else if (event.key === "End") next = tabs[tabs.length - 1];
+      if (next) { event.preventDefault(); selectTab(next, true); }
+    });
+  });
+  var boxes = document.querySelectorAll("#quote .cmp-opt input");
+  var count = document.getElementById("count");
+  function updateQuote() {
+    var n = 3;
+    boxes.forEach(function (box) {
+      var group = document.getElementById(box.getAttribute("data-g"));
+      group.setAttribute("class", box.checked ? "opt-on" : "opt-off");
+      if (box.checked) n++;
+    });
+    count.textContent = n + " lines on your quote";
+  }
+  boxes.forEach(function (box) { box.addEventListener("change", updateQuote); });
+  updateQuote();
+  var routeTimers = [];
+  function playRoute() {
+    var box = document.getElementById("route");
+    if (!box || reduce) return;
+    routeTimers.forEach(clearTimeout);
+    routeTimers = [];
+    box.querySelectorAll(".tools-page__step").forEach(function (step) { step.classList.remove("is-on"); });
+    var stop = box.querySelector("[data-route='stop']");
+    var go = box.querySelector("[data-route='go']");
+    [stop, go].forEach(function (pkt) {
+      pkt.classList.remove("is-done", "is-run");
+      pkt.style.transition = "none";
+      pkt.style.left = "0%";
+    });
+    void stop.offsetWidth;
+    [stop, go].forEach(function (pkt) { pkt.style.transition = ""; });
+    var bad = box.querySelectorAll(".tools-page__step--bad");
+    var good = box.querySelectorAll(".tools-page__step--good");
+    [0, 1, 2].forEach(function (i) {
+      routeTimers.push(setTimeout(function () {
+        bad[i].classList.add("is-on");
+        good[i].classList.add("is-on");
+      }, 400 + i * 1100));
+    });
+    routeTimers.push(setTimeout(function () {
+      stop.style.left = "50%";
+      go.classList.add("is-run");
+      go.style.left = "100%";
+    }, 1500));
+  }
+  var replay = document.getElementById("route-replay");
+  if (replay) replay.addEventListener("click", playRoute);
+  if (!reduce && "IntersectionObserver" in window) {
+    var routeSeen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        playRoute();
+        routeSeen.disconnect();
+      });
+    }, { threshold: 0.4 });
+    var routeBox = document.getElementById("route");
+    if (routeBox) routeSeen.observe(routeBox);
   }
   root.querySelectorAll("[data-count]").forEach(function (node) {
     var raw = node.getAttribute("data-count");

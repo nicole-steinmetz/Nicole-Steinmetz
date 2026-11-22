@@ -107,51 +107,123 @@
   .tools-page a.tools-page__btn--line:hover,
   .tools-page button.tools-page__btn--line:hover { border-color: var(--btn-line); }
 
-  .tools-page__nav {
-    position: fixed; z-index: 30; top: 16px; left: 50%; transform: translateX(-50%);
-    display: flex; align-items: center; gap: 18px;
-    width: max-content; max-width: calc(100% - 32px); flex-wrap: wrap; justify-content: center;
-    padding: 8px 8px 8px 16px; border: 1px solid var(--line); border-radius: 9999px;
-    background: var(--bg);
+  .tools-page .site-header {
+    --amber: #F4A600;
+    --blue: #6A96C7;
+    --rust: #894332;
+    position: relative;
+    z-index: 30;
+    padding: 28px 80px;
   }
-  .tools-page__nav img { width: 92px; height: 45px; }
-  .tools-page__nav a:not(.tools-page__btn) { text-decoration: none; font-size: 14px; color: var(--text); }
-  .tools-page__nav a:not(.tools-page__btn):hover { text-decoration: underline; text-decoration-thickness: 2px; }
-  .tools-page__nav .tools-page__btn { min-height: 40px; padding: 8px 16px; }
+  .tools-page .site-header__inner {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 32px;
+    width: 100%; max-width: 1440px; margin-inline: auto;
+  }
+  .tools-page a.site-header__logo {
+    display: inline-block; transform-origin: left top; text-decoration: none;
+    transition: transform 140ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .tools-page a.site-header__logo img { width: 193px; height: auto; }
+  .tools-page a.site-header__logo:hover,
+  .tools-page a.site-header__logo:focus-visible { transform: scale(1.06); }
+  .tools-page .nav { position: relative; }
+  .tools-page .nav__list {
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    list-style: none; margin: 0; padding: 0;
+  }
+  .tools-page a.pill {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 14px 22px; border-radius: 40px;
+    color: var(--text); font-size: 16px; font-weight: 700; line-height: 23.25px;
+    text-transform: uppercase; white-space: nowrap; text-decoration: none;
+    transition: background-color 140ms cubic-bezier(0.2, 0.6, 0.2, 1), transform 140ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .tools-page a.pill:hover { transform: translateY(-1px); text-decoration: none; }
+  .tools-page a.pill:active { transform: none; }
+  .tools-page a.pill--amber { background: var(--amber); }
+  .tools-page a.pill--amber:hover { background: var(--rust); }
+  .tools-page a.pill--blue { background: var(--blue); }
+  .tools-page a.pill--blue:hover { background: var(--amber); }
+  .tools-page a.pill--rust { background: var(--rust); }
+  .tools-page a.pill--rust:hover,
+  .tools-page a.pill--rust:active { background: var(--blue); }
+  .tools-page .pill__icon { flex: none; width: 21px; height: 21px; }
+  .tools-page a.pill--rust .pill__icon path { fill: var(--rust); transition: fill 140ms cubic-bezier(0.2, 0.6, 0.2, 1); }
+  .tools-page a.pill--rust:hover .pill__icon path,
+  .tools-page a.pill--rust:active .pill__icon path { fill: var(--blue); }
 
   .tools-page__hero {
     min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
-    gap: 48px; align-items: center; padding: 120px 0 64px;
+    gap: 48px; align-items: center; padding: 48px 0 32px;
   }
   .tools-page__hero p { margin-top: 20px; max-width: 520px; }
   .tools-page__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
-  .tools-page__orbit { position: relative; width: min(420px, 100%); aspect-ratio: 1; margin-inline: auto; overflow: hidden; }
-  .tools-page__ring, .tools-page__ring--in {
-    position: absolute; border: 1px dashed var(--line); border-radius: 50%;
+  .tools-page .orb {
+    --tile: var(--surface-light);
+    --tile-ink: var(--ink-b);
+    position: relative; width: min(540px, 100%); aspect-ratio: 1; margin-inline: auto; perspective: 900px;
   }
-  .tools-page__ring { inset: 8%; }
-  .tools-page__ring--in { inset: 22%; }
-  .tools-page__spin { position: absolute; inset: 0; }
-  .tools-page__hub {
-    position: absolute; inset: 38%; z-index: 1; display: grid; place-items: center; text-align: center;
-    border: 1px solid var(--line); border-radius: 50%; color: var(--text); font-weight: 600; font-size: 14px;
+  .tools-page .orb-scene { position: absolute; inset: 0; transition: transform 0.4s var(--ease); }
+  .tools-page .orb-ring {
+    position: absolute; left: 50%; top: 50%; border: 1px dashed var(--line); border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(-16deg);
   }
-  .tools-page__sat {
-    position: absolute; width: 56px; height: 56px; margin: -28px 0 0 -28px;
-    display: grid; place-items: center; border-radius: 12px; background: var(--surface-light);
+  .tools-page .orb-ring.r1 { width: 84%; height: 34%; }
+  .tools-page .orb-ring.r2 { width: 56%; height: 22%; border-style: solid; opacity: 0.6; }
+  .tools-page .orb-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .tools-page .orb-beam { stroke: var(--line); stroke-width: 1; stroke-dasharray: 4 6; }
+  .tools-page .orb-pulse { fill: var(--blue); }
+  .tools-page .orb-trails { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .tools-page .orb-trail {
+    position: absolute; left: 0; top: 0; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue); will-change: transform, opacity;
   }
-  .tools-page__spin .tools-page__sat:nth-child(1) { left: 50%; top: 8%; }
-  .tools-page__spin .tools-page__sat:nth-child(2) { left: 92%; top: 50%; }
-  .tools-page__spin .tools-page__sat:nth-child(3) { left: 50%; top: 92%; }
-  .tools-page__spin .tools-page__sat:nth-child(4) { left: 8%; top: 50%; }
-  .tools-page__sat img { width: 28px; height: 28px; }
-  .tools-page__pulse {
-    position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px;
-    border-radius: 50%; background: var(--blue);
+  .tools-page .orb-core {
+    position: absolute; left: 50%; top: 50%; width: 34%; aspect-ratio: 1.25; transform: translate(-50%, -50%);
+    z-index: 2; border: 1px solid var(--btn-line); border-radius: 14px; background: var(--bg);
+    padding: 12px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .tools-page .orb-core::before {
+    content: ""; position: absolute; inset: -1px; border-radius: 14px; border: 2px solid var(--amber);
+    opacity: 0; pointer-events: none;
+  }
+  .tools-page .orb.ping .orb-core::before { animation: orbPing 0.9s var(--ease); }
+  @keyframes orbPing { 0% { opacity: 0.9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.35); } }
+  .tools-page .core-bar { height: 6px; border-radius: 3px; background: var(--line); }
+  .tools-page .core-title { font: 600 14px/18px Inter, sans-serif; color: var(--text); text-align: center; }
+  .tools-page .core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; }
+  .tools-page .core-slot {
+    border: 1px solid var(--line); border-radius: 6px; opacity: 0.35;
+    transition: opacity 0.4s var(--ease), border-color 0.4s var(--ease), background 0.4s var(--ease);
+  }
+  .tools-page .core-slot.on { opacity: 1; border-color: var(--blue); background: color-mix(in srgb, var(--blue) 14%, transparent); }
+  .tools-page a.orb-node {
+    position: absolute; left: 0; top: 0; width: 56px; height: 56px; display: grid; place-items: center;
+    border-radius: 14px; background: var(--tile); will-change: transform, opacity; text-decoration: none;
+    color: var(--tile-ink); font: 600 15px/1 "IBM Plex Mono", ui-monospace, monospace;
+  }
+  .tools-page a.orb-node:hover { text-decoration: none; }
+  .tools-page a.orb-node:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .tools-page a.orb-node svg { width: 28px; height: 28px; }
+  .tools-page .orb-label {
+    position: absolute; top: calc(100% + 10px); left: 50%; transform: translate(-50%, 4px); white-space: nowrap;
+    font: 500 12px/20px "IBM Plex Mono", ui-monospace, monospace; color: var(--text); background: var(--bg);
+    border: 1px solid var(--btn-line); border-radius: 9999px; padding: 2px 12px; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .tools-page .orb-node:hover .orb-label,
+  .tools-page .orb-node:focus-visible .orb-label { opacity: 1; transform: translate(-50%, 0); }
+  @media (max-width: 480px) {
+    .tools-page .orb { width: 100%; }
+    .tools-page .orb-label { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tools-page .orb.ping .orb-core::before { animation: none; }
+    .tools-page .orb-scene { transition: none; }
   }
 
-  .tools-page__marquee { overflow: hidden; }
+  .tools-page__marquee { overflow: hidden; padding-top: 20px; }
   .tools-page__marquee-fade {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -223,6 +295,8 @@
   .tools-page__step--good.is-on i { background: var(--blue); }
   .tools-page__route-replay { display: flex; justify-content: flex-end; margin-top: 16px; }
   .tools-page button.tools-page__btn { font-family: inherit; cursor: pointer; }
+  .tools-page button.tools-page__btn--icon { width: 48px; min-width: 48px; padding: 0; }
+  .tools-page button.tools-page__btn--icon svg { width: 20px; height: 20px; }
   .tools-page__badge {
     justify-self: start; padding: 6px 12px; border-radius: 9999px; color: var(--text); font-weight: 700;
   }
@@ -245,12 +319,31 @@
   .tools-page__tick { justify-content: flex-start; }
   .tools-page__box { width: 14px; height: 14px; border: 1px solid var(--btn-line); border-radius: 3px; flex: none; }
   .tools-page__bars { display: flex; align-items: flex-end; gap: 8px; height: 56px; }
+  .tools-page__ringchart { display: block; width: 140px; height: 140px; margin: 8px auto 0; }
+  .tools-page__preview--side { display: flex; align-items: center; justify-content: flex-start; gap: 28px; align-content: center; }
+  .tools-page__preview--side .tools-page__ringchart { margin: 0; flex: none; }
+  .tools-page__preview--side .tools-page__map { display: flex; flex-direction: column; gap: 14px; padding: 0; }
+  .tools-page__preview--split { display: grid; grid-template-columns: 1fr auto; align-items: center; align-content: center; gap: 20px; }
+  .tools-page__steps { display: grid; gap: 10px; }
+  .tools-page__preview--split .tools-page__pie { margin: 0; }
+  .tools-page__pie path { transform-origin: 70px 70px; }
+  .tools-page__pie .s1 { fill: var(--blue); }
+  .tools-page__pie .s2 { fill: var(--amber); }
+  .tools-page__pie .s3 { fill: var(--rust); }
+  .tools-page__ringtrack { fill: none; stroke: var(--line); stroke-width: 8; }
+  .tools-page__ringarc { fill: none; stroke-width: 8; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 70px 70px; }
+  .tools-page__ringarc--blue { stroke: var(--blue); stroke-dasharray: 327; stroke-dashoffset: 82; }
+  .tools-page__ringarc--amber { stroke: var(--amber); stroke-dasharray: 226; stroke-dashoffset: 102; }
   .tools-page__bars i { display: block; width: 8px; height: 30%; border-radius: 4px; background: var(--blue); transform-origin: bottom; }
   .tools-page__bars i:nth-child(2), .tools-page__bars i:nth-child(5) { background: var(--amber); height: 55%; }
   .tools-page__bars i:nth-child(4) { height: 78%; }
   .tools-page__map { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; padding: 12px; }
   .tools-page__map span { width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); justify-self: center; }
-  .tools-page__log { display: grid; gap: 6px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 14px; color: var(--text-muted); }
+  .tools-page__log-lines { display: grid; gap: 6px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 14px; color: var(--text-muted); }
+  .tools-page__dotgraph { display: grid; grid-template-columns: repeat(4, 8px); gap: 10px; }
+  .tools-page__dotgraph i { width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); }
+  .tools-page__dotgraph i:nth-child(3n) { background: var(--blue); }
+  .tools-page__dotgraph i:nth-child(4n) { background: var(--amber); }
   .tools-page__pill { justify-self: start; padding: 4px 12px; border-radius: 9999px; background: var(--amber); color: var(--bg); font-weight: 700; }
 
   .tools-page__use-vis, .tools-page__faq { min-height: 120px; }
@@ -285,16 +378,12 @@
     --amber-right: #D99403;
     color: var(--text);
   }
-  .tools-page #compare .tools-page__eyebrow,
-  .tools-page #quote .tools-page__eyebrow { color: var(--text); }
+  .tools-page #compare .tools-page__eyebrow { color: var(--text); }
   .tools-page #compare h2 { margin-bottom: 32px; max-width: 760px; color: var(--text); font-weight: 700; }
-  .tools-page #quote .cmp-quote > div > p { color: var(--text); max-width: 52ch; }
   .tools-page #compare h3,
   .tools-page #compare h4,
   .tools-page #compare p,
-  .tools-page #compare li,
-  .tools-page #quote .cmp-stack,
-  .tools-page #quote .cmp-stack li { color: var(--text); }
+  .tools-page #compare li { color: var(--text); }
   .tools-page .cmp-tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
   .tools-page .cmp-tab {
     font-family: inherit; font-size: 15px; font-weight: 600; line-height: 20px;
@@ -314,7 +403,7 @@
     text-transform: uppercase; letter-spacing: 0.3px; text-decoration: none; color: var(--text);
     padding: 12px 24px; border-radius: 9999px; background: var(--rust); border: 1px solid var(--rust);
   }
-  .tools-page a.cmp-btn:hover { border-color: var(--text); text-decoration: none; }
+  .tools-page a.cmp-btn + a.cmp-btn { margin-left: 12px; }
   .tools-page .cmp-caveat { margin-top: 28px; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
   .tools-page .cmp-pill {
     display: inline-block; font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -328,6 +417,7 @@
   .tools-page .cmp-point h4 { font-size: 17px; line-height: 26px; font-weight: 600; margin: 0 0 8px; }
   .tools-page .cmp-point p { font-size: 15px; line-height: 23px; max-width: 40ch; }
   .tools-page .cmp-glance { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 24px; border-top: 1px solid var(--line); }
+  .tools-page .cmp-glance .cmp-who { grid-column: 1 / -1; margin: 4px 0 0; }
   .tools-page .cmp-cell { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
   .tools-page .cmp-label {
     display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
@@ -352,43 +442,72 @@
   .tools-page .cmp-catch { margin-top: auto; padding-top: 16px; }
   .tools-page .cmp-catch p { font-size: 14px; line-height: 21px; background: var(--bg); border: 1px solid var(--line-strong); border-radius: 10px; padding: 12px 14px; }
   .tools-page .cmp-foot { margin-top: 24px; font-size: 14px; line-height: 22px; max-width: 820px; }
-  .tools-page .cmp-quote { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: start; }
-  .tools-page .cmp-stack { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
-  .tools-page .cmp-iso { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 400 / 330; }
-  .tools-page .cmp-iso svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .tools-page .cmp-iso .s-name { font-family: Inter, sans-serif; font-size: 15px; font-weight: 600; fill: var(--text); }
-  .tools-page .cmp-iso .s-sub { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: 1px; fill: var(--text); }
-  .tools-page .cmp-iso .leader { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
-  .tools-page .cmp-iso .top-t { fill: var(--slab-top); }
-  .tools-page .cmp-iso .left-t { fill: var(--line); }
-  .tools-page .cmp-iso .right-t { fill: var(--line-strong); }
-  .tools-page .cmp-iso .ghost polygon { fill: none; stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 5 4; }
-  .tools-page .cmp-iso .ghost { transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1); }
-  .tools-page .cmp-iso .added { opacity: 0; transform: translateY(-44px); transition: transform 0.45s cubic-bezier(0.3, 1.3, 0.5, 1), opacity 0.25s cubic-bezier(0.2, 0, 0, 1); pointer-events: none; }
-  .tools-page .cmp-iso .added .a-top { fill: var(--amber); }
-  .tools-page .cmp-iso .added .a-left { fill: var(--amber-left); }
-  .tools-page .cmp-iso .added .a-right { fill: var(--amber-right); }
-  .tools-page .cmp-iso .opt-on .added { opacity: 1; transform: translateY(0); }
-  .tools-page .cmp-opt:hover .cmp-hit { background: rgba(255, 255, 255, 0.05); }
-  .tools-page .cmp-iso .opt-on .ghost { opacity: 0; }
-  .tools-page .cmp-iso .opt-on .sub-off { display: none; }
-  .tools-page .cmp-iso .opt-off .sub-on { display: none; }
-  .tools-page .cmp-opt { position: absolute; left: 0; width: 100%; display: block; cursor: pointer; border-radius: 12px; }
-  .tools-page .cmp-opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-  .tools-page .cmp-opt input:focus-visible + .cmp-hit { outline: 2px solid var(--text); outline-offset: -2px; }
-  .tools-page .cmp-hit { position: absolute; inset: 0; border-radius: 12px; }
-  .tools-page .cmp-qbar { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
-  .tools-page .cmp-count { font-weight: 700; display: flex; align-items: center; gap: 10px; color: var(--text); }
-  .tools-page .cmp-count .cmp-dot { background: var(--amber); }
-  .tools-page .cmp-note { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; line-height: 18px; color: var(--text); }
-  .tools-page .cmp-tools { list-style: none; margin: 20px 0 0; padding: 0; font-size: 14px; line-height: 21px; }
-  .tools-page .cmp-tools li { padding: 8px 0; border-top: 1px solid var(--line); color: var(--text); }
-  .tools-page .cmp-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .tools-page #quote { padding-bottom: 120px; }
+  .tools-page .qz-top { display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-end; }
+  .tools-page .qz-copy { flex: 1 1 440px; min-width: 0; }
+  .tools-page .qz-eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 14px; line-height: 32.9px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-dim); margin: 0; }
+  .tools-page .qz-h { font-size: 40px; line-height: 46px; font-weight: 700; margin: 8px 0 0; text-wrap: balance; color: var(--text); }
+  .tools-page .qz-h span { color: var(--text-muted); font-weight: 700; }
+  .tools-page .qz-p { flex: 1 1 360px; min-width: 0; margin: 0; color: var(--text-body); }
+  .tools-page .qz-panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
+  .tools-page .qz-panel { border: 1px solid var(--line); border-radius: 20px; padding: 24px; background: var(--bg); display: flex; flex-direction: column; min-width: 0; }
+  .tools-page .qz-phead { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .tools-page .qz-badge { display: inline-flex; align-items: center; padding: 0 12px; font: 600 12px/26px Inter, sans-serif; border-radius: 9999px; }
+  .tools-page .qz-badge.fill { background: var(--blue); color: var(--bg); }
+  .tools-page .qz-badge.ring { border: 1px solid var(--btn-line); color: var(--text); }
+  .tools-page .qz-tag { font: 400 12px/20px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-dim); }
+  .tools-page .qz-big { display: flex; align-items: baseline; gap: 10px; margin: 20px 0 4px; }
+  .tools-page .qz-big b { font: 600 56px/56px Inter, sans-serif; letter-spacing: -0.5px; color: var(--text); }
+  .tools-page .qz-big span { font: 400 13px/20px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); }
+  .tools-page .qz-pop { display: inline-block; }
+  .tools-page .qz-pop.bump { animation: qzBump 0.4s var(--ease); }
+  @keyframes qzBump { 0% { transform: scale(1); } 40% { transform: scale(1.18); } 100% { transform: scale(1); } }
+  .tools-page .qz-sub { margin: 0 0 12px; color: var(--text-body); font-size: 15px; line-height: 22px; }
+  .tools-page .qz-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 4px 16px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); }
+  .tools-page .qz-tile { width: 44px; height: 44px; border-radius: 12px; background: var(--surface-light); color: var(--ink-b); display: grid; place-items: center; font: 600 14px/1 "IBM Plex Mono", ui-monospace, monospace; }
+  .tools-page .qz-tile svg { width: 22px; height: 22px; }
+  .tools-page .qz-name { min-width: 0; font-size: 16px; line-height: 24px; color: var(--text-body); }
+  .tools-page .qz-name b { color: var(--text); font-weight: 600; display: block; }
+  .tools-page .qz-right { display: flex; align-items: center; gap: 12px; }
+  .tools-page .qz-price { font: 400 13px/20px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+  .tools-page .qz-price em { font-style: normal; color: var(--text); }
+  .tools-page .qz-req { font: 400 12px/20px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.2px; text-transform: uppercase; color: var(--bg); background: var(--blue); border-radius: 9999px; padding: 0 10px; }
+  .tools-page .qz-sw { appearance: none; border: 1px solid var(--btn-line); background: transparent; color: var(--text); border-radius: 9999px; padding: 0 14px; font: 600 13px/32px Inter, sans-serif; cursor: pointer; transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease); }
+  .tools-page .qz-sw:hover { border-color: var(--text); }
+  .tools-page .qz-sw:active { transform: scale(0.96); transition-duration: 0.05s; }
+  .tools-page .qz-sw[aria-checked="true"] { background: var(--amber); color: var(--bg); border-color: var(--amber); }
+  .tools-page .qz-opt .qz-price { opacity: 0.45; transition: opacity 0.3s var(--ease); }
+  .tools-page .qz-opt.on .qz-price { opacity: 1; }
+  .tools-page .qz-opt.on .qz-tile { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .tools-page .qz-strip { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: 24px 40px; align-items: center; margin-top: 24px; border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
+  .tools-page .qz-lbl { font: 400 12px/20px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-dim); }
+  .tools-page .qz-num { font: 600 28px/36px Inter, sans-serif; color: var(--text); }
+  .tools-page .qz-meter { display: flex; flex-direction: column; gap: 8px; }
+  .tools-page .qz-meter .qz-num { font-size: 20px; line-height: 28px; }
+  .tools-page .qz-bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+  .tools-page .qz-bar i { display: block; height: 100%; width: 100%; background: var(--blue); transform-origin: left; }
+  .tools-page a.btn { display: inline-flex; align-items: center; border: 1px solid var(--btn-line); border-radius: 9999px; padding: 12px 22px; font-size: 15px; line-height: 20px; font-weight: 600; color: var(--text); text-decoration: none; white-space: nowrap; transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease); }
+  .tools-page a.btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); text-decoration: none; }
+  html.js .tools-page .qz-panel,
+  html.js .tools-page .qz-strip { opacity: 0; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+  html.js .tools-page .qz-panel:nth-child(2) { transition-delay: 60ms; }
+  html.js .tools-page .qz-strip { transition-delay: 120ms; }
+  html.js .tools-page .qz-in .qz-panel,
+  html.js .tools-page .qz-in .qz-strip { opacity: 1; transform: none; }
+  html.js .tools-page .qz-row { opacity: 0; transform: translateX(-12px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+  html.js .tools-page .qz-in .qz-row { opacity: 1; transform: none; }
+  html.js .tools-page .qz-in .qz-row:nth-child(4) { transition-delay: 0.25s; }
+  html.js .tools-page .qz-in .qz-row:nth-child(5) { transition-delay: 0.35s; }
+  html.js .tools-page .qz-in .qz-row:nth-child(6) { transition-delay: 0.45s; }
+  html.js .tools-page .qz-bar i { transform: scaleX(0); transition: transform 0.9s var(--ease) 0.6s; }
+  html.js .tools-page .qz-in .qz-bar i { transform: none; }
   @media (max-width: 900px) {
-    .tools-page .cmp-detail, .tools-page .cmp-cards, .tools-page .cmp-quote { grid-template-columns: 1fr; }
+    .tools-page .cmp-detail, .tools-page .cmp-cards { grid-template-columns: 1fr; }
     .tools-page .cmp-copy { border-right: none; border-bottom: 1px solid var(--line); }
     .tools-page .cmp-glance { grid-template-columns: 1fr; }
-    .tools-page .cmp-quote { gap: 40px; }
+    .tools-page .qz-panels { grid-template-columns: 1fr; }
+    .tools-page .qz-strip { grid-template-columns: 1fr; }
+    .tools-page .qz-h { font-size: 32px; line-height: 38px; }
   }
   @media (max-width: 700px) {
     .tools-page .cmp-tabs { gap: 8px; }
@@ -396,8 +515,16 @@
     .tools-page .cmp-copy, .tools-page .cmp-point { padding: 28px 20px; }
     .tools-page .cmp-glance { padding: 16px; }
   }
+  @media (max-width: 480px) {
+    .tools-page .qz-row { grid-template-columns: 44px minmax(0, 1fr); }
+    .tools-page .qz-right { grid-column: 2; justify-content: space-between; }
+  }
   @media (prefers-reduced-motion: reduce) {
-    .tools-page .cmp-iso .ghost, .tools-page .cmp-iso .added { transition: none; }
+    html.js .tools-page .qz-panel,
+    html.js .tools-page .qz-strip,
+    html.js .tools-page .qz-row,
+    html.js .tools-page .qz-bar i { opacity: 1; transform: none; transition: none; }
+    .tools-page .qz-pop.bump { animation: none; }
   }
 
   .tools-page__quote { display: grid; gap: 8px; }
@@ -434,13 +561,16 @@
   @media (max-width: 900px) {
     .tools-page__hero, .tools-page__split, .tools-page__duo, .tools-page__footgrid { grid-template-columns: 1fr; }
     .tools-page__grid4 { grid-template-columns: 1fr 1fr; }
-    .tools-page__nav { gap: 10px; padding-inline: 10px; }
+    .tools-page .site-header { padding: 24px 40px; }
+    .tools-page a.site-header__logo img { width: 150px; }
   }
   @media (max-width: 700px) {
     .tools-page__wrap { width: min(1200px, calc(100% - 32px)); }
     .tools-page__section { margin-top: 56px; padding-top: 56px; }
     .tools-page__stats, .tools-page__grid4, .tools-page__cards, .tools-page__trio, .tools-page__faqs, .tools-page__roles { grid-template-columns: 1fr; }
-    .tools-page__nav { position: static; transform: none; width: auto; margin: 16px; flex-wrap: wrap; }
+    .tools-page .site-header { padding: 20px; }
+    .tools-page .site-header__inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .tools-page a.site-header__logo img { width: 128px; }
     .tools-page__hero { min-height: 0; padding-top: 24px; }
     .tools-page thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
     .tools-page tr { display: block; margin-top: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; }
@@ -463,10 +593,6 @@
     .tools-page__btn:active, .tools-page__cell:active, .tools-page__card:active { transform: scale(0.98); transition-duration: 0.05s; }
     .tools-page .will-reveal { opacity: 0; }
     .tools-page .will-reveal.is-in { animation: tools-rise 0.5s var(--ease) forwards; animation-delay: calc(var(--i, 0) * 60ms); }
-    .tools-page.is-playing .tools-page__spin { animation: tools-spin 28s linear infinite; }
-    .tools-page.is-playing .tools-page__sat img { animation: tools-spin 28s linear infinite reverse; }
-    .tools-page.is-playing .tools-page__pulse { offset-path: circle(42% at 50% 50%); animation: tools-dash 7s linear infinite; }
-    .tools-page.is-playing .tools-page__pulse--b { animation-duration: 9s; animation-delay: -3s; }
     .tools-page.is-playing .tools-page__track { animation: tools-marquee 42s linear infinite; }
     .tools-page__marquee:hover .tools-page__track { animation-play-state: paused; }
     .tools-page.is-playing .tools-page__bars i { animation: tools-bar 4.2s var(--ease) infinite; }
@@ -474,11 +600,21 @@
     .tools-page.is-playing .tools-page__bars i:nth-child(2) { animation-duration: 3.6s; }
     .tools-page.is-playing .tools-page__map span { animation: tools-pulse 4.2s var(--ease) infinite; }
     .tools-page.is-playing .tools-page__map span:nth-child(3n) { animation-duration: 4.9s; background: var(--blue); }
-    .tools-page.is-playing .tools-page__tick.is-on .tools-page__box { animation: tools-tick 4.4s var(--ease) infinite; }
-    .tools-page.is-playing .tools-page__log span { animation: tools-type 4.8s var(--ease) infinite; }
-    .tools-page.is-playing .tools-page__log span:nth-child(2) { animation-delay: 0.6s; }
-    .tools-page.is-playing .tools-page__log span:nth-child(3) { animation-delay: 1.2s; }
-    .tools-page.is-playing .tools-page__pill { animation: tools-type 4.8s var(--ease) 1.8s infinite; }
+    .tools-page.is-playing .tools-page__tick .tools-page__box { animation: tools-tick 4.8s var(--ease) infinite; }
+    .tools-page.is-playing .tools-page__tick:nth-child(2) .tools-page__box { animation-delay: 0.7s; }
+    .tools-page.is-playing .tools-page__tick:nth-child(3) .tools-page__box { animation-delay: 1.4s; }
+    .tools-page.is-playing .tools-page__preview .tools-page__row { animation: tools-step 4.8s var(--ease) infinite; }
+    .tools-page.is-playing .tools-page__preview .tools-page__row:nth-child(2) { animation-delay: 0.8s; }
+    .tools-page.is-playing .tools-page__preview .tools-page__row:nth-child(3) { animation-delay: 1.6s; }
+    .tools-page.is-playing .tools-page__pie path { animation: tools-pie 4.8s var(--ease) infinite; }
+    .tools-page.is-playing .tools-page__pie .s2 { animation-delay: 0.45s; }
+    .tools-page.is-playing .tools-page__pie .s3 { animation-delay: 0.9s; }
+    .tools-page.is-playing .tools-page__ringarc--amber { animation: tools-ring-amber 4.8s var(--ease) 0.6s infinite; }
+    .tools-page.is-playing .tools-page__log-lines span { animation: tools-type 4.8s var(--ease) infinite; }
+    .tools-page.is-playing .tools-page__log-lines span:nth-child(2) { animation-delay: 0.6s; }
+    .tools-page.is-playing .tools-page__log-lines span:nth-child(3) { animation-delay: 1.2s; }
+    .tools-page.is-playing .tools-page__dotgraph i { animation: tools-pulse 4.2s var(--ease) infinite; }
+    .tools-page.is-playing .tools-page__dotgraph i:nth-child(3n) { animation-duration: 4.9s; }
     .tools-page__route-pkt { transition: left 1s var(--ease); }
     .tools-page__route-pkt--go.is-run { transition-duration: 1.8s; }
     .tools-page__step, .tools-page__step i, .tools-page__badge { transition: color 0.3s var(--ease), background 0.3s var(--ease), opacity 0.4s var(--ease); }
@@ -491,7 +627,7 @@
     .tools-page.is-playing .tools-page__dots circle { animation: tools-pulse 4.4s var(--ease) infinite; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .tools-page__badge, .tools-page__log span, .tools-page__pill, .tools-page__tick.is-on .tools-page__box { opacity: 1; }
+    .tools-page__badge, .tools-page__log-lines span, .tools-page__pill, .tools-page__tick.is-on .tools-page__box { opacity: 1; }
     .tools-page__track { width: auto; flex-wrap: wrap; }
     .tools-page__marquee-fade { -webkit-mask-image: none; mask-image: none; }
   }
@@ -501,7 +637,30 @@
   @keyframes tools-marquee { to { transform: translateX(-50%); } }
   @keyframes tools-bar { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(1); } }
   @keyframes tools-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
-  @keyframes tools-tick { 0%, 20% { background: transparent; } 40%, 80% { background: var(--amber); border-color: var(--amber); } 100% { background: transparent; } }
+  @keyframes tools-tick {
+    0%, 12% { background: transparent; border-color: var(--btn-line); }
+    22%, 78% { background: var(--amber); border-color: var(--amber); }
+    100% { background: transparent; border-color: var(--btn-line); }
+  }
+  @keyframes tools-step {
+    0%, 10% { color: var(--text-muted); border-color: var(--line); }
+    20%, 70% { color: var(--text); border-color: var(--blue); }
+    100% { color: var(--text-muted); border-color: var(--line); }
+  }
+  @keyframes tools-pie {
+    0%, 100% { transform: scale(0.15); opacity: 0.35; }
+    28%, 72% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes tools-ring-blue {
+    0% { stroke-dashoffset: 327; }
+    55%, 80% { stroke-dashoffset: 82; }
+    100% { stroke-dashoffset: 327; }
+  }
+  @keyframes tools-ring-amber {
+    0% { stroke-dashoffset: 226; }
+    55%, 80% { stroke-dashoffset: 102; }
+    100% { stroke-dashoffset: 226; }
+  }
   @keyframes tools-type { 0%, 12% { opacity: 0; } 24%, 80% { opacity: 1; } 100% { opacity: 0; } }
   @keyframes tools-pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   @keyframes tools-flap { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
@@ -511,12 +670,27 @@
 <body class="tools-page">
 <a class="tools-page__skip" href="#main">Skip to content</a>
 
-<header class="tools-page__nav" aria-label="Primary">
-  <a href="/" aria-label="Nicole Steinmetz — home"><img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="193" height="95"></a>
-  <a href="/pricing/">Pricing</a>
-  <a href="/faqs/">FAQs</a>
-  <a href="/contact/">Contact us</a>
-  <a class="tools-page__btn tools-page__btn--amber" data-site-link="booking" href="https://calendar.app.google/VhKn1WLoZNS8Aq899">Book a video call</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__logo" href="/" aria-label="Nicole Steinmetz — home">
+      <img src="/assets/svg/logo-white.svg" alt="Miss Nicole Steinmetz" width="193" height="95">
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="pill pill--amber" href="/pricing/">Pricing</a></li>
+        <li><a class="pill pill--blue" href="/faqs/">FAQs</a></li>
+        <li>
+          <a class="pill pill--rust" href="/contact/">
+            Contact us
+            <svg class="pill__icon" viewBox="0 0 21 22" width="21" height="21" aria-hidden="true" focusable="false">
+              <circle cx="10.5" cy="10.5" r="10.5" fill="var(--text)"/>
+              <path d="M9.70506 13.2053L9.32397 13.2122C9.10548 13.2159 8.89669 13.2053 8.68282 13.2048L7.61808 13.2022L4.74074 13.2006C4.6308 13.2006 4.54488 13.2132 4.43494 13.2048C4.26264 13.1916 4.08342 13.2538 3.90927 13.1869C3.8058 13.1995 3.71572 13.2053 3.60163 13.1858L3.60024 8.37682L11.5181 8.37418L6.81571 2.99605C6.85174 2.96862 6.88177 2.97021 6.93258 2.95755L12.0198 2.96019C12.0928 3.05619 12.1376 3.11157 12.2309 3.18753L18.9048 10.8148L12.0752 18.6198L6.86237 18.6151L7.75989 17.5512L9.906 15.1111L11.556 13.2238L11.0511 13.2169C10.9236 13.2148 10.7892 13.1753 10.6622 13.2064C10.5439 13.2349 10.0095 13.1995 9.70506 13.2053Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <main id="main">
@@ -533,18 +707,21 @@
         <a class="tools-page__btn tools-page__btn--line" href="/pricing/">See pricing</a>
       </div>
     </div>
-    <div class="tools-page__orbit" aria-hidden="true">
-      <div class="tools-page__ring"></div>
-      <div class="tools-page__ring tools-page__ring--in"></div>
-      <div class="tools-page__spin">
-        <span class="tools-page__sat"><img src="/assets/logos/platforms/squarespace-mark.svg" alt="" width="28" height="28"></span>
-        <span class="tools-page__sat"><img src="/assets/logos/platforms/shopify-mark.svg" alt="" width="28" height="28"></span>
-        <span class="tools-page__sat"><img src="/assets/logos/platforms/cloudflare-mark.svg" alt="" width="28" height="28"></span>
-        <span class="tools-page__sat"><img src="/assets/logos/platforms/netlify-mark.svg" alt="" width="28" height="28"></span>
+    <div class="orb" id="orb">
+      <div class="orb-scene">
+        <i class="orb-ring r1"></i><i class="orb-ring r2"></i>
+        <svg class="orb-lines" aria-hidden="true"></svg>
+        <div class="orb-trails" aria-hidden="true"></div>
+        <div class="orb-core" aria-hidden="true">
+          <span class="core-bar"></span>
+          <span class="core-title">Your site</span>
+          <div class="core-grid"><i class="core-slot"></i><i class="core-slot"></i><i class="core-slot"></i><i class="core-slot"></i></div>
+        </div>
+        <a class="orb-node" href="/pricing/squarespace/" aria-label="Squarespace quoter"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M22.655 8.719c-1.802-1.801-4.726-1.801-6.564 0l-7.351 7.35c-.45.45-.45 1.2 0 1.65.45.449 1.2.449 1.65 0l7.351-7.351c.899-.899 2.362-.899 3.264 0 .9.9.9 2.364 0 3.264l-7.239 7.239c.9.899 2.362.899 3.263 0l5.589-5.589c1.836-1.838 1.836-4.763.037-6.563zm-2.475 2.437c-.451-.45-1.201-.45-1.65 0l-7.354 7.389c-.9.899-2.361.899-3.262 0-.45-.45-1.2-.45-1.65 0s-.45 1.2 0 1.649c1.801 1.801 4.726 1.801 6.564 0l7.351-7.35c.449-.487.449-1.239.001-1.688zm-2.439-7.35c-1.801-1.801-4.726-1.801-6.564 0l-7.351 7.351c-.45.449-.45 1.199 0 1.649s1.2.45 1.65 0l7.395-7.351c.9-.899 2.371-.899 3.27 0 .451.45 1.201.45 1.65 0 .421-.487.421-1.199-.029-1.649h-.021zm-2.475 2.437c-.45-.45-1.2-.45-1.65 0l-7.351 7.389c-.899.9-2.363.9-3.265 0-.9-.899-.9-2.363 0-3.264l7.239-7.239c-.9-.9-2.362-.9-3.263 0L1.35 8.719c-1.8 1.8-1.8 4.725 0 6.563 1.801 1.801 4.725 1.801 6.564 0l7.35-7.351c.451-.488.451-1.238 0-1.688h.002z"/></svg><span class="orb-label">Squarespace</span></a>
+        <a class="orb-node" href="/pricing/shopify/" aria-label="Shopify quoter"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg><span class="orb-label">Shopify</span></a>
+        <a class="orb-node" href="/pricing/cloudflare/" aria-label="Cloudflare Pages quoter"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.021-.1553.0278-.084.1123-.1484.2036-.1562l8.7359-.1123c1.0351-.0489 2.1601-.8868 2.5537-1.9136l.499-1.3013c.0215-.0561.0293-.1128.0147-.168-.5625-2.5463-2.835-4.4453-5.5499-4.4453-2.5039 0-4.6284 1.6177-5.3876 3.8614-.4927-.3658-1.1187-.5625-1.794-.499-1.2026.119-2.1665 1.083-2.2861 2.2856-.0283.31-.0069.6128.0635.894C1.5683 13.171 0 14.7754 0 16.752c0 .1748.0142.3515.0352.5273.0141.083.0844.1475.1689.1475h15.9814c.0909 0 .1758-.0645.2032-.1553l.12-.4268zm2.7568-5.5634c-.0771 0-.1611 0-.2383.0112-.0566 0-.1054.0415-.127.0976l-.3378 1.1744c-.1475.5068-.0918.9707.1543 1.3164.2256.3164.6055.498 1.0625.5195l1.8437.1133c.0557 0 .1055.0263.1329.0703.0283.043.0351.1074.0214.1562-.0283.084-.1132.1485-.204.1553l-1.921.1123c-1.041.0488-2.1582.8867-2.5527 1.914l-.1406.3585c-.0283.0713.0215.1416.0986.1416h6.5977c.0771 0 .1474-.0489.169-.126.1122-.4082.1757-.837.1757-1.2803 0-2.6025-2.125-4.727-4.7344-4.727"/></svg><span class="orb-label">Cloudflare Pages</span></a>
+        <a class="orb-node" href="/pricing/netlify/" aria-label="Netlify quoter"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M6.49 19.04h-.23L5.13 17.9v-.23l1.73-1.71h1.2l.15.15v1.2L6.5 19.04ZM5.13 6.31V6.1l1.13-1.13h.23L8.2 6.68v1.2l-.15.15h-1.2L5.13 6.31Zm9.96 9.09h-1.65l-.14-.13v-3.83c0-.68-.27-1.2-1.1-1.23-.42 0-.9 0-1.43.02l-.07.08v4.96l-.14.14H8.9l-.13-.14V8.73l.13-.14h3.7a2.6 2.6 0 0 1 2.61 2.6v4.08l-.13.14Zm-8.37-2.44H.14L0 12.82v-1.64l.14-.14h6.58l.14.14v1.64l-.14.14Zm17.14 0h-6.58l-.14-.14v-1.64l.14-.14h6.58l.14.14v1.64l-.14.14ZM11.05 6.55V1.64l.14-.14h1.65l.14.14v4.9l-.14.14h-1.65l-.14-.13Zm0 15.81v-4.9l.14-.14h1.65l.14.13v4.91l-.14.14h-1.65l-.14-.14Z"/></svg><span class="orb-label">Netlify</span></a>
       </div>
-      <div class="tools-page__hub">Your site</div>
-      <span class="tools-page__pulse"></span>
-      <span class="tools-page__pulse tools-page__pulse--b"></span>
     </div>
   </section>
 
@@ -650,7 +827,7 @@
         </article>
       </div>
       <div class="tools-page__route-replay">
-        <button type="button" class="tools-page__btn tools-page__btn--line" id="route-replay">Replay</button>
+        <button type="button" class="tools-page__btn tools-page__btn--line tools-page__btn--icon" id="route-replay" aria-label="Replay"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg></button>
       </div>
     </div>
   </section>
@@ -662,10 +839,12 @@
       <p style="max-width:640px;margin-top:16px">Squarespace is best for managing the site yourself, and it doesn't accept custom code. Shopify is for products. Cloudflare is my preferred host for a custom static site, and this site is built on it. A custom build is hand-written code, so it needs a host. It has no visual editor, and I keep access to your site after launch for further changes. See the FAQ on <a href="/faqs/#can-i-update-the-website-myself-after-launch">updating your site after launch</a>.</p>
       <div class="tools-page__cards">
         <article class="tools-page__card reveal" style="--i:0">
-          <div class="tools-page__preview" aria-hidden="true">
-            <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Pages</span></div>
-            <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Design</span></div>
-            <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Launch</span></div>
+          <div class="tools-page__preview tools-page__preview--split" aria-hidden="true">
+            <div class="tools-page__steps">
+              <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Pages</span></div>
+              <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Design</span></div>
+              <div class="tools-page__tick is-on"><span class="tools-page__box"></span><span>Launch</span></div>
+            </div>
             <div class="tools-page__bars"><i></i><i></i><i></i><i></i><i></i></div>
           </div>
           <div class="tools-page__card-body">
@@ -678,11 +857,18 @@
           </div>
         </article>
         <article class="tools-page__card reveal" style="--i:1">
-          <div class="tools-page__preview" aria-hidden="true">
-            <div class="tools-page__row"><span>Cart</span><span>Ready</span></div>
-            <!-- Item count only. A dollar total would be an invented price. -->
-            <div class="tools-page__row"><span>Items</span><span data-count="4">4</span></div>
-            <div class="tools-page__bars"><i></i><i></i><i></i><i></i></div>
+          <div class="tools-page__preview tools-page__preview--split" aria-hidden="true">
+            <div class="tools-page__steps">
+              <div class="tools-page__row"><span>Cart</span><span>Ready</span></div>
+              <!-- Item count only. A dollar total would be an invented price. -->
+              <div class="tools-page__row"><span>Items</span><span data-count="4">4</span></div>
+              <div class="tools-page__row"><span>Order</span><span>Placed</span></div>
+            </div>
+            <svg class="tools-page__pie" viewBox="0 0 140 140" width="120" height="120" aria-hidden="true">
+              <path class="s1" d="M70 70 L70 18 A52 52 0 0 1 115 96 Z"></path>
+              <path class="s2" d="M70 70 L115 96 A52 52 0 0 1 25 96 Z"></path>
+              <path class="s3" d="M70 70 L25 96 A52 52 0 0 1 70 18 Z"></path>
+            </svg>
           </div>
           <div class="tools-page__card-body">
             <p class="tools-page__eyebrow">Platform</p>
@@ -694,9 +880,14 @@
           </div>
         </article>
         <article class="tools-page__card reveal" style="--i:2">
-          <div class="tools-page__preview" aria-hidden="true">
+          <div class="tools-page__preview tools-page__preview--side" aria-hidden="true">
+            <svg class="tools-page__ringchart" viewBox="0 0 140 140" width="140" height="140" aria-hidden="true">
+              <circle class="tools-page__ringtrack" cx="70" cy="70" r="52"></circle>
+              <circle class="tools-page__ringarc tools-page__ringarc--blue" cx="70" cy="70" r="52"></circle>
+              <circle class="tools-page__ringtrack" cx="70" cy="70" r="36"></circle>
+              <circle class="tools-page__ringarc tools-page__ringarc--amber" cx="70" cy="70" r="36"></circle>
+            </svg>
             <div class="tools-page__map"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-            <div class="tools-page__bars"><i></i><i></i><i></i><i></i><i></i></div>
           </div>
           <div class="tools-page__card-body">
             <p class="tools-page__eyebrow">Hosting</p>
@@ -708,9 +899,9 @@
           </div>
         </article>
         <article class="tools-page__card reveal" style="--i:3">
-          <div class="tools-page__preview" aria-hidden="true">
-            <div class="tools-page__log"><span>Building</span><span>Preview ready</span><span>Publish</span></div>
-            <span class="tools-page__pill">Published</span>
+          <div class="tools-page__preview tools-page__preview--split" aria-hidden="true">
+            <div class="tools-page__log-lines"><span>Building</span><span>Preview ready</span><span>Publish</span></div>
+            <div class="tools-page__dotgraph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           </div>
           <div class="tools-page__card-body">
             <p class="tools-page__eyebrow">Hosting</p>
@@ -772,7 +963,7 @@
         <button class="cmp-tab" type="button" role="tab" id="tab-cloudflare" data-target="cloudflare" aria-selected="true" aria-controls="panel-cloudflare" tabindex="0">Cloudflare</button>
         <button class="cmp-tab" type="button" role="tab" id="tab-shopify" data-target="shopify" aria-selected="false" aria-controls="panel-shopify" tabindex="-1">Shopify</button>
         <button class="cmp-tab" type="button" role="tab" id="tab-squarespace" data-target="squarespace" aria-selected="false" aria-controls="panel-squarespace" tabindex="-1">Squarespace</button>
-        <button class="cmp-tab" type="button" role="tab" id="tab-netlify" data-target="netlify" aria-selected="false" aria-controls="panel-netlify" tabindex="-1">Netlify</button>
+        <button class="cmp-tab" type="button" role="tab" id="tab-netlify" data-target="netlify" aria-selected="false" aria-controls="panel-netlify" tabindex="-1">Vercel and Netlify</button>
       </div>
 
       <div class="cmp-panel" id="panel-cloudflare" role="tabpanel" aria-labelledby="tab-cloudflare" tabindex="0">
@@ -850,10 +1041,11 @@
       <div class="cmp-panel" id="panel-netlify" role="tabpanel" aria-labelledby="tab-netlify" tabindex="0" hidden>
         <div class="cmp-detail">
           <div class="cmp-copy">
-            <p class="tools-page__eyebrow">Platform — Netlify</p>
+            <p class="tools-page__eyebrow">Platform — Vercel and Netlify</p>
             <h3>A deploy pipeline for custom code</h3>
             <p class="cmp-lede">Netlify runs the other kind of custom build — lean hosting with a workflow built around fast, git-based deploys, so changes go out clean without the overhead of managing servers.</p>
             <a class="cmp-btn" href="/pricing/netlify/">See Netlify pricing</a>
+            <a class="cmp-btn" href="/pricing/vercel/">See Vercel pricing</a>
             <div class="cmp-caveat">
               <span class="cmp-pill">Worth knowing</span>
               <p>Netlify is excellent at publishing a custom site reliably — it isn't a full backend. Like Cloudflare, moving DNS here can interrupt email if records aren't copied across first.</p>
@@ -865,9 +1057,14 @@
           </div>
         </div>
         <div class="cmp-glance">
+          <p class="tools-page__eyebrow cmp-who">Netlify</p>
           <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--blue"></span>Genuine strength</div><p>Familiar deploys, private previews and built-in forms</p></div>
           <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--amber"></span>Core compromise</div><p>Usage-based billing and platform-specific features</p></div>
           <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--rust"></span>Avoid when</div><p>You expect no technical stewardship at all</p></div>
+          <p class="tools-page__eyebrow cmp-who">Vercel</p>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--blue"></span>Genuine strength</div><p>For more app-like projects</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--amber"></span>Core compromise</div><p>Business sites need a paid plan</p></div>
+          <div class="cmp-cell"><div class="cmp-label"><span class="cmp-dot cmp-dot--rust"></span>Avoid when</div><p>You only need a simple site, where Cloudflare or Netlify will serve you well</p></div>
         </div>
       </div>
 
@@ -951,73 +1148,37 @@
 
   <section class="tools-page__section" id="quote">
     <div class="tools-page__wrap">
-      <div class="cmp-quote">
-        <div>
-          <p class="tools-page__eyebrow">[ 06 ] The quote</p>
-          <h2>Why tools appear on your quote. <span class="tools-page__tone">At cost, so you can see exactly what you're paying for.</span></h2>
-          <p style="margin-top:16px">Building a custom site takes some paid software. I list it as its own line on your quote, at cost, so you can see exactly what you're paying for. Cursor, Figma and Formspark are listed on custom builds. Adobe and Midjourney are optional extras I add only if your project needs them. See <a href="/pricing/">Pricing</a> for what applies to your platform.</p>
+      <div class="qz-top">
+        <div class="qz-copy">
+          <p class="qz-eyebrow">[ 06 ] The quote</p>
+          <h2 class="qz-h">Why tools appear on your quote. <span>At cost, so you can see exactly what you're paying for.</span></h2>
         </div>
-        <div class="cmp-stack">
-          <div class="cmp-iso" id="stack">
-            <svg viewBox="0 0 400 330" role="img" aria-labelledby="stack-t stack-d" xmlns="http://www.w3.org/2000/svg">
-              <title id="stack-t">Your quote as a stack of tools</title>
-              <desc id="stack-d">Cursor Pro, Figma and Formspark are included. Adobe Creative Suite and Midjourney are optional and can be added.</desc>
-              <g transform="translate(90 270)"><polygon class="top-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="left-t" points="-75,0 0,32 0,48 -75,16"/><polygon class="right-t" points="0,32 75,0 75,16 0,48"/></g>
-              <path class="leader" d="M168 278 H186"/>
-              <text class="s-name" x="194" y="274">Cursor Pro</text>
-              <text class="s-sub" x="194" y="292">INCLUDED · $–</text>
-              <g transform="translate(90 226)"><polygon class="top-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="left-t" points="-75,0 0,32 0,48 -75,16"/><polygon class="right-t" points="0,32 75,0 75,16 0,48"/></g>
-              <path class="leader" d="M168 234 H186"/>
-              <text class="s-name" x="194" y="230">Figma</text>
-              <text class="s-sub" x="194" y="248">INCLUDED · $–</text>
-              <g transform="translate(90 182)"><polygon class="top-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="left-t" points="-75,0 0,32 0,48 -75,16"/><polygon class="right-t" points="0,32 75,0 75,16 0,48"/></g>
-              <path class="leader" d="M168 190 H186"/>
-              <text class="s-name" x="194" y="186">Formspark</text>
-              <text class="s-sub" x="194" y="204">INCLUDED · $–</text>
-              <g id="g-adobe" class="opt-off">
-                <g transform="translate(90 138)"><g class="ghost"><polygon class="g-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="g-l" points="-75,0 0,32 0,48 -75,16"/><polygon class="g-r" points="0,32 75,0 75,16 0,48"/></g></g>
-                <g transform="translate(90 138)"><g class="added"><polygon class="a-top" points="0,-32 75,0 0,32 -75,0"/><polygon class="a-left" points="-75,0 0,32 0,48 -75,16"/><polygon class="a-right" points="0,32 75,0 75,16 0,48"/></g></g>
-                <path class="leader" d="M168 146 H186"/>
-                <text class="s-name" x="194" y="142">Adobe Creative Suite</text>
-                <text class="s-sub sub-off" x="194" y="160">OPTIONAL · TAP TO ADD</text>
-                <text class="s-sub sub-on" x="194" y="160">ADDED · $–</text>
-              </g>
-              <g id="g-midjourney" class="opt-off">
-                <g transform="translate(90 94)"><g class="ghost"><polygon class="g-t" points="0,-32 75,0 0,32 -75,0"/><polygon class="g-l" points="-75,0 0,32 0,48 -75,16"/><polygon class="g-r" points="0,32 75,0 75,16 0,48"/></g></g>
-                <g transform="translate(90 94)"><g class="added"><polygon class="a-top" points="0,-32 75,0 0,32 -75,0"/><polygon class="a-left" points="-75,0 0,32 0,48 -75,16"/><polygon class="a-right" points="0,32 75,0 75,16 0,48"/></g></g>
-                <path class="leader" d="M168 102 H186"/>
-                <text class="s-name" x="194" y="98">Midjourney</text>
-                <text class="s-sub sub-off" x="194" y="116">OPTIONAL · TAP TO ADD</text>
-                <text class="s-sub sub-on" x="194" y="116">ADDED · $–</text>
-              </g>
-            </svg>
-            <label class="cmp-opt" style="top:calc(100% * 118 / 330);height:calc(100% * 52 / 330)">
-              <input type="checkbox" id="opt-adobe" data-g="g-adobe">
-              <span class="cmp-hit"></span>
-              <span class="cmp-sr">Add Adobe Creative Suite: photo editing, video editing, illustration or custom graphics</span>
-            </label>
-            <label class="cmp-opt" style="top:calc(100% * 64 / 330);height:calc(100% * 52 / 330)">
-              <input type="checkbox" id="opt-midjourney" data-g="g-midjourney">
-              <span class="cmp-hit"></span>
-              <span class="cmp-sr">Add Midjourney: AI image creation for hero shots, graphics and visuals</span>
-            </label>
-          </div>
-          <div class="cmp-qbar">
-            <div class="cmp-count"><span class="cmp-dot" aria-hidden="true"></span><span id="count" aria-live="polite">3 lines on your quote</span></div>
-            <div class="cmp-note">Passed on at cost — no markup</div>
-          </div>
-          <ul class="cmp-tools">
-            <li><strong>Cursor Pro:</strong> required for all custom builds.</li>
-            <li><strong>Figma:</strong> required for all custom builds.</li>
-            <li><strong>Formspark:</strong> form backend for the standard contact form.</li>
-            <li><strong>Adobe Creative Suite (optional):</strong> photo editing, video editing, illustration or custom graphics.</li>
-            <li><strong>Midjourney (optional):</strong> AI image creation for hero shots, graphics and visuals.</li>
-          </ul>
+        <p class="qz-p">Building a custom site takes some paid software. I list it as its own line on your quote, at cost, so you can see exactly what you're paying for. Cursor, Figma and Formspark are listed on custom builds. Adobe and Midjourney are optional extras I add only if your project needs them. See <a href="/pricing/">Pricing</a> for what applies to your platform.</p>
+      </div>
+      <div class="qz-panels">
+        <div class="qz-panel">
+          <div class="qz-phead"><span class="qz-badge fill">Included</span><span class="qz-tag">On every custom build</span></div>
+          <div class="qz-big"><b>3</b><span>Lines, always</span></div>
+          <p class="qz-sub">Passed on at cost, no markup.</p>
+          <div class="qz-row"><span class="qz-tile" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg></span><span class="qz-name"><b>Cursor Pro</b>Required for all custom builds.</span><span class="qz-right"><span class="qz-req">Required</span><span class="qz-price"><em>$–</em></span></span></div>
+          <div class="qz-row"><span class="qz-tile" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg></span><span class="qz-name"><b>Figma</b>Required for all custom builds.</span><span class="qz-right"><span class="qz-req">Required</span><span class="qz-price"><em>$–</em></span></span></div>
+          <div class="qz-row"><span class="qz-tile" aria-hidden="true">Fs</span><span class="qz-name"><b>Formspark</b>Form backend for the standard contact form.</span><span class="qz-right"><span class="qz-req">Required</span><span class="qz-price"><em>$–</em></span></span></div>
         </div>
+        <div class="qz-panel">
+          <div class="qz-phead"><span class="qz-badge ring">Optional</span><span class="qz-tag">Only if your project needs them</span></div>
+          <div class="qz-big"><b class="qz-pop" id="qzAdded" aria-live="polite">0</b><span>Added</span></div>
+          <p class="qz-sub">Tap to see how an extra would appear on your quote.</p>
+          <div class="qz-row qz-opt"><span class="qz-tile" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM8.884 1.376H0v21.248zm15.116 0h-8.884L24 22.624Z"/></svg></span><span class="qz-name"><b>Adobe Creative Suite</b>Photo editing, video editing, illustration or custom graphics.</span><span class="qz-right"><span class="qz-price"><em>$–</em></span><button type="button" class="qz-sw" role="switch" aria-checked="false" aria-label="Add Adobe Creative Suite to the example quote">Add</button></span></div>
+          <div class="qz-row qz-opt"><span class="qz-tile" aria-hidden="true">Mj</span><span class="qz-name"><b>Midjourney</b>AI image creation for hero shots, graphics and visuals.</span><span class="qz-right"><span class="qz-price"><em>$–</em></span><button type="button" class="qz-sw" role="switch" aria-checked="false" aria-label="Add Midjourney to the example quote">Add</button></span></div>
+        </div>
+      </div>
+      <div class="qz-strip">
+        <div><div class="qz-lbl">Lines on your quote</div><div class="qz-num"><span class="qz-pop" id="qzLines" aria-live="polite">3</span></div></div>
+        <div class="qz-meter"><div class="qz-lbl">Markup on tools</div><div class="qz-bar" aria-hidden="true"><i></i></div><div class="qz-num">0%, passed on at cost</div></div>
+        <a class="btn" href="/pricing/">See Pricing</a>
       </div>
     </div>
   </section>
-
   <section class="tools-page__section" id="build-tools">
     <div class="tools-page__wrap">
       <div class="tools-page__split">
@@ -1169,20 +1330,39 @@
       if (next) { event.preventDefault(); selectTab(next, true); }
     });
   });
-  var boxes = document.querySelectorAll("#quote .cmp-opt input");
-  var count = document.getElementById("count");
-  function updateQuote() {
-    var n = 3;
-    boxes.forEach(function (box) {
-      var group = document.getElementById(box.getAttribute("data-g"));
-      group.setAttribute("class", box.checked ? "opt-on" : "opt-off");
-      if (box.checked) n++;
+  var quote = document.getElementById("quote");
+  if (quote) {
+    document.documentElement.classList.add("js");
+    var added = document.getElementById("qzAdded");
+    var lines = document.getElementById("qzLines");
+    function bump(el, value) {
+      el.textContent = value;
+      if (reduce) return;
+      el.classList.remove("bump");
+      void el.offsetWidth;
+      el.classList.add("bump");
+    }
+    quote.querySelectorAll(".qz-sw").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var on = button.getAttribute("aria-checked") !== "true";
+        button.setAttribute("aria-checked", on ? "true" : "false");
+        button.textContent = on ? "Added" : "Add";
+        button.closest(".qz-opt").classList.toggle("on", on);
+        var n = quote.querySelectorAll('.qz-sw[aria-checked="true"]').length;
+        bump(added, n);
+        bump(lines, 3 + n);
+      });
     });
-    count.textContent = n + " lines on your quote";
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        quote.classList.toggle("qz-in", entries[0].isIntersecting);
+      }, { threshold: 0.25 }).observe(quote);
+    } else {
+      quote.classList.add("qz-in");
+    }
   }
-  boxes.forEach(function (box) { box.addEventListener("change", updateQuote); });
-  updateQuote();
   var routeTimers = [];
+  var routePlaying = false;
   function playRoute() {
     var box = document.getElementById("route");
     if (!box || reduce) return;
@@ -1211,15 +1391,27 @@
       go.classList.add("is-run");
       go.style.left = "100%";
     }, 1500));
+    routeTimers.push(setTimeout(function () {
+      if (routePlaying) playRoute();
+    }, 4800));
   }
   var replay = document.getElementById("route-replay");
-  if (replay) replay.addEventListener("click", playRoute);
+  if (replay) replay.addEventListener("click", function () {
+    routePlaying = true;
+    playRoute();
+  });
   if (!reduce && "IntersectionObserver" in window) {
     var routeSeen = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        playRoute();
-        routeSeen.disconnect();
+        if (entry.isIntersecting) {
+          if (routePlaying) return;
+          routePlaying = true;
+          playRoute();
+          return;
+        }
+        routePlaying = false;
+        routeTimers.forEach(clearTimeout);
+        routeTimers = [];
       });
     }, { threshold: 0.4 });
     var routeBox = document.getElementById("route");
@@ -1230,14 +1422,16 @@
     var end = parseInt(raw, 10) || 0;
     var suffix = /\+$/.test(raw) ? "+" : "";
     if (reduce) { node.textContent = String(end) + suffix; return; }
+    node.textContent = "0" + suffix;
     var started = false;
     function run() {
       if (started) return;
       started = true;
       var t0 = performance.now();
       function frame(now) {
-        var p = Math.min(1, (now - t0) / 1200);
-        node.textContent = String(Math.round(end * p)) + suffix;
+        var p = Math.min(1, (now - t0) / 1600);
+        var eased = 1 - Math.pow(1 - p, 3);
+        node.textContent = String(Math.round(end * eased)) + suffix;
         if (p < 1) requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
@@ -1252,6 +1446,72 @@
     }, { threshold: 0.4 });
     watch.observe(node);
   });
+})();
+</script>
+<script>
+(() => {
+  const orb = document.getElementById("orb"); if (!orb) return;
+  const scene = orb.querySelector(".orb-scene");
+  const svg = orb.querySelector(".orb-lines");
+  const trails = orb.querySelector(".orb-trails");
+  const nodes = [...orb.querySelectorAll(".orb-node")];
+  const slots = [...orb.querySelectorAll(".core-slot")];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const NS = "http://www.w3.org/2000/svg", TRAIL = 7, TILT = -16 * Math.PI / 180, SPEED = (Math.PI * 2) / 36;
+  let W = 0, H = 0, t = 0, clock = 0, speed = 1, target = 1, hovered = null, running = false, last = 0, resetTimer = 0;
+
+  nodes.forEach((n) => {
+    n._trail = Array.from({ length: TRAIL }, () => { const d = document.createElement("i"); d.className = "orb-trail"; trails.appendChild(d); return d; });
+    n._line = document.createElementNS(NS, "line"); n._line.setAttribute("class", "orb-beam"); svg.appendChild(n._line);
+    n._pulse = document.createElementNS(NS, "circle"); n._pulse.setAttribute("r", "4"); n._pulse.setAttribute("class", "orb-pulse"); svg.appendChild(n._pulse);
+    n._prev = 0;
+    const slow = (on) => { target = on ? 0 : 1; hovered = on ? n : null; };
+    n.addEventListener("pointerenter", () => slow(true)); n.addEventListener("pointerleave", () => slow(false));
+    n.addEventListener("focus", () => slow(true)); n.addEventListener("blur", () => slow(false));
+  });
+
+  const measure = () => { const r = orb.getBoundingClientRect(); W = r.width; H = r.height; svg.setAttribute("viewBox", `0 0 ${W} ${H}`); };
+  const pos = (th) => {
+    const a = W * .42, b = H * .17, x = Math.cos(th) * a, y = Math.sin(th) * b;
+    return { x: W / 2 + x * Math.cos(TILT) - y * Math.sin(TILT), y: H / 2 + x * Math.sin(TILT) + y * Math.cos(TILT), d: Math.sin(th) };
+  };
+  const arrive = (i) => {
+    slots[i].classList.add("on");
+    orb.classList.remove("ping"); void orb.offsetWidth; orb.classList.add("ping");
+    if (slots.every(s => s.classList.contains("on"))) { clearTimeout(resetTimer); resetTimer = setTimeout(() => slots.forEach(s => s.classList.remove("on")), 2000); }
+  };
+  const draw = () => {
+    nodes.forEach((n, i) => {
+      const th = t + i * Math.PI / 2, p = pos(th), k = (p.d + 1) / 2, isH = hovered === n;
+      const s = (.78 + .22 * k) * (isH ? 1.15 : 1);
+      n.style.transform = `translate(${p.x - 28}px,${p.y - 28}px) scale(${s})`;
+      n.style.opacity = isH ? 1 : .55 + .45 * k;
+      n.style.zIndex = isH ? 5 : (p.d > 0 ? 4 : 1);
+      n._trail.forEach((d, j) => { const q = pos(th - (j + 1) * .07), f = 1 - (j + 1) / (TRAIL + 1); d.style.transform = `translate(${q.x - 3}px,${q.y - 3}px) scale(${f})`; d.style.opacity = f * .5; });
+      n._line.setAttribute("x1", W / 2); n._line.setAttribute("y1", H / 2); n._line.setAttribute("x2", p.x); n._line.setAttribute("y2", p.y);
+      const ph = ((clock + i * 1.5) % 6) / 6, u = Math.min(1, ph / .35), e = 1 - Math.pow(1 - u, 3);
+      n._pulse.setAttribute("cx", p.x + (W / 2 - p.x) * e); n._pulse.setAttribute("cy", p.y + (H / 2 - p.y) * e);
+      n._pulse.style.opacity = ph < .35 ? 1 : 0;
+      if (n._prev < .35 && ph >= .35) arrive(i);
+      n._prev = ph;
+    });
+  };
+  const loop = (now) => {
+    if (!running) return;
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    speed += (target - speed) * Math.min(1, dt * 4); t += dt * speed * SPEED; clock += dt * speed;
+    draw(); requestAnimationFrame(loop);
+  };
+
+  measure(); addEventListener("resize", () => { measure(); if (!running) draw(); });
+  if (reduce) { t = .6; draw(); orb.classList.remove("ping"); slots.forEach(s => s.classList.add("on")); return; }
+  draw();
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !running) { running = true; last = performance.now(); requestAnimationFrame(loop); } else if (!e.isIntersecting) running = false; }).observe(orb);
+
+  if (matchMedia("(pointer:fine)").matches) {
+    orb.addEventListener("pointermove", (e) => { const r = orb.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; scene.style.transform = `rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`; });
+    orb.addEventListener("pointerleave", () => { scene.style.transform = ""; });
+  }
 })();
 </script>
 </body>

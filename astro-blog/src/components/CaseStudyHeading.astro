@@ -1,0 +1,18 @@
+---
+const ids: Record<string, string> = {
+	'The problem': 'problem',
+	'The build': 'build',
+	Hosting: 'hosting',
+	'What I learned': 'learned',
+	'The brief': 'brief',
+	'What I built': 'built',
+	'The loyalty program: The Round Table': 'loyalty',
+	'How I worked': 'worked',
+};
+
+const children = Astro.props.node?.children ?? [];
+const text = children.map((child: { text?: string }) => child.text ?? '').join('');
+const id = ids[text];
+---
+
+<h2 id={id}><slot /></h2>

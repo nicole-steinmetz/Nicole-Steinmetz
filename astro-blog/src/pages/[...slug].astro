@@ -1,20 +1,52 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import { Image as CmsImage } from 'emdash/ui';
+import { PortableText } from 'emdash/ui';
+import { decodeSlug } from 'emdash';
+import hoodburgerCover from '../assets/hoodburger-cover.jpg';
+import resetBanner from '../assets/reset-banner.jpg';
+import CaseStudyCallout from '../components/CaseStudyCallout.astro';
+import CaseStudyHeading from '../components/CaseStudyHeading.astro';
 import BlogPost from '../layouts/BlogPost.astro';
+import { dateOf, readCaseStudy } from '../lib/case-studies';
 
-export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
-}
-type Props = CollectionEntry<'blog'>;
+const raw = Astro.params.slug;
+const param = Array.isArray(raw) ? raw.join('/') : raw;
+const slug = param ? decodeSlug(param) : null;
+if (!slug) return Astro.rewrite('/404');
 
-const post = Astro.props;
-const { Content } = await render(post);
+const post = await readCaseStudy(slug);
+if (!post) return Astro.rewrite('/404');
+
+const covers = {
+	reset: resetBanner,
+	hoodburger: hoodburgerCover,
+};
+const fallback = covers[post.id as keyof typeof covers];
+const published = dateOf(post);
 ---
 
-<BlogPost id={post.id} {...post.data}>
-	<Content />
+<BlogPost
+	id={post.id}
+	title={post.data.title}
+	description={post.data.description}
+	platform={post.data.platform}
+	pubDate={published}
+>
+	{
+		post.data.hero_image ? (
+			<CmsImage slot="cover" image={post.data.hero_image} alt="" />
+		) : (
+			fallback && (
+				<Image slot="cover" src={fallback} alt="" width={fallback.width} height={fallback.height} />
+			)
+		)
+	}
+	<PortableText
+		value={post.data.body}
+		components={{
+			block: { h2: CaseStudyHeading },
+			type: { callout: CaseStudyCallout },
+		}}
+	/>
 </BlogPost>

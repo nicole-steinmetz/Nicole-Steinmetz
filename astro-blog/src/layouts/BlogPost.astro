@@ -1,9 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
+import { base } from '../lib/base';
 import Base from './Base.astro';
 
-type Props = CollectionEntry<'blog'>['data'] & { id: string };
+interface Props {
+	id: string;
+	title: string;
+	description: string;
+	platform: string;
+	pubDate: Date;
+}
 
 const sections: Record<string, { href: string; label: string }[]> = {
 	reset: [
@@ -20,7 +25,7 @@ const sections: Record<string, { href: string; label: string }[]> = {
 	],
 };
 
-const { id, title, description, pubDate, heroImage, platform } = Astro.props;
+const { id, title, description, platform, pubDate } = Astro.props;
 const toc = sections[id] ?? [];
 const published = pubDate.toLocaleDateString('en-AU', {
 	day: 'numeric',
@@ -39,7 +44,7 @@ const published = pubDate.toLocaleDateString('en-AU', {
 		</svg>
 		<section class="blog-post-head">
 			<div class="blog-crumb">
-				<a href={import.meta.env.BASE_URL}><span aria-hidden="true">&larr;</span> Blog</a>
+				<a href={base}><span aria-hidden="true">&larr;</span> Blog</a>
 				<span>
 					<time datetime={pubDate.toISOString()}>{published}</time> / <b>Case study</b>
 				</span>
@@ -51,16 +56,16 @@ const published = pubDate.toLocaleDateString('en-AU', {
 			</div>
 			<ul class="blog-tags" aria-label="Platforms">
 				<li>
-					<a class="blog-tag" href={`/blog/?q=${platform.toLowerCase()}`}>{platform}</a>
+					<a class="blog-tag" href={`${base}?q=${platform.toLowerCase()}`}>{platform}</a>
 				</li>
 			</ul>
 		</section>
 		<svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1"></line></svg>
 		{
-			heroImage && (
+			Astro.slots.has('cover') && (
 				<section class="blog-cover" aria-hidden="true">
 					<div class="blog-thumb">
-						<Image src={heroImage} alt="" width={heroImage.width} height={heroImage.height} />
+						<slot name="cover" />
 					</div>
 				</section>
 			)

@@ -1,0 +1,8 @@
+---
+const { node } = Astro.props;
+---
+
+<aside class="blog-callout">
+	<span class="blog-kicker">{node.kicker}</span>
+	<p>{node.text}</p>
+</aside>

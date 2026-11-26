@@ -1,0 +1,255 @@
+{
+  "$schema": "https://emdashcms.com/seed.schema.json",
+  "version": "1",
+  "defaultLocale": "en-AU",
+  "meta": {
+    "name": "Nicole Steinmetz case studies",
+    "description": "Hoodburger and Reset, with the platform each one was built on.",
+    "author": "Nicole Steinmetz"
+  },
+  "settings": {
+    "title": "Notes from building with AI",
+    "tagline": "Case studies and notes from building websites and apps with AI tools.",
+    "timezone": "Australia/Perth",
+    "dateFormat": "d MMM yyyy",
+    "staging": true
+  },
+  "collections": [
+    {
+      "slug": "case_studies",
+      "label": "Case studies",
+      "labelSingular": "Case study",
+      "description": "Project write-ups published on the blog.",
+      "supports": ["drafts", "revisions", "search", "seo"],
+      "urlPattern": "/blog/{slug}",
+      "titleField": "title",
+      "dateField": "published_on",
+      "admin": {
+        "listColumns": ["platform", "published_on"]
+      },
+      "fields": [
+        { "slug": "title", "label": "Title", "type": "string", "required": true, "searchable": true },
+        { "slug": "description", "label": "Description", "type": "text", "required": true, "searchable": true },
+        {
+          "slug": "platform",
+          "label": "Platform",
+          "type": "select",
+          "required": true,
+          "indexed": true,
+          "searchable": true,
+          "validation": {
+            "options": ["Shopify", "Cloudflare", "Squarespace", "Netlify", "Vercel"]
+          }
+        },
+        { "slug": "published_on", "label": "Published on", "type": "datetime", "required": true, "indexed": true },
+        { "slug": "hero_image", "label": "Cover image", "type": "image" },
+        { "slug": "body", "label": "Body", "type": "portableText", "required": true }
+      ]
+    }
+  ],
+  "content": {
+    "case_studies": [
+      {
+        "id": "case-reset",
+        "slug": "reset",
+        "status": "published",
+        "data": {
+          "title": "Reset: a daily training plan I built because I needed one",
+          "description": "Tech neck, no gym buddies, and no plan. So I built an app with Emergent and moved it to Cloudflare.",
+          "platform": "Cloudflare",
+          "published_on": "2026-11-03T00:00:00.000Z",
+          "hero_image": {
+            "$media": {
+              "file": "assets/reset-banner.jpg",
+              "alt": ""
+            }
+          },
+          "body": [
+            {
+              "_type": "block",
+              "_key": "reset-h-problem",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-h-problem-t", "text": "The problem", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-problem-1",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-problem-1-t", "text": "I'm a website designer, so I spend my days hunched over a screen, and I have tech neck to show for it. In Perth I train at the gym with friends and follow their schedule. When I'm away from them, I struggle to stay motivated without a plan.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-problem-2",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-problem-2-t", "text": "I'd found a problem, so I built the solution.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-h-build",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-h-build-t", "text": "The build", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-build-1",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-build-1-t", "text": "I started by collecting app designs I love on Mobbin, then turned them into a mockup. I took that into Emergent and built the first draft there.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-build-2",
+              "style": "normal",
+              "markDefs": [],
+              "children": [
+                { "_type": "span", "_key": "reset-p-build-2-a", "text": "Reset", "marks": ["strong"] },
+                { "_type": "span", "_key": "reset-p-build-2-b", "text": " is a quiet daily plan: a short \"Reset\" version for busy days that still keeps the streak, timers on each exercise, and a place to log my weights.", "marks": [] }
+              ]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-h-hosting",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-h-hosting-t", "text": "Hosting", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-hosting",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-hosting-t", "text": "I bought the domain through Spaceship. Emergent gets expensive once an app gets a lot of traffic, so I moved Reset to Cloudflare.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-live",
+              "style": "normal",
+              "markDefs": [{ "_key": "reset-live", "_type": "link", "href": "https://nicolesteinmetz.space" }],
+              "children": [{ "_type": "span", "_key": "reset-p-live-t", "text": "See Reset live", "marks": ["reset-live"] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-h-learned",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-h-learned-t", "text": "What I learned", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-learned-1",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-learned-1-t", "text": "Building an app is much easier now. I made Reset with Emergent, and the screens came together fast.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-learned-2",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-learned-2-t", "text": "But how an app looks isn't the hard part. The hard part is how the information inside it fits together.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-learned-3",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-learned-3-t", "text": "Think of Lego. A flat house is easy to build. A model where moving one piece changes five others is much harder, even if both look finished on the shelf.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "reset-p-learned-4",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "reset-p-learned-4-t", "text": "Reset is the flat house. It's a list of exercises, a timer and a place to log my weights, so it was simple to build. A hotel booking system is the tricky model. Rooms, dates, guests and bookings all have to match up, and if one changes, the rest must change too.", "marks": [] }]
+            },
+            {
+              "_type": "callout",
+              "_key": "reset-callout",
+              "kicker": "The question I ask",
+              "text": "Not “can it build this screen?” but “does it still keep working when I change a rule?”"
+            }
+          ]
+        }
+      },
+      {
+        "id": "case-hoodburger",
+        "slug": "hoodburger",
+        "status": "published",
+        "data": {
+          "title": "Hoodburger: a Shopify site and loyalty program for a 5-store Perth burger chain",
+          "description": "Dawn theme, 15 templates, and a Marsello loyalty program themed like an RPG.",
+          "platform": "Shopify",
+          "published_on": "2026-11-03T00:00:00.000Z",
+          "hero_image": {
+            "$media": {
+              "file": "assets/hoodburger-cover.jpg",
+              "alt": ""
+            }
+          },
+          "body": [
+            {
+              "_type": "block",
+              "_key": "hood-h-brief",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-h-brief-t", "text": "The brief", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "hood-p-brief",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-p-brief-t", "text": "Hoodburger is a Perth smash-burger chain with five stores. They needed a site that did more than show a menu. It had to be fast on mobile, easy for customers to find the nearest store and order, and ready to grow into a loyalty program and franchising.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "hood-h-built",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-h-built-t", "text": "What I built", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "hood-p-built",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-p-built-t", "text": "A custom Shopify site on the Dawn theme, with 15 purpose-built page templates. They cover home, menu, locations, rewards, catering, careers, FAQs, order now, contact and the legal pages. Store details, ordering and the allergy information are easy to reach from any page.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "hood-h-loyalty",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-h-loyalty-t", "text": "The loyalty program: The Round Table", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "hood-p-loyalty",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-p-loyalty-t", "text": "I set up their Marsello loyalty program with a Yellowstone Castle / RPG theme. Members start as Wastelanders and can climb to Yellowstone Citizen and Wizard, earning more points per dollar at each tier. I also set up the birthday cheeseburger and the launch double-points period. The result feels like part of the brand, not a bolted-on app.", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "hood-h-worked",
+              "style": "h2",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-h-worked-t", "text": "How I worked", "marks": [] }]
+            },
+            {
+              "_type": "block",
+              "_key": "hood-p-worked",
+              "style": "normal",
+              "markDefs": [],
+              "children": [{ "_type": "span", "_key": "hood-p-worked-t", "text": "I designed in Figma, generated the front-end with Claude, then refined and shipped it as Shopify Liquid in Cursor. That let a small studio deliver a fully custom build quickly. After launch I ran an SEO and structured-data pass, adding FAQ schema and fixing page titles and headings.", "marks": [] }]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

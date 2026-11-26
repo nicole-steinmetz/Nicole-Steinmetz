@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# Local Cloudflare state and generated EmDash types
+.wrangler/
+emdash-env.d.ts
+
 # macOS-specific files
 .DS_Store
 

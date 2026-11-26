@@ -1,0 +1,400 @@
+/* ============================================================
+   NICOLE STEINMETZ — DESIGN TOKENS v2
+   Source of truth: Figma "Nicole Steinmetz" → Home (node 1:2)
+   ------------------------------------------------------------
+   v2 supersedes tokens.css v1 (cobalt/bone). Every value below
+   was read off the Figma node, not invented. Where v1 had a
+   token the design no longer uses, it has been dropped rather
+   than left to rot.
+   Australian English throughout.
+   ============================================================ */
+
+:root {
+  /* ---- BRAND ---------------------------------------------- */
+  --rust:        #894332;   /* primary CTA, CONTACT US pill     */
+  --rust-press:  #6E3527;   /* :active — derived, not in Figma  */
+  --rust-tint:   #89433214; /* pricing tab active fill — rust @ 8% */
+  --amber:       #F4A600;   /* PRICING pill                     */
+  --amber-press: #D18F00;   /* derived                          */
+  --blue:        #6A96C7;   /* FAQS pill                        */
+  --blue-press:  #5A81AE;   /* derived                          */
+
+  /* ---- INK ------------------------------------------------- */
+  --ink:         #505050;   /* body, section headings, cards    */
+  --ink-soft:    #575757;   /* hero sub, eyebrow                */
+  --ink-focus:   #0E0E10;   /* hero line in focus               */
+  --hero-muted:  #A8A29E;   /* hero line after the colour sweep */
+  --on-dark:     #FFFFFF;   /* text on rust / on footer image   */
+
+  /* ---- SURFACES -------------------------------------------- */
+  --paper:       #FFFFFF;   /* page background                  */
+  --card:        #F7F6F5;   /* How We Build card                */
+  --card-line:   #DAD6D2;   /* 0.5px hairline on that card      */
+
+  /* ---- TYPOGRAPHY ------------------------------------------
+     Figma uses Inter, IBM Plex Mono and Helvetica Neue Bold.
+     Helvetica Neue is NOT web-licensable without a paid licence
+     and is only used on button labels + the CONTACT footer
+     heading — where it is visually near-identical to Inter Bold
+     at 16-20px. It maps to Inter here on purpose.
+     See ASSETS.md → "Fonts" before changing this.             */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Fluid scale. Upper bound = the Figma value at 1440. */
+  --fs-eyebrow:  0.875rem;                        /* 14px       */
+  --fs-h1:       clamp(1.75rem, 2.78vw, 2.5rem);  /* 28 → 40px  */
+  --fs-lede:     clamp(1.125rem, 1.53vw, 1.375rem); /* 18 → 22px */
+  --fs-h2:       clamp(1.5rem, 2.08vw, 1.875rem); /* 24 → 30px  */
+  --fs-h3:       clamp(1.25rem, 1.53vw, 1.375rem);/* 20 → 22px  */
+  --fs-body:     1rem;                            /* 16px       */
+  --fs-card:     0.9375rem;                       /* 15px — contact card body */
+  --fs-ui:       1rem;                            /* 16px       */
+  --fs-footer-h: 1.25rem;                         /* 20px       */
+
+  --lh-tight:    1.15;   /* h1 — 46px at the 40px cap          */
+  --lh-lede:     1.495;  /* 32.9 / 22                           */
+  --lh-body:     1.875;  /* 30 / 16 — How We Build prose        */
+  --lh-compact:  1.5625; /* 25 / 16 — pillar body               */
+  --lh-card:     1.56;   /* 23.4 / 15 — contact card body       */
+  --ls-eyebrow:  0.1em;  /* 1.4px / 14px                        */
+
+  /* ---- LAYOUT ---------------------------------------------- */
+  --footer-badge: 76px;   /* Circle lockup, 25% of the 303px frame */
+  --page-max:    1280px; /* 1440 frame − 80px gutters           */
+  --gutter:      80px;
+  --gutter-md:   40px;
+  --gutter-sm:   20px;
+  /* Phone banners share the home hero. Desktop stays on each
+     Figma frame; this is only the stacked-header crop. */
+  --banner-ratio-sm: 4 / 5;
+
+  /* ---- SPACING (8px rhythm) -------------------------------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+  --s-9: 96px; --s-10: 128px;
+
+  /* ---- RADIUS ---------------------------------------------- */
+  --r-card: 15px;
+  --r-pill: 40px;
+
+  /* ---- PILL BUTTONS ----------------------------------------
+     Inset matches the FAQ launcher (“Ask a question”):
+     14px 22px, and a 23.25px line box (15px × 1.55).
+     js/faq-widget.js reads these same custom properties.     */
+  --pill-pad-y: 14px;
+  --pill-pad-x: 22px;
+  --pill-line:  23.25px;
+
+  /* ---- MOTION ---------------------------------------------- */
+  --ease:      cubic-bezier(.2, .6, .2, 1);
+  --ease-emph: cubic-bezier(.16, 1, .3, 1);
+  --dur-fast:  140ms;
+  --dur-base:  240ms;
+  --logo-hover: 1.06;
+  --hero-caret-w:     2px;
+  --hero-caret-blink: 530ms;
+  --hero-title-lines: 2;
+  --hero-title-lines-sm: 3;
+  --hero-type:        110ms; /* one character */
+  --hero-shift:       500ms; /* line hands emphasis to the next */
+  --hero-reveal:      400ms; /* lede follows the second line */
+  --hero-sweep:       600ms; /* one character's colour pass */
+  --hero-sweep-step:  25ms;  /* stagger between characters */
+  --hero-sweep-blue:  #498FFF;
+  --hero-sweep-coral: #FF7A7A;
+  --hero-sweep-amber: #FFBC74;
+
+  /* ---- TOOLS CARD ------------------------------------------
+     From Nicole___Tool_Stack_Card_v5.html — not Figma.
+     That file is the source for this component. Brand mark
+     fills (Shopify green, Figma purple, etc.) stay on the
+     SVGs; they are not UI tokens.                             */
+  --tools-card:       #F4F2F0;
+  --tools-card-line:  #D9D9D9;
+  --tools-chip:       #FBFAF8;
+  --tools-chip-line:  #E4E1DB;
+  --ink-faint:        rgba(80, 80, 80, .42);
+  --r-tools:          20px;
+  --r-chip:           10px;
+  --ease-out:         cubic-bezier(.16, 1, .3, 1);
+  --fs-chip:          0.8rem;
+  --fs-chip-label:    0.625rem;
+  --tools-chip-w:     150px;
+  --tools-chip-h:     40px;
+  --tools-icon:       18px;
+  --tools-ratio:      370 / 324;
+  --tools-ratio-sm:   343 / 329;
+  --tools-pad:        18px;
+  --tools-pad-y:      26px; /* extra air so the card matches How We Build */
+  --tools-field-y:    20px;
+  --tools-field-x:    16px;
+  --tools-enter:      40ms;
+  --tools-stagger:    60ms;
+  --tools-float:      7s;
+  --tools-breathe:    3.6s;
+  --dur-enter:        520ms;
+  --tools-chip-gap:   7px;
+  --tools-enter-y:    14px;
+  --tools-arrow:      36px;
+  --tools-mask:       radial-gradient(70% 62% at 50% 46%, #000 55%, rgb(0 0 0 / .55) 75%, transparent 100%);
+
+  /* ---- TOOLS PAGE — Brand Guide, 2 Nov 2026 ----------------
+     Page layout only. Spot blue and amber are the guide's
+     button/animation colours; they are not the Figma pill
+     tokens, and they are never used on text.                 */
+  --tools-max:        1200px;
+  --tools-copy:       720px;
+  --tools-section:    96px;
+  --tools-section-sm: 56px;
+  --tools-h2:         1.375rem; /* 22px */
+  --tools-h2-lh:      1.495;    /* 32.9 / 22 */
+  --tools-ease:       cubic-bezier(0.2, 0, 0, 1);
+  --tools-hover:      300ms;
+  --tools-press:      50ms;
+  --tools-rise:       500ms;
+  --tools-spot-blue:  #6996C7;
+  --tools-spot-amber: #F5A603;
+  --tools-ring:       0 0 0 1px rgb(11 13 24 / .06), 0 1px 2px rgb(11 13 24 / .024);
+  --tools-ring-hover: 0 0 0 1px rgb(11 13 24 / .16), 0 8px 24px rgb(11 13 24 / .06);
+
+  /* ---- QUOTE CARD ------------------------------------------
+     From Nicole___Quote_Card_v2.html — not Figma.
+     Shares the tools-card surface. Display-only: the loop
+     ticks line items and counts the total; rows are not
+     clickable. Orange in that file is #FFAD00; maps to
+     --amber here, same as the Tools card hover.               */
+  --quote-box:          #F1EFEC;
+  --ink-muted:          rgb(80 80 80 / .68);
+  --quote-ratio:        742 / 522;
+  --quote-ratio-sm:     343 / 400;
+  --quote-min-h:        340px;
+  --r-quote:            24px;
+  --r-quote-panel:      16px;
+  --r-quote-box:        6px;
+  --quote-check:        22px;
+  --quote-check-icon:   13px;
+  --fs-quote:           0.9375rem;
+  --fs-quote-kicker:    0.75rem;
+  --fs-quote-total:     1.125rem;
+  --quote-float:        9s;
+  --quote-count:        420ms;
+  --dur-quote:          260ms;
+  --quote-enter:        560ms;
+  --quote-mask:         radial-gradient(78% 72% at 50% 50%, #000 52%, rgb(0 0 0 / .5) 78%, transparent 100%);
+  --quote-dot:          radial-gradient(circle, rgb(80 80 80 / .22) 1.3px, transparent 1.4px);
+  --quote-dot-size:     9px;
+  --quote-dot-mask:     radial-gradient(closest-side, #000 38%, rgb(0 0 0 / .45) 70%, transparent 100%);
+  --r-quote-sm:         18px;
+  --quote-eyebrow-pad:  11px 22px;
+  --quote-eyebrow-pad-sm: 9px 18px;
+  --quote-panel-pad:    24px 30px 22px;
+  --quote-panel-pad-sm: 20px 20px 18px;
+  --quote-row-pad:      9px 8px;
+  --quote-rule-gap:     16px 0 14px;
+  --quote-blob-in:      900ms;
+
+  /* ---- PROJECT CARD ----------------------------------------
+     From Nicole___Start_Project_Card_v2.html — not Figma.
+     Same surface as the Quote card. Display-only: the loop
+     types a client name and ticks the brief.                  */
+  --proj-field:         #F7F6F4;
+  --proj-input-h:       40px;
+  --proj-caret-w:       1.5px;
+  --proj-caret-h:       17px;
+  --proj-type:          68ms;
+  --proj-group-gap:     22px;
+  --proj-eyebrow-pad:   13px 24px;
+  --proj-panel-pad:     26px 30px 34px;
+  --proj-panel-pad-sm:  20px 20px 24px;
+  --proj-pill-pad:      9px 20px;
+  --proj-pill-pad-sm:   8px 15px;
+  --fs-proj-pill-sm:    0.8125rem;
+  --proj-grid-col:      18px;
+  --proj-grid-row:      11px;
+  --proj-grid-gap-sm:   10px;
+  --proj-legend-ls:     0.09em;
+  --proj-legend-mb:     10px;
+  --proj-input-pad-x:   14px;
+  --proj-pills-gap:     10px;
+  --proj-ring:          3px;
+  --proj-caret-ml:      2px;
+
+  /* ---- TRUSTED BY MARQUEE ----------------------------------
+     Not in Figma — the row is static there. Duration is one
+     full set-width loop; higher = slower.                     */
+  --trusted-marquee:    36s;
+
+  /* ---- PRICING PROFILES ------------------------------------
+     Tabbed platform panel. Interaction from
+     nicole-platform-profiles_2.html; layout from Figma
+     370:1574 (the screenshot placeholder at 493:137).         */
+  --profiles-pad:       56px;   /* Figma copy/point padding     */
+  --profiles-tab-y:     32px;
+  --fs-profile-title:   1.625rem; /* 26px                       */
+  --fs-profile-point:   1.0625rem; /* 17px                      */
+  --fs-profile-body:    0.9375rem; /* 15px point body           */
+  --fs-profile-note:    0.875rem;  /* 14px Worth Knowing body   */
+  --lh-profile-title:   1.25;
+  --logo-tab-h:         26px;
+  --profiles-fade:      280ms;
+  --profiles-note-pad:  16px 20px; /* v2 .caveat                */
+  --profiles-note-bar:  3px;
+  --r-profiles-note:    8px;
+  --profiles-note-label-mb: 6px;
+
+  /* ---- PRICING LOGO SCROLLER -------------------------------
+     vertical-logo-scroller.html. Slot matches the flattened
+     Figma stack (217×351). Fill on the mark SVGs is --ink.    */
+  --scroller-w:         217px;
+  --scroller-h:         351px;
+  --scroller-mark:      28px;
+  --scroller-gap:       var(--s-7); /* 48px                    */
+  --scroller-item-gap:  var(--s-3); /* 12px                    */
+  --fs-scroller:        1.125rem;   /* 18px                    */
+  --scroller-dur:       14s;
+
+  /* ---- SQUARESPACE QUOTER ----------------------------------
+     Nicole — Pricing Page (Squarespace) v1_1.html.
+     Prices from Knee Coal Website Pricing 2026, Tier 01.
+     Colours already in the system; the rest is from the
+     prototype. --ink-faint is already rgba for the Tools
+     card, so the quoter's #8A8A8A is --quoter-quiet.          */
+  --amber-tint:         #F4A60014;
+  --quoter-title:       #505050;
+  --quoter-quiet:       #8A8A8A;
+  --quoter-sidebar:     340px;
+  --quoter-stack:       980px;
+  --quoter-enter:       600ms;
+  --quoter-enter-y:     20px;
+  --dur-quoter:         200ms;
+  --fs-quoter-kicker:   0.75rem;    /* 12px                    */
+  --fs-quoter-meta:     0.6875rem;  /* 11px                    */
+  --fs-quoter-badge:    0.625rem;   /* 10px                    */
+  --fs-quoter-note:     0.8125rem;  /* 13px                    */
+  --fs-quoter-desc:     0.84375rem; /* 13.5px                  */
+  --fs-quoter-price:    0.90625rem; /* 14.5px                  */
+  --fs-quoter-row:      0.9375rem;  /* 15px                    */
+  --fs-quoter-option:   0.96875rem; /* 15.5px                  */
+  --fs-quoter-total:    1.75rem;    /* 28px                    */
+  --quoter-section-pad: 26px 28px;
+  --quoter-option-pad:  18px 20px;
+  --quoter-summary-pad: 26px 24px;
+  --quoter-cta-pad:     40px;
+  --quoter-check:       20px;
+  --quoter-step:        30px;
+  --quoter-hour-w:      56px;
+  --r-quoter-check:     5px;
+  --r-quoter-input:     8px;
+  --quoter-line-on-dark: rgb(255 255 255 / .2);
+  --quoter-tag:          rgb(255 255 255 / .14);
+  --quoter-muted-on-dark: rgb(255 255 255 / .6);
+  --quoter-kicker-on-dark: rgb(255 255 255 / .7);
+  --quoter-soft-on-dark: rgb(255 255 255 / .82);
+  --quoter-warn-pad:    10px 14px;
+
+  /* ---- PROCESS — How a build runs -------------------------
+     Cursor brief v1. Not in the Home Figma frame.
+     --process-bg matches the cube matte so the frame edges
+     disappear. The brief names #f1f2e8; the poster samples
+     241,243,232. One channel apart — the brief value is used.
+     --process-line is the leader baked into the right edge
+     of the poster (183,182,187 at y=337).                    */
+  --process-bg:         #f1f2e8;
+  --process-line:       #b7b6bb;
+  --process-step:       65vh;
+  --process-marker:     400ms;
+  --process-upcoming:   0.4;
+  --process-num:        44px;
+  --fs-process-label:   0.6875rem; /* 11px mono ticks          */
+  --fs-process-badge:   0.75rem;
+  --r-process-tag:      2px;
+  --process-video-w:    420px;
+
+  /* ---- FAQS ------------------------------------------------
+     Nicole — FAQ Page v2.html. Not in the Home Figma frame.
+     Header and footer are the site's. #FFAD00 is the search
+     control and the disclosure hover; it is not --amber.
+     --faq-tap is the tablet hit size for the row controls.    */
+  --faq-ink:            #505050;
+  --faq-quiet:          #6B6B6B;
+  --faq-line:           #B9B3AC;
+  --faq-orange:         #FFAD00;
+  --faq-orange-tint:    rgb(255 173 0 / .14);
+  --faq-orange-glow:    rgb(255 173 0 / .16);
+  --faq-orange-card:    rgb(255 173 0 / .18);
+  --faq-orange-shadow:  rgb(255 173 0 / .40);
+  --faq-mark:           rgb(255 173 0 / .38);
+  --faq-amber-pill:     rgb(244 166 0 / .16);
+  --faq-amber-ink:      #6E4800;
+  --faq-hero-a:         rgb(255 173 0 / .28);
+  --faq-hero-b:         rgb(106 150 199 / .32);
+  --faq-hero-from:      #F6ECE0;
+  --faq-hero-mid:       #ECDCD2;
+  --faq-hero-to:        #DDE6F1;
+  --r-faq:              20px;
+  --faq-list:           1040px;
+  --faq-gap:            28px;
+  --faq-section:        56px;
+  --faq-search-h:       64px;
+  --faq-go-h:           48px;
+  --faq-icon:           34px;
+  --faq-tap:            44px;
+  --faq-card-min:       260px;
+  --faq-float:          6s;
+  --fs-faq-search:      clamp(1.375rem, 3vw, 1.875rem);  /* 22 → 30 */
+  --fs-faq-cat:         clamp(1.5rem, 3vw, 2rem);        /* 24 → 32 */
+  --fs-faq-mr:          1.1875rem;  /* 19px */
+  --fs-faq-q:           1.0625rem;  /* 17px */
+  --fs-faq-meta:        0.8125rem;  /* 13px */
+  --fs-faq-chip:        0.875rem;   /* 14px */
+  --fs-faq-kicker:      0.6875rem;  /* 11px */
+  --lh-faq-q:           1.4;
+  --lh-faq-mr:          1.3;
+
+  /* ---- BLOG — dark mode, brand guide 2 Nov 2026 --------
+     Type sizes stay the light-mode styles (H1 40/46, H2
+     22/32.9, H3 14/32.9, P1 16/25). Colours are the guide's
+     dark roles. Page background is #101010 from that table.
+     Dashed grid is the Attio cell outline: 4px dash, 6px
+     gap, 1px stroke, round caps, #232529, drawn as SVG.
+     #6F7988 on #101010 is 4.32:1, short of AA for 14px
+     regular text, so small labels use --blog-body.
+     Spot colours are fills and highlights, never text.
+     Rust is a fill with white text only.                    */
+  --blog-bg:            #101010;
+  --blog-surface:       #202124;
+  --blog-raised:        #2E3238;
+  --blog-grid:          #232529;
+  --blog-heading:       #FFFFFF;
+  --blog-body:          #8F99A8;
+  --blog-muted:         #6F7988;
+  --blog-hairline:      rgb(255 255 255 / .05);
+  --blog-dash:          4;
+  --blog-dash-gap:      6;
+  --blog-pad:           20px;
+  --blog-radius:        20px;
+  --blog-toc-w:         220px;
+  --blog-eyebrow-lh:    2.35; /* 32.9 / 14 — brand H3 */
+  --blog-avatar:        20px;
+  --blog-thumb-min:     160px;
+  --blog-cover-min:     280px;
+  --blog-shot:          300px;
+  --blog-shot-h:        520px;
+  --blog-expand-max:    850px;
+  --blog-expand-dur:    500ms;
+  --blog-expand-inset:  16px;
+  --blog-plus:          32px;
+  --blog-star-h:        40px;
+  --blog-star-light:    110px;
+  --blog-star-dur:      3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

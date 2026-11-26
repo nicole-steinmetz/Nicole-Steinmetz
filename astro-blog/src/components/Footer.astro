@@ -1,0 +1,95 @@
+---
+const assets = `${import.meta.env.BASE_URL}assets`;
+---
+
+<footer class="site-footer">
+	<div class="site-footer__bg" aria-hidden="true">
+		<img
+			src={`${assets}/img/footer-bg-dark.jpg`}
+			alt=""
+			width="1024"
+			height="419"
+			loading="lazy"
+			decoding="async"
+		/>
+	</div>
+
+	<div class="site-footer__inner container">
+		<a class="site-footer__brand" href="https://nicolesteinmetz.com/" aria-label="Nicole Steinmetz — home">
+			<img src={`${assets}/svg/logo-white.svg`} alt="Miss Nicole Steinmetz" width="210" height="101" loading="lazy" />
+		</a>
+
+		<nav class="footer-col" aria-labelledby="f-pricing">
+			<h2 class="footer-col__title" id="f-pricing">
+				<a href="https://nicolesteinmetz.com/pricing/">Pricing</a>
+			</h2>
+			<ul>
+				<li>
+					<a href="https://nicolesteinmetz.com/pricing/squarespace/">Squarespace</a>
+				</li>
+				<li>
+					<a href="https://nicolesteinmetz.com/pricing/shopify/">Shopify</a>
+				</li>
+				<li>
+					<a href="https://nicolesteinmetz.com/pricing/vercel/">Vercel</a>
+				</li>
+				<li>
+					<a href="https://nicolesteinmetz.com/pricing/cloudflare/">Cloudflare</a>
+				</li>
+				<li>
+					<a href="https://nicolesteinmetz.com/pricing/netlify/">Netlify</a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="footer-col" aria-labelledby="f-clarifications">
+			<h2 class="footer-col__title" id="f-clarifications">Clarifications</h2>
+			<ul>
+				<li>
+					<a href="https://nicolesteinmetz.com/faqs/">All FAQs</a>
+				</li>
+				<li>
+					<a href="https://nicolesteinmetz.com/pricing/#platform-profiles">Compare platforms</a>
+				</li>
+				<li>
+					<a href="https://nicolesteinmetz.com/blog/">Blog</a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="footer-col" aria-labelledby="f-contact">
+			<h2 class="footer-col__title" id="f-contact">
+				<a href="https://nicolesteinmetz.com/contact/">Contact</a>
+			</h2>
+			<ul>
+				<li>
+					<a href="mailto:nicole@kneecoal.com">Email us</a>
+				</li>
+				<li>
+					<a href="https://wa.me/61402765878" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+				</li>
+				<li>
+					<a href="https://calendar.app.google/VhKn1WLoZNS8Aq899" target="_blank" rel="noopener noreferrer">
+						Video call
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="site-footer__base container">
+		<div class="site-footer__meta">
+			<p class="site-footer__copy">
+				&copy; 2026 <strong>Nicole Steinmetz</strong> All rights and so many wrongs reserved.
+			</p>
+			<a class="site-footer__privacy" href="https://nicolesteinmetz.com/privacy/">Privacy Policy</a>
+		</div>
+		<img
+			class="site-footer__badges"
+			src={`${assets}/img/circle-platinum-2026.png`}
+			alt="Squarespace Circle Platinum Partner, 2026"
+			width="1024"
+			height="319"
+			loading="lazy"
+			decoding="async"
+		/>
+	</div>
+</footer>

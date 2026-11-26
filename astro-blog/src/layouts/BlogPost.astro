@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+
+type Props = CollectionEntry<'blog'>['data'] & { id: string };
+
+const sections: Record<string, { href: string; label: string }[]> = {
+	reset: [
+		{ href: '#problem', label: 'The problem' },
+		{ href: '#build', label: 'The build' },
+		{ href: '#hosting', label: 'Hosting' },
+		{ href: '#learned', label: 'What I learned' },
+	],
+	hoodburger: [
+		{ href: '#brief', label: 'The brief' },
+		{ href: '#built', label: 'What I built' },
+		{ href: '#loyalty', label: 'The Round Table' },
+		{ href: '#worked', label: 'How I worked' },
+	],
+};
+
+const { id, title, description, pubDate, heroImage, platform } = Astro.props;
+const toc = sections[id] ?? [];
+const published = pubDate.toLocaleDateString('en-AU', {
+	day: 'numeric',
+	month: 'short',
+	year: 'numeric',
+});
+---
+
+<Base title={`${title} — Nicole Steinmetz`} description={description}>
+	<main id="main" class="blog-frame">
+		<svg class="blog-rails" aria-hidden="true" focusable="false">
+			<line x1="0.5" y1="0" x2="0.5" y2="100%"></line>
+			<line x1="100%" y1="0" x2="100%" y2="100%"></line>
+			<circle cx="1.5" cy="1.5" r="1.5"></circle>
+			<circle cx="100%" cy="1.5" r="1.5"></circle>
+		</svg>
+		<section class="blog-post-head">
+			<div class="blog-crumb">
+				<a href={import.meta.env.BASE_URL}><span aria-hidden="true">&larr;</span> Blog</a>
+				<span>
+					<time datetime={pubDate.toISOString()}>{published}</time> / <b>Case study</b>
+				</span>
+			</div>
+			<h1>{title}</h1>
+			<div class="blog-byline">
+				<span class="blog-avatar" aria-hidden="true">N</span>
+				Nicole Steinmetz · Web designer and developer
+			</div>
+			<ul class="blog-tags" aria-label="Platforms">
+				<li>
+					<a class="blog-tag" href={`/blog/?q=${platform.toLowerCase()}`}>{platform}</a>
+				</li>
+			</ul>
+		</section>
+		<svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1"></line></svg>
+		{
+			heroImage && (
+				<section class="blog-cover" aria-hidden="true">
+					<div class="blog-thumb">
+						<Image src={heroImage} alt="" width={heroImage.width} height={heroImage.height} />
+					</div>
+				</section>
+			)
+		}
+		<svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1"></line></svg>
+		<div class="blog-layout">
+			{
+				toc.length > 0 && (
+					<nav class="blog-toc" aria-label="On this page">
+						{toc.map((item, index) => (
+							<a href={item.href} class={index === 0 ? 'is-current' : undefined} aria-current={index === 0 ? 'true' : undefined}>
+								{item.label}
+							</a>
+						))}
+					</nav>
+				)
+			}
+			<article class="blog-article">
+				<slot />
+			</article>
+		</div>
+	</main>
+</Base>

@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => {
+	const byDate = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+	if (byDate !== 0) return byDate;
+	return a.id === 'reset' ? -1 : 1;
+});
+const base = import.meta.env.BASE_URL;
+---
+
+<Base
+	title="Blog — Nicole Steinmetz"
+	description="Case studies and notes from building websites and apps with AI tools."
+>
+	<main id="main" class="blog-frame">
+		<svg class="blog-rails" aria-hidden="true" focusable="false">
+			<line x1="0.5" y1="0" x2="0.5" y2="100%"></line>
+			<line x1="100%" y1="0" x2="100%" y2="100%"></line>
+			<circle cx="1.5" cy="1.5" r="1.5"></circle>
+			<circle cx="100%" cy="1.5" r="1.5"></circle>
+		</svg>
+		<section class="blog-hero" aria-labelledby="blog-title">
+			<div class="blog-hero__copy">
+				<div class="blog-crumb">
+					<span>[ Blog ]</span>
+					<a href={`${base}rss.xml`}>RSS feed</a>
+				</div>
+				<h1 id="blog-title">Notes from building with AI</h1>
+				<p class="blog-hero__lede">Case studies and notes from building websites and apps with AI tools.</p>
+				<div class="blog-hero__actions">
+					<a class="blog-btn" href={`${base}reset/`}>Read the case study</a>
+					<a class="blog-btn blog-btn--line" href="https://reset-daily.kneecoal.workers.dev/" target="_blank" rel="noopener noreferrer">See the app</a>
+				</div>
+			</div>
+			<img class="blog-hero__shot" src={`${base}assets/img/reset-app.png`} alt="Fittonesu, the Reset daily training app, open on Today" width="300" height="520" />
+		</section>
+		<svg class="blog-rule" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1"></line></svg>
+
+		<form class="blog-search" role="search" action={base} method="get">
+			<label class="visually-hidden" for="blog-q">Search notes by platform</label>
+			<input id="blog-q" type="search" name="q" placeholder="Search by platform" autocomplete="off" />
+		</form>
+		<p class="blog-search__empty" hidden>No notes match that.</p>
+
+		<section class="blog-grid" aria-label="Articles">
+			<svg class="blog-split" aria-hidden="true" focusable="false"><line x1="0.5" y1="0" x2="0.5" y2="100%"></line></svg>
+			{
+				posts.map((post) => (
+					<a class="blog-card" href={`${base}${post.id}/`}>
+						<div class="blog-meta">
+							<span class="blog-by">
+								<span class="blog-avatar" aria-hidden="true">
+									N
+								</span>
+								Nicole Steinmetz
+							</span>
+							<span class="blog-when">
+								<b>Case study</b>
+							</span>
+						</div>
+						<ul class="blog-tags" aria-label="Platforms">
+							<li>
+								<span class="blog-tag">{post.data.platform}</span>
+							</li>
+						</ul>
+						<div class="blog-thumb">
+							{post.data.heroImage && (
+								<Image
+									src={post.data.heroImage}
+									alt=""
+									width={post.data.heroImage.width}
+									height={post.data.heroImage.height}
+								/>
+							)}
+						</div>
+						<div class="blog-card__row">
+							<h2>{post.data.title}</h2>
+							<span class="blog-card__plus" aria-hidden="true">
+								<svg viewBox="0 0 24 24" width="16" height="16" focusable="false">
+									<path
+										d="M12 5v14M5 12h14"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</span>
+						</div>
+						<p>{post.data.description}</p>
+					</a>
+				))
+			}
+		</section>
+	</main>
+</Base>
+
+<script>
+	const form = document.querySelector('.blog-search');
+	const input = form?.querySelector('input');
+	const grid = document.querySelector('.blog-grid');
+	const empty = document.querySelector('.blog-search__empty');
+	if (form && input instanceof HTMLInputElement && grid) {
+		const cards = grid.querySelectorAll('a.blog-card');
+		const apply = (raw: string) => {
+			const query = raw.trim().toLowerCase();
+			let shown = 0;
+			cards.forEach((card) => {
+				const match = !query || card.textContent?.toLowerCase().includes(query);
+				card.hidden = !match;
+				if (match) shown += 1;
+			});
+			grid.classList.toggle('is-filtered', shown < 2);
+			if (empty instanceof HTMLElement) empty.hidden = shown !== 0;
+		};
+		const initial = new URLSearchParams(window.location.search).get('q') || '';
+		if (initial) input.value = initial;
+		apply(input.value);
+		input.addEventListener('input', () => {
+			apply(input.value);
+			const url = new URL(window.location.href);
+			const value = input.value.trim();
+			if (value) url.searchParams.set('q', value);
+			else url.searchParams.delete('q');
+			history.replaceState(null, '', url);
+		});
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			apply(input.value);
+		});
+	}
+</script>

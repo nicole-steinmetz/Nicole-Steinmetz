@@ -10,12 +10,12 @@ https://nicolesteinmetz.com/*  https://www.nicolesteinmetz.com/:splat  301!
 # Home, Pricing (and the five platform pages), Contact,
 # How a build runs (/process/) and FAQs (/faqs/) are live.
 # Privacy Policy is not built yet.
-# Old quote, project and platform-decider URLs now land on the
+# Old quote and platform-decider URLs now land on the
 # pages those controls actually open.
+# /start-a-project/ is the project brief.
 # 302, not 301: the privacy URL comes back when that page exists.
 # python3 -m http.server does not honour this file — local preview still 404s.
 # ---------------------------------------------------------------------------
 /privacy/*            /  302
 /platform-decider/    /pricing/#platform-profiles  302
 /get-a-quote/         /pricing/  302
-/start-a-project/     /contact/  302

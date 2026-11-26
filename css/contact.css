@@ -66,6 +66,18 @@
   color: var(--ink-soft);
 }
 
+.contact-intro__note {
+  margin: var(--s-5) auto 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-compact);
+  color: var(--ink-soft);
+}
+.contact-intro__note a {
+  color: var(--rust);
+  font-weight: 700;
+  border-bottom: 1px solid var(--amber);
+}
+
 /* ---- CARDS — 408 wide, 212px tall (preview 177px + 20%) --- */
 .contact-cards {
   display: grid;

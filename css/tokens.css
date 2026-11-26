@@ -332,6 +332,25 @@
   --fs-faq-kicker:      0.6875rem;  /* 11px */
   --lh-faq-q:           1.4;
   --lh-faq-mr:          1.3;
+
+  /* ---- PROJECT BRIEF ---------------------------------------
+     Guided brief at /start-a-project/. Not a Figma frame.
+     Surfaces reuse the warm card and white page tokens.
+     Amber is the selected state and the progress fill only —
+     it is not used for text, the contrast is too low.        */
+  --brief-bg:           var(--proj-field);
+  --brief-surface:      var(--paper);
+  --brief-line:         var(--card-line);
+  --brief-muted:        var(--ink-soft);
+  --brief-amber-tint:   var(--amber-tint);
+  --r-brief:            16px;
+  --r-brief-control:    12px;
+  --brief-max:          720px;
+  --brief-bar:          92px;
+  --brief-shadow:       0 1px 2px rgb(80 80 80 / .04);
+  --brief-backdrop:     rgb(14 14 16 / .35);
+  --fs-brief-kicker:    var(--fs-eyebrow);
+  --fs-brief-hint:      0.9375rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

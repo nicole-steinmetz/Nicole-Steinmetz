@@ -9,6 +9,8 @@ const TO = "nicole@kneecoal.com";
 const FROM = "quotes@kneecoal.com";
 const FROM_NAME = "Nicole Steinmetz website";
 
+export const STUDIO_EMAIL = TO;
+
 export function canSendMail(env) {
   return Boolean(
     (env.EMAIL && typeof env.EMAIL.send === "function") ||
@@ -16,10 +18,17 @@ export function canSendMail(env) {
   );
 }
 
+function recipientOf(message) {
+  const to = message && typeof message.to === "string" ? message.to.trim() : "";
+  if (to && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return to;
+  return TO;
+}
+
 export async function sendSiteMail(env, message) {
+  const to = recipientOf(message);
   if (env.EMAIL && typeof env.EMAIL.send === "function") {
     await env.EMAIL.send({
-      to: TO,
+      to: to,
       from: { email: FROM, name: FROM_NAME },
       replyTo: message.replyTo,
       subject: message.subject,
@@ -37,7 +46,7 @@ export async function sendSiteMail(env, message) {
   }
 
   const body = {
-    to: TO,
+    to: to,
     from: { address: FROM, name: FROM_NAME },
     subject: message.subject,
     html: message.html,

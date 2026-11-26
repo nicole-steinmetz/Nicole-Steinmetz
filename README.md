@@ -38,6 +38,48 @@ A static page cannot send mail, so this is a Pages Function rather than more fro
 
 Until both are in place, the form tells the visitor to email directly.
 
+## Project brief
+
+`/start-a-project/` is the guided brief. Answers are saved in the browser as the client goes (`localStorage`, this browser only). **Save and exit** stores an online draft, and **Submit project brief** stores the finished brief.
+
+Online drafts and submissions need a D1 database. Until that binding exists, the page still works and keeps the device copy. It will say plainly if an online save didn’t go through. Email is the same `EMAIL_API_TOKEN` path as quotes. If that secret isn’t set, the brief is still stored and the page does not claim an email was sent.
+
+### D1
+
+1. Cloudflare dashboard → **Storage & databases → D1 → Create**. Name it `briefs`.
+2. Open the database console and run `migrations/0001_briefs.sql`.
+3. Pages project → **Settings → Bindings → Add → D1 database**. Variable name `BRIEFS_DB`. Production, then redeploy.
+
+The resume link is a bearer credential. The database stores only its SHA-256 hash. Drafts expire **30 days** after the last save (`DRAFT_TTL_DAYS` in `js/brief-schema.js`). Set the Pages variable `BRIEF_DRAFT_TTL_DAYS` only if that window should change, and keep the on-page copy in step with it.
+
+Optional rate-limit overrides: `BRIEF_WRITE_RATE_PER_HOUR` (40), `BRIEF_READ_RATE_PER_HOUR` (60), `BRIEF_SUBMIT_RATE_PER_HOUR` (8), `BRIEF_EMAIL_RATE_PER_HOUR` (5). With `RATE_LIMIT_KV` bound, those caps are shared across locations. Without it, each isolate keeps its own count.
+
+### Reading a finished brief
+
+There is no admin site. The studio copy is the email to nicole@kneecoal.com when email is configured. The database is the source of truth either way.
+
+In the D1 console (you’re already authenticated to the Cloudflare account):
+
+```sql
+SELECT id, created_at, email_status,
+       json_extract(answers_json, '$.businessName') AS business
+FROM submissions
+ORDER BY created_at DESC
+LIMIT 20;
+```
+
+```sql
+SELECT summary_text FROM submissions WHERE id = 'paste-the-id';
+```
+
+That query returns personal information. Run it from the dashboard, not in a shared log. Don’t build a public URL for it.
+
+### Before launch
+
+Budget ranges are intentionally empty. Published prices on the site are line items, not client budget bands, so the form only offers “I haven’t set a budget and need guidance.” Add approved AUD ranges in `BUDGET_RANGES` inside `js/brief-schema.js` before you want clients to pick a figure. There is no privacy policy page yet (`/privacy/` still redirects home), so the brief explains how the answers are used and does not link to one.
+
+---
+
 ## FAQ most-read counts
 
 `/faqs/` shows three seeded questions until a KV namespace is bound. The page still works without it.
@@ -63,6 +105,7 @@ Until both are in place, the form tells the visitor to email directly.
 | `/pricing/netlify/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Netlify) v1.html`) |
 | `/pricing/vercel/` | Live — hero, intro, working quote builder (`Nicole — Pricing Page (Vercel) v1.html`) |
 | `/contact/` | Live — hero, intro, email / WhatsApp / booking cards |
+| `/start-a-project/` | Live — guided project brief |
 | `/process/` | Live — How a build runs |
 | `/faqs/` | Live — search, most-read cards, FAQPage schema (`Nicole — FAQ Page v3.html`) |
 | `/tools/` | Live — what each platform, host and build tool is, and how they fit |

@@ -1586,6 +1586,14 @@ body:has(.process) .site-footer { margin-top: 0; }
   transition: border-color var(--dur-fast) var(--ease);
 }
 .footer-col a:hover { border-bottom-color: currentColor; }
+.footer-col__title a {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+}
 
 .site-footer__base {
   display: flex;

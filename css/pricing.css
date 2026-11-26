@@ -697,6 +697,15 @@
 
 .pricing-short__body p + p { margin-top: var(--s-5); }
 
+.pricing-short__body ul {
+  margin-top: var(--s-5);
+  padding-left: var(--s-5);
+  list-style: disc;
+  text-align: left;
+}
+.pricing-short__body li + li { margin-top: var(--s-3); }
+.pricing-short__body ul + p { margin-top: var(--s-5); }
+
 .pricing-short__jump {
   color: inherit;
   border-bottom: 1px solid currentColor;

@@ -2,6 +2,6 @@
   "name": "nicolesteinmetz-com",
   "private": true,
   "scripts": {
-    "check": "node scripts/check-site.mjs"
+    "check": "node scripts/check-site.mjs && node scripts/check-brief.mjs"
   }
 }
